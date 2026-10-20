@@ -79,6 +79,26 @@
         "atcoder": "",
         "cses": ""
       }
+    },
+    {
+      "id": "user_1792501871897",
+      "name": "Gamal Megahed",
+      "handles": {
+        "vjudge": "gamalmegahed",
+        "codeforces": "PG_Gamal_Kobisy",
+        "atcoder": "",
+        "cses": ""
+      }
+    },
+    {
+      "id": "user_1792502067536",
+      "name": "Abdelrahman Saber",
+      "handles": {
+        "vjudge": "4aii_Blabn",
+        "codeforces": "4aii_Blabn",
+        "atcoder": "",
+        "cses": ""
+      }
     }
   ],
   "session_gap_minutes": 30,
@@ -87,5 +107,5 @@
   "fetch_limit": 200,
   "timezone_offset_hours": 3,
   "cloud_sync_topic": "vj_tracker_bodesaber_sync_v2",
-  "last_cloud_sync_ts": 1792499276
+  "last_cloud_sync_ts": 1792502067
 }

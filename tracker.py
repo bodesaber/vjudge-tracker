@@ -1840,9 +1840,9 @@ def generate_html_dashboard(users_data, config):
                     platform: 'VJudge',
                     handle: userObj.handles.vjudge,
                     url: `https://vjudge.net/user/${{userObj.handles.vjudge}}`,
-                    extra: 'تتم المزامنة عبر السيرفر السحابي 24/7',
+                    extra: 'يُجلب عبر سيرفر GitHub تلقائياً (دورة كل 5-10 دقائق)',
                     is_online: false,
-                    last_seen_str: 'قيد الجلب السحابي',
+                    last_seen_str: '⏳ في دورة السيرفر القادمة',
                     last_seen_ms: 0,
                     acAll: 0,
                     attAll: 0,
@@ -2117,32 +2117,74 @@ def generate_html_dashboard(users_data, config):
                 delete userObj.platforms['AtCoder'];
             }}
 
-            if (allEvents.length > 0 && (!existingUser || !prof.handles.vjudge)) {{
+            // Preserve any existing server-fetched VJudge events so merging with live CF/AtCoder works seamlessly
+            if (existingUser && Array.isArray(existingUser.sessions) && prof.handles && prof.handles.vjudge) {{
+                existingUser.sessions.forEach(s => {{
+                    (s.timeline || []).forEach(t => {{
+                        if (t.platform === 'VJudge' && t.time) {{
+                            allEvents.push({{
+                                time: t.time,
+                                type: t.type || 'submission',
+                                platform: 'VJudge',
+                                probNum: t.probNum || '',
+                                problemName: t.problemName || t.probNum || '',
+                                problemUrl: t.problemUrl || '#',
+                                status: t.status || '',
+                                is_ac: !!t.is_ac,
+                                difficulty: t.difficulty || 0,
+                                diff_tier: t.diff_tier || '',
+                                prob_points: t.prob_points || 0
+                            }});
+                        }}
+                    }});
+                }});
+            }}
+
+            if (allEvents.length > 0) {{
                 userObj.sessions = clusterEventsJS(allEvents, 30, 15);
-                const sToday = userObj.sessions.filter(s => s.end_ms >= todayStartMs);
-                const sWeek = userObj.sessions.filter(s => s.end_ms >= weekStartMs);
-                const sMonth = userObj.sessions.filter(s => s.end_ms >= monthStartMs);
-                userObj.today = {{
-                    solved: Object.values(userObj.platforms).reduce((a, p) => a + (p.today ? p.today.solved : 0), 0),
-                    subs: allEvents.filter(e => e.time >= todayStartMs && e.type === 'submission').length,
-                    time_minutes: sToday.reduce((a, s) => a + s.duration_minutes, 0),
-                    time_str: formatDurationJS(sToday.reduce((a, s) => a + s.duration_minutes, 0)),
-                    sessions: sToday.length
+                const buildPeriodSummary = (threshMs, periodKey) => {{
+                    const sIn = userObj.sessions.filter(s => s.end_ms >= threshMs);
+                    const eIn = allEvents.filter(e => e.time >= threshMs && e.type === 'submission');
+                    const solved = Object.values(userObj.platforms).reduce((a, p) => a + (p[periodKey] ? p[periodKey].solved : 0), 0);
+                    const subs = Math.max(
+                        eIn.length,
+                        Object.values(userObj.platforms).reduce((a, p) => a + (p[periodKey] ? (p[periodKey].subs || 0) : 0), 0)
+                    );
+                    const mins = sIn.reduce((a, s) => a + s.duration_minutes, 0);
+                    const acMap = {{}};
+                    eIn.filter(e => e.is_ac).forEach(e => {{
+                        const k = `${{e.platform}}_${{e.probNum || e.problemName}}`;
+                        const dInfo = evaluateEventDifficultyJS(e);
+                        if (!acMap[k] || dInfo.prob_points > acMap[k].prob_points) acMap[k] = dInfo;
+                    }});
+                    const acList = Object.values(acMap);
+                    const recPts = acList.reduce((a, d) => a + (d.prob_points || 100), 0);
+                    const avgPts = acList.length > 0 ? (recPts / acList.length) : 120;
+                    const extraSolved = Math.max(0, solved - acList.length);
+                    const probPts = Math.round(recPts + extraSolved * avgPts);
+                    const avgDiff = acList.length > 0 ? Math.round(acList.reduce((a, d) => a + (d.difficulty || 1000), 0) / acList.length) : 0;
+                    const maxDiff = acList.length > 0 ? Math.max(...acList.map(d => d.difficulty || 0)) : 0;
+                    return {{
+                        solved,
+                        subs,
+                        time_minutes: mins,
+                        time_str: formatDurationJS(mins),
+                        sessions: sIn.length,
+                        problem_points: probPts,
+                        avg_difficulty: avgDiff,
+                        max_difficulty: maxDiff,
+                        score: calcScoreVal(probPts, subs, mins, sIn.length)
+                    }};
                 }};
-                userObj.week = {{
-                    solved: Object.values(userObj.platforms).reduce((a, p) => a + (p.week ? p.week.solved : 0), 0),
-                    subs: allEvents.filter(e => e.time >= weekStartMs && e.type === 'submission').length,
-                    time_minutes: sWeek.reduce((a, s) => a + s.duration_minutes, 0),
-                    time_str: formatDurationJS(sWeek.reduce((a, s) => a + s.duration_minutes, 0)),
-                    sessions: sWeek.length
-                }};
-                userObj.month = {{
-                    solved: Object.values(userObj.platforms).reduce((a, p) => a + (p.month ? p.month.solved : 0), 0),
-                    subs: allEvents.filter(e => e.time >= monthStartMs && e.type === 'submission').length,
-                    time_minutes: sMonth.reduce((a, s) => a + s.duration_minutes, 0),
-                    time_str: formatDurationJS(sMonth.reduce((a, s) => a + s.duration_minutes, 0)),
-                    sessions: sMonth.length
-                }};
+                userObj.today = buildPeriodSummary(todayStartMs, 'today');
+                userObj.week = buildPeriodSummary(weekStartMs, 'week');
+                userObj.month = buildPeriodSummary(monthStartMs, 'month');
+
+                const latestEv = [...allEvents].sort((a, b) => b.time - a.time)[0];
+                if (latestEv) {{
+                    userObj.last_problem_str = `[${{latestEv.platform}}] ${{latestEv.problemName || latestEv.probNum}} (${{latestEv.status}})`;
+                    userObj.last_problem_url = latestEv.problemUrl || '#';
+                }}
             }}
 
             userObj.active_platforms_now = Object.keys(userObj.platforms).filter(k => userObj.platforms[k].is_online);
@@ -2196,6 +2238,13 @@ def generate_html_dashboard(users_data, config):
                 const mIso = String(dStart.getMonth() + 1).padStart(2, '0');
                 const dayIso = String(dStart.getDate()).padStart(2, '0');
                 const acCount = subs.filter(e => e.is_ac).length;
+                const acPtsMap = {{}};
+                subs.filter(e => e.is_ac).forEach(e => {{
+                    const k = `${{e.platform}}_${{e.probNum || e.problemName}}`;
+                    const dInfo = evaluateEventDifficultyJS(e);
+                    if (!acPtsMap[k] || dInfo.prob_points > acPtsMap[k]) acPtsMap[k] = dInfo.prob_points;
+                }});
+                const sessionProbPts = Object.values(acPtsMap).reduce((a, v) => a + v, 0);
                 return {{
                     date_iso: `${{yIso}}-${{mIso}}-${{dayIso}}`,
                     month_iso: `${{yIso}}-${{mIso}}`,
@@ -2208,19 +2257,26 @@ def generate_html_dashboard(users_data, config):
                     duration_str: subs.length === 0 ? `${{formatDurationJS(durMins)}} (فتح وتصفح المنصة)` : `${{formatDurationJS(durMins)}} (اتصال متواصل)`,
                     submissions_count: subs.length,
                     accepted_count: acCount,
-                    score: calcScoreVal(acCount, subs.length, durMins, 1),
+                    problem_points: sessionProbPts,
+                    score: calcScoreVal(sessionProbPts, subs.length, durMins, 1),
                     platform_breakdown: pb,
-                    timeline: [...grp].sort((a, b) => b.time - a.time).map(e => ({{
-                        time: e.time,
-                        time_str: formatArabicTimeJS(e.time, true),
-                        platform: e.platform,
-                        type: e.type,
-                        probNum: e.probNum,
-                        problemName: e.problemName,
-                        problemUrl: e.problemUrl,
-                        status: e.status,
-                        is_ac: e.is_ac
-                    }}))
+                    timeline: [...grp].sort((a, b) => b.time - a.time).map(e => {{
+                        const dInfo = evaluateEventDifficultyJS(e);
+                        return {{
+                            time: e.time,
+                            time_str: formatArabicTimeJS(e.time, true),
+                            platform: e.platform,
+                            type: e.type,
+                            probNum: e.probNum,
+                            problemName: e.problemName,
+                            problemUrl: e.problemUrl,
+                            status: e.status,
+                            is_ac: e.is_ac,
+                            difficulty: dInfo.difficulty,
+                            diff_tier: dInfo.diff_tier,
+                            prob_points: dInfo.prob_points
+                        }};
+                    }})
                 }};
             }}).sort((a, b) => b.end_ms - a.end_ms);
         }}
@@ -2303,7 +2359,8 @@ def generate_html_dashboard(users_data, config):
                     const existingU = (appState.users || []).find(u => u.id === prof.id);
                     const needsCf = prof.handles && prof.handles.codeforces && (!existingU || !existingU.platforms || !existingU.platforms['Codeforces']);
                     const needsAc = prof.handles && prof.handles.atcoder && (!existingU || !existingU.platforms || !existingU.platforms['AtCoder']);
-                    if (forceRefetchAll || needsCf || needsAc) {{
+                    const needsSessions = (prof.handles && (prof.handles.codeforces || prof.handles.atcoder)) && (!existingU || !existingU.sessions || existingU.sessions.length === 0);
+                    if (forceRefetchAll || needsCf || needsAc || needsSessions) {{
                         const updatedU = await fetchBrowserLiveStatsForProfile(prof);
                         const idx = appState.users.findIndex(u => u.id === prof.id);
                         if (idx >= 0) appState.users[idx] = updatedU;
