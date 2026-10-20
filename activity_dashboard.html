@@ -2,13 +2,12 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <!-- Auto-refresh every 5 minutes (300 seconds) -->
     <meta http-equiv="refresh" content="300">
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>لوحة متابعة نشاط المتدربين على VJudge (تحديث كل 5 دقائق)</title>
+    <title>لوحة متابعة نشاط المتدربين (24/7)</title>
     <style>
         :root {
             --primary: #2563eb;
@@ -109,6 +108,18 @@
         }
         .btn-reload:hover {
             background: var(--primary-dark);
+        }
+        .rule-note {
+            background: #e0f2fe;
+            border: 1px solid #bae6fd;
+            color: #0369a1;
+            padding: 10px 16px;
+            border-radius: 8px;
+            font-size: 0.88rem;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
         .cards-grid {
             display: grid;
@@ -346,15 +357,15 @@
         <div class="header">
             <div>
                 <h1>
-                    📊 لوحة متابعة نشاط المتدربين على VJudge 
+                    📊 لوحة متابعة نشاط المتدربين
                     <span class="cloud-badge">24/7 Cloud</span>
                     <span class="refresh-pill">تحديث كل 5 دقائق</span>
                 </h1>
-                <p>رصد دقيق لمواعيد فتح وحل المسائل (اليوم - الأسبوع - الشهر) مع توقيت البداية والنهاية</p>
+                <p>رصد دقيق لفترات الاتصال وحل المسائل (اليوم - الأسبوع - الشهر) مع توقيت البداية والنهاية</p>
             </div>
             <div class="header-actions">
                 <div class="last-update">
-                    🕒 آخر تحديث: الثلاثاء 20 أكتوبر 2026 - 02:18 م (توقيت مصر)
+                    🕒 آخر تحديث: الثلاثاء 20 أكتوبر 2026 - 02:25 م (توقيت مصر)
                 </div>
                 <div style="display: flex; align-items: center; gap: 8px;">
                     <span id="countdown" style="font-size: 0.8rem; color: #94a3b8;">التحديث القادم خلال: 05:00</span>
@@ -363,17 +374,21 @@
             </div>
         </div>
 
+        <div class="rule-note">
+            💡 <strong>قاعدة رصد الجلسات (30 دقيقة):</strong> طالما لا يتجاوز الفارق بين المحاولات 30 دقيقة، يُعتبر المتدرب متصلاً ومستمراً في كتابة الكود والتفكير داخل VS Code. إذا تجاوز التوقف 30 دقيقة، تُغلق الجلسة تلقائياً.
+        </div>
+
         <div class="cards-grid">
             
         <div class="user-card" id="card-Israa_abdelhaq">
             <div class="user-header">
-                <img src="https://cdn.vjudge.net.cn/user/avatar/844797?v=1713901887" alt="Israa_abdelhaq" class="avatar" onerror="this.src='https://cdn.vjudge.net.cn/user/avatar/default.png'">
+                <img src="https://cdn.vjudge.net.cn/user/avatar/default" alt="Israa_abdelhaq" class="avatar" onerror="this.src='https://cdn.vjudge.net.cn/user/avatar/default.png'">
                 <div style="flex: 1;">
                     <div style="display: flex; justify-content: space-between; align-items: center;">
                         <h3 class="user-title">
                             <a href="https://vjudge.net/user/Israa_abdelhaq" target="_blank">Israa_abdelhaq</a>
                         </h3>
-                        <span class="badge badge-offline">⚪ غير نشط</span>
+                        <span class="badge badge-offline">⚪ غير متصل</span>
                     </div>
                     <div class="alltime-banner">
                         🏆 إجمالي المسائل المحلولة كلياً: <strong>219 مسألة AC</strong> (من 232 محاولة)
@@ -389,17 +404,17 @@
                 <div class="matrix-cell">
                     <span class="matrix-title">📅 اليوم</span>
                     <div class="matrix-val text-success">0 <span class="matrix-unit">مسائل AC</span></div>
-                    <div class="matrix-sub">0 دقيقة حل (0 تقديم)</div>
+                    <div class="matrix-sub">0 دقيقة نشاط (0 تقديم)</div>
                 </div>
                 <div class="matrix-cell">
                     <span class="matrix-title">🗓️ آخر 7 أيام</span>
                     <div class="matrix-val text-primary">1 <span class="matrix-unit">مسائل AC</span></div>
-                    <div class="matrix-sub">15 دقيقة حل (1 جلسات)</div>
+                    <div class="matrix-sub">15 دقيقة نشاط (1 جلسات)</div>
                 </div>
                 <div class="matrix-cell">
                     <span class="matrix-title">📊 آخر 30 يوماً</span>
                     <div class="matrix-val text-purple">4 <span class="matrix-unit">مسائل AC</span></div>
-                    <div class="matrix-sub">2 س و 30 د حل (4 جلسة)</div>
+                    <div class="matrix-sub">2 س و 25 د نشاط (6 جلسة)</div>
                 </div>
             </div>
 
@@ -414,13 +429,13 @@
         
         <div class="user-card" id="card-Omar_Awad_Saber">
             <div class="user-header">
-                <img src="https://cdn.vjudge.net.cn/user/avatar/832169?v=1719630988" alt="Omar_Awad_Saber" class="avatar" onerror="this.src='https://cdn.vjudge.net.cn/user/avatar/default.png'">
+                <img src="https://cdn.vjudge.net.cn/user/avatar/default" alt="Omar_Awad_Saber" class="avatar" onerror="this.src='https://cdn.vjudge.net.cn/user/avatar/default.png'">
                 <div style="flex: 1;">
                     <div style="display: flex; justify-content: space-between; align-items: center;">
                         <h3 class="user-title">
                             <a href="https://vjudge.net/user/Omar_Awad_Saber" target="_blank">Omar_Awad_Saber</a>
                         </h3>
-                        <span class="badge badge-offline">⚪ غير نشط</span>
+                        <span class="badge badge-offline">⚪ غير متصل</span>
                     </div>
                     <div class="alltime-banner">
                         🏆 إجمالي المسائل المحلولة كلياً: <strong>492 مسألة AC</strong> (من 513 محاولة)
@@ -436,17 +451,17 @@
                 <div class="matrix-cell">
                     <span class="matrix-title">📅 اليوم</span>
                     <div class="matrix-val text-success">0 <span class="matrix-unit">مسائل AC</span></div>
-                    <div class="matrix-sub">0 دقيقة حل (0 تقديم)</div>
+                    <div class="matrix-sub">0 دقيقة نشاط (0 تقديم)</div>
                 </div>
                 <div class="matrix-cell">
                     <span class="matrix-title">🗓️ آخر 7 أيام</span>
                     <div class="matrix-val text-primary">3 <span class="matrix-unit">مسائل AC</span></div>
-                    <div class="matrix-sub">1 س و 15 د حل (5 جلسات)</div>
+                    <div class="matrix-sub">1 س و 15 د نشاط (5 جلسات)</div>
                 </div>
                 <div class="matrix-cell">
                     <span class="matrix-title">📊 آخر 30 يوماً</span>
                     <div class="matrix-val text-purple">16 <span class="matrix-unit">مسائل AC</span></div>
-                    <div class="matrix-sub">7 س و 24 د حل (16 جلسة)</div>
+                    <div class="matrix-sub">7 س و 30 د نشاط (19 جلسة)</div>
                 </div>
             </div>
 
@@ -461,13 +476,13 @@
         
         <div class="user-card" id="card-Fatemaelfiky1">
             <div class="user-header">
-                <img src="https://cdn.vjudge.net.cn/user/avatar/834517?v=1707590835" alt="Fatemaelfiky1" class="avatar" onerror="this.src='https://cdn.vjudge.net.cn/user/avatar/default.png'">
+                <img src="https://cdn.vjudge.net.cn/user/avatar/default" alt="Fatemaelfiky1" class="avatar" onerror="this.src='https://cdn.vjudge.net.cn/user/avatar/default.png'">
                 <div style="flex: 1;">
                     <div style="display: flex; justify-content: space-between; align-items: center;">
                         <h3 class="user-title">
                             <a href="https://vjudge.net/user/Fatemaelfiky1" target="_blank">Fatemaelfiky1</a>
                         </h3>
-                        <span class="badge badge-offline">⚪ غير نشط</span>
+                        <span class="badge badge-offline">⚪ غير متصل</span>
                     </div>
                     <div class="alltime-banner">
                         🏆 إجمالي المسائل المحلولة كلياً: <strong>421 مسألة AC</strong> (من 453 محاولة)
@@ -483,17 +498,17 @@
                 <div class="matrix-cell">
                     <span class="matrix-title">📅 اليوم</span>
                     <div class="matrix-val text-success">0 <span class="matrix-unit">مسائل AC</span></div>
-                    <div class="matrix-sub">0 دقيقة حل (0 تقديم)</div>
+                    <div class="matrix-sub">0 دقيقة نشاط (0 تقديم)</div>
                 </div>
                 <div class="matrix-cell">
                     <span class="matrix-title">🗓️ آخر 7 أيام</span>
                     <div class="matrix-val text-primary">0 <span class="matrix-unit">مسائل AC</span></div>
-                    <div class="matrix-sub">0 دقيقة حل (0 جلسات)</div>
+                    <div class="matrix-sub">0 دقيقة نشاط (0 جلسات)</div>
                 </div>
                 <div class="matrix-cell">
                     <span class="matrix-title">📊 آخر 30 يوماً</span>
                     <div class="matrix-val text-purple">6 <span class="matrix-unit">مسائل AC</span></div>
-                    <div class="matrix-sub">7 س و 42 د حل (7 جلسة)</div>
+                    <div class="matrix-sub">7 س و 29 د نشاط (12 جلسة)</div>
                 </div>
             </div>
 
@@ -501,20 +516,20 @@
                 <span class="peak-icon">⏰</span>
                 <div>
                     <strong>فترات النشاط المعتادة:</strong>
-                    <div style="font-size: 0.88rem; color: #334155; margin-top: 2px;">الذروة حوالي 04:00 م (ظهراً وعصراً (12ظ-6م))</div>
+                    <div style="font-size: 0.88rem; color: #334155; margin-top: 2px;">الذروة حوالي 01:00 م (ظهراً وعصراً (12ظ-6م))</div>
                 </div>
             </div>
         </div>
         
         <div class="user-card" id="card-Amr2Khaled">
             <div class="user-header">
-                <img src="https://cdn.vjudge.net.cn/user/avatar/859468?v=1718830383" alt="Amr2Khaled" class="avatar" onerror="this.src='https://cdn.vjudge.net.cn/user/avatar/default.png'">
+                <img src="https://cdn.vjudge.net.cn/user/avatar/default" alt="Amr2Khaled" class="avatar" onerror="this.src='https://cdn.vjudge.net.cn/user/avatar/default.png'">
                 <div style="flex: 1;">
                     <div style="display: flex; justify-content: space-between; align-items: center;">
                         <h3 class="user-title">
                             <a href="https://vjudge.net/user/Amr2Khaled" target="_blank">Amr2Khaled</a>
                         </h3>
-                        <span class="badge badge-offline">⚪ غير نشط</span>
+                        <span class="badge badge-offline">⚪ غير متصل</span>
                     </div>
                     <div class="alltime-banner">
                         🏆 إجمالي المسائل المحلولة كلياً: <strong>294 مسألة AC</strong> (من 313 محاولة)
@@ -530,17 +545,17 @@
                 <div class="matrix-cell">
                     <span class="matrix-title">📅 اليوم</span>
                     <div class="matrix-val text-success">0 <span class="matrix-unit">مسائل AC</span></div>
-                    <div class="matrix-sub">0 دقيقة حل (0 تقديم)</div>
+                    <div class="matrix-sub">0 دقيقة نشاط (0 تقديم)</div>
                 </div>
                 <div class="matrix-cell">
                     <span class="matrix-title">🗓️ آخر 7 أيام</span>
                     <div class="matrix-val text-primary">0 <span class="matrix-unit">مسائل AC</span></div>
-                    <div class="matrix-sub">0 دقيقة حل (0 جلسات)</div>
+                    <div class="matrix-sub">0 دقيقة نشاط (0 جلسات)</div>
                 </div>
                 <div class="matrix-cell">
                     <span class="matrix-title">📊 آخر 30 يوماً</span>
                     <div class="matrix-val text-purple">14 <span class="matrix-unit">مسائل AC</span></div>
-                    <div class="matrix-sub">8 س و 23 د حل (11 جلسة)</div>
+                    <div class="matrix-sub">7 س و 49 د نشاط (16 جلسة)</div>
                 </div>
             </div>
 
@@ -570,7 +585,7 @@
                         <th>التاريخ</th>
                         <th>بداية الجلسة (من)</th>
                         <th>نهاية الجلسة (إلى)</th>
-                        <th>مدة النشاط</th>
+                        <th>مدة النشاط المتصل</th>
                         <th>التقديمات</th>
                         <th>النتيجة</th>
                         <th>المسائل</th>
@@ -609,10 +624,10 @@
                     <strong><a href="https://vjudge.net/user/Israa_abdelhaq" target="_blank" class="user-link">Israa_abdelhaq</a></strong>
                 </td>
                 <td>الخميس 1 أكتوبر 2026</td>
-                <td><span class="time-badge start-time">04:27 م</span></td>
+                <td><span class="time-badge start-time">05:03 م</span></td>
                 <td><span class="time-badge end-time">05:04 م</span></td>
-                <td><span class="dur-multi">37 دقيقة</span></td>
-                <td>4</td>
+                <td><span class="dur-multi">0 دقيقة (اتصال متواصل)</span></td>
+                <td>2</td>
                 <td><span class='badge badge-ac'>1 AC</span></td>
                 <td><div class="prob-list"><span class='prob-tag'>1527A</span></div></td>
             </tr>
@@ -622,12 +637,38 @@
                     <strong><a href="https://vjudge.net/user/Israa_abdelhaq" target="_blank" class="user-link">Israa_abdelhaq</a></strong>
                 </td>
                 <td>الخميس 1 أكتوبر 2026</td>
-                <td><span class="time-badge start-time">01:07 ص</span></td>
+                <td><span class="time-badge start-time">04:27 م</span></td>
+                <td><span class="time-badge end-time">04:31 م</span></td>
+                <td><span class="dur-multi">4 دقيقة (اتصال متواصل)</span></td>
+                <td>2</td>
+                <td><span class='badge badge-wa'>0 AC</span></td>
+                <td><div class="prob-list"><span class='prob-tag'>1527A</span></div></td>
+            </tr>
+            
+            <tr data-user="Israa_abdelhaq">
+                <td>
+                    <strong><a href="https://vjudge.net/user/Israa_abdelhaq" target="_blank" class="user-link">Israa_abdelhaq</a></strong>
+                </td>
+                <td>الخميس 1 أكتوبر 2026</td>
+                <td><span class="time-badge start-time">01:48 ص</span></td>
                 <td><span class="time-badge end-time">02:31 ص</span></td>
-                <td><span class="dur-multi">1 س و 23 د</span></td>
-                <td>12</td>
+                <td><span class="dur-multi">43 دقيقة (اتصال متواصل)</span></td>
+                <td>8</td>
                 <td><span class='badge badge-ac'>3 AC</span></td>
                 <td><div class="prob-list"><span class='prob-tag'>1516B</span><span class='prob-tag'>1421A</span><span class='prob-tag'>630C</span><span class='prob-tag'>1527A</span></div></td>
+            </tr>
+            
+            <tr data-user="Israa_abdelhaq">
+                <td>
+                    <strong><a href="https://vjudge.net/user/Israa_abdelhaq" target="_blank" class="user-link">Israa_abdelhaq</a></strong>
+                </td>
+                <td>الخميس 1 أكتوبر 2026</td>
+                <td><span class="time-badge start-time">01:07 ص</span></td>
+                <td><span class="time-badge end-time">01:16 ص</span></td>
+                <td><span class="dur-multi">8 دقيقة (اتصال متواصل)</span></td>
+                <td>4</td>
+                <td><span class='badge badge-wa'>0 AC</span></td>
+                <td><div class="prob-list"><span class='prob-tag'>1516B</span></div></td>
             </tr>
             
             <tr data-user="Israa_abdelhaq">
@@ -650,7 +691,7 @@
                 <td>الثلاثاء 23 يونيو 2026</td>
                 <td><span class="time-badge start-time">11:16 م</span></td>
                 <td><span class="time-badge end-time">11:47 م</span></td>
-                <td><span class="dur-multi">31 دقيقة</span></td>
+                <td><span class="dur-multi">31 دقيقة (اتصال متواصل)</span></td>
                 <td>5</td>
                 <td><span class='badge badge-ac'>2 AC</span></td>
                 <td><div class="prob-list"><span class='prob-tag'>10608</span><span class='prob-tag'>10685</span></div></td>
@@ -663,7 +704,7 @@
                 <td>الإثنين 22 يونيو 2026</td>
                 <td><span class="time-badge start-time">01:37 ص</span></td>
                 <td><span class="time-badge end-time">01:55 ص</span></td>
-                <td><span class="dur-multi">17 دقيقة</span></td>
+                <td><span class="dur-multi">17 دقيقة (اتصال متواصل)</span></td>
                 <td>4</td>
                 <td><span class='badge badge-ac'>1 AC</span></td>
                 <td><div class="prob-list"><span class='prob-tag'>11686</span></div></td>
@@ -676,7 +717,7 @@
                 <td>الأحد 21 يونيو 2026</td>
                 <td><span class="time-badge start-time">11:22 م</span></td>
                 <td><span class="time-badge end-time">11:35 م</span></td>
-                <td><span class="dur-multi">12 دقيقة</span></td>
+                <td><span class="dur-multi">12 دقيقة (اتصال متواصل)</span></td>
                 <td>3</td>
                 <td><span class='badge badge-ac'>1 AC</span></td>
                 <td><div class="prob-list"><span class='prob-tag'>BUGLIFE</span></div></td>
@@ -702,7 +743,7 @@
                 <td>الأحد 28 ديسمبر 2025</td>
                 <td><span class="time-badge start-time">06:45 م</span></td>
                 <td><span class="time-badge end-time">06:53 م</span></td>
-                <td><span class="dur-multi">7 دقيقة</span></td>
+                <td><span class="dur-multi">7 دقيقة (اتصال متواصل)</span></td>
                 <td>4</td>
                 <td><span class='badge badge-wa'>0 AC</span></td>
                 <td><div class="prob-list"><span class='prob-tag'>762A</span></div></td>
@@ -715,7 +756,7 @@
                 <td>الأحد 28 ديسمبر 2025</td>
                 <td><span class="time-badge start-time">03:21 م</span></td>
                 <td><span class="time-badge end-time">03:34 م</span></td>
-                <td><span class="dur-multi">12 دقيقة</span></td>
+                <td><span class="dur-multi">12 دقيقة (اتصال متواصل)</span></td>
                 <td>2</td>
                 <td><span class='badge badge-wa'>0 AC</span></td>
                 <td><div class="prob-list"><span class='prob-tag'>1875A</span></div></td>
@@ -728,7 +769,7 @@
                 <td>الأحد 28 ديسمبر 2025</td>
                 <td><span class="time-badge start-time">04:33 ص</span></td>
                 <td><span class="time-badge end-time">04:36 ص</span></td>
-                <td><span class="dur-multi">3 دقيقة</span></td>
+                <td><span class="dur-multi">3 دقيقة (اتصال متواصل)</span></td>
                 <td>2</td>
                 <td><span class='badge badge-wa'>0 AC</span></td>
                 <td><div class="prob-list"><span class='prob-tag'>1878C</span></div></td>
@@ -754,7 +795,7 @@
                 <td>الجمعة 26 ديسمبر 2025</td>
                 <td><span class="time-badge start-time">12:09 ص</span></td>
                 <td><span class="time-badge end-time">12:50 ص</span></td>
-                <td><span class="dur-multi">41 دقيقة</span></td>
+                <td><span class="dur-multi">41 دقيقة (اتصال متواصل)</span></td>
                 <td>8</td>
                 <td><span class='badge badge-ac'>1 AC</span></td>
                 <td><div class="prob-list"><span class='prob-tag'>1639</span><span class='prob-tag'>mark-and-toys</span></div></td>
@@ -793,7 +834,7 @@
                 <td>الجمعة 12 ديسمبر 2025</td>
                 <td><span class="time-badge start-time">08:58 م</span></td>
                 <td><span class="time-badge end-time">09:02 م</span></td>
-                <td><span class="dur-multi">3 دقيقة</span></td>
+                <td><span class="dur-multi">3 دقيقة (اتصال متواصل)</span></td>
                 <td>2</td>
                 <td><span class='badge badge-ac'>1 AC</span></td>
                 <td><div class="prob-list"><span class='prob-tag'>1881A</span></div></td>
@@ -804,12 +845,51 @@
                     <strong><a href="https://vjudge.net/user/Israa_abdelhaq" target="_blank" class="user-link">Israa_abdelhaq</a></strong>
                 </td>
                 <td>الجمعة 12 ديسمبر 2025</td>
-                <td><span class="time-badge start-time">03:35 م</span></td>
+                <td><span class="time-badge start-time">04:24 م</span></td>
                 <td><span class="time-badge end-time">05:31 م</span></td>
-                <td><span class="dur-multi">1 س و 56 د</span></td>
-                <td>8</td>
+                <td><span class="dur-multi">1 س و 6 د (اتصال متواصل)</span></td>
+                <td>7</td>
+                <td><span class='badge badge-ac'>1 AC</span></td>
+                <td><div class="prob-list"><span class='prob-tag'>1890A</span></div></td>
+            </tr>
+            
+            <tr data-user="Israa_abdelhaq">
+                <td>
+                    <strong><a href="https://vjudge.net/user/Israa_abdelhaq" target="_blank" class="user-link">Israa_abdelhaq</a></strong>
+                </td>
+                <td>الجمعة 12 ديسمبر 2025</td>
+                <td><span class="time-badge start-time">03:35 م</span></td>
+                <td><span class="time-badge end-time">03:35 م</span></td>
+                <td><span class="dur-single">محاولة فردية (~15 د)</span></td>
+                <td>1</td>
+                <td><span class='badge badge-ac'>1 AC</span></td>
+                <td><div class="prob-list"><span class='prob-tag'>1896A</span></div></td>
+            </tr>
+            
+            <tr data-user="Israa_abdelhaq">
+                <td>
+                    <strong><a href="https://vjudge.net/user/Israa_abdelhaq" target="_blank" class="user-link">Israa_abdelhaq</a></strong>
+                </td>
+                <td>الخميس 11 ديسمبر 2025</td>
+                <td><span class="time-badge start-time">05:49 م</span></td>
+                <td><span class="time-badge end-time">05:54 م</span></td>
+                <td><span class="dur-multi">4 دقيقة (اتصال متواصل)</span></td>
+                <td>2</td>
                 <td><span class='badge badge-ac'>2 AC</span></td>
-                <td><div class="prob-list"><span class='prob-tag'>1896A</span><span class='prob-tag'>1890A</span></div></td>
+                <td><div class="prob-list"><span class='prob-tag'>1899A</span><span class='prob-tag'>1903A</span></div></td>
+            </tr>
+            
+            <tr data-user="Israa_abdelhaq">
+                <td>
+                    <strong><a href="https://vjudge.net/user/Israa_abdelhaq" target="_blank" class="user-link">Israa_abdelhaq</a></strong>
+                </td>
+                <td>الخميس 11 ديسمبر 2025</td>
+                <td><span class="time-badge start-time">05:06 م</span></td>
+                <td><span class="time-badge end-time">05:07 م</span></td>
+                <td><span class="dur-multi">0 دقيقة (اتصال متواصل)</span></td>
+                <td>2</td>
+                <td><span class='badge badge-ac'>2 AC</span></td>
+                <td><div class="prob-list"><span class='prob-tag'>1900A</span></div></td>
             </tr>
             
             <tr data-user="Israa_abdelhaq">
@@ -818,11 +898,11 @@
                 </td>
                 <td>الخميس 11 ديسمبر 2025</td>
                 <td><span class="time-badge start-time">04:14 م</span></td>
-                <td><span class="time-badge end-time">05:54 م</span></td>
-                <td><span class="dur-multi">1 س و 39 د</span></td>
-                <td>6</td>
-                <td><span class='badge badge-ac'>5 AC</span></td>
-                <td><div class="prob-list"><span class='prob-tag'>1901A</span><span class='prob-tag'>1900A</span><span class='prob-tag'>1899A</span><span class='prob-tag'>1903A</span></div></td>
+                <td><span class="time-badge end-time">04:27 م</span></td>
+                <td><span class="dur-multi">13 دقيقة (اتصال متواصل)</span></td>
+                <td>2</td>
+                <td><span class='badge badge-ac'>1 AC</span></td>
+                <td><div class="prob-list"><span class='prob-tag'>1901A</span></div></td>
             </tr>
             
             <tr data-user="Israa_abdelhaq">
@@ -858,7 +938,7 @@
                 <td>الثلاثاء 2 ديسمبر 2025</td>
                 <td><span class="time-badge start-time">12:58 ص</span></td>
                 <td><span class="time-badge end-time">01:24 ص</span></td>
-                <td><span class="dur-multi">25 دقيقة</span></td>
+                <td><span class="dur-multi">25 دقيقة (اتصال متواصل)</span></td>
                 <td>3</td>
                 <td><span class='badge badge-ac'>3 AC</span></td>
                 <td><div class="prob-list"><span class='prob-tag'>1687</span><span class='prob-tag'>1688</span><span class='prob-tag'>1135</span></div></td>
@@ -884,7 +964,7 @@
                 <td>الإثنين 24 نوفمبر 2025</td>
                 <td><span class="time-badge start-time">01:27 ص</span></td>
                 <td><span class="time-badge end-time">01:40 ص</span></td>
-                <td><span class="dur-multi">12 دقيقة</span></td>
+                <td><span class="dur-multi">12 دقيقة (اتصال متواصل)</span></td>
                 <td>2</td>
                 <td><span class='badge badge-ac'>1 AC</span></td>
                 <td><div class="prob-list"><span class='prob-tag'>1365D</span></div></td>
@@ -936,7 +1016,7 @@
                 <td>الأربعاء 5 نوفمبر 2025</td>
                 <td><span class="time-badge start-time">03:10 م</span></td>
                 <td><span class="time-badge end-time">03:11 م</span></td>
-                <td><span class="dur-multi">1 دقيقة</span></td>
+                <td><span class="dur-multi">0 دقيقة (اتصال متواصل)</span></td>
                 <td>2</td>
                 <td><span class='badge badge-ac'>1 AC</span></td>
                 <td><div class="prob-list"><span class='prob-tag'>445B</span></div></td>
@@ -975,7 +1055,7 @@
                 <td>الأربعاء 29 أكتوبر 2025</td>
                 <td><span class="time-badge start-time">02:08 م</span></td>
                 <td><span class="time-badge end-time">02:23 م</span></td>
-                <td><span class="dur-multi">14 دقيقة</span></td>
+                <td><span class="dur-multi">14 دقيقة (اتصال متواصل)</span></td>
                 <td>3</td>
                 <td><span class='badge badge-ac'>2 AC</span></td>
                 <td><div class="prob-list"><span class='prob-tag'>1678</span></div></td>
@@ -986,12 +1066,25 @@
                     <strong><a href="https://vjudge.net/user/Israa_abdelhaq" target="_blank" class="user-link">Israa_abdelhaq</a></strong>
                 </td>
                 <td>الأربعاء 29 أكتوبر 2025</td>
-                <td><span class="time-badge start-time">11:42 ص</span></td>
+                <td><span class="time-badge start-time">12:39 م</span></td>
                 <td><span class="time-badge end-time">12:47 م</span></td>
-                <td><span class="dur-multi">1 س و 5 د</span></td>
-                <td>4</td>
-                <td><span class='badge badge-ac'>2 AC</span></td>
-                <td><div class="prob-list"><span class='prob-tag'>1192</span><span class='prob-tag'>1669</span><span class='prob-tag'>1678</span></div></td>
+                <td><span class="dur-multi">7 دقيقة (اتصال متواصل)</span></td>
+                <td>3</td>
+                <td><span class='badge badge-ac'>1 AC</span></td>
+                <td><div class="prob-list"><span class='prob-tag'>1669</span><span class='prob-tag'>1678</span></div></td>
+            </tr>
+            
+            <tr data-user="Israa_abdelhaq">
+                <td>
+                    <strong><a href="https://vjudge.net/user/Israa_abdelhaq" target="_blank" class="user-link">Israa_abdelhaq</a></strong>
+                </td>
+                <td>الأربعاء 29 أكتوبر 2025</td>
+                <td><span class="time-badge start-time">11:42 ص</span></td>
+                <td><span class="time-badge end-time">11:42 ص</span></td>
+                <td><span class="dur-single">محاولة فردية (~15 د)</span></td>
+                <td>1</td>
+                <td><span class='badge badge-ac'>1 AC</span></td>
+                <td><div class="prob-list"><span class='prob-tag'>1192</span></div></td>
             </tr>
             
             <tr data-user="Israa_abdelhaq">
@@ -1027,7 +1120,7 @@
                 <td>الإثنين 20 أكتوبر 2025</td>
                 <td><span class="time-badge start-time">06:11 م</span></td>
                 <td><span class="time-badge end-time">06:26 م</span></td>
-                <td><span class="dur-multi">14 دقيقة</span></td>
+                <td><span class="dur-multi">14 دقيقة (اتصال متواصل)</span></td>
                 <td>3</td>
                 <td><span class='badge badge-wa'>0 AC</span></td>
                 <td><div class="prob-list"><span class='prob-tag'>year2016p7</span></div></td>
@@ -1040,7 +1133,7 @@
                 <td>الإثنين 20 أكتوبر 2025</td>
                 <td><span class="time-badge start-time">04:11 م</span></td>
                 <td><span class="time-badge end-time">04:17 م</span></td>
-                <td><span class="dur-multi">5 دقيقة</span></td>
+                <td><span class="dur-multi">5 دقيقة (اتصال متواصل)</span></td>
                 <td>6</td>
                 <td><span class='badge badge-ac'>1 AC</span></td>
                 <td><div class="prob-list"><span class='prob-tag'>pacnw16j</span></div></td>
@@ -1131,7 +1224,7 @@
                 <td>الإثنين 5 أكتوبر 2026</td>
                 <td><span class="time-badge start-time">01:56 م</span></td>
                 <td><span class="time-badge end-time">02:22 م</span></td>
-                <td><span class="dur-multi">26 دقيقة</span></td>
+                <td><span class="dur-multi">26 دقيقة (اتصال متواصل)</span></td>
                 <td>2</td>
                 <td><span class='badge badge-ac'>2 AC</span></td>
                 <td><div class="prob-list"><span class='prob-tag'>1036C</span><span class='prob-tag'>1122</span></div></td>
@@ -1170,7 +1263,7 @@
                 <td>الجمعة 2 أكتوبر 2026</td>
                 <td><span class="time-badge start-time">03:11 م</span></td>
                 <td><span class="time-badge end-time">03:32 م</span></td>
-                <td><span class="dur-multi">20 دقيقة</span></td>
+                <td><span class="dur-multi">20 دقيقة (اتصال متواصل)</span></td>
                 <td>3</td>
                 <td><span class='badge badge-ac'>1 AC</span></td>
                 <td><div class="prob-list"><span class='prob-tag'>1068</span></div></td>
@@ -1181,12 +1274,25 @@
                     <strong><a href="https://vjudge.net/user/Omar_Awad_Saber" target="_blank" class="user-link">Omar_Awad_Saber</a></strong>
                 </td>
                 <td>الجمعة 2 أكتوبر 2026</td>
-                <td><span class="time-badge start-time">11:06 ص</span></td>
+                <td><span class="time-badge start-time">11:50 ص</span></td>
                 <td><span class="time-badge end-time">12:03 م</span></td>
-                <td><span class="dur-multi">56 دقيقة</span></td>
-                <td>4</td>
+                <td><span class="dur-multi">13 دقيقة (اتصال متواصل)</span></td>
+                <td>3</td>
+                <td><span class='badge badge-wa'>0 AC</span></td>
+                <td><div class="prob-list"><span class='prob-tag'>1068</span></div></td>
+            </tr>
+            
+            <tr data-user="Omar_Awad_Saber">
+                <td>
+                    <strong><a href="https://vjudge.net/user/Omar_Awad_Saber" target="_blank" class="user-link">Omar_Awad_Saber</a></strong>
+                </td>
+                <td>الجمعة 2 أكتوبر 2026</td>
+                <td><span class="time-badge start-time">11:06 ص</span></td>
+                <td><span class="time-badge end-time">11:06 ص</span></td>
+                <td><span class="dur-single">محاولة فردية (~15 د)</span></td>
+                <td>1</td>
                 <td><span class='badge badge-ac'>1 AC</span></td>
-                <td><div class="prob-list"><span class='prob-tag'>noora-number</span><span class='prob-tag'>1068</span></div></td>
+                <td><div class="prob-list"><span class='prob-tag'>noora-number</span></div></td>
             </tr>
             
             <tr data-user="Omar_Awad_Saber">
@@ -1209,7 +1315,7 @@
                 <td>الخميس 1 أكتوبر 2026</td>
                 <td><span class="time-badge start-time">10:23 ص</span></td>
                 <td><span class="time-badge end-time">10:54 ص</span></td>
-                <td><span class="dur-multi">30 دقيقة</span></td>
+                <td><span class="dur-multi">30 دقيقة (اتصال متواصل)</span></td>
                 <td>4</td>
                 <td><span class='badge badge-ac'>2 AC</span></td>
                 <td><div class="prob-list"><span class='prob-tag'>dp_o</span><span class='prob-tag'>1690</span></div></td>
@@ -1220,12 +1326,38 @@
                     <strong><a href="https://vjudge.net/user/Omar_Awad_Saber" target="_blank" class="user-link">Omar_Awad_Saber</a></strong>
                 </td>
                 <td>الخميس 1 أكتوبر 2026</td>
-                <td><span class="time-badge start-time">08:29 ص</span></td>
+                <td><span class="time-badge start-time">09:05 ص</span></td>
                 <td><span class="time-badge end-time">09:05 ص</span></td>
-                <td><span class="dur-multi">36 دقيقة</span></td>
-                <td>2</td>
-                <td><span class='badge badge-ac'>2 AC</span></td>
-                <td><div class="prob-list"><span class='prob-tag'>1497C1</span><span class='prob-tag'>2062C</span></div></td>
+                <td><span class="dur-single">محاولة فردية (~15 د)</span></td>
+                <td>1</td>
+                <td><span class='badge badge-ac'>1 AC</span></td>
+                <td><div class="prob-list"><span class='prob-tag'>2062C</span></div></td>
+            </tr>
+            
+            <tr data-user="Omar_Awad_Saber">
+                <td>
+                    <strong><a href="https://vjudge.net/user/Omar_Awad_Saber" target="_blank" class="user-link">Omar_Awad_Saber</a></strong>
+                </td>
+                <td>الخميس 1 أكتوبر 2026</td>
+                <td><span class="time-badge start-time">08:29 ص</span></td>
+                <td><span class="time-badge end-time">08:29 ص</span></td>
+                <td><span class="dur-single">محاولة فردية (~15 د)</span></td>
+                <td>1</td>
+                <td><span class='badge badge-ac'>1 AC</span></td>
+                <td><div class="prob-list"><span class='prob-tag'>1497C1</span></div></td>
+            </tr>
+            
+            <tr data-user="Omar_Awad_Saber">
+                <td>
+                    <strong><a href="https://vjudge.net/user/Omar_Awad_Saber" target="_blank" class="user-link">Omar_Awad_Saber</a></strong>
+                </td>
+                <td>الخميس 1 أكتوبر 2026</td>
+                <td><span class="time-badge start-time">03:36 ص</span></td>
+                <td><span class="time-badge end-time">04:08 ص</span></td>
+                <td><span class="dur-multi">32 دقيقة (اتصال متواصل)</span></td>
+                <td>3</td>
+                <td><span class='badge badge-ac'>1 AC</span></td>
+                <td><div class="prob-list"><span class='prob-tag'>2220</span></div></td>
             </tr>
             
             <tr data-user="Omar_Awad_Saber">
@@ -1234,10 +1366,10 @@
                 </td>
                 <td>الخميس 1 أكتوبر 2026</td>
                 <td><span class="time-badge start-time">02:01 ص</span></td>
-                <td><span class="time-badge end-time">04:08 ص</span></td>
-                <td><span class="dur-multi">2 س و 6 د</span></td>
-                <td>8</td>
-                <td><span class='badge badge-ac'>4 AC</span></td>
+                <td><span class="time-badge end-time">02:45 ص</span></td>
+                <td><span class="dur-multi">44 دقيقة (اتصال متواصل)</span></td>
+                <td>5</td>
+                <td><span class='badge badge-ac'>3 AC</span></td>
                 <td><div class="prob-list"><span class='prob-tag'>2203C</span><span class='prob-tag'>630C</span><span class='prob-tag'>1374C</span><span class='prob-tag'>2220</span></div></td>
             </tr>
             
@@ -1272,12 +1404,25 @@
                     <strong><a href="https://vjudge.net/user/Omar_Awad_Saber" target="_blank" class="user-link">Omar_Awad_Saber</a></strong>
                 </td>
                 <td>الإثنين 18 مايو 2026</td>
-                <td><span class="time-badge start-time">11:26 ص</span></td>
+                <td><span class="time-badge start-time">12:24 م</span></td>
                 <td><span class="time-badge end-time">12:24 م</span></td>
-                <td><span class="dur-multi">58 دقيقة</span></td>
-                <td>3</td>
+                <td><span class="dur-single">محاولة فردية (~15 د)</span></td>
+                <td>1</td>
+                <td><span class='badge badge-wa'>0 AC</span></td>
+                <td><div class="prob-list"><span class='prob-tag'>1436C</span></div></td>
+            </tr>
+            
+            <tr data-user="Omar_Awad_Saber">
+                <td>
+                    <strong><a href="https://vjudge.net/user/Omar_Awad_Saber" target="_blank" class="user-link">Omar_Awad_Saber</a></strong>
+                </td>
+                <td>الإثنين 18 مايو 2026</td>
+                <td><span class="time-badge start-time">11:26 ص</span></td>
+                <td><span class="time-badge end-time">11:35 ص</span></td>
+                <td><span class="dur-multi">9 دقيقة (اتصال متواصل)</span></td>
+                <td>2</td>
                 <td><span class='badge badge-ac'>2 AC</span></td>
-                <td><div class="prob-list"><span class='prob-tag'>430C</span><span class='prob-tag'>1436C</span></div></td>
+                <td><div class="prob-list"><span class='prob-tag'>430C</span></div></td>
             </tr>
             
             <tr data-user="Omar_Awad_Saber">
@@ -1298,12 +1443,25 @@
                     <strong><a href="https://vjudge.net/user/Omar_Awad_Saber" target="_blank" class="user-link">Omar_Awad_Saber</a></strong>
                 </td>
                 <td>الأحد 17 مايو 2026</td>
-                <td><span class="time-badge start-time">12:11 م</span></td>
+                <td><span class="time-badge start-time">01:45 م</span></td>
                 <td><span class="time-badge end-time">02:08 م</span></td>
-                <td><span class="dur-multi">1 س و 56 د</span></td>
-                <td>10</td>
-                <td><span class='badge badge-ac'>5 AC</span></td>
-                <td><div class="prob-list"><span class='prob-tag'>10685</span><span class='prob-tag'>115A</span><span class='prob-tag'>755C</span><span class='prob-tag'>10305</span></div></td>
+                <td><span class="dur-multi">22 دقيقة (اتصال متواصل)</span></td>
+                <td>6</td>
+                <td><span class='badge badge-ac'>3 AC</span></td>
+                <td><div class="prob-list"><span class='prob-tag'>755C</span><span class='prob-tag'>10305</span></div></td>
+            </tr>
+            
+            <tr data-user="Omar_Awad_Saber">
+                <td>
+                    <strong><a href="https://vjudge.net/user/Omar_Awad_Saber" target="_blank" class="user-link">Omar_Awad_Saber</a></strong>
+                </td>
+                <td>الأحد 17 مايو 2026</td>
+                <td><span class="time-badge start-time">12:11 م</span></td>
+                <td><span class="time-badge end-time">01:04 م</span></td>
+                <td><span class="dur-multi">53 دقيقة (اتصال متواصل)</span></td>
+                <td>4</td>
+                <td><span class='badge badge-ac'>2 AC</span></td>
+                <td><div class="prob-list"><span class='prob-tag'>10685</span><span class='prob-tag'>115A</span></div></td>
             </tr>
             
             <tr data-user="Omar_Awad_Saber">
@@ -1339,7 +1497,7 @@
                 <td>الثلاثاء 5 مايو 2026</td>
                 <td><span class="time-badge start-time">06:28 ص</span></td>
                 <td><span class="time-badge end-time">07:00 ص</span></td>
-                <td><span class="dur-multi">31 دقيقة</span></td>
+                <td><span class="dur-multi">31 دقيقة (اتصال متواصل)</span></td>
                 <td>4</td>
                 <td><span class='badge badge-ac'>1 AC</span></td>
                 <td><div class="prob-list"><span class='prob-tag'>11686</span></div></td>
@@ -1352,7 +1510,7 @@
                 <td>الإثنين 4 مايو 2026</td>
                 <td><span class="time-badge start-time">10:13 م</span></td>
                 <td><span class="time-badge end-time">10:31 م</span></td>
-                <td><span class="dur-multi">18 دقيقة</span></td>
+                <td><span class="dur-multi">18 دقيقة (اتصال متواصل)</span></td>
                 <td>2</td>
                 <td><span class='badge badge-ac'>2 AC</span></td>
                 <td><div class="prob-list"><span class='prob-tag'>PT07Y</span><span class='prob-tag'>BUGLIFE</span></div></td>
@@ -1365,7 +1523,7 @@
                 <td>الأربعاء 11 مارس 2026</td>
                 <td><span class="time-badge start-time">08:11 ص</span></td>
                 <td><span class="time-badge end-time">08:22 ص</span></td>
-                <td><span class="dur-multi">10 دقيقة</span></td>
+                <td><span class="dur-multi">10 دقيقة (اتصال متواصل)</span></td>
                 <td>3</td>
                 <td><span class='badge badge-ac'>3 AC</span></td>
                 <td><div class="prob-list"><span class='prob-tag'>519</span><span class='prob-tag'>8888</span><span class='prob-tag'>ITP1_1_B</span></div></td>
@@ -1378,7 +1536,7 @@
                 <td>الخميس 5 مارس 2026</td>
                 <td><span class="time-badge start-time">01:09 ص</span></td>
                 <td><span class="time-badge end-time">01:11 ص</span></td>
-                <td><span class="dur-multi">1 دقيقة</span></td>
+                <td><span class="dur-multi">1 دقيقة (اتصال متواصل)</span></td>
                 <td>2</td>
                 <td><span class='badge badge-ac'>1 AC</span></td>
                 <td><div class="prob-list"><span class='prob-tag'>30-hello-world</span><span class='prob-tag'>617A</span></div></td>
@@ -1391,7 +1549,7 @@
                 <td>الثلاثاء 10 فبراير 2026</td>
                 <td><span class="time-badge start-time">09:42 م</span></td>
                 <td><span class="time-badge end-time">10:14 م</span></td>
-                <td><span class="dur-multi">31 دقيقة</span></td>
+                <td><span class="dur-multi">31 دقيقة (اتصال متواصل)</span></td>
                 <td>8</td>
                 <td><span class='badge badge-ac'>4 AC</span></td>
                 <td><div class="prob-list"><span class='prob-tag'>1638</span><span class='prob-tag'>1633</span><span class='prob-tag'>1634</span><span class='prob-tag'>1635</span></div></td>
@@ -1404,7 +1562,7 @@
                 <td>الخميس 5 فبراير 2026</td>
                 <td><span class="time-badge start-time">02:46 ص</span></td>
                 <td><span class="time-badge end-time">03:31 ص</span></td>
-                <td><span class="dur-multi">45 دقيقة</span></td>
+                <td><span class="dur-multi">45 دقيقة (اتصال متواصل)</span></td>
                 <td>4</td>
                 <td><span class='badge badge-ac'>3 AC</span></td>
                 <td><div class="prob-list"><span class='prob-tag'>2143B</span><span class='prob-tag'>2144B</span><span class='prob-tag'>2124B</span></div></td>
@@ -1430,7 +1588,7 @@
                 <td>الأربعاء 26 نوفمبر 2025</td>
                 <td><span class="time-badge start-time">10:15 م</span></td>
                 <td><span class="time-badge end-time">11:42 م</span></td>
-                <td><span class="dur-multi">1 س و 27 د</span></td>
+                <td><span class="dur-multi">1 س و 27 د (اتصال متواصل)</span></td>
                 <td>10</td>
                 <td><span class='badge badge-ac'>10 AC</span></td>
                 <td><div class="prob-list"><span class='prob-tag'>50A</span><span class='prob-tag'>131A</span><span class='prob-tag'>133A</span><span class='prob-tag'>41A</span><span class='prob-tag'>344A</span><span class='prob-tag'>96A</span></div></td>
@@ -1456,7 +1614,7 @@
                 <td>الإثنين 20 أكتوبر 2025</td>
                 <td><span class="time-badge start-time">02:45 م</span></td>
                 <td><span class="time-badge end-time">03:07 م</span></td>
-                <td><span class="dur-multi">22 دقيقة</span></td>
+                <td><span class="dur-multi">22 دقيقة (اتصال متواصل)</span></td>
                 <td>2</td>
                 <td><span class='badge badge-ac'>1 AC</span></td>
                 <td><div class="prob-list"><span class='prob-tag'>SEAD</span></div></td>
@@ -1467,12 +1625,25 @@
                     <strong><a href="https://vjudge.net/user/Omar_Awad_Saber" target="_blank" class="user-link">Omar_Awad_Saber</a></strong>
                 </td>
                 <td>الأحد 19 أكتوبر 2025</td>
-                <td><span class="time-badge start-time">08:20 م</span></td>
+                <td><span class="time-badge start-time">09:35 م</span></td>
                 <td><span class="time-badge end-time">09:42 م</span></td>
-                <td><span class="dur-multi">1 س و 22 د</span></td>
-                <td>4</td>
-                <td><span class='badge badge-ac'>3 AC</span></td>
-                <td><div class="prob-list"><span class='prob-tag'>2050F</span><span class='prob-tag'>1878E</span><span class='prob-tag'>474F</span></div></td>
+                <td><span class="dur-multi">7 دقيقة (اتصال متواصل)</span></td>
+                <td>2</td>
+                <td><span class='badge badge-ac'>1 AC</span></td>
+                <td><div class="prob-list"><span class='prob-tag'>474F</span></div></td>
+            </tr>
+            
+            <tr data-user="Omar_Awad_Saber">
+                <td>
+                    <strong><a href="https://vjudge.net/user/Omar_Awad_Saber" target="_blank" class="user-link">Omar_Awad_Saber</a></strong>
+                </td>
+                <td>الأحد 19 أكتوبر 2025</td>
+                <td><span class="time-badge start-time">08:20 م</span></td>
+                <td><span class="time-badge end-time">08:50 م</span></td>
+                <td><span class="dur-multi">29 دقيقة (اتصال متواصل)</span></td>
+                <td>2</td>
+                <td><span class='badge badge-ac'>2 AC</span></td>
+                <td><div class="prob-list"><span class='prob-tag'>2050F</span><span class='prob-tag'>1878E</span></div></td>
             </tr>
             
             <tr data-user="Omar_Awad_Saber">
@@ -1610,12 +1781,51 @@
                     <strong><a href="https://vjudge.net/user/Fatemaelfiky1" target="_blank" class="user-link">Fatemaelfiky1</a></strong>
                 </td>
                 <td>الأحد 11 أكتوبر 2026</td>
-                <td><span class="time-badge start-time">04:16 م</span></td>
+                <td><span class="time-badge start-time">05:40 م</span></td>
                 <td><span class="time-badge end-time">05:56 م</span></td>
-                <td><span class="dur-multi">1 س و 39 د</span></td>
-                <td>8</td>
-                <td><span class='badge badge-ac'>4 AC</span></td>
-                <td><div class="prob-list"><span class='prob-tag'>abc217_e</span><span class='prob-tag'>1526C2</span><span class='prob-tag'>681C</span><span class='prob-tag'>1650D</span></div></td>
+                <td><span class="dur-multi">15 دقيقة (اتصال متواصل)</span></td>
+                <td>3</td>
+                <td><span class='badge badge-ac'>2 AC</span></td>
+                <td><div class="prob-list"><span class='prob-tag'>681C</span><span class='prob-tag'>1650D</span></div></td>
+            </tr>
+            
+            <tr data-user="Fatemaelfiky1">
+                <td>
+                    <strong><a href="https://vjudge.net/user/Fatemaelfiky1" target="_blank" class="user-link">Fatemaelfiky1</a></strong>
+                </td>
+                <td>الأحد 11 أكتوبر 2026</td>
+                <td><span class="time-badge start-time">05:06 م</span></td>
+                <td><span class="time-badge end-time">05:06 م</span></td>
+                <td><span class="dur-single">محاولة فردية (~15 د)</span></td>
+                <td>1</td>
+                <td><span class='badge badge-ac'>1 AC</span></td>
+                <td><div class="prob-list"><span class='prob-tag'>1526C2</span></div></td>
+            </tr>
+            
+            <tr data-user="Fatemaelfiky1">
+                <td>
+                    <strong><a href="https://vjudge.net/user/Fatemaelfiky1" target="_blank" class="user-link">Fatemaelfiky1</a></strong>
+                </td>
+                <td>الأحد 11 أكتوبر 2026</td>
+                <td><span class="time-badge start-time">04:16 م</span></td>
+                <td><span class="time-badge end-time">04:32 م</span></td>
+                <td><span class="dur-multi">15 دقيقة (اتصال متواصل)</span></td>
+                <td>4</td>
+                <td><span class='badge badge-ac'>1 AC</span></td>
+                <td><div class="prob-list"><span class='prob-tag'>abc217_e</span></div></td>
+            </tr>
+            
+            <tr data-user="Fatemaelfiky1">
+                <td>
+                    <strong><a href="https://vjudge.net/user/Fatemaelfiky1" target="_blank" class="user-link">Fatemaelfiky1</a></strong>
+                </td>
+                <td>الأحد 11 أكتوبر 2026</td>
+                <td><span class="time-badge start-time">01:42 م</span></td>
+                <td><span class="time-badge end-time">02:33 م</span></td>
+                <td><span class="dur-multi">50 دقيقة (اتصال متواصل)</span></td>
+                <td>7</td>
+                <td><span class='badge badge-ac'>5 AC</span></td>
+                <td><div class="prob-list"><span class='prob-tag'>1492B</span><span class='prob-tag'>QUEUEEZ</span><span class='prob-tag'>STACKEZ</span><span class='prob-tag'>balanced-brackets</span><span class='prob-tag'>simple-text-editor</span></div></td>
             </tr>
             
             <tr data-user="Fatemaelfiky1">
@@ -1624,10 +1834,10 @@
                 </td>
                 <td>الأحد 11 أكتوبر 2026</td>
                 <td><span class="time-badge start-time">11:08 ص</span></td>
-                <td><span class="time-badge end-time">02:33 م</span></td>
-                <td><span class="dur-multi">3 س و 25 د</span></td>
-                <td>16</td>
-                <td><span class='badge badge-ac'>13 AC</span></td>
+                <td><span class="time-badge end-time">12:58 م</span></td>
+                <td><span class="dur-multi">1 س و 49 د (اتصال متواصل)</span></td>
+                <td>9</td>
+                <td><span class='badge badge-ac'>8 AC</span></td>
                 <td><div class="prob-list"><span class='prob-tag'>300A</span><span class='prob-tag'>array-left-rotation</span><span class='prob-tag'>490A</span><span class='prob-tag'>699A</span><span class='prob-tag'>1005A</span><span class='prob-tag'>450A</span></div></td>
             </tr>
             
@@ -1636,12 +1846,25 @@
                     <strong><a href="https://vjudge.net/user/Fatemaelfiky1" target="_blank" class="user-link">Fatemaelfiky1</a></strong>
                 </td>
                 <td>الخميس 8 أكتوبر 2026</td>
-                <td><span class="time-badge start-time">03:08 م</span></td>
+                <td><span class="time-badge start-time">03:39 م</span></td>
                 <td><span class="time-badge end-time">03:50 م</span></td>
-                <td><span class="dur-multi">42 دقيقة</span></td>
-                <td>3</td>
-                <td><span class='badge badge-ac'>2 AC</span></td>
-                <td><div class="prob-list"><span class='prob-tag'>520B</span><span class='prob-tag'>35C</span></div></td>
+                <td><span class="dur-multi">11 دقيقة (اتصال متواصل)</span></td>
+                <td>2</td>
+                <td><span class='badge badge-ac'>1 AC</span></td>
+                <td><div class="prob-list"><span class='prob-tag'>35C</span></div></td>
+            </tr>
+            
+            <tr data-user="Fatemaelfiky1">
+                <td>
+                    <strong><a href="https://vjudge.net/user/Fatemaelfiky1" target="_blank" class="user-link">Fatemaelfiky1</a></strong>
+                </td>
+                <td>الخميس 8 أكتوبر 2026</td>
+                <td><span class="time-badge start-time">03:08 م</span></td>
+                <td><span class="time-badge end-time">03:08 م</span></td>
+                <td><span class="dur-single">محاولة فردية (~15 د)</span></td>
+                <td>1</td>
+                <td><span class='badge badge-ac'>1 AC</span></td>
+                <td><div class="prob-list"><span class='prob-tag'>520B</span></div></td>
             </tr>
             
             <tr data-user="Fatemaelfiky1">
@@ -1651,7 +1874,7 @@
                 <td>السبت 3 أكتوبر 2026</td>
                 <td><span class="time-badge start-time">06:36 م</span></td>
                 <td><span class="time-badge end-time">07:38 م</span></td>
-                <td><span class="dur-multi">1 س و 2 د</span></td>
+                <td><span class="dur-multi">1 س و 2 د (اتصال متواصل)</span></td>
                 <td>6</td>
                 <td><span class='badge badge-ac'>3 AC</span></td>
                 <td><div class="prob-list"><span class='prob-tag'>1037D</span><span class='prob-tag'>PT07Y</span><span class='prob-tag'>TOPOSORT</span></div></td>
@@ -1664,7 +1887,7 @@
                 <td>الخميس 1 أكتوبر 2026</td>
                 <td><span class="time-badge start-time">10:37 ص</span></td>
                 <td><span class="time-badge end-time">10:45 ص</span></td>
-                <td><span class="dur-multi">7 دقيقة</span></td>
+                <td><span class="dur-multi">7 دقيقة (اتصال متواصل)</span></td>
                 <td>2</td>
                 <td><span class='badge badge-ac'>2 AC</span></td>
                 <td><div class="prob-list"><span class='prob-tag'>1497C1</span><span class='prob-tag'>1374C</span></div></td>
@@ -1675,12 +1898,25 @@
                     <strong><a href="https://vjudge.net/user/Fatemaelfiky1" target="_blank" class="user-link">Fatemaelfiky1</a></strong>
                 </td>
                 <td>الأربعاء 30 سبتمبر 2026</td>
-                <td><span class="time-badge start-time">09:12 م</span></td>
+                <td><span class="time-badge start-time">09:45 م</span></td>
                 <td><span class="time-badge end-time">09:45 م</span></td>
-                <td><span class="dur-multi">32 دقيقة</span></td>
-                <td>2</td>
+                <td><span class="dur-single">محاولة فردية (~15 د)</span></td>
+                <td>1</td>
+                <td><span class='badge badge-wa'>0 AC</span></td>
+                <td><div class="prob-list"><span class='prob-tag'>1362A</span></div></td>
+            </tr>
+            
+            <tr data-user="Fatemaelfiky1">
+                <td>
+                    <strong><a href="https://vjudge.net/user/Fatemaelfiky1" target="_blank" class="user-link">Fatemaelfiky1</a></strong>
+                </td>
+                <td>الأربعاء 30 سبتمبر 2026</td>
+                <td><span class="time-badge start-time">09:12 م</span></td>
+                <td><span class="time-badge end-time">09:12 م</span></td>
+                <td><span class="dur-single">محاولة فردية (~15 د)</span></td>
+                <td>1</td>
                 <td><span class='badge badge-ac'>1 AC</span></td>
-                <td><div class="prob-list"><span class='prob-tag'>630C</span><span class='prob-tag'>1362A</span></div></td>
+                <td><div class="prob-list"><span class='prob-tag'>630C</span></div></td>
             </tr>
             
             <tr data-user="Fatemaelfiky1">
@@ -1690,7 +1926,7 @@
                 <td>الخميس 4 يونيو 2026</td>
                 <td><span class="time-badge start-time">07:33 م</span></td>
                 <td><span class="time-badge end-time">08:05 م</span></td>
-                <td><span class="dur-multi">32 دقيقة</span></td>
+                <td><span class="dur-multi">32 دقيقة (اتصال متواصل)</span></td>
                 <td>4</td>
                 <td><span class='badge badge-ac'>2 AC</span></td>
                 <td><div class="prob-list"><span class='prob-tag'>2157C</span></div></td>
@@ -1701,12 +1937,51 @@
                     <strong><a href="https://vjudge.net/user/Fatemaelfiky1" target="_blank" class="user-link">Fatemaelfiky1</a></strong>
                 </td>
                 <td>الخميس 4 يونيو 2026</td>
-                <td><span class="time-badge start-time">11:23 ص</span></td>
+                <td><span class="time-badge start-time">02:44 م</span></td>
                 <td><span class="time-badge end-time">02:44 م</span></td>
-                <td><span class="dur-multi">3 س و 21 د</span></td>
-                <td>15</td>
+                <td><span class="dur-single">محاولة فردية (~15 د)</span></td>
+                <td>1</td>
+                <td><span class='badge badge-wa'>0 AC</span></td>
+                <td><div class="prob-list"><span class='prob-tag'>2157C</span></div></td>
+            </tr>
+            
+            <tr data-user="Fatemaelfiky1">
+                <td>
+                    <strong><a href="https://vjudge.net/user/Fatemaelfiky1" target="_blank" class="user-link">Fatemaelfiky1</a></strong>
+                </td>
+                <td>الخميس 4 يونيو 2026</td>
+                <td><span class="time-badge start-time">01:37 م</span></td>
+                <td><span class="time-badge end-time">02:03 م</span></td>
+                <td><span class="dur-multi">26 دقيقة (اتصال متواصل)</span></td>
+                <td>3</td>
+                <td><span class='badge badge-wa'>0 AC</span></td>
+                <td><div class="prob-list"><span class='prob-tag'>2157C</span></div></td>
+            </tr>
+            
+            <tr data-user="Fatemaelfiky1">
+                <td>
+                    <strong><a href="https://vjudge.net/user/Fatemaelfiky1" target="_blank" class="user-link">Fatemaelfiky1</a></strong>
+                </td>
+                <td>الخميس 4 يونيو 2026</td>
+                <td><span class="time-badge start-time">12:21 م</span></td>
+                <td><span class="time-badge end-time">01:06 م</span></td>
+                <td><span class="dur-multi">45 دقيقة (اتصال متواصل)</span></td>
+                <td>7</td>
+                <td><span class='badge badge-wa'>0 AC</span></td>
+                <td><div class="prob-list"><span class='prob-tag'>2157C</span></div></td>
+            </tr>
+            
+            <tr data-user="Fatemaelfiky1">
+                <td>
+                    <strong><a href="https://vjudge.net/user/Fatemaelfiky1" target="_blank" class="user-link">Fatemaelfiky1</a></strong>
+                </td>
+                <td>الخميس 4 يونيو 2026</td>
+                <td><span class="time-badge start-time">11:23 ص</span></td>
+                <td><span class="time-badge end-time">11:26 ص</span></td>
+                <td><span class="dur-multi">3 دقيقة (اتصال متواصل)</span></td>
+                <td>4</td>
                 <td><span class='badge badge-ac'>1 AC</span></td>
-                <td><div class="prob-list"><span class='prob-tag'>1981B</span><span class='prob-tag'>2157C</span></div></td>
+                <td><div class="prob-list"><span class='prob-tag'>1981B</span></div></td>
             </tr>
             
             <tr data-user="Fatemaelfiky1">
@@ -1727,12 +2002,51 @@
                     <strong><a href="https://vjudge.net/user/Fatemaelfiky1" target="_blank" class="user-link">Fatemaelfiky1</a></strong>
                 </td>
                 <td>الإثنين 18 مايو 2026</td>
-                <td><span class="time-badge start-time">04:35 م</span></td>
+                <td><span class="time-badge start-time">06:42 م</span></td>
                 <td><span class="time-badge end-time">06:42 م</span></td>
-                <td><span class="dur-multi">2 س و 6 د</span></td>
-                <td>5</td>
-                <td><span class='badge badge-ac'>3 AC</span></td>
-                <td><div class="prob-list"><span class='prob-tag'>1690</span><span class='prob-tag'>abc180_e</span><span class='prob-tag'>11D</span></div></td>
+                <td><span class="dur-single">محاولة فردية (~15 د)</span></td>
+                <td>1</td>
+                <td><span class='badge badge-ac'>1 AC</span></td>
+                <td><div class="prob-list"><span class='prob-tag'>11D</span></div></td>
+            </tr>
+            
+            <tr data-user="Fatemaelfiky1">
+                <td>
+                    <strong><a href="https://vjudge.net/user/Fatemaelfiky1" target="_blank" class="user-link">Fatemaelfiky1</a></strong>
+                </td>
+                <td>الإثنين 18 مايو 2026</td>
+                <td><span class="time-badge start-time">05:54 م</span></td>
+                <td><span class="time-badge end-time">05:54 م</span></td>
+                <td><span class="dur-single">محاولة فردية (~15 د)</span></td>
+                <td>1</td>
+                <td><span class='badge badge-ac'>1 AC</span></td>
+                <td><div class="prob-list"><span class='prob-tag'>abc180_e</span></div></td>
+            </tr>
+            
+            <tr data-user="Fatemaelfiky1">
+                <td>
+                    <strong><a href="https://vjudge.net/user/Fatemaelfiky1" target="_blank" class="user-link">Fatemaelfiky1</a></strong>
+                </td>
+                <td>الإثنين 18 مايو 2026</td>
+                <td><span class="time-badge start-time">05:14 م</span></td>
+                <td><span class="time-badge end-time">05:14 م</span></td>
+                <td><span class="dur-single">محاولة فردية (~15 د)</span></td>
+                <td>1</td>
+                <td><span class='badge badge-ac'>1 AC</span></td>
+                <td><div class="prob-list"><span class='prob-tag'>1690</span></div></td>
+            </tr>
+            
+            <tr data-user="Fatemaelfiky1">
+                <td>
+                    <strong><a href="https://vjudge.net/user/Fatemaelfiky1" target="_blank" class="user-link">Fatemaelfiky1</a></strong>
+                </td>
+                <td>الإثنين 18 مايو 2026</td>
+                <td><span class="time-badge start-time">04:35 م</span></td>
+                <td><span class="time-badge end-time">04:44 م</span></td>
+                <td><span class="dur-multi">9 دقيقة (اتصال متواصل)</span></td>
+                <td>2</td>
+                <td><span class='badge badge-wa'>0 AC</span></td>
+                <td><div class="prob-list"><span class='prob-tag'>1690</span></div></td>
             </tr>
             
             <tr data-user="Fatemaelfiky1">
@@ -1742,7 +2056,7 @@
                 <td>الإثنين 18 مايو 2026</td>
                 <td><span class="time-badge start-time">03:54 ص</span></td>
                 <td><span class="time-badge end-time">04:07 ص</span></td>
-                <td><span class="dur-multi">12 دقيقة</span></td>
+                <td><span class="dur-multi">12 دقيقة (اتصال متواصل)</span></td>
                 <td>5</td>
                 <td><span class='badge badge-wa'>0 AC</span></td>
                 <td><div class="prob-list"><span class='prob-tag'>1690</span></div></td>
@@ -1779,12 +2093,25 @@
                     <strong><a href="https://vjudge.net/user/Fatemaelfiky1" target="_blank" class="user-link">Fatemaelfiky1</a></strong>
                 </td>
                 <td>الجمعة 15 مايو 2026</td>
-                <td><span class="time-badge start-time">02:36 ص</span></td>
+                <td><span class="time-badge start-time">03:29 ص</span></td>
                 <td><span class="time-badge end-time">03:29 ص</span></td>
-                <td><span class="dur-multi">53 دقيقة</span></td>
-                <td>2</td>
-                <td><span class='badge badge-ac'>2 AC</span></td>
-                <td><div class="prob-list"><span class='prob-tag'>2151C</span><span class='prob-tag'>2152C</span></div></td>
+                <td><span class="dur-single">محاولة فردية (~15 د)</span></td>
+                <td>1</td>
+                <td><span class='badge badge-ac'>1 AC</span></td>
+                <td><div class="prob-list"><span class='prob-tag'>2152C</span></div></td>
+            </tr>
+            
+            <tr data-user="Fatemaelfiky1">
+                <td>
+                    <strong><a href="https://vjudge.net/user/Fatemaelfiky1" target="_blank" class="user-link">Fatemaelfiky1</a></strong>
+                </td>
+                <td>الجمعة 15 مايو 2026</td>
+                <td><span class="time-badge start-time">02:36 ص</span></td>
+                <td><span class="time-badge end-time">02:36 ص</span></td>
+                <td><span class="dur-single">محاولة فردية (~15 د)</span></td>
+                <td>1</td>
+                <td><span class='badge badge-ac'>1 AC</span></td>
+                <td><div class="prob-list"><span class='prob-tag'>2151C</span></div></td>
             </tr>
             
             <tr data-user="Fatemaelfiky1">
@@ -1794,7 +2121,7 @@
                 <td>الأربعاء 13 مايو 2026</td>
                 <td><span class="time-badge start-time">06:03 ص</span></td>
                 <td><span class="time-badge end-time">06:43 ص</span></td>
-                <td><span class="dur-multi">40 دقيقة</span></td>
+                <td><span class="dur-multi">40 دقيقة (اتصال متواصل)</span></td>
                 <td>3</td>
                 <td><span class='badge badge-ac'>1 AC</span></td>
                 <td><div class="prob-list"><span class='prob-tag'>1943A</span></div></td>
@@ -1807,7 +2134,7 @@
                 <td>الثلاثاء 12 مايو 2026</td>
                 <td><span class="time-badge start-time">04:58 ص</span></td>
                 <td><span class="time-badge end-time">04:59 ص</span></td>
-                <td><span class="dur-multi">1 دقيقة</span></td>
+                <td><span class="dur-multi">1 دقيقة (اتصال متواصل)</span></td>
                 <td>2</td>
                 <td><span class='badge badge-ac'>1 AC</span></td>
                 <td><div class="prob-list"><span class='prob-tag'>dp_o</span></div></td>
@@ -1833,7 +2160,7 @@
                 <td>الإثنين 11 مايو 2026</td>
                 <td><span class="time-badge start-time">11:09 ص</span></td>
                 <td><span class="time-badge end-time">11:25 ص</span></td>
-                <td><span class="dur-multi">16 دقيقة</span></td>
+                <td><span class="dur-multi">16 دقيقة (اتصال متواصل)</span></td>
                 <td>3</td>
                 <td><span class='badge badge-ac'>2 AC</span></td>
                 <td><div class="prob-list"><span class='prob-tag'>noora-number</span></div></td>
@@ -1844,12 +2171,25 @@
                     <strong><a href="https://vjudge.net/user/Fatemaelfiky1" target="_blank" class="user-link">Fatemaelfiky1</a></strong>
                 </td>
                 <td>السبت 9 مايو 2026</td>
-                <td><span class="time-badge start-time">02:27 م</span></td>
+                <td><span class="time-badge start-time">03:11 م</span></td>
                 <td><span class="time-badge end-time">03:11 م</span></td>
-                <td><span class="dur-multi">43 دقيقة</span></td>
-                <td>2</td>
-                <td><span class='badge badge-ac'>2 AC</span></td>
-                <td><div class="prob-list"><span class='prob-tag'>100886G</span><span class='prob-tag'>1808C</span></div></td>
+                <td><span class="dur-single">محاولة فردية (~15 د)</span></td>
+                <td>1</td>
+                <td><span class='badge badge-ac'>1 AC</span></td>
+                <td><div class="prob-list"><span class='prob-tag'>1808C</span></div></td>
+            </tr>
+            
+            <tr data-user="Fatemaelfiky1">
+                <td>
+                    <strong><a href="https://vjudge.net/user/Fatemaelfiky1" target="_blank" class="user-link">Fatemaelfiky1</a></strong>
+                </td>
+                <td>السبت 9 مايو 2026</td>
+                <td><span class="time-badge start-time">02:27 م</span></td>
+                <td><span class="time-badge end-time">02:27 م</span></td>
+                <td><span class="dur-single">محاولة فردية (~15 د)</span></td>
+                <td>1</td>
+                <td><span class='badge badge-ac'>1 AC</span></td>
+                <td><div class="prob-list"><span class='prob-tag'>100886G</span></div></td>
             </tr>
             
             <tr data-user="Fatemaelfiky1">
@@ -1885,7 +2225,7 @@
                 <td>الثلاثاء 5 مايو 2026</td>
                 <td><span class="time-badge start-time">01:36 ص</span></td>
                 <td><span class="time-badge end-time">02:10 ص</span></td>
-                <td><span class="dur-multi">34 دقيقة</span></td>
+                <td><span class="dur-multi">34 دقيقة (اتصال متواصل)</span></td>
                 <td>3</td>
                 <td><span class='badge badge-ac'>1 AC</span></td>
                 <td><div class="prob-list"><span class='prob-tag'>628D</span></div></td>
@@ -1924,7 +2264,7 @@
                 <td>الإثنين 27 أبريل 2026</td>
                 <td><span class="time-badge start-time">04:21 م</span></td>
                 <td><span class="time-badge end-time">04:23 م</span></td>
-                <td><span class="dur-multi">2 دقيقة</span></td>
+                <td><span class="dur-multi">2 دقيقة (اتصال متواصل)</span></td>
                 <td>2</td>
                 <td><span class='badge badge-ac'>1 AC</span></td>
                 <td><div class="prob-list"><span class='prob-tag'>2160C</span></div></td>
@@ -1935,10 +2275,23 @@
                     <strong><a href="https://vjudge.net/user/Fatemaelfiky1" target="_blank" class="user-link">Fatemaelfiky1</a></strong>
                 </td>
                 <td>الجمعة 24 أبريل 2026</td>
-                <td><span class="time-badge start-time">06:45 م</span></td>
+                <td><span class="time-badge start-time">07:47 م</span></td>
                 <td><span class="time-badge end-time">07:47 م</span></td>
-                <td><span class="dur-multi">1 س و 2 د</span></td>
-                <td>3</td>
+                <td><span class="dur-single">محاولة فردية (~15 د)</span></td>
+                <td>1</td>
+                <td><span class='badge badge-wa'>0 AC</span></td>
+                <td><div class="prob-list"><span class='prob-tag'>2160C</span></div></td>
+            </tr>
+            
+            <tr data-user="Fatemaelfiky1">
+                <td>
+                    <strong><a href="https://vjudge.net/user/Fatemaelfiky1" target="_blank" class="user-link">Fatemaelfiky1</a></strong>
+                </td>
+                <td>الجمعة 24 أبريل 2026</td>
+                <td><span class="time-badge start-time">06:45 م</span></td>
+                <td><span class="time-badge end-time">06:56 م</span></td>
+                <td><span class="dur-multi">11 دقيقة (اتصال متواصل)</span></td>
+                <td>2</td>
                 <td><span class='badge badge-wa'>0 AC</span></td>
                 <td><div class="prob-list"><span class='prob-tag'>2160C</span></div></td>
             </tr>
@@ -1950,7 +2303,7 @@
                 <td>الجمعة 24 أبريل 2026</td>
                 <td><span class="time-badge start-time">03:11 م</span></td>
                 <td><span class="time-badge end-time">04:17 م</span></td>
-                <td><span class="dur-multi">1 س و 6 د</span></td>
+                <td><span class="dur-multi">1 س و 6 د (اتصال متواصل)</span></td>
                 <td>4</td>
                 <td><span class='badge badge-ac'>2 AC</span></td>
                 <td><div class="prob-list"><span class='prob-tag'>2154C1</span></div></td>
@@ -1974,12 +2327,38 @@
                     <strong><a href="https://vjudge.net/user/Amr2Khaled" target="_blank" class="user-link">Amr2Khaled</a></strong>
                 </td>
                 <td>الإثنين 5 أكتوبر 2026</td>
-                <td><span class="time-badge start-time">04:20 م</span></td>
+                <td><span class="time-badge start-time">06:13 م</span></td>
                 <td><span class="time-badge end-time">06:13 م</span></td>
-                <td><span class="dur-multi">1 س و 52 د</span></td>
-                <td>4</td>
-                <td><span class='badge badge-ac'>2 AC</span></td>
-                <td><div class="prob-list"><span class='prob-tag'>628D</span><span class='prob-tag'>abc336_e</span></div></td>
+                <td><span class="dur-single">محاولة فردية (~15 د)</span></td>
+                <td>1</td>
+                <td><span class='badge badge-ac'>1 AC</span></td>
+                <td><div class="prob-list"><span class='prob-tag'>abc336_e</span></div></td>
+            </tr>
+            
+            <tr data-user="Amr2Khaled">
+                <td>
+                    <strong><a href="https://vjudge.net/user/Amr2Khaled" target="_blank" class="user-link">Amr2Khaled</a></strong>
+                </td>
+                <td>الإثنين 5 أكتوبر 2026</td>
+                <td><span class="time-badge start-time">05:16 م</span></td>
+                <td><span class="time-badge end-time">05:16 م</span></td>
+                <td><span class="dur-single">محاولة فردية (~15 د)</span></td>
+                <td>1</td>
+                <td><span class='badge badge-ac'>1 AC</span></td>
+                <td><div class="prob-list"><span class='prob-tag'>628D</span></div></td>
+            </tr>
+            
+            <tr data-user="Amr2Khaled">
+                <td>
+                    <strong><a href="https://vjudge.net/user/Amr2Khaled" target="_blank" class="user-link">Amr2Khaled</a></strong>
+                </td>
+                <td>الإثنين 5 أكتوبر 2026</td>
+                <td><span class="time-badge start-time">04:20 م</span></td>
+                <td><span class="time-badge end-time">04:29 م</span></td>
+                <td><span class="dur-multi">8 دقيقة (اتصال متواصل)</span></td>
+                <td>2</td>
+                <td><span class='badge badge-wa'>0 AC</span></td>
+                <td><div class="prob-list"><span class='prob-tag'>628D</span></div></td>
             </tr>
             
             <tr data-user="Amr2Khaled">
@@ -1989,7 +2368,7 @@
                 <td>الأحد 4 أكتوبر 2026</td>
                 <td><span class="time-badge start-time">06:25 م</span></td>
                 <td><span class="time-badge end-time">06:34 م</span></td>
-                <td><span class="dur-multi">8 دقيقة</span></td>
+                <td><span class="dur-multi">8 دقيقة (اتصال متواصل)</span></td>
                 <td>2</td>
                 <td><span class='badge badge-ac'>1 AC</span></td>
                 <td><div class="prob-list"><span class='prob-tag'>1808C</span><span class='prob-tag'>NUMTSN</span></div></td>
@@ -2015,7 +2394,7 @@
                 <td>الجمعة 2 أكتوبر 2026</td>
                 <td><span class="time-badge start-time">04:01 م</span></td>
                 <td><span class="time-badge end-time">04:04 م</span></td>
-                <td><span class="dur-multi">2 دقيقة</span></td>
+                <td><span class="dur-multi">2 دقيقة (اتصال متواصل)</span></td>
                 <td>2</td>
                 <td><span class='badge badge-ac'>1 AC</span></td>
                 <td><div class="prob-list"><span class='prob-tag'>100886G</span></div></td>
@@ -2028,7 +2407,7 @@
                 <td>الخميس 1 أكتوبر 2026</td>
                 <td><span class="time-badge start-time">03:31 م</span></td>
                 <td><span class="time-badge end-time">04:01 م</span></td>
-                <td><span class="dur-multi">29 دقيقة</span></td>
+                <td><span class="dur-multi">29 دقيقة (اتصال متواصل)</span></td>
                 <td>2</td>
                 <td><span class='badge badge-ac'>2 AC</span></td>
                 <td><div class="prob-list"><span class='prob-tag'>11D</span></div></td>
@@ -2039,12 +2418,51 @@
                     <strong><a href="https://vjudge.net/user/Amr2Khaled" target="_blank" class="user-link">Amr2Khaled</a></strong>
                 </td>
                 <td>الأربعاء 30 سبتمبر 2026</td>
-                <td><span class="time-badge start-time">08:13 م</span></td>
+                <td><span class="time-badge start-time">11:01 م</span></td>
                 <td><span class="time-badge end-time">12:19 ص</span></td>
-                <td><span class="dur-multi">4 س و 5 د</span></td>
-                <td>13</td>
-                <td><span class='badge badge-ac'>5 AC</span></td>
-                <td><div class="prob-list"><span class='prob-tag'>1690</span><span class='prob-tag'>1036C</span><span class='prob-tag'>NUMTSN</span><span class='prob-tag'>1122</span><span class='prob-tag'>630C</span><span class='prob-tag'>1497C1</span></div></td>
+                <td><span class="dur-multi">1 س و 18 د (اتصال متواصل)</span></td>
+                <td>8</td>
+                <td><span class='badge badge-ac'>3 AC</span></td>
+                <td><div class="prob-list"><span class='prob-tag'>1122</span><span class='prob-tag'>NUMTSN</span><span class='prob-tag'>630C</span><span class='prob-tag'>1497C1</span></div></td>
+            </tr>
+            
+            <tr data-user="Amr2Khaled">
+                <td>
+                    <strong><a href="https://vjudge.net/user/Amr2Khaled" target="_blank" class="user-link">Amr2Khaled</a></strong>
+                </td>
+                <td>الأربعاء 30 سبتمبر 2026</td>
+                <td><span class="time-badge start-time">09:59 م</span></td>
+                <td><span class="time-badge end-time">10:28 م</span></td>
+                <td><span class="dur-multi">29 دقيقة (اتصال متواصل)</span></td>
+                <td>2</td>
+                <td><span class='badge badge-wa'>0 AC</span></td>
+                <td><div class="prob-list"><span class='prob-tag'>NUMTSN</span></div></td>
+            </tr>
+            
+            <tr data-user="Amr2Khaled">
+                <td>
+                    <strong><a href="https://vjudge.net/user/Amr2Khaled" target="_blank" class="user-link">Amr2Khaled</a></strong>
+                </td>
+                <td>الأربعاء 30 سبتمبر 2026</td>
+                <td><span class="time-badge start-time">09:23 م</span></td>
+                <td><span class="time-badge end-time">09:23 م</span></td>
+                <td><span class="dur-single">محاولة فردية (~15 د)</span></td>
+                <td>1</td>
+                <td><span class='badge badge-ac'>1 AC</span></td>
+                <td><div class="prob-list"><span class='prob-tag'>1036C</span></div></td>
+            </tr>
+            
+            <tr data-user="Amr2Khaled">
+                <td>
+                    <strong><a href="https://vjudge.net/user/Amr2Khaled" target="_blank" class="user-link">Amr2Khaled</a></strong>
+                </td>
+                <td>الأربعاء 30 سبتمبر 2026</td>
+                <td><span class="time-badge start-time">08:13 م</span></td>
+                <td><span class="time-badge end-time">08:26 م</span></td>
+                <td><span class="dur-multi">13 دقيقة (اتصال متواصل)</span></td>
+                <td>2</td>
+                <td><span class='badge badge-ac'>1 AC</span></td>
+                <td><div class="prob-list"><span class='prob-tag'>1690</span></div></td>
             </tr>
             
             <tr data-user="Amr2Khaled">
@@ -2067,7 +2485,7 @@
                 <td>الأربعاء 30 سبتمبر 2026</td>
                 <td><span class="time-badge start-time">03:28 م</span></td>
                 <td><span class="time-badge end-time">03:43 م</span></td>
-                <td><span class="dur-multi">14 دقيقة</span></td>
+                <td><span class="dur-multi">14 دقيقة (اتصال متواصل)</span></td>
                 <td>7</td>
                 <td><span class='badge badge-ac'>2 AC</span></td>
                 <td><div class="prob-list"><span class='prob-tag'>1068</span></div></td>
@@ -2080,7 +2498,7 @@
                 <td>الأربعاء 30 سبتمبر 2026</td>
                 <td><span class="time-badge start-time">12:59 ص</span></td>
                 <td><span class="time-badge end-time">01:04 ص</span></td>
-                <td><span class="dur-multi">5 دقيقة</span></td>
+                <td><span class="dur-multi">5 دقيقة (اتصال متواصل)</span></td>
                 <td>2</td>
                 <td><span class='badge badge-wa'>0 AC</span></td>
                 <td><div class="prob-list"><span class='prob-tag'>628D</span></div></td>
@@ -2106,7 +2524,7 @@
                 <td>الثلاثاء 29 سبتمبر 2026</td>
                 <td><span class="time-badge start-time">08:45 م</span></td>
                 <td><span class="time-badge end-time">09:28 م</span></td>
-                <td><span class="dur-multi">43 دقيقة</span></td>
+                <td><span class="dur-multi">43 دقيقة (اتصال متواصل)</span></td>
                 <td>11</td>
                 <td><span class='badge badge-ac'>2 AC</span></td>
                 <td><div class="prob-list"><span class='prob-tag'>2220</span></div></td>
@@ -2116,13 +2534,39 @@
                 <td>
                     <strong><a href="https://vjudge.net/user/Amr2Khaled" target="_blank" class="user-link">Amr2Khaled</a></strong>
                 </td>
+                <td>الإثنين 22 يونيو 2026</td>
+                <td><span class="time-badge start-time">02:28 ص</span></td>
+                <td><span class="time-badge end-time">02:41 ص</span></td>
+                <td><span class="dur-multi">13 دقيقة (اتصال متواصل)</span></td>
+                <td>3</td>
+                <td><span class='badge badge-ac'>1 AC</span></td>
+                <td><div class="prob-list"><span class='prob-tag'>29C</span></div></td>
+            </tr>
+            
+            <tr data-user="Amr2Khaled">
+                <td>
+                    <strong><a href="https://vjudge.net/user/Amr2Khaled" target="_blank" class="user-link">Amr2Khaled</a></strong>
+                </td>
+                <td>الإثنين 22 يونيو 2026</td>
+                <td><span class="time-badge start-time">01:36 ص</span></td>
+                <td><span class="time-badge end-time">01:36 ص</span></td>
+                <td><span class="dur-single">محاولة فردية (~15 د)</span></td>
+                <td>1</td>
+                <td><span class='badge badge-ac'>1 AC</span></td>
+                <td><div class="prob-list"><span class='prob-tag'>755C</span></div></td>
+            </tr>
+            
+            <tr data-user="Amr2Khaled">
+                <td>
+                    <strong><a href="https://vjudge.net/user/Amr2Khaled" target="_blank" class="user-link">Amr2Khaled</a></strong>
+                </td>
                 <td>الأحد 21 يونيو 2026</td>
                 <td><span class="time-badge start-time">10:04 م</span></td>
-                <td><span class="time-badge end-time">02:41 ص</span></td>
-                <td><span class="dur-multi">4 س و 37 د</span></td>
-                <td>18</td>
-                <td><span class='badge badge-ac'>5 AC</span></td>
-                <td><div class="prob-list"><span class='prob-tag'>115A</span><span class='prob-tag'>10305</span><span class='prob-tag'>445B</span><span class='prob-tag'>755C</span><span class='prob-tag'>29C</span></div></td>
+                <td><span class="time-badge end-time">12:45 ص</span></td>
+                <td><span class="dur-multi">2 س و 41 د (اتصال متواصل)</span></td>
+                <td>14</td>
+                <td><span class='badge badge-ac'>3 AC</span></td>
+                <td><div class="prob-list"><span class='prob-tag'>115A</span><span class='prob-tag'>10305</span><span class='prob-tag'>445B</span></div></td>
             </tr>
             
             <tr data-user="Amr2Khaled">
@@ -2130,10 +2574,10 @@
                     <strong><a href="https://vjudge.net/user/Amr2Khaled" target="_blank" class="user-link">Amr2Khaled</a></strong>
                 </td>
                 <td>الجمعة 8 مايو 2026</td>
-                <td><span class="time-badge start-time">04:19 م</span></td>
+                <td><span class="time-badge start-time">05:08 م</span></td>
                 <td><span class="time-badge end-time">06:20 م</span></td>
-                <td><span class="dur-multi">2 ساعة</span></td>
-                <td>11</td>
+                <td><span class="dur-multi">1 س و 12 د (اتصال متواصل)</span></td>
+                <td>7</td>
                 <td><span class='badge badge-ac'>3 AC</span></td>
                 <td><div class="prob-list"><span class='prob-tag'>11686</span><span class='prob-tag'>10608</span><span class='prob-tag'>10685</span></div></td>
             </tr>
@@ -2143,12 +2587,51 @@
                     <strong><a href="https://vjudge.net/user/Amr2Khaled" target="_blank" class="user-link">Amr2Khaled</a></strong>
                 </td>
                 <td>الجمعة 8 مايو 2026</td>
-                <td><span class="time-badge start-time">11:42 ص</span></td>
+                <td><span class="time-badge start-time">04:19 م</span></td>
+                <td><span class="time-badge end-time">04:36 م</span></td>
+                <td><span class="dur-multi">16 دقيقة (اتصال متواصل)</span></td>
+                <td>4</td>
+                <td><span class='badge badge-wa'>0 AC</span></td>
+                <td><div class="prob-list"><span class='prob-tag'>11686</span></div></td>
+            </tr>
+            
+            <tr data-user="Amr2Khaled">
+                <td>
+                    <strong><a href="https://vjudge.net/user/Amr2Khaled" target="_blank" class="user-link">Amr2Khaled</a></strong>
+                </td>
+                <td>الجمعة 8 مايو 2026</td>
+                <td><span class="time-badge start-time">12:41 م</span></td>
                 <td><span class="time-badge end-time">01:04 م</span></td>
-                <td><span class="dur-multi">1 س و 22 د</span></td>
-                <td>3</td>
+                <td><span class="dur-multi">23 دقيقة (اتصال متواصل)</span></td>
+                <td>2</td>
+                <td><span class='badge badge-ac'>1 AC</span></td>
+                <td><div class="prob-list"><span class='prob-tag'>BUGLIFE</span></div></td>
+            </tr>
+            
+            <tr data-user="Amr2Khaled">
+                <td>
+                    <strong><a href="https://vjudge.net/user/Amr2Khaled" target="_blank" class="user-link">Amr2Khaled</a></strong>
+                </td>
+                <td>الجمعة 8 مايو 2026</td>
+                <td><span class="time-badge start-time">11:42 ص</span></td>
+                <td><span class="time-badge end-time">11:42 ص</span></td>
+                <td><span class="dur-single">محاولة فردية (~15 د)</span></td>
+                <td>1</td>
+                <td><span class='badge badge-ac'>1 AC</span></td>
+                <td><div class="prob-list"><span class='prob-tag'>PT07Y</span></div></td>
+            </tr>
+            
+            <tr data-user="Amr2Khaled">
+                <td>
+                    <strong><a href="https://vjudge.net/user/Amr2Khaled" target="_blank" class="user-link">Amr2Khaled</a></strong>
+                </td>
+                <td>الخميس 25 ديسمبر 2025</td>
+                <td><span class="time-badge start-time">11:48 م</span></td>
+                <td><span class="time-badge end-time">12:13 ص</span></td>
+                <td><span class="dur-multi">24 دقيقة (اتصال متواصل)</span></td>
+                <td>4</td>
                 <td><span class='badge badge-ac'>2 AC</span></td>
-                <td><div class="prob-list"><span class='prob-tag'>PT07Y</span><span class='prob-tag'>BUGLIFE</span></div></td>
+                <td><div class="prob-list"><span class='prob-tag'>1093</span><span class='prob-tag'>mark-and-toys</span><span class='prob-tag'>1667</span></div></td>
             </tr>
             
             <tr data-user="Amr2Khaled">
@@ -2157,11 +2640,11 @@
                 </td>
                 <td>الخميس 25 ديسمبر 2025</td>
                 <td><span class="time-badge start-time">10:23 م</span></td>
-                <td><span class="time-badge end-time">12:13 ص</span></td>
-                <td><span class="dur-multi">1 س و 49 د</span></td>
-                <td>11</td>
-                <td><span class='badge badge-ac'>4 AC</span></td>
-                <td><div class="prob-list"><span class='prob-tag'>1674</span><span class='prob-tag'>ctci-array-left-rotation</span><span class='prob-tag'>1093</span><span class='prob-tag'>mark-and-toys</span><span class='prob-tag'>1667</span></div></td>
+                <td><span class="time-badge end-time">11:12 م</span></td>
+                <td><span class="dur-multi">48 دقيقة (اتصال متواصل)</span></td>
+                <td>7</td>
+                <td><span class='badge badge-ac'>2 AC</span></td>
+                <td><div class="prob-list"><span class='prob-tag'>1674</span><span class='prob-tag'>ctci-array-left-rotation</span><span class='prob-tag'>1093</span></div></td>
             </tr>
             
             <tr data-user="Amr2Khaled">
@@ -2197,7 +2680,7 @@
                 <td>الخميس 5 يونيو 2025</td>
                 <td><span class="time-badge start-time">02:48 م</span></td>
                 <td><span class="time-badge end-time">03:06 م</span></td>
-                <td><span class="dur-multi">18 دقيقة</span></td>
+                <td><span class="dur-multi">18 دقيقة (اتصال متواصل)</span></td>
                 <td>6</td>
                 <td><span class='badge badge-ac'>5 AC</span></td>
                 <td><div class="prob-list"><span class='prob-tag'>1633</span><span class='prob-tag'>KNAPSACK</span><span class='prob-tag'>1634</span><span class='prob-tag'>1635</span><span class='prob-tag'>1637</span></div></td>
@@ -2210,7 +2693,7 @@
                 <td>السبت 10 مايو 2025</td>
                 <td><span class="time-badge start-time">08:35 ص</span></td>
                 <td><span class="time-badge end-time">08:46 ص</span></td>
-                <td><span class="dur-multi">10 دقيقة</span></td>
+                <td><span class="dur-multi">10 دقيقة (اتصال متواصل)</span></td>
                 <td>2</td>
                 <td><span class='badge badge-ac'>1 AC</span></td>
                 <td><div class="prob-list"><span class='prob-tag'>1498C</span></div></td>

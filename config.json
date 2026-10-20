@@ -5,7 +5,8 @@
     "Fatemaelfiky1",
     "Amr2Khaled"
   ],
-  "session_gap_minutes": 60,
+  "session_gap_minutes": 30,
+  "coding_buffer_minutes": 15,
   "check_interval_minutes": 5,
   "fetch_limit": 100,
   "timezone_offset_hours": 3
