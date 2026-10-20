@@ -1136,7 +1136,7 @@ def generate_html_dashboard(users_data, config):
             let rating = t.difficulty || 0;
             if (rating < 800) {{
                 const pCode = String(t.probNum || t.problemName || '').toUpperCase();
-                const m = pCode.match(/^(\d+)([A-Z])/);
+                const m = pCode.match(/^(\\d+)([A-Z])/);
                 if (m) {{
                     const isGym = m[1].length >= 6;
                     const ord = Math.max(0, m[2].charCodeAt(0) - 65);
