@@ -1856,9 +1856,15 @@ def generate_html_dashboard(users_data, config):
             return userObj;
         }}
 
+        function stampCurrentUpdateTime() {{
+            const nowMs = Date.now();
+            appState.updated_ms = nowMs;
+            appState.updated_at = formatArabicDateJS(nowMs) + ' - ' + formatArabicTimeJS(nowMs) + ' (توقيت مصر)';
+        }}
+
         function saveLocalCache(customTs) {{
             try {{
-                let nowSec = customTs || Math.floor(Date.now() / 1000);
+                let nowSec = customTs || (appState.config && appState.config.last_cloud_sync_ts) || Math.floor(Date.now() / 1000);
                 if (nowSec > 100000000000) nowSec = Math.floor(nowSec / 1000);
                 const usersById = {{}};
                 (appState.users || []).forEach(u => {{
@@ -1867,6 +1873,8 @@ def generate_html_dashboard(users_data, config):
                 const trainees = (appState.config && appState.config.trainees) || [];
                 localStorage.setItem('vj_tracker_cloud_state_v3', JSON.stringify({{
                     ts: nowSec,
+                    updated_ms: appState.updated_ms || Date.now(),
+                    updated_at: appState.updated_at || '',
                     trainees: trainees,
                     usersById: usersById
                 }}));
@@ -1880,7 +1888,7 @@ def generate_html_dashboard(users_data, config):
         }}
 
         function getLocalCache() {{
-            let best = {{ ts: 0, trainees: null, usersById: {{}} }};
+            let best = {{ ts: 0, updated_ms: 0, updated_at: '', trainees: null, usersById: {{}} }};
             try {{
                 const rawV3 = localStorage.getItem('vj_tracker_cloud_state_v3');
                 if (rawV3) {{
@@ -1888,7 +1896,13 @@ def generate_html_dashboard(users_data, config):
                     let ts3 = p3.ts || 0;
                     if (ts3 > 100000000000) ts3 = Math.floor(ts3 / 1000);
                     if (Array.isArray(p3.trainees) && p3.trainees.length > 0) {{
-                        best = {{ ts: ts3, trainees: p3.trainees, usersById: p3.usersById || {{}} }};
+                        best = {{
+                            ts: ts3,
+                            updated_ms: p3.updated_ms || 0,
+                            updated_at: p3.updated_at || '',
+                            trainees: p3.trainees,
+                            usersById: p3.usersById || {{}}
+                        }};
                     }}
                 }}
             }} catch (e) {{}}
@@ -1907,12 +1921,18 @@ def generate_html_dashboard(users_data, config):
             return best;
         }}
 
-        function applyOverlayToState(targetState, overlayTrainees, overlayUsersById, overlayTs) {{
+        function applyOverlayToState(targetState, overlayTrainees, overlayUsersById, overlayTs, cacheUpdatedMs = 0, cacheUpdatedAt = '') {{
             if (!targetState || !Array.isArray(overlayTrainees) || overlayTrainees.length === 0) return targetState;
             if (!targetState.config) targetState.config = {{}};
             targetState.config.trainees = overlayTrainees;
             if (overlayTs) {{
                 targetState.config.last_cloud_sync_ts = Math.max(targetState.config.last_cloud_sync_ts || 0, overlayTs);
+            }}
+            const serverUpdatedMs = targetState.updated_ms || 0;
+            const isCacheNewer = (cacheUpdatedMs || 0) >= serverUpdatedMs;
+            if (isCacheNewer && cacheUpdatedAt) {{
+                targetState.updated_ms = cacheUpdatedMs;
+                targetState.updated_at = cacheUpdatedAt;
             }}
             const serverUsersMap = {{}};
             (targetState.users || []).forEach(u => {{
@@ -1926,7 +1946,19 @@ def generate_html_dashboard(users_data, config):
             for (const prof of overlayTrainees) {{
                 const sUser = serverUsersMap[prof.id];
                 const cUser = (overlayUsersById && overlayUsersById[prof.id]) || currentUsersMap[prof.id];
-                if (sUser) {{
+                if (isCacheNewer && cUser && cUser.sessions && cUser.sessions.length > 0) {{
+                    const uCopy = JSON.parse(JSON.stringify(cUser));
+                    uCopy.name = prof.name;
+                    uCopy.handles = prof.handles;
+                    if (sUser && sUser.platforms && sUser.platforms['VJudge']) {{
+                        const cVj = uCopy.platforms && uCopy.platforms['VJudge'];
+                        if (!cVj || (sUser.platforms['VJudge'].acAll || 0) >= (cVj.acAll || 0)) {{
+                            if (!uCopy.platforms) uCopy.platforms = {{}};
+                            uCopy.platforms['VJudge'] = sUser.platforms['VJudge'];
+                        }}
+                    }}
+                    mergedUsers.push(uCopy);
+                }} else if (sUser) {{
                     const uCopy = JSON.parse(JSON.stringify(sUser));
                     uCopy.name = prof.name;
                     uCopy.handles = prof.handles;
@@ -1954,8 +1986,16 @@ def generate_html_dashboard(users_data, config):
         function applyLocalCacheToState(targetState) {{
             const local = getLocalCache();
             const serverTs = (targetState && targetState.config && targetState.config.last_cloud_sync_ts) || 0;
-            if (local.trainees && local.ts >= serverTs) {{
-                applyOverlayToState(targetState, local.trainees, local.usersById, local.ts);
+            const serverUpdatedMs = (targetState && targetState.updated_ms) || 0;
+            if (local.trainees && (local.ts >= serverTs || (local.updated_ms || 0) >= serverUpdatedMs)) {{
+                applyOverlayToState(
+                    targetState,
+                    local.trainees,
+                    local.usersById,
+                    Math.max(local.ts || 0, serverTs),
+                    local.updated_ms,
+                    local.updated_at
+                );
             }}
             return targetState;
         }}
@@ -2350,24 +2390,36 @@ def generate_html_dashboard(users_data, config):
                 }}
             }} catch (e) {{}}
 
+            if (!bestTrainees && appState.config && Array.isArray(appState.config.trainees)) {{
+                bestTrainees = appState.config.trainees;
+            }}
+
             if (bestTrainees) {{
-                applyOverlayToState(appState, bestTrainees, localCache.usersById, bestTs);
+                applyOverlayToState(appState, bestTrainees, localCache.usersById, bestTs, localCache.updated_ms, localCache.updated_at);
                 saveLocalCache(bestTs);
                 renderDashboard();
 
-                for (const prof of bestTrainees) {{
+                const toFetch = bestTrainees.filter(prof => {{
                     const existingU = (appState.users || []).find(u => u.id === prof.id);
                     const needsCf = prof.handles && prof.handles.codeforces && (!existingU || !existingU.platforms || !existingU.platforms['Codeforces']);
                     const needsAc = prof.handles && prof.handles.atcoder && (!existingU || !existingU.platforms || !existingU.platforms['AtCoder']);
                     const needsSessions = (prof.handles && (prof.handles.codeforces || prof.handles.atcoder)) && (!existingU || !existingU.sessions || existingU.sessions.length === 0);
-                    if (forceRefetchAll || needsCf || needsAc || needsSessions) {{
-                        const updatedU = await fetchBrowserLiveStatsForProfile(prof);
-                        const idx = appState.users.findIndex(u => u.id === prof.id);
+                    return forceRefetchAll || needsCf || needsAc || needsSessions;
+                }});
+
+                const batchSize = 4;
+                for (let i = 0; i < toFetch.length; i += batchSize) {{
+                    const batch = toFetch.slice(i, i + batchSize);
+                    const updatedBatch = await Promise.all(batch.map(prof => fetchBrowserLiveStatsForProfile(prof)));
+                    updatedBatch.forEach(updatedU => {{
+                        if (!updatedU) return;
+                        const idx = appState.users.findIndex(u => u.id === updatedU.id);
                         if (idx >= 0) appState.users[idx] = updatedU;
                         else appState.users.push(updatedU);
-                        saveLocalCache(bestTs);
-                        renderDashboard();
-                    }}
+                    }});
+                    stampCurrentUpdateTime();
+                    saveLocalCache(bestTs);
+                    renderDashboard();
                 }}
             }}
         }}
@@ -2419,6 +2471,7 @@ def generate_html_dashboard(users_data, config):
 
             const nowSec = Math.floor(Date.now() / 1000);
             appState.config.last_cloud_sync_ts = Math.max(appState.config.last_cloud_sync_ts || 0, nowSec);
+            stampCurrentUpdateTime();
             saveLocalCache(nowSec);
             renderDashboard();
             closeProfileModal();
@@ -2432,6 +2485,7 @@ def generate_html_dashboard(users_data, config):
             const uIdx = (appState.users || []).findIndex(u => u.id === pid);
             if (uIdx >= 0) appState.users[uIdx] = updatedUserObj;
             else appState.users.push(updatedUserObj);
+            stampCurrentUpdateTime();
             saveLocalCache(appState.config.last_cloud_sync_ts);
             renderDashboard();
         }}
@@ -2445,6 +2499,7 @@ def generate_html_dashboard(users_data, config):
             appState.users = (appState.users || []).filter(u => u.id !== pid);
             const nowSec = Math.floor(Date.now() / 1000);
             appState.config.last_cloud_sync_ts = Math.max(appState.config.last_cloud_sync_ts || 0, nowSec);
+            stampCurrentUpdateTime();
             saveLocalCache(nowSec);
             renderDashboard();
             closeProfileModal();
@@ -2456,6 +2511,11 @@ def generate_html_dashboard(users_data, config):
             btn.disabled = true;
             btn.innerText = '⏳ جاري التحديث السحابي...';
             showToast('🔄 جاري جلب أحدث البيانات السحابية وفحص حالة الاتصال...');
+
+            // Immediately stamp current time and persist to localStorage so even an instant F5 refresh never reverts the time
+            stampCurrentUpdateTime();
+            saveLocalCache(appState.config && appState.config.last_cloud_sync_ts);
+            renderDashboard();
 
             // 1. Fetch latest data.json from GitHub Pages cloud & merge local cache so added profiles never disappear
             try {{
@@ -2472,8 +2532,8 @@ def generate_html_dashboard(users_data, config):
             // 2. Merge any newer cloud-synced profile changes from ntfy.sh / localStorage and force live refresh
             await loadCloudSyncedProfiles(true);
 
-            appState.updated_at = formatArabicDateJS(Date.now()) + ' - ' + formatArabicTimeJS(Date.now()) + ' (توقيت مصر)';
-            saveLocalCache(appState.config.last_cloud_sync_ts);
+            stampCurrentUpdateTime();
+            saveLocalCache(appState.config && appState.config.last_cloud_sync_ts);
             renderDashboard();
             showToast('✅ تم تحديث كافة المنصات سحابياً بنجاح!');
             btn.disabled = false;
@@ -2487,13 +2547,19 @@ def generate_html_dashboard(users_data, config):
                 const r = await fetch('data.json?t=' + Date.now(), {{ cache: 'no-store' }});
                 if (r.ok) {{
                     const d = await r.json();
-                    if (d && d.updated_ms >= (appState.updated_ms || 0)) {{
+                    if (d && d.users) {{
                         appState = applyLocalCacheToState(d);
                         renderDashboard();
                     }}
                 }}
             }} catch (e) {{}}
-            await loadCloudSyncedProfiles(false);
+            const isStale = (Date.now() - (appState.updated_ms || 0)) > 60 * 1000;
+            if (isStale) {{
+                stampCurrentUpdateTime();
+                saveLocalCache(appState.config && appState.config.last_cloud_sync_ts);
+                renderDashboard();
+            }}
+            await loadCloudSyncedProfiles(isStale);
         }});
 
         // 5-minute Countdown Timer

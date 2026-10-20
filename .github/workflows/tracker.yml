@@ -7,6 +7,9 @@ on:
   workflow_dispatch: # Allows manual trigger from GitHub UI
   push:
     branches: [ main ]
+    paths:
+      - '**.py'
+      - '.github/workflows/**'
 
 jobs:
   track:
@@ -32,4 +35,4 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action Tracker"
           git add index.html activity_dashboard.html data.json pings_history.json sessions_report.csv summary_report.md config.json
-          git diff --quiet && git diff --staged --quiet || (git commit -m "Auto-update multi-platform trainee stats (5m refresh) [skip ci]" && git push)
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Auto-update multi-platform trainee stats (5m refresh)" && git push)

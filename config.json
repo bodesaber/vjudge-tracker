@@ -46,7 +46,7 @@
       "handles": {
         "vjudge": "Youssef_Saleh",
         "codeforces": "nerdev",
-        "atcoder": "",
+        "atcoder": "Nerdev",
         "cses": ""
       }
     },
@@ -56,7 +56,7 @@
       "handles": {
         "vjudge": "abdelhamid1",
         "codeforces": "Abdelhamid_",
-        "atcoder": "",
+        "atcoder": "Abdelhamid",
         "cses": ""
       }
     },
@@ -76,7 +76,7 @@
       "handles": {
         "vjudge": "Mo_hab",
         "codeforces": "Mo_hab",
-        "atcoder": "",
+        "atcoder": "Mo_hab",
         "cses": ""
       }
     },
@@ -107,5 +107,5 @@
   "fetch_limit": 200,
   "timezone_offset_hours": 3,
   "cloud_sync_topic": "vj_tracker_bodesaber_sync_v2",
-  "last_cloud_sync_ts": 1792502067
+  "last_cloud_sync_ts": 1792505108
 }
