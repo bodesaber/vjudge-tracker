@@ -1,14 +1,13 @@
 # 📊 تقرير متابعة نشاط المتدربين الشامل 24/7 (VJudge + Codeforces + AtCoder + CSES)
-**تاريخ التحديث:** الثلاثاء 20 أكتوبر 2026 - 03:13 م (بتوقيت مصر - قاعدة الـ 30 دقيقة للاتصال المتواصل)
+**تاريخ التحديث:** الثلاثاء 20 أكتوبر 2026 - 03:14 م (بتوقيت مصر - قاعدة الـ 30 دقيقة للاتصال المتواصل)
 
 ## 1. ملخص البروفايلات والنشاط العام
 | المتدرب | الحالة | آخر ظهور | اليوم | آخر 7 أيام | آخر 30 يوماً | المنصات المربوطة |
 | :--- | :---: | :---: | :---: | :---: | :---: | :--- |
-| **إسراء عبد الحق (Israa)** | 🟢 متصل (VJudge, Codeforces) | منذ 26 دقيقة (02:46 م) | **1 AC** (29 دقيقة) | **2 AC** (44 دقيقة) | **5 AC** (2 س و 57 د) | VJudge: `Israa_abdelhaq` (219 AC), Codeforces: `Isabella_` (98 AC), AtCoder: `Isabella_` (1 AC) |
+| **إسراء عبد الحق (Israa)** | 🟢 متصل (VJudge, Codeforces) | منذ 28 دقيقة (02:46 م) | **1 AC** (29 دقيقة) | **2 AC** (44 دقيقة) | **5 AC** (2 س و 57 د) | VJudge: `Israa_abdelhaq` (219 AC), Codeforces: `Isabella_` (98 AC), AtCoder: `Isabella_` (1 AC) |
 | **عمر عوض صابر (Omar)** | ⚪ غير متصل | منذ 10 ساعة (04:15 ص) | **0 AC** (5 دقيقة) | **4 AC** (1 س و 35 د) | **18 AC** (7 س و 51 د) | VJudge: `Omar_Awad_Saber` (492 AC), Codeforces: `Lumino` (95 AC), AtCoder: `Lumino` (24 AC) |
 | **فاطمة الفقي (Fatema)** | ⚪ غير متصل | منذ 1 يوم (18-10-2026 06:16 PM) | **0 AC** (0 دقيقة) | **13 AC** (3 س و 36 د) | **65 AC** (19 س و 10 د) | VJudge: `Fatemaelfiky1` (421 AC), Codeforces: `Zhraa_` (107 AC) |
 | **عمرو خالد (Amr)** | ⚪ غير متصل | منذ 14 يوم (05-10-2026 06:13 PM) | **0 AC** (0 دقيقة) | **0 AC** (0 دقيقة) | **14 AC** (8 س و 24 د) | VJudge: `Amr2Khaled` (294 AC), Codeforces: `SHANKS-A` (98 AC), AtCoder: `SHANKS_A` (1 AC) |
-| **Youssef Saleh** | ⚪ غير متصل | منذ 10 ساعة (04:15 ص) | **0 AC** (5 دقيقة) | **14 AC** (4 س و 31 د) | **83 AC** (32 س و 19 د) | VJudge: `Youssef_Saleh` (463 AC), Codeforces: `nerdev` (91 AC) |
 
 ## 2. سجل الجلسات التفصيلي والمسائل بالوقت
 
@@ -87,22 +86,3 @@
 | الأربعاء 30 سبتمبر 2026 | 03:13 م | 03:43 م | 30 دقيقة (اتصال متواصل) | **VJudge**: 30 دقيقة (2 AC) | `03:43:26 م` [VJudge] LightOJ 1068 (**Accepted**)<br>`03:42:39 م` [VJudge] LightOJ 1068 (**Accepted**)<br>`03:40:09 م` [VJudge] LightOJ 1068 (**Time Limit Exceeded**)<br>`03:39:26 م` [VJudge] LightOJ 1068 (**Runtime Error**)<br>`03:33:22 م` [VJudge] LightOJ 1068 (**Wrong Answer**)<br>`03:32:21 م` [VJudge] LightOJ 1068 (**Wrong Answer**) |
 | الأربعاء 30 سبتمبر 2026 | 12:44 ص | 01:04 ص | 20 دقيقة (اتصال متواصل) | **VJudge**: 20 دقيقة (0 AC)<br>**Codeforces**: 20 دقيقة (0 AC) | `01:04:54 ص` [VJudge] CodeForces 628D (**Wrong answer on test 14**)<br>`12:59:28 ص` [VJudge] CodeForces 628D (**Wrong answer on test 14**) |
 | الثلاثاء 29 سبتمبر 2026 | 11:20 م | 11:35 م | 15 دقيقة (اتصال متواصل) | **VJudge**: 15 دقيقة (1 AC) | `11:35:46 م` [VJudge] SPOJ CPCRC1C (**Accepted**) |
-
-### 👤 Youssef Saleh
-| التاريخ | من | إلى | مدة النشاط | تفصيل المنصات | المسائل بالتوقيت |
-| :--- | :---: | :---: | :---: | :--- | :--- |
-| الثلاثاء 20 أكتوبر 2026 | 04:10 ص | 04:15 ص | 5 دقيقة (فتح وتصفح المنصة) | **Codeforces**: 5 دقيقة (0 AC) | `04:15:05 ص` [Codeforces] 👁️ فاتح كود فورسز (متصل أونلاين) (**Online**) |
-| السبت 17 أكتوبر 2026 | 07:33 م | 08:00 م | 27 دقيقة (اتصال متواصل) | **Codeforces**: 27 دقيقة (2 AC) | `08:00:36 م` [Codeforces] 2261B - What's the Capital of France? (**Accepted**)<br>`07:48:26 م` [Codeforces] 2261D1 - Come Be My Friend, Don't Be So Scared (Easy Version) (**Accepted**) |
-| السبت 17 أكتوبر 2026 | 06:34 م | 07:09 م | 35 دقيقة (اتصال متواصل) | **Codeforces**: 35 دقيقة (0 AC) | `07:09:49 م` [Codeforces] 2261D1 - Come Be My Friend, Don't Be So Scared (Easy Version) (**Wrong Answer**)<br>`06:49:28 م` [Codeforces] 2261D1 - Come Be My Friend, Don't Be So Scared (Easy Version) (**Wrong Answer**) |
-| السبت 17 أكتوبر 2026 | 06:02 م | 06:17 م | 15 دقيقة (اتصال متواصل) | **Codeforces**: 15 دقيقة (1 AC) | `06:17:20 م` [Codeforces] 2261C - I Know About a Million Things (**Accepted**) |
-| السبت 17 أكتوبر 2026 | 05:30 م | 05:45 م | 15 دقيقة (اتصال متواصل) | **Codeforces**: 15 دقيقة (1 AC) | `05:45:21 م` [Codeforces] 2261A - Hey, It's Me, Souvlakity (**Accepted**) |
-| الجمعة 16 أكتوبر 2026 | 02:46 م | 03:01 م | 15 دقيقة (اتصال متواصل) | **Codeforces**: 15 دقيقة (1 AC) | `03:01:12 م` [Codeforces] 1365D - Solve The Maze (**Accepted**) |
-| الجمعة 16 أكتوبر 2026 | 06:44 ص | 07:28 ص | 44 دقيقة (اتصال متواصل) | **Codeforces**: 44 دقيقة (2 AC) | `07:28:33 ص` [Codeforces] 580C - Kefa and Park (**Accepted**)<br>`07:01:44 ص` [Codeforces] 1675D - Vertical Paths (**Accepted**)<br>`06:59:23 ص` [Codeforces] 1675D - Vertical Paths (**Wrong Answer**) |
-| الجمعة 16 أكتوبر 2026 | 12:57 ص | 01:12 ص | 15 دقيقة (اتصال متواصل) | **Codeforces**: 15 دقيقة (1 AC) | `01:12:50 ص` [Codeforces] 1627C - Not Assigning (**Accepted**) |
-| الخميس 15 أكتوبر 2026 | 09:17 م | 09:32 م | 15 دقيقة (اتصال متواصل) | **Codeforces**: 15 دقيقة (1 AC) | `09:32:15 م` [Codeforces] 1843D - Apple Tree (**Accepted**) |
-| الخميس 15 أكتوبر 2026 | 08:40 م | 08:55 م | 15 دقيقة (اتصال متواصل) | **Codeforces**: 15 دقيقة (1 AC) | `08:55:16 م` [Codeforces] 1676G - White-Black Balanced Subtrees (**Accepted**) |
-| الخميس 15 أكتوبر 2026 | 06:49 م | 07:14 م | 25 دقيقة (اتصال متواصل) | **Codeforces**: 25 دقيقة (2 AC) | `07:14:27 م` [Codeforces] 500A - New Year Transportation (**Accepted**)<br>`07:04:42 م` [Codeforces] 500A - New Year Transportation (**Accepted**) |
-| الأربعاء 14 أكتوبر 2026 | 06:09 م | 06:24 م | 15 دقيقة (اتصال متواصل) | **Codeforces**: 15 دقيقة (1 AC) | `06:24:19 م` [Codeforces] 115A - Party (**Accepted**) |
-| الأربعاء 14 أكتوبر 2026 | 03:59 م | 04:14 م | 15 دقيقة (اتصال متواصل) | **Codeforces**: 15 دقيقة (1 AC) | `04:14:36 م` [Codeforces] 505B - Mr. Kitayuta's Colorful Graph (**Accepted**) |
-| الثلاثاء 13 أكتوبر 2026 | 07:00 م | 07:15 م | 15 دقيقة (اتصال متواصل) | **Codeforces**: 15 دقيقة (1 AC) | `07:15:38 م` [Codeforces] 842D - Vitya and Strange Lesson (**Accepted**) |
-| الإثنين 12 أكتوبر 2026 | 02:36 م | 02:51 م | 15 دقيقة (اتصال متواصل) | **Codeforces**: 15 دقيقة (1 AC) | `02:51:48 م` [Codeforces] 1416C - XOR Inverse (**Accepted**) |

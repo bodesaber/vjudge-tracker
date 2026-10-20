@@ -39,16 +39,6 @@
         "atcoder": "SHANKS_A",
         "cses": ""
       }
-    },
-    {
-      "id": "user_1792498245376",
-      "name": "Youssef Saleh",
-      "handles": {
-        "vjudge": "Youssef_Saleh",
-        "codeforces": "nerdev",
-        "atcoder": "",
-        "cses": ""
-      }
     }
   ],
   "session_gap_minutes": 30,
@@ -57,5 +47,5 @@
   "fetch_limit": 200,
   "timezone_offset_hours": 3,
   "cloud_sync_topic": "vj_tracker_bodesaber_sync_v2",
-  "last_cloud_sync_ts": 1792498246
+  "last_cloud_sync_ts": 1792498377
 }
