@@ -280,6 +280,7 @@ def cluster_events_into_sessions(events, max_gap_minutes=30, coding_buffer=15):
         for e in sorted(s_events, key=lambda x: x["time"], reverse=True):
             ev_dt = to_cairo_dt(e["time"])
             timeline.append({
+                "time": e["time"],
                 "time_str": format_arabic_time(ev_dt, include_seconds=True),
                 "platform": e.get("platform", ""),
                 "type": e.get("type", "submission"),
@@ -290,7 +291,10 @@ def cluster_events_into_sessions(events, max_gap_minutes=30, coding_buffer=15):
                 "is_ac": e.get("is_ac", False)
             })
 
+        session_score = int(round((ac_count * 100) + (duration_minutes * 1) + (len(sub_events) * 5) + 15))
         processed_sessions.append({
+            "date_iso": start_dt.strftime("%Y-%m-%d"),
+            "month_iso": start_dt.strftime("%Y-%m"),
             "date_str": format_arabic_datetime(start_dt),
             "start_str": format_arabic_time(start_dt),
             "end_str": format_arabic_time(end_dt),
@@ -303,6 +307,7 @@ def cluster_events_into_sessions(events, max_gap_minutes=30, coding_buffer=15):
             "submissions_count": len(sub_events),
             "accepted_count": ac_count,
             "pings_count": len(ping_events),
+            "score": session_score,
             "problems": probs,
             "platform_breakdown": plat_stats,
             "timeline": timeline
@@ -604,12 +609,16 @@ def analyze_trainee_profile(profile, pings_history, session_gap_min=30, coding_b
         max_plat_ac = max([p[period_key]["solved"] for p in per_platform_summary.values()], default=0)
         solved_count = max(unique_ac, max_plat_ac)
         total_mins = sum(s["duration_minutes"] for s in s_in)
+        subs_count = len(evs_in)
+        sess_count = len(s_in)
+        score = int(round((solved_count * 100) + (total_mins * 1) + (subs_count * 5) + (sess_count * 15)))
         return {
             "solved": solved_count,
-            "subs": len(evs_in),
+            "subs": subs_count,
             "time_minutes": total_mins,
             "time_str": format_duration(total_mins),
-            "sessions": len(s_in)
+            "sessions": sess_count,
+            "score": score
         }
 
     comb_today = calc_unified_period(today_start_ms, "today")
@@ -622,6 +631,10 @@ def analyze_trainee_profile(profile, pings_history, session_gap_min=30, coding_b
         # Avoid double counting CF problems already included in VJudge acAll
         vj_cf_ac = len(set(s["probNum"] for s in vj_subs if s.get("is_ac") and s.get("remote_oj") == "CodeForces"))
         total_all_time_ac = max(per_platform_summary["VJudge"]["acAll"], total_all_time_ac - vj_cf_ac)
+
+    total_rec_mins = sum(s["duration_minutes"] for s in unified_sessions)
+    total_rec_subs = sum(s["submissions_count"] for s in unified_sessions)
+    all_time_score = int(round((total_all_time_ac * 100) + (total_rec_mins * 1) + (total_rec_subs * 5) + (len(unified_sessions) * 15)))
 
     # Peak hours calculation
     slots = {"فجر / ليل متأخر (12ص-6ص)": 0, "صباحاً (6ص-12ظ)": 0, "ظهراً وعصراً (12ظ-6م)": 0, "مساءً (6م-12ص)": 0}
@@ -660,6 +673,7 @@ def analyze_trainee_profile(profile, pings_history, session_gap_min=30, coding_b
         "last_seen_ms": latest_ms,
         "last_problem_str": last_problem_str,
         "all_time_ac": total_all_time_ac,
+        "all_time_score": all_time_score,
         "today": comb_today,
         "week": comb_week,
         "month": comb_month,

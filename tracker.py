@@ -68,19 +68,29 @@ def generate_csv_report(users_data):
 def generate_markdown_report(users_data):
     now_dt = tc.get_cairo_now()
     now_str = tc.format_arabic_datetime(now_dt) + " - " + tc.format_arabic_time(now_dt)
+    top_today = sorted(users_data, key=lambda x: (x["today"].get("score", 0), x["today"]["solved"], x["today"]["time_minutes"]), reverse=True)
+    top_week = sorted(users_data, key=lambda x: (x["week"].get("score", 0), x["week"]["solved"], x["week"]["time_minutes"]), reverse=True)
+    top_month = sorted(users_data, key=lambda x: (x["month"].get("score", 0), x["month"]["solved"], x["month"]["time_minutes"]), reverse=True)
+
     lines = [
         "# 📊 تقرير متابعة نشاط المتدربين الشامل 24/7 (VJudge + Codeforces + AtCoder + CSES)",
         f"**تاريخ التحديث:** {now_str} (بتوقيت مصر - قاعدة الـ 30 دقيقة للاتصال المتواصل)",
         "",
-        "## 1. ملخص البروفايلات والنشاط العام",
-        "| المتدرب | الحالة | آخر ظهور | اليوم | آخر 7 أيام | آخر 30 يوماً | المنصات المربوطة |",
-        "| :--- | :---: | :---: | :---: | :---: | :---: | :--- |"
+        "## 🏆 أبطال التدريب (الأعلى نقاطاً):",
+        f"- **🥇 بطل اليوم:** **{top_today[0]['name']}** ({top_today[0]['today'].get('score', 0)} نقطة — {top_today[0]['today']['solved']} AC، نشط {top_today[0]['today']['time_str']})" if top_today else "",
+        f"- **🔥 بطل الأسبوع (آخر 7 أيام):** **{top_week[0]['name']}** ({top_week[0]['week'].get('score', 0)} نقطة — {top_week[0]['week']['solved']} AC، نشط {top_week[0]['week']['time_str']})" if top_week else "",
+        f"- **👑 بطل الشهر (آخر 30 يوماً):** **{top_month[0]['name']}** ({top_month[0]['month'].get('score', 0)} نقطة — {top_month[0]['month']['solved']} AC، نشط {top_month[0]['month']['time_str']})" if top_month else "",
+        "",
+        "## 1. جدول الترتيب والملخص العام (مرتب حسب سكور الأسبوع)",
+        "| الترتيب | المتدرب | الحالة | سكور اليوم | سكور 7 أيام | سكور 30 يوماً | المنصات المربوطة |",
+        "| :---: | :--- | :---: | :---: | :---: | :---: | :--- |"
     ]
-    for u in users_data:
+    for idx, u in enumerate(top_week):
+        medal = "🥇 #1" if idx == 0 else ("🥈 #2" if idx == 1 else ("🥉 #3" if idx == 2 else f"#{idx+1}"))
         status_icon = f"🟢 متصل ({', '.join(u['active_platforms_now'])})" if u["is_active_now"] else "⚪ غير متصل"
         plats_info = ", ".join([f"{pk}: `{pv['handle']}` ({pv['acAll']} AC)" for pk, pv in u["platforms"].items()])
         lines.append(
-            f"| **{u['name']}** | {status_icon} | {u['last_seen_str']} | **{u['today']['solved']} AC** ({u['today']['time_str']}) | **{u['week']['solved']} AC** ({u['week']['time_str']}) | **{u['month']['solved']} AC** ({u['month']['time_str']}) | {plats_info} |"
+            f"| **{medal}** | **{u['name']}** | {status_icon} | **{u['today'].get('score', 0)} نقطة** ({u['today']['solved']} AC / {u['today']['time_str']}) | **{u['week'].get('score', 0)} نقطة** ({u['week']['solved']} AC / {u['week']['time_str']}) | **{u['month'].get('score', 0)} نقطة** ({u['month']['solved']} AC / {u['month']['time_str']}) | {plats_info} |"
         )
 
     lines.append("\n## 2. سجل الجلسات التفصيلي والمسائل بالوقت")
@@ -627,6 +637,219 @@ def generate_html_dashboard(users_data, config):
             z-index: 2000;
             display: none;
         }}
+
+        /* Champions Banner & Score Leaderboard Styles */
+        .champions-grid {{
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 16px;
+            margin-bottom: 24px;
+        }}
+        .champ-card {{
+            border-radius: 16px;
+            padding: 18px 20px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 8px 20px rgba(15, 23, 42, 0.12);
+        }}
+        .champ-card:hover {{
+            transform: translateY(-3px);
+            box-shadow: 0 12px 26px rgba(15, 23, 42, 0.18);
+        }}
+        .champ-today {{ background: linear-gradient(135deg, #059669 0%, #10b981 100%); }}
+        .champ-week {{ background: linear-gradient(135deg, #1d4ed8 0%, #3b82f6 100%); }}
+        .champ-month {{ background: linear-gradient(135deg, #6d28d9 0%, #8b5cf6 100%); }}
+        .champ-custom {{ background: linear-gradient(135deg, #b45309 0%, #f59e0b 100%); }}
+        .champ-label {{
+            font-size: 0.8rem;
+            font-weight: 700;
+            opacity: 0.92;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }}
+        .champ-name {{
+            font-size: 1.25rem;
+            font-weight: 800;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }}
+        .champ-score-pill {{
+            background: rgba(255, 255, 255, 0.22);
+            padding: 3px 10px;
+            border-radius: 999px;
+            font-size: 0.82rem;
+            font-weight: 800;
+            backdrop-filter: blur(4px);
+        }}
+        .champ-stats {{
+            font-size: 0.82rem;
+            opacity: 0.95;
+            margin-bottom: 8px;
+        }}
+        .champ-runners {{
+            font-size: 0.74rem;
+            background: rgba(0, 0, 0, 0.16);
+            padding: 6px 10px;
+            border-radius: 8px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }}
+
+        .leaderboard-box {{
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 22px;
+            margin-bottom: 28px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+        }}
+        .lb-top-bar {{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin-bottom: 16px;
+            padding-bottom: 14px;
+            border-bottom: 1px solid var(--border);
+        }}
+        .lb-tabs {{
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }}
+        .lb-tab {{
+            padding: 8px 14px;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            background: #f8fafc;
+            color: var(--text-main);
+            font-weight: 700;
+            font-size: 0.84rem;
+            cursor: pointer;
+            transition: all 0.18s;
+        }}
+        .lb-tab:hover {{ border-color: var(--primary); color: var(--primary); }}
+        .lb-tab.active {{
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+            box-shadow: 0 4px 10px rgba(37, 99, 235, 0.25);
+        }}
+        .date-explorer-bar {{
+            background: #f8fafc;
+            border: 1px solid #cbd5e1;
+            border-radius: 12px;
+            padding: 14px 16px;
+            margin-bottom: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }}
+        .date-inputs-row {{
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }}
+        .date-inputs-row input[type="date"],
+        .date-inputs-row input[type="month"] {{
+            padding: 7px 12px;
+            border: 1px solid #94a3b8;
+            border-radius: 8px;
+            font-size: 0.88rem;
+            font-weight: 700;
+            color: #0f172a;
+            background: white;
+            cursor: pointer;
+        }}
+        .day-pills-wrap {{
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-wrap: wrap;
+        }}
+        .day-pill {{
+            padding: 5px 11px;
+            border-radius: 999px;
+            font-size: 0.76rem;
+            font-weight: 700;
+            background: white;
+            border: 1px solid #cbd5e1;
+            color: #334155;
+            cursor: pointer;
+            transition: all 0.15s;
+        }}
+        .day-pill:hover {{ border-color: #f59e0b; color: #b45309; background: #fffbeb; }}
+        .day-pill.active {{
+            background: #f59e0b;
+            color: white;
+            border-color: #d97706;
+        }}
+
+        .podium-grid {{
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 14px;
+            margin-bottom: 18px;
+        }}
+        .podium-item {{
+            border-radius: 12px;
+            padding: 14px 16px;
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }}
+        .podium-1 {{ background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%); border-color: #f59e0b; }}
+        .podium-2 {{ background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%); border-color: #94a3b8; }}
+        .podium-3 {{ background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%); border-color: #fb923c; }}
+        .podium-rank-icon {{
+            font-size: 2rem;
+            line-height: 1;
+        }}
+        .score-bar-wrap {{
+            width: 120px;
+            height: 7px;
+            background: #e2e8f0;
+            border-radius: 999px;
+            overflow: hidden;
+            margin-top: 4px;
+        }}
+        .score-bar-fill {{
+            height: 100%;
+            background: linear-gradient(90deg, #2563eb, #7c3aed);
+            border-radius: 999px;
+        }}
+        .rank-chip {{
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 10px;
+            border-radius: 999px;
+            font-size: 0.78rem;
+            font-weight: 800;
+        }}
+        .rank-1 {{ background: #fef3c7; color: #b45309; border: 1px solid #f59e0b; }}
+        .rank-2 {{ background: #f1f5f9; color: #334155; border: 1px solid #94a3b8; }}
+        .rank-3 {{ background: #ffedd5; color: #c2410c; border: 1px solid #fb923c; }}
+        .rank-other {{ background: #eff6ff; color: #1d4ed8; border: 1px solid #bfdbfe; }}
+        .score-formula-note {{
+            font-size: 0.78rem;
+            color: #475569;
+            background: #f1f5f9;
+            padding: 8px 12px;
+            border-radius: 8px;
+            margin-top: 12px;
+        }}
     </style>
 </head>
 <body>
@@ -638,7 +861,7 @@ def generate_html_dashboard(users_data, config):
                     <span class="cloud-badge">Cloud 24/7 • VJudge • Codeforces • AtCoder • CSES</span>
                     <span class="refresh-pill">تحديث سحابي كل 5 دقائق</span>
                 </h1>
-                <p>تعمل 24 ساعة في السحاب بالكامل بدون الحاجة لجهازك — إدارة البروفايلات وربط المنصات مباشرة من المتصفح</p>
+                <p>تعمل 24 ساعة في السحاب بالكامل بدون الحاجة لجهازك — نظام نقاط ذكي وترتيب الأبطال حسب اليوم أو الأسبوع أو الشهر أو أي تاريخ تختاره</p>
             </div>
             <div class="header-actions">
                 <div class="action-btns">
@@ -654,7 +877,97 @@ def generate_html_dashboard(users_data, config):
 
         <div class="rule-note">
             <div>
-                ☁️ <strong>تعمل سحابياً 24/7 (Cloud Native):</strong> هذه المنصة تعمل على سيرفرات السحابة على مدار 24 ساعة حتى وجهازك مغلق تماماً. يمكنك إضافة متدرب أو ربط حساباته عبر (<strong>VJudge و Codeforces و AtCoder و CSES</strong>) من زر <strong>"🔗 ربط / تعديل المنصات"</strong>، ويتم حفظها في السحابة فوراً وتطبيق قاعدة الـ <strong>30 دقيقة</strong> للجلسات المتصلة.
+                ☁️ <strong>تعمل سحابياً 24/7 (Cloud Native):</strong> هذه المنصة تعمل على سيرفرات السحابة على مدار 24 ساعة حتى وجهازك مغلق تماماً. يمكنك إضافة متدرب أو ربط حساباته عبر (<strong>VJudge و Codeforces و AtCoder و CSES</strong>) من زر <strong>"🔗 ربط / تعديل المنصات"</strong>، ويتم حساب <strong>السكور (النقاط)</strong> وترتيب المتدربين تلقائياً.
+            </div>
+        </div>
+
+        <!-- Top 4 Champions Banner -->
+        <div class="champions-grid" id="championsGrid"></div>
+
+        <!-- Interactive Score Leaderboard & Random Date/Month Explorer -->
+        <div class="leaderboard-box">
+            <div class="lb-top-bar">
+                <div>
+                    <h2 style="font-size: 1.2rem; color: #0f172a; display:flex; align-items:center; gap:8px;">
+                        🏆 لوحة الشرف والترتيب بالسكور
+                        <span id="lbCurrentPeriodTitle" style="font-size:0.86rem; background:#dbeafe; color:#1e40af; padding:3px 10px; border-radius:999px; font-weight:800;">آخر 7 أيام (الأسبوع)</span>
+                    </h2>
+                    <div style="font-size:0.8rem; color:#64748b; margin-top:3px;">اختر اليوم أو الأسبوع أو الشهر أو حدد أي يوم عشوائي من التقويم لمعرفة أفضل متدرب وترتيب الجميع بالسكور</div>
+                </div>
+                <div class="lb-tabs">
+                    <button class="lb-tab" id="tab-today" onclick="setLeaderboardMode('today')">☀️ اليوم</button>
+                    <button class="lb-tab active" id="tab-week" onclick="setLeaderboardMode('week')">🔥 الأسبوع (7 أيام)</button>
+                    <button class="lb-tab" id="tab-month" onclick="setLeaderboardMode('month')">👑 الشهر (30 يوماً)</button>
+                    <button class="lb-tab" id="tab-day" onclick="setLeaderboardMode('day')">🎯 يوم معين (اختر تاريخ)</button>
+                    <button class="lb-tab" id="tab-custom_month" onclick="setLeaderboardMode('custom_month')">📆 شهر معين</button>
+                    <button class="lb-tab" id="tab-range" onclick="setLeaderboardMode('range')">↔️ فترة مخصصة</button>
+                    <button class="lb-tab" id="tab-all" onclick="setLeaderboardMode('all')">🏅 الإجمالي الكلي</button>
+                </div>
+            </div>
+
+            <!-- Date / Month / Range Picker Bar -->
+            <div class="date-explorer-bar" id="dateExplorerBar">
+                <div class="date-inputs-row">
+                    <div style="display:flex; align-items:center; gap:8px;">
+                        <label style="font-size:0.84rem; font-weight:800; color:#1e293b;">📅 اختر يوماً محدداً لمعرفة الأفضل فيه:</label>
+                        <input type="date" id="customDayInput" onchange="onCustomDateChange(this.value)">
+                    </div>
+                    <div style="display:flex; align-items:center; gap:8px;">
+                        <label style="font-size:0.84rem; font-weight:800; color:#1e293b;">📆 أو اختر شهراً:</label>
+                        <input type="month" id="customMonthInput" onchange="onCustomMonthChange(this.value)">
+                    </div>
+                    <div style="display:flex; align-items:center; gap:6px; flex-wrap:wrap;" id="customRangeBox">
+                        <label style="font-size:0.82rem; font-weight:700; color:#475569;">↔️ أو من:</label>
+                        <input type="date" id="rangeFromInput" onchange="onCustomRangeChange()">
+                        <label style="font-size:0.82rem; font-weight:700; color:#475569;">إلى:</label>
+                        <input type="date" id="rangeToInput" onchange="onCustomRangeChange()">
+                    </div>
+                </div>
+                <div class="day-pills-wrap">
+                    <span style="font-size:0.78rem; font-weight:800; color:#475569;">⚡ أيام شهدت نشاطاً (اضغط على أي يوم لعرض بطل وترتيب ذلك اليوم فوراً):</span>
+                    <div id="activeDaysPills" style="display:flex; gap:6px; flex-wrap:wrap;"></div>
+                </div>
+            </div>
+
+            <!-- Top 3 Podium for Selected Period -->
+            <div class="podium-grid" id="podiumGrid"></div>
+
+            <!-- Ranked Leaderboard Table -->
+            <div style="overflow-x:auto;">
+                <table class="sessions-table">
+                    <thead>
+                        <tr>
+                            <th style="width:90px;">المركز</th>
+                            <th>المتدرب</th>
+                            <th>السكور (النقاط) 🌟</th>
+                            <th style="text-align:center;">المسائل المحلولة (AC)</th>
+                            <th style="text-align:center;">إجمالي المحاولات</th>
+                            <th style="text-align:center;">وقت النشاط المتصل</th>
+                            <th>المسائل التي حُلّت في هذه الفترة / اليوم</th>
+                        </tr>
+                    </thead>
+                    <tbody id="leaderboardTableBody"></tbody>
+                </table>
+            </div>
+
+            <div class="score-formula-note">
+                💡 <strong>كيف يُحسب السكور (نظام النقاط الذكي)؟</strong>
+                كل مسألة مقبولة (<strong>AC</strong>) = <strong>100 نقطة</strong> &nbsp;|&nbsp;
+                كل دقيقة نشاط متصل على المنصات = <strong>1 نقطة</strong> (الساعة = 60 نقطة) &nbsp;|&nbsp;
+                كل محاولة إرسال (<strong>Submission</strong>) = <strong>5 نقاط</strong> &nbsp;|&nbsp;
+                كل جلسة تدريب = <strong>15 نقطة</strong>.
+            </div>
+        </div>
+
+        <div class="section-header" style="margin-bottom:14px;">
+            <h2>👥 بروفايلات المتدربين التفصيلية (مرتبة تلقائياً حسب السكور المختار)</h2>
+            <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+                <span style="font-size:0.82rem; font-weight:700; color:#475569;">ترتيب الكروت حسب:</span>
+                <button class="filter-btn" id="sort-synced" onclick="setCardSortMode('synced')">🏅 نفس فترة لوحة الشرف</button>
+                <button class="filter-btn" id="sort-today" onclick="setCardSortMode('today')">☀️ سكور اليوم</button>
+                <button class="filter-btn" id="sort-week" onclick="setCardSortMode('week')">🔥 سكور الأسبوع</button>
+                <button class="filter-btn" id="sort-month" onclick="setCardSortMode('month')">👑 سكور الشهر</button>
+                <button class="filter-btn" id="sort-all" onclick="setCardSortMode('all')">🏆 الإجمالي الكلي</button>
             </div>
         </div>
 
@@ -732,6 +1045,12 @@ def generate_html_dashboard(users_data, config):
         const INITIAL_DATA = {embedded_json};
         let appState = JSON.parse(JSON.stringify(INITIAL_DATA));
         let currentFilterUser = 'all';
+        let leaderboardMode = 'week'; // 'today' | 'week' | 'month' | 'day' | 'custom_month' | 'range' | 'all'
+        let cardSortMode = 'synced';  // 'synced' | 'today' | 'week' | 'month' | 'all'
+        let selectedDayIso = '';
+        let selectedMonthIso = '';
+        let selectedRangeFrom = '';
+        let selectedRangeTo = '';
 
         const ARABIC_DAYS = ['الأحد', 'الإثنين', 'الثلاثاء', 'الأربعاء', 'الخميس', 'الجمعة', 'السبت'];
         const ARABIC_MONTHS = ['يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو', 'يوليو', 'أغسطس', 'سبتمبر', 'أكتوبر', 'نوفمبر', 'ديسمبر'];
@@ -758,6 +1077,19 @@ def generate_html_dashboard(users_data, config):
             return `${{ARABIC_DAYS[d.getDay()]}} ${{d.getDate()}} ${{ARABIC_MONTHS[d.getMonth()]}} ${{d.getFullYear()}}`;
         }}
 
+        function formatIsoToArabicLabel(isoStr) {{
+            if (!isoStr) return '';
+            const parts = isoStr.split('-');
+            if (parts.length === 3) {{
+                const dt = new Date(Number(parts[0]), Number(parts[1]) - 1, Number(parts[2]));
+                return `${{ARABIC_DAYS[dt.getDay()]}} ${{dt.getDate()}} ${{ARABIC_MONTHS[dt.getMonth()]}} ${{dt.getFullYear()}}`;
+            }} else if (parts.length === 2) {{
+                const mIdx = Number(parts[1]) - 1;
+                return `شهر ${{ARABIC_MONTHS[mIdx] || parts[1]}} ${{parts[0]}}`;
+            }}
+            return isoStr;
+        }}
+
         function formatArabicTimeJS(ms, withSec = false) {{
             const d = new Date(ms);
             let h = d.getHours();
@@ -769,12 +1101,407 @@ def generate_html_dashboard(users_data, config):
             return withSec ? `${{hh}}:${{m}}:${{s}} ${{period}}` : `${{hh}}:${{m}} ${{period}}`;
         }}
 
+        function calcScoreVal(solved, subs, mins, sessCount) {{
+            return Math.round((solved || 0) * 100 + (mins || 0) * 1 + (subs || 0) * 5 + (sessCount || 0) * 15);
+        }}
+
+        function getSessionDateIso(s) {{
+            if (s.date_iso) return s.date_iso;
+            if (!s.start_ms) return '';
+            const d = new Date(s.start_ms);
+            const y = d.getFullYear();
+            const m = String(d.getMonth() + 1).padStart(2, '0');
+            const day = String(d.getDate()).padStart(2, '0');
+            return `${{y}}-${{m}}-${{day}}`;
+        }}
+
+        function getAllActiveDaysMap(users) {{
+            const daysMap = {{}};
+            (users || []).forEach(u => {{
+                (u.sessions || []).forEach(s => {{
+                    const iso = getSessionDateIso(s);
+                    if (!iso) return;
+                    if (!daysMap[iso]) {{
+                        daysMap[iso] = {{
+                            iso: iso,
+                            date_str: s.date_str || formatIsoToArabicLabel(iso),
+                            ac: 0,
+                            subs: 0,
+                            mins: 0,
+                            usersSet: new Set()
+                        }};
+                    }}
+                    daysMap[iso].ac += (s.accepted_count || 0);
+                    daysMap[iso].subs += (s.submissions_count || 0);
+                    daysMap[iso].mins += (s.duration_minutes || 0);
+                    daysMap[iso].usersSet.add(u.id);
+                }});
+            }});
+            return Object.values(daysMap).sort((a, b) => b.iso.localeCompare(a.iso));
+        }}
+
+        function ensureDateDefaults(users) {{
+            const activeDays = getAllActiveDaysMap(users);
+            const now = new Date();
+            const todayIso = `${{now.getFullYear()}}-${{String(now.getMonth()+1).padStart(2,'0')}}-${{String(now.getDate()).padStart(2,'0')}}`;
+            const monthIso = `${{now.getFullYear()}}-${{String(now.getMonth()+1).padStart(2,'0')}}`;
+            if (!selectedDayIso) {{
+                // Pick the most recent day with AC, or today
+                const dayWithAc = activeDays.find(d => d.ac > 0);
+                selectedDayIso = dayWithAc ? dayWithAc.iso : (activeDays[0] ? activeDays[0].iso : todayIso);
+            }}
+            if (!selectedMonthIso) selectedMonthIso = monthIso;
+            if (!selectedRangeTo) selectedRangeTo = todayIso;
+            if (!selectedRangeFrom) {{
+                const weekAgo = new Date(Date.now() - 7 * 86400 * 1000);
+                selectedRangeFrom = `${{weekAgo.getFullYear()}}-${{String(weekAgo.getMonth()+1).padStart(2,'0')}}-${{String(weekAgo.getDate()).padStart(2,'0')}}`;
+            }}
+            const dayInput = document.getElementById('customDayInput');
+            if (dayInput && dayInput.value !== selectedDayIso) dayInput.value = selectedDayIso;
+            const monthInput = document.getElementById('customMonthInput');
+            if (monthInput && monthInput.value !== selectedMonthIso) monthInput.value = selectedMonthIso;
+            const rFrom = document.getElementById('rangeFromInput');
+            if (rFrom && rFrom.value !== selectedRangeFrom) rFrom.value = selectedRangeFrom;
+            const rTo = document.getElementById('rangeToInput');
+            if (rTo && rTo.value !== selectedRangeTo) rTo.value = selectedRangeTo;
+        }}
+
+        function computeUserStatsForMode(u, mode) {{
+            const nowMs = Date.now();
+            const todayStart = new Date();
+            todayStart.setHours(0, 0, 0, 0);
+            const todayStartMs = todayStart.getTime();
+            const weekStartMs = nowMs - 7 * 86400 * 1000;
+            const monthStartMs = nowMs - 30 * 86400 * 1000;
+
+            const filterSessions = (pred) => (u.sessions || []).filter(pred);
+            const collectProblemsFromSessions = (sessList) => {{
+                const acProbs = [];
+                const seen = new Set();
+                sessList.forEach(s => {{
+                    (s.timeline || []).forEach(t => {{
+                        if (t.type === 'submission' && t.is_ac) {{
+                            const key = `${{t.platform}}_${{t.probNum || t.problemName}}`;
+                            if (!seen.has(key)) {{
+                                seen.add(key);
+                                acProbs.push({{
+                                    name: t.problemName || t.probNum,
+                                    url: t.problemUrl || '#',
+                                    platform: t.platform || '',
+                                    time_str: t.time_str || ''
+                                }});
+                            }}
+                        }}
+                    }});
+                }});
+                return acProbs;
+            }};
+
+            if (mode === 'today' || mode === 'week' || mode === 'month') {{
+                const pObj = u[mode] || {{ solved: 0, subs: 0, time_minutes: 0, time_str: '0 دقيقة', sessions: 0 }};
+                const thresh = mode === 'today' ? todayStartMs : (mode === 'week' ? weekStartMs : monthStartMs);
+                const sIn = filterSessions(s => (s.end_ms || 0) >= thresh);
+                const acProbs = collectProblemsFromSessions(sIn);
+                const solved = Math.max(pObj.solved || 0, acProbs.length);
+                const subs = pObj.subs || 0;
+                const mins = pObj.time_minutes || 0;
+                const sessCount = pObj.sessions || sIn.length;
+                const score = calcScoreVal(solved, subs, mins, sessCount);
+                return {{
+                    solved,
+                    subs,
+                    time_minutes: mins,
+                    time_str: pObj.time_str || formatDurationJS(mins),
+                    sessions: sessCount,
+                    score,
+                    acProblems: acProbs
+                }};
+            }}
+
+            if (mode === 'all') {{
+                const sAll = u.sessions || [];
+                const acProbs = collectProblemsFromSessions(sAll);
+                const solved = Math.max(u.all_time_ac || 0, acProbs.length);
+                const mins = sAll.reduce((a, s) => a + (s.duration_minutes || 0), 0);
+                const subs = sAll.reduce((a, s) => a + (s.submissions_count || 0), 0);
+                const sessCount = sAll.length;
+                const score = u.all_time_score || calcScoreVal(solved, subs, mins, sessCount);
+                return {{
+                    solved,
+                    subs,
+                    time_minutes: mins,
+                    time_str: formatDurationJS(mins),
+                    sessions: sessCount,
+                    score,
+                    acProblems: acProbs
+                }};
+            }}
+
+            // Custom Date / Month / Range modes
+            let sFiltered = [];
+            if (mode === 'day') {{
+                sFiltered = filterSessions(s => getSessionDateIso(s) === selectedDayIso);
+            }} else if (mode === 'custom_month') {{
+                sFiltered = filterSessions(s => getSessionDateIso(s).startsWith(selectedMonthIso));
+            }} else if (mode === 'range') {{
+                sFiltered = filterSessions(s => {{
+                    const dIso = getSessionDateIso(s);
+                    return dIso && dIso >= selectedRangeFrom && dIso <= selectedRangeTo;
+                }});
+            }}
+
+            const acProbs = collectProblemsFromSessions(sFiltered);
+            const rawAcSum = sFiltered.reduce((a, s) => a + (s.accepted_count || 0), 0);
+            const solved = acProbs.length > 0 ? acProbs.length : rawAcSum;
+            const subs = sFiltered.reduce((a, s) => a + (s.submissions_count || 0), 0);
+            const mins = sFiltered.reduce((a, s) => a + (s.duration_minutes || 0), 0);
+            const sessCount = sFiltered.length;
+            const score = calcScoreVal(solved, subs, mins, sessCount);
+            return {{
+                solved,
+                subs,
+                time_minutes: mins,
+                time_str: formatDurationJS(mins),
+                sessions: sessCount,
+                score,
+                acProblems: acProbs
+            }};
+        }}
+
+        function getRankedUsersForMode(users, mode) {{
+            return (users || []).map(u => ({{
+                user: u,
+                stats: computeUserStatsForMode(u, mode)
+            }})).sort((a, b) => {{
+                if (b.stats.score !== a.stats.score) return b.stats.score - a.stats.score;
+                if (b.stats.solved !== a.stats.solved) return b.stats.solved - a.stats.solved;
+                if (b.stats.time_minutes !== a.stats.time_minutes) return b.stats.time_minutes - a.stats.time_minutes;
+                return (b.user.all_time_ac || 0) - (a.user.all_time_ac || 0);
+            }});
+        }}
+
+        function getModeTitle(mode) {{
+            if (mode === 'today') return '☀️ اليوم';
+            if (mode === 'week') return '🔥 آخر 7 أيام (الأسبوع)';
+            if (mode === 'month') return '👑 آخر 30 يوماً (الشهر)';
+            if (mode === 'day') return `🎯 يوم ${{formatIsoToArabicLabel(selectedDayIso)}}`;
+            if (mode === 'custom_month') return `📆 ${{formatIsoToArabicLabel(selectedMonthIso)}}`;
+            if (mode === 'range') return `↔️ من ${{selectedRangeFrom}} إلى ${{selectedRangeTo}}`;
+            if (mode === 'all') return '🏅 الإجمالي الكلي (All-Time)';
+            return '';
+        }}
+
+        function setLeaderboardMode(mode) {{
+            leaderboardMode = mode;
+            renderDashboard();
+        }}
+
+        function setCardSortMode(mode) {{
+            cardSortMode = mode;
+            renderDashboard();
+        }}
+
+        function onCustomDateChange(val) {{
+            if (!val) return;
+            selectedDayIso = val;
+            leaderboardMode = 'day';
+            renderDashboard();
+        }}
+
+        function onCustomMonthChange(val) {{
+            if (!val) return;
+            selectedMonthIso = val;
+            leaderboardMode = 'custom_month';
+            renderDashboard();
+        }}
+
+        function onCustomRangeChange() {{
+            const f = document.getElementById('rangeFromInput').value;
+            const t = document.getElementById('rangeToInput').value;
+            if (f) selectedRangeFrom = f;
+            if (t) selectedRangeTo = t;
+            leaderboardMode = 'range';
+            renderDashboard();
+        }}
+
+        function selectQuickDay(iso) {{
+            selectedDayIso = iso;
+            leaderboardMode = 'day';
+            renderDashboard();
+        }}
+
+        function renderChampionsAndLeaderboard(users) {{
+            ensureDateDefaults(users);
+
+            const rankedToday = getRankedUsersForMode(users, 'today');
+            const rankedWeek = getRankedUsersForMode(users, 'week');
+            const rankedMonth = getRankedUsersForMode(users, 'month');
+            const customMode = (leaderboardMode === 'day' || leaderboardMode === 'custom_month' || leaderboardMode === 'range') ? leaderboardMode : 'day';
+            const rankedCustom = getRankedUsersForMode(users, customMode);
+
+            const buildChampCard = (title, icon, cssClass, rankedList, clickMode) => {{
+                const top1 = rankedList[0];
+                const top2 = rankedList[1];
+                const top3 = rankedList[2];
+                const hasActivity = top1 && top1.stats.score > 0;
+                const winnerName = hasActivity ? top1.user.name : 'لا يوجد نشاط مسجل بعد';
+                const winnerScore = hasActivity ? `${{top1.stats.score.toLocaleString()}} نقطة` : '0 نقطة';
+                const winnerStats = hasActivity
+                    ? `✅ حل <strong>${{top1.stats.solved}} AC</strong> (${{top1.stats.subs}} محاولة) • ⏱️ نشط <strong>${{top1.stats.time_str}}</strong>`
+                    : 'اختر تاريخاً آخر أو انتظر تسجيل نشاط جديد';
+                const runnersHtml = hasActivity
+                    ? `<span>🥈 الثاني: <strong>${{top2 && top2.stats.score > 0 ? `${{top2.user.name}} (${{top2.stats.score}} ن)` : '—'}}</strong></span>
+                       <span>🥉 الثالث: <strong>${{top3 && top3.stats.score > 0 ? `${{top3.user.name}} (${{top3.stats.score}} ن)` : '—'}}</strong></span>`
+                    : `<span>اضغط هنا لعرض تفاصيل الترتيب الكامل</span>`;
+
+                return `
+                    <div class="champ-card ${{cssClass}}" onclick="setLeaderboardMode('${{clickMode}}')">
+                        <div class="champ-label">
+                            <span>${{icon}} ${{title}}</span>
+                            <span class="champ-score-pill">🌟 ${{winnerScore}}</span>
+                        </div>
+                        <div class="champ-name">🥇 ${{winnerName}}</div>
+                        <div class="champ-stats">${{winnerStats}}</div>
+                        <div class="champ-runners">${{runnersHtml}}</div>
+                    </div>
+                `;
+            }};
+
+            const customLabel = customMode === 'day'
+                ? `بطل يوم: ${{formatIsoToArabicLabel(selectedDayIso)}}`
+                : (customMode === 'custom_month' ? `بطل ${{formatIsoToArabicLabel(selectedMonthIso)}}` : `بطل الفترة (${{selectedRangeFrom}} ⬅️ ${{selectedRangeTo}})`);
+
+            document.getElementById('championsGrid').innerHTML =
+                buildChampCard('أفضل متدرب اليوم (بطل اليوم)', '☀️', 'champ-today', rankedToday, 'today') +
+                buildChampCard('أفضل متدرب في الأسبوع (آخر 7 أيام)', '🔥', 'champ-week', rankedWeek, 'week') +
+                buildChampCard('أفضل متدرب في الشهر (آخر 30 يوماً)', '👑', 'champ-month', rankedMonth, 'month') +
+                buildChampCard(customLabel, '🎯', 'champ-custom', rankedCustom, customMode);
+
+            // Update Leaderboard Tabs UI
+            ['today', 'week', 'month', 'day', 'custom_month', 'range', 'all'].forEach(m => {{
+                const el = document.getElementById('tab-' + m);
+                if (el) el.classList.toggle('active', leaderboardMode === m);
+            }});
+            document.getElementById('lbCurrentPeriodTitle').innerText = getModeTitle(leaderboardMode);
+
+            // Render Quick Active Day Pills (up to 18 recent active days)
+            const activeDays = getAllActiveDaysMap(users);
+            const pillsEl = document.getElementById('activeDaysPills');
+            if (pillsEl) {{
+                pillsEl.innerHTML = activeDays.slice(0, 18).map(d => {{
+                    const isAct = (leaderboardMode === 'day' && selectedDayIso === d.iso);
+                    return `<button class="day-pill ${{isAct ? 'active' : ''}}" onclick="selectQuickDay('${{d.iso}}')" title="نشط فيه ${{d.usersSet.size}} متدربين — إجمالي الوقت ${{formatDurationJS(d.mins)}}">
+                        ${{d.date_str}} (${{d.ac}} AC)
+                    </button>`;
+                }}).join('');
+            }}
+
+            // Compute Ranked List for Active Leaderboard Mode
+            const currentRanked = getRankedUsersForMode(users, leaderboardMode);
+            const maxScore = Math.max(...currentRanked.map(r => r.stats.score), 1);
+
+            // Render Top 3 Podium
+            const podiumEl = document.getElementById('podiumGrid');
+            if (podiumEl) {{
+                const podiumIcons = ['🥇', '🥈', '🥉'];
+                const podiumTitles = ['المركز الأول (البطل)', 'المركز الثاني', 'المركز الثالث'];
+                podiumEl.innerHTML = currentRanked.slice(0, 3).map((item, idx) => {{
+                    const st = item.stats;
+                    return `
+                        <div class="podium-item podium-${{idx+1}}">
+                            <div class="podium-rank-icon">${{podiumIcons[idx]}}</div>
+                            <div style="flex:1;">
+                                <div style="font-size:0.74rem; font-weight:800; color:#64748b;">${{podiumTitles[idx]}}</div>
+                                <div style="font-size:1.05rem; font-weight:800; color:#0f172a; margin:2px 0;">${{item.user.name}}</div>
+                                <div style="font-size:0.8rem; color:#334155;">
+                                    <strong style="color:#b45309;">🌟 ${{st.score.toLocaleString()}} نقطة</strong>
+                                    &nbsp;•&nbsp; ✅ <strong>${{st.solved}} AC</strong>
+                                    &nbsp;•&nbsp; ⏱️ ${{st.time_str}}
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }}).join('');
+            }}
+
+            // Render Leaderboard Table
+            const lbBody = document.getElementById('leaderboardTableBody');
+            if (lbBody) {{
+                lbBody.innerHTML = currentRanked.map((item, idx) => {{
+                    const u = item.user;
+                    const st = item.stats;
+                    const rankNum = idx + 1;
+                    const rankClass = rankNum === 1 ? 'rank-1' : (rankNum === 2 ? 'rank-2' : (rankNum === 3 ? 'rank-3' : 'rank-other'));
+                    const rankIcon = rankNum === 1 ? '🥇 #1' : (rankNum === 2 ? '🥈 #2' : (rankNum === 3 ? '🥉 #3' : `#${{rankNum}}`));
+                    const pct = Math.min(100, Math.round((st.score / maxScore) * 100));
+
+                    const platBadges = Object.keys(u.platforms || {{}}).map(pk =>
+                        `<span class="plat-tag plat-${{pk}}" style="margin-left:4px;">${{pk}}: ${{u.platforms[pk].handle}}</span>`
+                    ).join('');
+
+                    const probsHtml = st.acProblems && st.acProblems.length > 0
+                        ? st.acProblems.slice(0, 8).map(p =>
+                            `<a href="${{p.url}}" target="_blank" style="display:inline-block; background:#dcfce7; color:#166534; padding:2px 8px; border-radius:6px; font-size:0.73rem; font-weight:700; text-decoration:none; margin:2px;">✅ ${{p.name}}</a>`
+                        ).join('') + (st.acProblems.length > 8 ? `<span style="font-size:0.74rem; color:#64748b; font-weight:700;"> +${{st.acProblems.length - 8}} مسألة أخرى</span>` : '')
+                        : `<span style="color:#94a3b8; font-size:0.78rem;">${{st.solved > 0 ? `حل ${{st.solved}} مسألة AC` : 'لا توجد مسائل محلولة في هذه الفترة'}}</span>`;
+
+                    return `
+                        <tr>
+                            <td><span class="rank-chip ${{rankClass}}">${{rankIcon}}</span></td>
+                            <td>
+                                <div style="font-weight:800; color:#0f172a; font-size:0.95rem;">${{u.name}}</div>
+                                <div style="margin-top:4px;">${{platBadges}}</div>
+                            </td>
+                            <td>
+                                <div style="font-weight:800; font-size:1rem; color:#1e40af;">🌟 ${{st.score.toLocaleString()}} نقطة</div>
+                                <div class="score-bar-wrap"><div class="score-bar-fill" style="width:${{pct}}%;"></div></div>
+                                <div style="font-size:0.7rem; color:#64748b; margin-top:3px;">
+                                    (${{st.solved * 100}} للحل + ${{st.time_minutes}} للوقت + ${{st.subs * 5}} للمحاولات + ${{st.sessions * 15}} للجلسات)
+                                </div>
+                            </td>
+                            <td style="text-align:center;">
+                                <span class="badge badge-ac" style="font-size:0.86rem; padding:4px 10px;">✅ ${{st.solved}} AC</span>
+                            </td>
+                            <td style="text-align:center; font-weight:700; color:#334155;">${{st.subs}} محاولة (${{st.sessions}} جلسة)</td>
+                            <td style="text-align:center;"><span class="dur-badge">⏱️ ${{st.time_str}}</span></td>
+                            <td>${{probsHtml}}</td>
+                        </tr>
+                    `;
+                }}).join('');
+            }}
+
+            return currentRanked;
+        }}
+
         function renderDashboard() {{
             const users = appState.users || [];
             document.getElementById('lastUpdateText').innerText = '🕒 آخر تحديث: ' + (appState.updated_at || '');
 
+            // 1. Render Champions & Leaderboard first
+            renderChampionsAndLeaderboard(users);
+
+            // 2. Determine sort order for Trainee Profile Cards
+            const effectiveSortMode = cardSortMode === 'synced' ? leaderboardMode : cardSortMode;
+            ['synced', 'today', 'week', 'month', 'all'].forEach(sm => {{
+                const btn = document.getElementById('sort-' + sm);
+                if (btn) btn.classList.toggle('active', cardSortMode === sm);
+            }});
+            const rankedForCards = getRankedUsersForMode(users, effectiveSortMode);
+            const sortModeLabel = getModeTitle(effectiveSortMode);
+
             const cardsGrid = document.getElementById('cardsGrid');
-            cardsGrid.innerHTML = users.map(u => {{
+            cardsGrid.innerHTML = rankedForCards.map((rankedItem, idx) => {{
+                const u = rankedItem.user;
+                const activeStats = rankedItem.stats;
+                const rankNum = idx + 1;
+                const rankClass = rankNum === 1 ? 'rank-1' : (rankNum === 2 ? 'rank-2' : (rankNum === 3 ? 'rank-3' : 'rank-other'));
+                const rankMedal = rankNum === 1 ? '🥇 المركز #1' : (rankNum === 2 ? '🥈 المركز #2' : (rankNum === 3 ? '🥉 المركز #3' : `المركز #${{rankNum}}`));
+
+                const todayScore = computeUserStatsForMode(u, 'today').score;
+                const weekScore = computeUserStatsForMode(u, 'week').score;
+                const monthScore = computeUserStatsForMode(u, 'month').score;
+                const allScore = computeUserStatsForMode(u, 'all').score;
+
                 const badgeClass = u.is_active_now ? 'badge-online' : 'badge-offline';
                 const activePlats = (u.active_platforms_now && u.active_platforms_now.length) ? ` (${{u.active_platforms_now.join(' + ')}})` : '';
                 const badgeText = u.is_active_now ? `🟢 متصل الآن${{activePlats}}` : '⚪ غير متصل حالياً';
@@ -817,7 +1544,13 @@ def generate_html_dashboard(users_data, config):
                         <img src="${{avatarSrc}}" alt="${{u.name}}" class="avatar" onerror="this.src='https://cdn.vjudge.net.cn/user/avatar/default.png'">
                         <div style="flex:1;">
                             <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
-                                <h3 class="user-title">${{u.name}}</h3>
+                                <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+                                    <span class="rank-chip ${{rankClass}}">${{rankMedal}}</span>
+                                    <h3 class="user-title">${{u.name}}</h3>
+                                    <span style="background:#eff6ff; color:#1e40af; padding:3px 10px; border-radius:999px; font-size:0.76rem; font-weight:800;">
+                                        🌟 ${{activeStats.score.toLocaleString()}} نقطة (${{sortModeLabel}})
+                                    </span>
+                                </div>
                                 <div style="display:flex; align-items:center; gap:8px;">
                                     <span class="badge ${{badgeClass}}">${{badgeText}}</span>
                                     <button class="btn btn-outline" onclick="openProfileModal('${{u.id}}')">🔗 ربط / تعديل المنصات</button>
@@ -834,16 +1567,19 @@ def generate_html_dashboard(users_data, config):
                             <span class="matrix-title">📅 إجمالي اليوم (كل المنصات)</span>
                             <div class="matrix-val text-success">${{u.today.time_str}}</div>
                             <div class="matrix-sub">حل ${{u.today.solved}} مسائل AC (${{u.today.subs}} محاولة)</div>
+                            <div style="font-size:0.74rem; font-weight:800; color:#15803d; margin-top:3px;">🌟 السكور: ${{todayScore.toLocaleString()}} نقطة</div>
                         </div>
                         <div class="matrix-cell">
                             <span class="matrix-title">🗓️ آخر 7 أيام (كل المنصات)</span>
                             <div class="matrix-val text-primary">${{u.week.time_str}}</div>
                             <div class="matrix-sub">حل ${{u.week.solved}} مسائل AC (${{u.week.sessions}} جلسات)</div>
+                            <div style="font-size:0.74rem; font-weight:800; color:#1d4ed8; margin-top:3px;">🌟 السكور: ${{weekScore.toLocaleString()}} نقطة</div>
                         </div>
                         <div class="matrix-cell">
                             <span class="matrix-title">📊 آخر 30 يوماً (كل المنصات)</span>
                             <div class="matrix-val text-purple">${{u.month.time_str}}</div>
                             <div class="matrix-sub">حل ${{u.month.solved}} مسائل AC (${{u.month.sessions}} جلسة)</div>
+                            <div style="font-size:0.74rem; font-weight:800; color:#6d28d9; margin-top:3px;">🌟 السكور: ${{monthScore.toLocaleString()}} نقطة</div>
                         </div>
                     </div>
 
@@ -866,7 +1602,7 @@ def generate_html_dashboard(users_data, config):
 
                     <div class="peak-box">
                         <span>⏰ <strong>أوقات النشاط المعتادة:</strong> ${{u.peak_hours_str}}</span>
-                        <span style="color:#b45309;font-weight:700;">🏆 الإجمالي الموحد: ${{u.all_time_ac}} مسألة AC</span>
+                        <span style="color:#b45309;font-weight:700;">🏆 الإجمالي الموحد: ${{u.all_time_ac}} مسألة AC (🌟 ${{allScore.toLocaleString()}} نقطة)</span>
                     </div>
                 </div>
                 `;
@@ -1355,7 +2091,14 @@ def generate_html_dashboard(users_data, config):
                         }};
                     }}
                 }});
+                const dStart = new Date(startMs);
+                const yIso = dStart.getFullYear();
+                const mIso = String(dStart.getMonth() + 1).padStart(2, '0');
+                const dayIso = String(dStart.getDate()).padStart(2, '0');
+                const acCount = subs.filter(e => e.is_ac).length;
                 return {{
+                    date_iso: `${{yIso}}-${{mIso}}-${{dayIso}}`,
+                    month_iso: `${{yIso}}-${{mIso}}`,
                     date_str: formatArabicDateJS(startMs),
                     start_str: formatArabicTimeJS(startMs),
                     end_str: formatArabicTimeJS(endMs),
@@ -1364,9 +2107,11 @@ def generate_html_dashboard(users_data, config):
                     duration_minutes: durMins,
                     duration_str: subs.length === 0 ? `${{formatDurationJS(durMins)}} (فتح وتصفح المنصة)` : `${{formatDurationJS(durMins)}} (اتصال متواصل)`,
                     submissions_count: subs.length,
-                    accepted_count: subs.filter(e => e.is_ac).length,
+                    accepted_count: acCount,
+                    score: calcScoreVal(acCount, subs.length, durMins, 1),
                     platform_breakdown: pb,
                     timeline: [...grp].sort((a, b) => b.time - a.time).map(e => ({{
+                        time: e.time,
                         time_str: formatArabicTimeJS(e.time, true),
                         platform: e.platform,
                         type: e.type,
