@@ -19,7 +19,6 @@ CSV_FILE = tc.CSV_FILE
 MD_FILE = tc.MD_FILE
 
 def serialize_users_data(users_data):
-    """ Prepares JSON-serializable dict for embedding into HTML and data.json """
     out = []
     for u in users_data:
         u_copy = dict(u)
@@ -70,7 +69,7 @@ def generate_markdown_report(users_data):
     now_dt = tc.get_cairo_now()
     now_str = tc.format_arabic_datetime(now_dt) + " - " + tc.format_arabic_time(now_dt)
     lines = [
-        "# 📊 تقرير متابعة نشاط المتدربين الشامل (VJudge + Codeforces + AtCoder + CSES)",
+        "# 📊 تقرير متابعة نشاط المتدربين الشامل 24/7 (VJudge + Codeforces + AtCoder + CSES)",
         f"**تاريخ التحديث:** {now_str} (بتوقيت مصر - قاعدة الـ 30 دقيقة للاتصال المتواصل)",
         "",
         "## 1. ملخص البروفايلات والنشاط العام",
@@ -118,7 +117,8 @@ def generate_html_dashboard(users_data, config):
             "trainees": config.get("trainees", []),
             "session_gap_minutes": config.get("session_gap_minutes", 30),
             "coding_buffer_minutes": config.get("coding_buffer_minutes", 15),
-            "cloud_sync_topic": config.get("cloud_sync_topic", "vj_tracker_bodesaber_sync_v2")
+            "cloud_sync_topic": config.get("cloud_sync_topic", "vj_tracker_bodesaber_sync_v2"),
+            "last_cloud_sync_ts": config.get("last_cloud_sync_ts", 0)
         },
         "users": serializable_users
     }
@@ -136,7 +136,7 @@ def generate_html_dashboard(users_data, config):
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>منصة متابعة المتدربين الشاملة (VJudge • Codeforces • AtCoder • CSES)</title>
+    <title>منصة متابعة المتدربين السحابية 24/7 (VJudge • Codeforces • AtCoder • CSES)</title>
     <style>
         :root {{
             --primary: #2563eb;
@@ -634,11 +634,11 @@ def generate_html_dashboard(users_data, config):
         <div class="header">
             <div>
                 <h1>
-                    📊 منصة متابعة نشاط المتدربين الشاملة
-                    <span class="cloud-badge">VJudge • Codeforces • AtCoder • CSES</span>
-                    <span class="refresh-pill">تحديث تلقائي 24/7 كل 5 دقائق</span>
+                    📊 منصة متابعة نشاط المتدربين السحابية 24/7
+                    <span class="cloud-badge">Cloud 24/7 • VJudge • Codeforces • AtCoder • CSES</span>
+                    <span class="refresh-pill">تحديث سحابي كل 5 دقائق</span>
                 </h1>
-                <p>إدارة بروفايلات المتدربين وربط حساباتهم عبر المنصات ورصد فترات فتح الموقع والحلول بالوقت الدقيق مباشرة من المتصفح</p>
+                <p>تعمل 24 ساعة في السحاب بالكامل بدون الحاجة لجهازك — إدارة البروفايلات وربط المنصات مباشرة من المتصفح</p>
             </div>
             <div class="header-actions">
                 <div class="action-btns">
@@ -654,7 +654,7 @@ def generate_html_dashboard(users_data, config):
 
         <div class="rule-note">
             <div>
-                💡 <strong>نظام البروفايل الموحد وقاعدة الـ 30 دقيقة:</strong> يمكنك ربط هاندل <strong>VJudge و Codeforces و AtCoder و CSES</strong> لنفس المتدرب من زر <strong>"🔗 ربط / تعديل المنصات"</strong>. يرصد النظام وقت فتح المنصة (حتى بدون حل) ووقت الحلول، وطالما لم ينقطع المتدرب لأكثر من <strong>30 دقيقة</strong> تُحسب كجلسة اتصال متواصلة مع تفصيل وقت وأسئلة كل منصة بالتوقيت.
+                ☁️ <strong>تعمل سحابياً 24/7 (Cloud Native):</strong> هذه المنصة تعمل على سيرفرات السحابة على مدار 24 ساعة حتى وجهازك مغلق تماماً. يمكنك إضافة متدرب أو ربط حساباته عبر (<strong>VJudge و Codeforces و AtCoder و CSES</strong>) من زر <strong>"🔗 ربط / تعديل المنصات"</strong>، ويتم حفظها في السحابة فوراً وتطبيق قاعدة الـ <strong>30 دقيقة</strong> للجلسات المتصلة.
             </div>
         </div>
 
@@ -719,7 +719,7 @@ def generate_html_dashboard(users_data, config):
                     </div>
                     <div style="display:flex; gap:8px;">
                         <button type="button" class="btn btn-outline" onclick="closeProfileModal()">إلغاء</button>
-                        <button type="submit" class="btn btn-add" id="btnSaveProfile">💾 حفظ وبدء التتبع فوراً</button>
+                        <button type="submit" class="btn btn-add" id="btnSaveProfile">💾 حفظ سحابي وبدء التتبع فوراً</button>
                     </div>
                 </div>
             </form>
@@ -729,7 +729,6 @@ def generate_html_dashboard(users_data, config):
     <div class="toast" id="toastMsg"></div>
 
     <script>
-        // Embedded initial state from Python / GitHub Actions
         const INITIAL_DATA = {embedded_json};
         let appState = JSON.parse(JSON.stringify(INITIAL_DATA));
         let currentFilterUser = 'all';
@@ -737,7 +736,7 @@ def generate_html_dashboard(users_data, config):
         const ARABIC_DAYS = ['الأحد', 'الإثنين', 'الثلاثاء', 'الأربعاء', 'الخميس', 'الجمعة', 'السبت'];
         const ARABIC_MONTHS = ['يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو', 'يوليو', 'أغسطس', 'سبتمبر', 'أكتوبر', 'نوفمبر', 'ديسمبر'];
 
-        function showToast(msg, duration = 4000) {{
+        function showToast(msg, duration = 4500) {{
             const el = document.getElementById('toastMsg');
             el.innerText = msg;
             el.style.display = 'block';
@@ -774,7 +773,6 @@ def generate_html_dashboard(users_data, config):
             const users = appState.users || [];
             document.getElementById('lastUpdateText').innerText = '🕒 آخر تحديث: ' + (appState.updated_at || '');
 
-            // Render Trainee Cards
             const cardsGrid = document.getElementById('cardsGrid');
             cardsGrid.innerHTML = users.map(u => {{
                 const badgeClass = u.is_active_now ? 'badge-online' : 'badge-offline';
@@ -782,7 +780,6 @@ def generate_html_dashboard(users_data, config):
                 const badgeText = u.is_active_now ? `🟢 متصل الآن${{activePlats}}` : '⚪ غير متصل حالياً';
                 const avatarSrc = u.avatar || 'https://cdn.vjudge.net.cn/user/avatar/default.png';
 
-                // Per-platform rows
                 const plats = u.platforms || {{}};
                 const platRows = Object.keys(plats).map(pk => {{
                     const pv = plats[pk];
@@ -832,7 +829,6 @@ def generate_html_dashboard(users_data, config):
                         </div>
                     </div>
 
-                    <!-- Combined Summary Matrix -->
                     <div class="period-matrix">
                         <div class="matrix-cell">
                             <span class="matrix-title">📅 إجمالي اليوم (كل المنصات)</span>
@@ -851,7 +847,6 @@ def generate_html_dashboard(users_data, config):
                         </div>
                     </div>
 
-                    <!-- Per-Platform Breakdown Table -->
                     <div style="margin-bottom:8px; font-size:0.8rem; font-weight:700; color:#334155;">📌 تفصيل نشاط وحلول كل منصة على حدة:</div>
                     <table class="plat-breakdown-table">
                         <thead>
@@ -865,7 +860,7 @@ def generate_html_dashboard(users_data, config):
                             </tr>
                         </thead>
                         <tbody>
-                            ${{platRows || '<tr><td colspan="6" style="text-align:center;color:#94a3b8;">لم يتم ربط منصات بعد</td></tr>'}}
+                            ${{platRows || '<tr><td colspan="6" style="text-align:center;color:#94a3b8;">جاري مزامنة بيانات المنصات...</td></tr>'}}
                         </tbody>
                     </table>
 
@@ -877,7 +872,6 @@ def generate_html_dashboard(users_data, config):
                 `;
             }}).join('');
 
-            // Render Filter Buttons
             const filterContainer = document.getElementById('userFilterButtons');
             let filterHtml = `<button class="filter-btn ${{currentFilterUser === 'all' ? 'active' : ''}}" onclick="setFilterUser('all')">عرض الكل (${{users.length}})</button>`;
             users.forEach(u => {{
@@ -885,7 +879,6 @@ def generate_html_dashboard(users_data, config):
             }});
             filterContainer.innerHTML = filterHtml;
 
-            // Render Sessions Table
             const tbody = document.getElementById('sessionsTableBody');
             let allRows = [];
             users.forEach(u => {{
@@ -952,7 +945,6 @@ def generate_html_dashboard(users_data, config):
             renderDashboard();
         }}
 
-        // Modal Logic
         function openProfileModal(profileId) {{
             const modal = document.getElementById('profileModal');
             const title = document.getElementById('modalTitle');
@@ -987,7 +979,6 @@ def generate_html_dashboard(users_data, config):
             document.getElementById('profileModal').classList.remove('open');
         }}
 
-        // Browser-side Live Fetcher for Codeforces & AtCoder (for instant 1-second updates in browser)
         async function fetchBrowserLiveStatsForProfile(prof) {{
             const nowMs = Date.now();
             const todayStart = new Date();
@@ -1004,7 +995,7 @@ def generate_html_dashboard(users_data, config):
                 avatar: '',
                 is_active_now: false,
                 active_platforms_now: [],
-                last_seen_str: 'جاري الفحص...',
+                last_seen_str: 'قيد المزامنة السحابية...',
                 last_seen_ms: 0,
                 last_problem_str: '—',
                 all_time_ac: 0,
@@ -1018,21 +1009,28 @@ def generate_html_dashboard(users_data, config):
             userObj.name = prof.name;
             userObj.handles = prof.handles;
 
-            let allEvents = [];
-            // Preserve existing VJudge events if handle unchanged
-            if (prof.handles.vjudge && existingUser && existingUser.handles && existingUser.handles.vjudge === prof.handles.vjudge) {{
-                (existingUser.sessions || []).forEach(s => {{
-                    (s.timeline || []).forEach(t => {{
-                        if (t.platform === 'VJudge') {{
-                            // keep VJudge data
-                        }}
-                    }});
-                }});
+            if (prof.handles.vjudge && (!userObj.platforms['VJudge'] || userObj.platforms['VJudge'].handle !== prof.handles.vjudge)) {{
+                userObj.platforms['VJudge'] = {{
+                    platform: 'VJudge',
+                    handle: prof.handles.vjudge,
+                    url: `https://vjudge.net/user/${{prof.handles.vjudge}}`,
+                    extra: 'تتم المزامنة عبر السيرفر السحابي 24/7',
+                    is_online: false,
+                    last_seen_str: 'قيد الجلب السحابي',
+                    last_seen_ms: 0,
+                    acAll: 0,
+                    attAll: 0,
+                    today: {{ solved: 0, subs: 0, time_str: '0 د', time_minutes: 0 }},
+                    week: {{ solved: 0, subs: 0, time_str: '0 د', time_minutes: 0 }},
+                    month: {{ solved: 0, subs: 0, time_str: '0 د', time_minutes: 0 }}
+                }};
             }} else if (!prof.handles.vjudge) {{
                 delete userObj.platforms['VJudge'];
             }}
 
-            // Live fetch Codeforces directly from browser
+            let allEvents = [];
+
+            // Live fetch Codeforces directly in Browser
             const cfHandle = (prof.handles.codeforces || '').trim();
             if (cfHandle) {{
                 try {{
@@ -1114,7 +1112,7 @@ def generate_html_dashboard(users_data, config):
                 delete userObj.platforms['Codeforces'];
             }}
 
-            // Live fetch AtCoder directly from browser
+            // Live fetch AtCoder directly in Browser
             const acHandle = (prof.handles.atcoder || '').trim();
             if (acHandle) {{
                 try {{
@@ -1231,7 +1229,6 @@ def generate_html_dashboard(users_data, config):
                 const endMs = last.time;
                 const durMins = Math.max(5, Math.round((endMs - startMs) / 60000));
                 const subs = grp.filter(e => e.type === 'submission');
-                const pings = grp.filter(e => e.type === 'online_ping');
                 const pb = {{}};
                 ['VJudge', 'Codeforces', 'AtCoder', 'CSES'].forEach(pk => {{
                     const pe = grp.filter(e => e.platform === pk);
@@ -1272,52 +1269,90 @@ def generate_html_dashboard(users_data, config):
             }}).sort((a, b) => b.end_ms - a.end_ms);
         }}
 
-        async function syncProfilesWithBackendAndCloud(traineesList) {{
-            // 1. Save in browser localStorage
-            localStorage.setItem('vj_tracker_profiles_v2', JSON.stringify(traineesList));
+        async function syncProfilesToCloud(traineesList) {{
+            const nowSec = Math.floor(Date.now() / 1000);
+            localStorage.setItem('vj_tracker_cloud_profiles_v2', JSON.stringify({{
+                ts: nowSec,
+                trainees: traineesList
+            }}));
 
-            // 2. Try local background bridge server (127.0.0.1:8765) for instant VJudge + CF + AtCoder + CSES Python fetch & GitHub push
-            try {{
-                const resp = await fetch('http://127.0.0.1:8765/api/profiles', {{
-                    method: 'POST',
-                    headers: {{ 'Content-Type': 'application/json' }},
-                    body: JSON.stringify({{ trainees: traineesList }})
-                }});
-                if (resp.ok) {{
-                    const freshData = await resp.json();
-                    if (freshData && freshData.users) {{
-                        appState = freshData;
-                        renderDashboard();
-                        showToast('✅ تم تحديث كل المنصات (VJudge + Codeforces + AtCoder + CSES) وحفظها سحابياً!');
-                        return true;
-                    }}
-                }}
-            }} catch (e) {{
-                // Local server not reachable (e.g. opened from mobile phone)
-            }}
-
-            // 3. Publish to Cloud Sync Channel (ntfy.sh) so 24/7 GitHub Actions & background daemon sync it
             const topic = (appState.config && appState.config.cloud_sync_topic) || 'vj_tracker_bodesaber_sync_v2';
             try {{
                 await fetch(`https://ntfy.sh/${{topic}}`, {{
                     method: 'POST',
                     body: JSON.stringify({{
                         action: 'update_profiles',
-                        timestamp: Date.now(),
+                        timestamp: nowSec,
                         trainees: traineesList
                     }})
                 }});
+                showToast('☁️ تم حفظ البروفايل في السحابة 24/7 وتحديث البيانات فوراً!');
             }} catch (e) {{
                 console.warn('Cloud sync post warning:', e);
+                showToast('✅ تم حفظ البروفايل وتحديث البيانات!');
             }}
-            return false;
+        }}
+
+        async function loadCloudSyncedProfiles() {{
+            const topic = (appState.config && appState.config.cloud_sync_topic) || 'vj_tracker_bodesaber_sync_v2';
+            let bestTs = (appState.config && appState.config.last_cloud_sync_ts) || 0;
+            let bestTrainees = null;
+
+            // 1. Check localStorage first
+            try {{
+                const localRaw = localStorage.getItem('vj_tracker_cloud_profiles_v2');
+                if (localRaw) {{
+                    const parsed = JSON.parse(localRaw);
+                    if (parsed.ts > bestTs && Array.isArray(parsed.trainees)) {{
+                        bestTs = parsed.ts;
+                        bestTrainees = parsed.trainees;
+                    }}
+                }}
+            }} catch (e) {{}}
+
+            // 2. Check ntfy.sh cloud storage (24h history across all devices/browsers)
+            try {{
+                const resp = await fetch(`https://ntfy.sh/${{topic}}/json?poll=1&since=24h`, {{ cache: 'no-store' }});
+                if (resp.ok) {{
+                    const text = await resp.text();
+                    const lines = text.trim().split('\\n');
+                    for (const line of lines) {{
+                        if (!line.trim()) continue;
+                        try {{
+                            const msgObj = JSON.parse(line);
+                            if (msgObj.event === 'message' && msgObj.time > bestTs) {{
+                                const payload = JSON.parse(msgObj.message || '{{}}');
+                                if (payload.action === 'update_profiles' && Array.isArray(payload.trainees)) {{
+                                    bestTs = msgObj.time;
+                                    bestTrainees = payload.trainees;
+                                }}
+                            }}
+                        }} catch (err) {{}}
+                    }}
+                }}
+            }} catch (e) {{}}
+
+            if (bestTrainees) {{
+                appState.config.trainees = bestTrainees;
+                appState.config.last_cloud_sync_ts = bestTs;
+                // Keep only users in bestTrainees and fetch any newly added/updated profiles
+                const validIds = new Set(bestTrainees.map(t => t.id));
+                appState.users = (appState.users || []).filter(u => validIds.has(u.id));
+                for (const prof of bestTrainees) {{
+                    const updatedU = await fetchBrowserLiveStatsForProfile(prof);
+                    const idx = appState.users.findIndex(u => u.id === prof.id);
+                    if (idx >= 0) appState.users[idx] = updatedU;
+                    else appState.users.push(updatedU);
+                }}
+                renderDashboard();
+            }}
         }}
 
         async function saveProfileFromModal(e) {{
             e.preventDefault();
             const btn = document.getElementById('btnSaveProfile');
             btn.disabled = true;
-            btn.innerText = '⏳ جاري الجلب والربط...';
+            btn.innerText = '⏳ جاري الحفظ السحابي والربط...';
 
             const idInput = document.getElementById('profId').value.trim();
             const nameInput = document.getElementById('profName').value.trim();
@@ -1329,7 +1364,7 @@ def generate_html_dashboard(users_data, config):
             if (!vjInput && !cfInput && !acInput && !csesInput) {{
                 alert('يرجى إدخال هاندل واحد على الأقل في أي منصة (VJudge أو Codeforces أو AtCoder أو CSES).');
                 btn.disabled = false;
-                btn.innerText = '💾 حفظ وبدء التتبع فوراً';
+                btn.innerText = '💾 حفظ سحابي وبدء التتبع فوراً';
                 return;
             }}
 
@@ -1347,14 +1382,10 @@ def generate_html_dashboard(users_data, config):
             }};
 
             const existingIdx = trainees.findIndex(t => t.id === pid);
-            if (existingIdx >= 0) {{
-                trainees[existingIdx] = newProf;
-            }} else {{
-                trainees.push(newProf);
-            }}
+            if (existingIdx >= 0) trainees[existingIdx] = newProf;
+            else trainees.push(newProf);
             appState.config.trainees = trainees;
 
-            // Instant browser live fetch first
             const updatedUserObj = await fetchBrowserLiveStatsForProfile(newProf);
             const uIdx = (appState.users || []).findIndex(u => u.id === pid);
             if (uIdx >= 0) appState.users[uIdx] = updatedUserObj;
@@ -1362,12 +1393,10 @@ def generate_html_dashboard(users_data, config):
 
             renderDashboard();
             closeProfileModal();
-            showToast('⏳ جاري مزامنة كل المنصات وحفظ البروفايل...');
-
-            await syncProfilesWithBackendAndCloud(trainees);
+            await syncProfilesToCloud(trainees);
 
             btn.disabled = false;
-            btn.innerText = '💾 حفظ وبدء التتبع فوراً';
+            btn.innerText = '💾 حفظ سحابي وبدء التتبع فوراً';
         }}
 
         async function deleteCurrentProfile() {{
@@ -1379,33 +1408,16 @@ def generate_html_dashboard(users_data, config):
             appState.users = (appState.users || []).filter(u => u.id !== pid);
             renderDashboard();
             closeProfileModal();
-            showToast('🗑️ تم حذف البروفايل وجاري تحديث السحابة...');
-            await syncProfilesWithBackendAndCloud(appState.config.trainees);
+            await syncProfilesToCloud(appState.config.trainees);
         }}
 
         async function triggerLiveRefresh() {{
             const btn = document.getElementById('btnLiveRefresh');
             btn.disabled = true;
-            btn.innerText = '⏳ جاري التحديث الحي...';
-            showToast('🔄 جاري فحص حالة الاتصال والحلول الآن...');
+            btn.innerText = '⏳ جاري التحديث السحابي...';
+            showToast('🔄 جاري جلب أحدث البيانات السحابية وفحص حالة الاتصال...');
 
-            try {{
-                // 1. Try local server refresh if available
-                const r = await fetch('http://127.0.0.1:8765/api/refresh', {{ method: 'POST' }});
-                if (r.ok) {{
-                    const d = await r.json();
-                    if (d && d.users) {{
-                        appState = d;
-                        renderDashboard();
-                        showToast('✅ تم التحديث الفوري بنجاح!');
-                        btn.disabled = false;
-                        btn.innerText = '🔄 تحديث البيانات الآن';
-                        return;
-                    }}
-                }}
-            }} catch (e) {{}}
-
-            // 2. Try fetching latest data.json from server/GitHub Pages + live browser CF/AtCoder check
+            // 1. Fetch latest data.json from GitHub Pages cloud
             try {{
                 const r = await fetch('data.json?t=' + Date.now(), {{ cache: 'no-store' }});
                 if (r.ok) {{
@@ -1414,7 +1426,10 @@ def generate_html_dashboard(users_data, config):
                 }}
             }} catch (e) {{}}
 
-            // Also run live browser check for CF & AtCoder handles
+            // 2. Merge any newer cloud-synced profile changes from ntfy.sh / localStorage
+            await loadCloudSyncedProfiles();
+
+            // 3. Also refresh live Codeforces & AtCoder status directly in browser
             const trainees = appState.config.trainees || [];
             for (let i = 0; i < trainees.length; i++) {{
                 const updatedU = await fetchBrowserLiveStatsForProfile(trainees[i]);
@@ -1424,17 +1439,16 @@ def generate_html_dashboard(users_data, config):
             }}
             appState.updated_at = formatArabicDateJS(Date.now()) + ' - ' + formatArabicTimeJS(Date.now()) + ' (توقيت مصر)';
             renderDashboard();
-            showToast('✅ تم تحديث بيانات المنصات وحالة الاتصال!');
+            showToast('✅ تم تحديث كافة المنصات سحابياً بنجاح!');
             btn.disabled = false;
             btn.innerText = '🔄 تحديث البيانات الآن';
         }}
 
-        // Initialize on page load
+        // On Page Load: render immediately, then sync latest data.json & cloud profiles
         window.addEventListener('DOMContentLoaded', async () => {{
             renderDashboard();
-            // Check if local server has fresher data
             try {{
-                const r = await fetch('http://127.0.0.1:8765/api/data', {{ cache: 'no-store' }});
+                const r = await fetch('data.json?t=' + Date.now(), {{ cache: 'no-store' }});
                 if (r.ok) {{
                     const d = await r.json();
                     if (d && d.updated_ms >= (appState.updated_ms || 0)) {{
@@ -1443,6 +1457,7 @@ def generate_html_dashboard(users_data, config):
                     }}
                 }}
             }} catch (e) {{}}
+            await loadCloudSyncedProfiles();
         }});
 
         // 5-minute Countdown Timer
@@ -1477,7 +1492,7 @@ def run_once():
     limit = config.get("fetch_limit", 200)
 
     pings_history = tc.load_pings_history()
-    print(f"[*] Starting multi-platform analysis for {len(trainees)} trainee profiles...")
+    print(f"[*] Starting 24/7 Cloud multi-platform analysis for {len(trainees)} trainee profiles...")
     users_data = []
 
     for prof in trainees:
@@ -1492,7 +1507,6 @@ def run_once():
         users_data.append(stats)
         time.sleep(0.3)
 
-    # Save updated config (in case CF handles were auto-discovered) and pings history
     with open(CONFIG_FILE, "w", encoding="utf-8") as f:
         json.dump(config, f, indent=2, ensure_ascii=False)
     tc.save_pings_history(pings_history)

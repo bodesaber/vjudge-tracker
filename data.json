@@ -1,6 +1,6 @@
 {
-  "updated_at": "الثلاثاء 20 أكتوبر 2026 - 02:59 م (توقيت مصر)",
-  "updated_ms": 1792497557831,
+  "updated_at": "الثلاثاء 20 أكتوبر 2026 - 03:10 م (توقيت مصر)",
+  "updated_ms": 1792498201338,
   "config": {
     "trainees": [
       {
@@ -46,7 +46,8 @@
     ],
     "session_gap_minutes": 30,
     "coding_buffer_minutes": 15,
-    "cloud_sync_topic": "vj_tracker_bodesaber_sync_v2"
+    "cloud_sync_topic": "vj_tracker_bodesaber_sync_v2",
+    "last_cloud_sync_ts": 1792497321
   },
   "users": [
     {
@@ -64,7 +65,7 @@
         "VJudge",
         "Codeforces"
       ],
-      "last_seen_str": "منذ 12 دقيقة (02:46 م)",
+      "last_seen_str": "منذ 23 دقيقة (02:46 م)",
       "last_seen_ms": 1792496790000,
       "last_problem_str": "[VJudge] CodeForces 2139C (Accepted)",
       "all_time_ac": 299,
@@ -97,7 +98,7 @@
           "url": "https://vjudge.net/user/Israa_abdelhaq",
           "extra": "",
           "is_online": true,
-          "last_seen_str": "منذ 12 د",
+          "last_seen_str": "منذ 23 د",
           "last_seen_ms": 1792496788000,
           "acAll": 219,
           "attAll": 232,
@@ -126,7 +127,7 @@
           "url": "https://codeforces.com/profile/Isabella_",
           "extra": "Rating: 1204 (pupil)",
           "is_online": true,
-          "last_seen_str": "منذ 12 د",
+          "last_seen_str": "منذ 23 د",
           "last_seen_ms": 1792496790000,
           "acAll": 98,
           "attAll": 200,
