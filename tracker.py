@@ -1227,12 +1227,13 @@ def generate_html_dashboard(users_data, config):
             const monthStartMs = nowMs - 30 * 86400 * 1000;
 
             const filterSessions = (pred) => (u.sessions || []).filter(pred);
-            const collectProblemsFromSessions = (sessList) => {{
+            const collectProblemsFromSessions = (sessList, minTimeMs = 0) => {{
                 const acProbsMap = {{}};
                 sessList.forEach(s => {{
                     (s.timeline || []).forEach(t => {{
-                        if (t.type === 'submission' && t.is_ac) {{
-                            const key = `${{t.platform}}_${{t.probNum || t.problemName}}`;
+                        if (t.type === 'submission' && t.is_ac && (!minTimeMs || (t.time || 0) >= minTimeMs)) {{
+                            const normProb = String(t.probNum || t.problemName || '').toLowerCase().trim();
+                            const key = normProb || `${{t.platform}}_${{t.problemName}}`;
                             const dInfo = evaluateEventDifficultyJS(t);
                             if (!acProbsMap[key] || dInfo.prob_points > acProbsMap[key].prob_points) {{
                                 acProbsMap[key] = {{
@@ -1256,13 +1257,13 @@ def generate_html_dashboard(users_data, config):
                 const avgPts = acProbs.length > 0 ? (recPts / acProbs.length) : 120;
                 const extraSolved = Math.max(0, totalSolvedCount - acProbs.length);
                 const computedProbPts = Math.round(recPts + extraSolved * avgPts);
-                const probPts = Math.max(fallbackProbPts || 0, computedProbPts);
-                const avgDiff = acProbs.length > 0
-                    ? Math.round(acProbs.reduce((a, p) => a + (p.difficulty || 1000), 0) / acProbs.length)
-                    : (fallbackAvgDiff || 0);
-                const maxDiff = acProbs.length > 0
-                    ? Math.max(...acProbs.map(p => p.difficulty || 0))
-                    : (fallbackMaxDiff || 0);
+                const probPts = (fallbackProbPts && fallbackProbPts > 0) ? fallbackProbPts : computedProbPts;
+                const avgDiff = (fallbackAvgDiff && fallbackAvgDiff > 0)
+                    ? fallbackAvgDiff
+                    : (acProbs.length > 0 ? Math.round(acProbs.reduce((a, p) => a + (p.difficulty || 1000), 0) / acProbs.length) : 0);
+                const maxDiff = (fallbackMaxDiff && fallbackMaxDiff > 0)
+                    ? fallbackMaxDiff
+                    : (acProbs.length > 0 ? Math.max(...acProbs.map(p => p.difficulty || 0)) : 0);
                 return {{ probPts, avgDiff, maxDiff }};
             }};
 
@@ -1270,8 +1271,8 @@ def generate_html_dashboard(users_data, config):
                 const pObj = u[mode] || {{ solved: 0, subs: 0, time_minutes: 0, time_str: '0 دقيقة', sessions: 0 }};
                 const thresh = mode === 'today' ? todayStartMs : (mode === 'week' ? weekStartMs : monthStartMs);
                 const sIn = filterSessions(s => (s.end_ms || 0) >= thresh);
-                const acProbs = collectProblemsFromSessions(sIn);
-                const solved = Math.max(pObj.solved || 0, acProbs.length);
+                const acProbs = collectProblemsFromSessions(sIn, thresh);
+                const solved = (pObj.solved !== undefined && pObj.solved !== null && pObj.solved > 0) ? pObj.solved : acProbs.length;
                 const subs = pObj.subs || 0;
                 const mins = pObj.time_minutes || 0;
                 const sessCount = pObj.sessions || sIn.length;
@@ -1856,43 +1857,39 @@ def generate_html_dashboard(users_data, config):
             return userObj;
         }}
 
-        // Clean up legacy bloated localStorage keys (>2.5MB) that caused QuotaExceededError and stuck 4:10 timestamps
+        // Clean up legacy localStorage keys that had bloated size or un-deduplicated JS stats
         (function cleanupLegacyStorage() {{
             try {{
                 let rescuedTrainees = null;
                 let rescuedTs = 0;
-                const rawV3 = localStorage.getItem('vj_tracker_cloud_state_v3');
-                if (rawV3) {{
-                    try {{
-                        const p3 = JSON.parse(rawV3);
-                        let ts3 = p3.ts || 0;
-                        if (ts3 > 100000000000) ts3 = Math.floor(ts3 / 1000);
-                        if (Array.isArray(p3.trainees) && p3.trainees.length > 0) {{
-                            rescuedTrainees = p3.trainees;
-                            rescuedTs = ts3;
-                        }}
-                    }} catch (e) {{}}
-                    localStorage.removeItem('vj_tracker_cloud_state_v3');
-                }}
-                const rawV2 = localStorage.getItem('vj_tracker_cloud_profiles_v2');
-                if (rawV2) {{
-                    try {{
-                        const p2 = JSON.parse(rawV2);
-                        let ts2 = p2.ts || 0;
-                        if (ts2 > 100000000000) ts2 = Math.floor(ts2 / 1000);
-                        if (ts2 > rescuedTs && Array.isArray(p2.trainees) && p2.trainees.length > 0) {{
-                            rescuedTrainees = p2.trainees;
-                            rescuedTs = ts2;
-                        }}
-                    }} catch (e) {{}}
-                    localStorage.removeItem('vj_tracker_cloud_profiles_v2');
-                }}
+                let rescuedUpdatedMs = 0;
+                let rescuedUpdatedAt = '';
+                ['vj_tracker_meta_v4', 'vj_tracker_cloud_state_v3', 'vj_tracker_cloud_profiles_v2'].forEach(k => {{
+                    const raw = localStorage.getItem(k);
+                    if (raw) {{
+                        try {{
+                            const parsed = JSON.parse(raw);
+                            let ts = parsed.ts || 0;
+                            if (ts > 100000000000) ts = Math.floor(ts / 1000);
+                            if (ts >= rescuedTs && Array.isArray(parsed.trainees) && parsed.trainees.length > 0) {{
+                                rescuedTrainees = parsed.trainees;
+                                rescuedTs = ts;
+                            }}
+                            if ((parsed.updated_ms || 0) > rescuedUpdatedMs && parsed.updated_at) {{
+                                rescuedUpdatedMs = parsed.updated_ms;
+                                rescuedUpdatedAt = parsed.updated_at;
+                            }}
+                        }} catch (e) {{}}
+                        localStorage.removeItem(k);
+                    }}
+                }});
+                localStorage.removeItem('vj_tracker_users_v4');
                 localStorage.removeItem('vj_tracker_cloud_profiles_v1');
-                if (rescuedTrainees && !localStorage.getItem('vj_tracker_meta_v4')) {{
-                    localStorage.setItem('vj_tracker_meta_v4', JSON.stringify({{
+                if (rescuedTrainees && !localStorage.getItem('vj_tracker_meta_v5')) {{
+                    localStorage.setItem('vj_tracker_meta_v5', JSON.stringify({{
                         ts: rescuedTs,
-                        updated_ms: 0,
-                        updated_at: '',
+                        updated_ms: rescuedUpdatedMs,
+                        updated_at: rescuedUpdatedAt,
                         trainees: rescuedTrainees
                     }}));
                 }}
@@ -1911,26 +1908,23 @@ def generate_html_dashboard(users_data, config):
                 if (nowSec > 100000000000) nowSec = Math.floor(nowSec / 1000);
                 const trainees = (appState.config && appState.config.trainees) || [];
                 // 1. Always save lightweight metadata (~2KB) FIRST so it never hits QuotaExceededError
-                localStorage.setItem('vj_tracker_meta_v4', JSON.stringify({{
+                localStorage.setItem('vj_tracker_meta_v5', JSON.stringify({{
                     ts: nowSec,
                     updated_ms: appState.updated_ms || Date.now(),
                     updated_at: appState.updated_at || '',
                     trainees: trainees
                 }}));
-                // 2. Save compact user stats (~120KB total) with recent 20 sessions per user
+                // 2. Save user stats without truncating timeline items so AC counts never fluctuate
                 const compactUsersById = {{}};
                 (appState.users || []).forEach(u => {{
                     if (u && u.id) {{
                         compactUsersById[u.id] = {{
                             ...u,
-                            sessions: (u.sessions || []).slice(0, 20).map(s => ({{
-                                ...s,
-                                timeline: (s.timeline || []).slice(0, 15)
-                            }}))
+                            sessions: (u.sessions || []).slice(0, 45)
                         }};
                     }}
                 }});
-                localStorage.setItem('vj_tracker_users_v4', JSON.stringify(compactUsersById));
+                localStorage.setItem('vj_tracker_users_v5', JSON.stringify(compactUsersById));
             }} catch (e) {{
                 console.warn('saveLocalCache warning:', e);
             }}
@@ -1939,7 +1933,7 @@ def generate_html_dashboard(users_data, config):
         function getLocalCache() {{
             let best = {{ ts: 0, updated_ms: 0, updated_at: '', trainees: null, usersById: {{}} }};
             try {{
-                const rawMeta = localStorage.getItem('vj_tracker_meta_v4');
+                const rawMeta = localStorage.getItem('vj_tracker_meta_v5');
                 if (rawMeta) {{
                     const m = JSON.parse(rawMeta);
                     let ts = m.ts || 0;
@@ -1953,12 +1947,23 @@ def generate_html_dashboard(users_data, config):
                 }}
             }} catch (e) {{}}
             try {{
-                const rawUsers = localStorage.getItem('vj_tracker_users_v4');
+                const rawUsers = localStorage.getItem('vj_tracker_users_v5');
                 if (rawUsers) {{
                     best.usersById = JSON.parse(rawUsers) || {{}};
                 }}
             }} catch (e) {{}}
             return best;
+        }}
+
+        function getMaxSubMsInUser(u) {{
+            if (!u || !Array.isArray(u.sessions)) return 0;
+            let maxMs = 0;
+            u.sessions.forEach(s => {{
+                (s.timeline || []).forEach(t => {{
+                    if (t.type === 'submission' && (t.time || 0) > maxMs) maxMs = t.time;
+                }});
+            }});
+            return maxMs;
         }}
 
         function applyOverlayToState(targetState, overlayTrainees, overlayUsersById, overlayTs, cacheUpdatedMs = 0, cacheUpdatedAt = '') {{
@@ -1986,7 +1991,23 @@ def generate_html_dashboard(users_data, config):
             for (const prof of overlayTrainees) {{
                 const sUser = serverUsersMap[prof.id];
                 const cUser = (overlayUsersById && overlayUsersById[prof.id]) || currentUsersMap[prof.id];
-                if (isCacheNewer && cUser && cUser.sessions && cUser.sessions.length > 0) {{
+                const sMaxSub = getMaxSubMsInUser(sUser);
+                const cMaxSub = getMaxSubMsInUser(cUser);
+                const sameHandles = sUser && JSON.stringify(sUser.handles || {{}}) === JSON.stringify(prof.handles || {{}});
+
+                // Always prefer server's authoritative deduplicated stats when handles match and cUser has no newer submission
+                if (sUser && sameHandles && sMaxSub >= cMaxSub) {{
+                    const uCopy = JSON.parse(JSON.stringify(sUser));
+                    uCopy.name = prof.name;
+                    uCopy.handles = prof.handles;
+                    if (cUser && (cUser.last_seen_ms || 0) > (uCopy.last_seen_ms || 0)) {{
+                        uCopy.last_seen_ms = cUser.last_seen_ms;
+                        uCopy.last_seen_str = cUser.last_seen_str;
+                        uCopy.is_active_now = cUser.is_active_now;
+                        uCopy.active_platforms_now = cUser.active_platforms_now;
+                    }}
+                    mergedUsers.push(uCopy);
+                }} else if (isCacheNewer && cUser && cUser.sessions && cUser.sessions.length > 0) {{
                     const uCopy = JSON.parse(JSON.stringify(cUser));
                     uCopy.name = prof.name;
                     uCopy.handles = prof.handles;
@@ -2043,7 +2064,31 @@ def generate_html_dashboard(users_data, config):
         // Immediately apply localStorage cache before the very first render so profiles NEVER vanish on Refresh (F5)
         applyLocalCacheToState(appState);
 
-        async function fetchBrowserLiveStatsForProfile(prof) {{
+        async function prefetchCodeforcesUserInfoMap(trainees) {{
+            const map = {{}};
+            try {{
+                const handles = [...new Set(
+                    (trainees || [])
+                        .map(t => (t.handles && t.handles.codeforces ? t.handles.codeforces.trim() : ''))
+                        .filter(Boolean)
+                )];
+                if (!handles.length) return map;
+                const resp = await fetch(`https://codeforces.com/api/user.info?handles=${{handles.map(encodeURIComponent).join(';')}}`);
+                const json = await resp.json();
+                if (json && json.status === 'OK' && Array.isArray(json.result)) {{
+                    json.result.forEach(uInfo => {{
+                        if (uInfo && uInfo.handle) {{
+                            map[uInfo.handle.toLowerCase()] = uInfo;
+                        }}
+                    }});
+                }}
+            }} catch (e) {{
+                console.warn('Batch CF user.info warning:', e);
+            }}
+            return map;
+        }}
+
+        async function fetchBrowserLiveStatsForProfile(prof, cfInfoMap = null) {{
             const nowMs = Date.now();
             const todayStart = new Date();
             todayStart.setHours(0, 0, 0, 0);
@@ -2054,224 +2099,285 @@ def generate_html_dashboard(users_data, config):
             let existingUser = (appState.users || []).find(u => u.id === prof.id);
             let userObj = buildInitialUserForProfile(prof, existingUser);
 
-            let allEvents = [];
+            const hasServerData = !!(
+                existingUser &&
+                existingUser.platforms &&
+                existingUser.platforms['VJudge'] &&
+                existingUser.platforms['VJudge'].acAll > 0 &&
+                Array.isArray(existingUser.sessions) &&
+                existingUser.sessions.length > 0 &&
+                JSON.stringify(existingUser.handles || {{}}) === JSON.stringify(prof.handles || {{}})
+            );
+            const maxExistingSubMs = getMaxSubMsInUser(existingUser);
 
-            // Live fetch Codeforces directly in Browser
+            let cfEvents = [];
+            let acEvents = [];
+
+            // 1. Live fetch Codeforces directly in Browser (protected against rate-limiting)
             const cfHandle = (prof.handles.codeforces || '').trim();
             if (cfHandle) {{
                 try {{
-                    const infoResp = await fetch(`https://codeforces.com/api/user.info?handles=${{encodeURIComponent(cfHandle)}}`);
-                    const infoJson = await infoResp.json();
-                    if (infoJson.status === 'OK' && infoJson.result && infoJson.result.length) {{
-                        const uInfo = infoJson.result[0];
+                    let uInfo = cfInfoMap && cfInfoMap[cfHandle.toLowerCase()];
+                    if (!uInfo) {{
+                        const infoResp = await fetch(`https://codeforces.com/api/user.info?handles=${{encodeURIComponent(cfHandle)}}`);
+                        const infoJson = await infoResp.json();
+                        if (infoJson.status === 'OK' && infoJson.result && infoJson.result.length) {{
+                            uInfo = infoJson.result[0];
+                        }}
+                    }}
+                    if (uInfo) {{
                         const resolvedHandle = uInfo.handle || cfHandle;
                         const lastOnlineMs = (uInfo.lastOnlineTimeSeconds || 0) * 1000;
                         if (!userObj.avatar && uInfo.titlePhoto) userObj.avatar = uInfo.titlePhoto;
 
                         const statResp = await fetch(`https://codeforces.com/api/user.status?handle=${{encodeURIComponent(resolvedHandle)}}&from=1&count=200`);
                         const statJson = await statResp.json();
-                        const cfSubs = (statJson.status === 'OK' ? statJson.result : []) || [];
-
-                        let cfEvents = cfSubs.map(s => {{
-                            const p = s.problem || {{}};
-                            const code = `${{p.contestId || ''}}${{p.index || ''}}`;
-                            const isAc = s.verdict === 'OK';
-                            return {{
-                                time: (s.creationTimeSeconds || 0) * 1000,
-                                type: 'submission',
-                                platform: 'Codeforces',
-                                probNum: code,
-                                problemName: `${{code}} - ${{p.name || ''}}`,
-                                problemUrl: `https://codeforces.com/contest/${{p.contestId}}/problem/${{p.index}}`,
-                                status: isAc ? 'Accepted' : (s.verdict || '').replace(/_/g, ' '),
-                                is_ac: isAc,
-                                difficulty: p.rating || 0
-                            }};
-                        }});
-
-                        if (lastOnlineMs > 0 && !cfEvents.some(e => Math.abs(e.time - lastOnlineMs) <= 120000)) {{
-                            cfEvents.push({{
-                                time: lastOnlineMs,
-                                type: 'online_ping',
-                                platform: 'Codeforces',
-                                probNum: 'تصفح المنصة',
-                                problemName: '👁️ فاتح كود فورسز (متصل أونلاين)',
-                                problemUrl: `https://codeforces.com/profile/${{resolvedHandle}}`,
-                                status: 'Online',
-                                is_ac: false
+                        // CRITICAL: Only update CF platform stats if statJson.status === 'OK' (never zero out on rate-limit!)
+                        if (statJson && statJson.status === 'OK' && Array.isArray(statJson.result)) {{
+                            const cfSubs = statJson.result;
+                            cfEvents = cfSubs.map(s => {{
+                                const p = s.problem || {{}};
+                                const code = `${{p.contestId || ''}}${{p.index || ''}}`;
+                                const isAc = s.verdict === 'OK';
+                                return {{
+                                    time: (s.creationTimeSeconds || 0) * 1000,
+                                    type: 'submission',
+                                    platform: 'Codeforces',
+                                    probNum: code,
+                                    problemName: `${{code}} - ${{p.name || ''}}`,
+                                    problemUrl: `https://codeforces.com/contest/${{p.contestId}}/problem/${{p.index}}`,
+                                    status: isAc ? 'Accepted' : (s.verdict || '').replace(/_/g, ' '),
+                                    is_ac: isAc,
+                                    difficulty: p.rating || 0
+                                }};
                             }});
+
+                            if (lastOnlineMs > 0 && !cfEvents.some(e => Math.abs(e.time - lastOnlineMs) <= 120000)) {{
+                                cfEvents.push({{
+                                    time: lastOnlineMs,
+                                    type: 'online_ping',
+                                    platform: 'Codeforces',
+                                    probNum: 'تصفح المنصة',
+                                    problemName: '👁️ فاتح كود فورسز (متصل أونلاين)',
+                                    problemUrl: `https://codeforces.com/profile/${{resolvedHandle}}`,
+                                    status: 'Online',
+                                    is_ac: false
+                                }});
+                            }}
+
+                            const cfSessions = clusterEventsJS(cfEvents, 30, 15);
+                            const calcP = (thresh) => {{
+                                const sIn = cfSessions.filter(s => s.end_ms >= thresh);
+                                const eIn = cfEvents.filter(e => e.time >= thresh && e.type === 'submission');
+                                const acSet = new Set(eIn.filter(e => e.is_ac).map(e => String(e.probNum || '').toLowerCase()));
+                                const mins = sIn.reduce((acc, x) => acc + x.duration_minutes, 0);
+                                return {{ solved: acSet.size, subs: eIn.length, time_minutes: mins, time_str: formatDurationJS(mins), sessions: sIn.length }};
+                            }};
+                            const allAcSet = new Set(cfEvents.filter(e => e.is_ac).map(e => String(e.probNum || '').toLowerCase()));
+                            const maxCfMs = Math.max(lastOnlineMs, ...cfEvents.map(e => e.time), 0);
+                            const isCfOnline = maxCfMs > 0 && (nowMs - maxCfMs) <= 30 * 60 * 1000;
+                            const diffSec = Math.max(0, Math.floor((nowMs - maxCfMs) / 1000));
+                            const lastStr = maxCfMs === 0 ? 'لا يوجد' : (diffSec < 60 ? 'متصل الآن' : (diffSec < 3600 ? `منذ ${{Math.floor(diffSec/60)}} د` : (diffSec < 86400 ? `منذ ${{Math.floor(diffSec/3600)}} س` : `منذ ${{Math.floor(diffSec/86400)}} يوم`)));
+
+                            const prevCfAcAll = (existingUser && existingUser.platforms && existingUser.platforms['Codeforces'] && existingUser.platforms['Codeforces'].acAll) || 0;
+                            userObj.platforms['Codeforces'] = {{
+                                platform: 'Codeforces',
+                                handle: resolvedHandle,
+                                url: `https://codeforces.com/profile/${{resolvedHandle}}`,
+                                extra: uInfo.rating ? `Rating: ${{uInfo.rating}} (${{uInfo.rank}})` : 'Unrated',
+                                is_online: isCfOnline,
+                                last_seen_str: lastStr,
+                                last_seen_ms: maxCfMs,
+                                acAll: Math.max(prevCfAcAll, allAcSet.size),
+                                attAll: cfSubs.length,
+                                today: calcP(todayStartMs),
+                                week: calcP(weekStartMs),
+                                month: calcP(monthStartMs)
+                            }};
+                        }} else if (userObj.platforms['Codeforces'] && lastOnlineMs > 0) {{
+                            // Even if user.status was rate-limited, still update online status from user.info
+                            const maxCfMs = Math.max(lastOnlineMs, userObj.platforms['Codeforces'].last_seen_ms || 0);
+                            const isCfOnline = maxCfMs > 0 && (nowMs - maxCfMs) <= 30 * 60 * 1000;
+                            const diffSec = Math.max(0, Math.floor((nowMs - maxCfMs) / 1000));
+                            userObj.platforms['Codeforces'].is_online = isCfOnline;
+                            userObj.platforms['Codeforces'].last_seen_ms = maxCfMs;
+                            userObj.platforms['Codeforces'].last_seen_str = diffSec < 60 ? 'متصل الآن' : (diffSec < 3600 ? `منذ ${{Math.floor(diffSec/60)}} د` : (diffSec < 86400 ? `منذ ${{Math.floor(diffSec/3600)}} س` : `منذ ${{Math.floor(diffSec/86400)}} يوم`));
                         }}
-
-                        allEvents.push(...cfEvents);
-                        const cfSessions = clusterEventsJS(cfEvents, 30, 15);
-                        const calcP = (thresh) => {{
-                            const sIn = cfSessions.filter(s => s.end_ms >= thresh);
-                            const eIn = cfEvents.filter(e => e.time >= thresh && e.type === 'submission');
-                            const acSet = new Set(eIn.filter(e => e.is_ac).map(e => e.probNum));
-                            const mins = sIn.reduce((acc, x) => acc + x.duration_minutes, 0);
-                            return {{ solved: acSet.size, subs: eIn.length, time_minutes: mins, time_str: formatDurationJS(mins), sessions: sIn.length }};
-                        }};
-                        const allAcSet = new Set(cfEvents.filter(e => e.is_ac).map(e => e.probNum));
-                        const maxCfMs = Math.max(lastOnlineMs, ...cfEvents.map(e => e.time), 0);
-                        const isCfOnline = maxCfMs > 0 && (nowMs - maxCfMs) <= 30 * 60 * 1000;
-                        const diffSec = Math.max(0, Math.floor((nowMs - maxCfMs) / 1000));
-                        const lastStr = maxCfMs === 0 ? 'لا يوجد' : (diffSec < 60 ? 'متصل الآن' : (diffSec < 3600 ? `منذ ${{Math.floor(diffSec/60)}} د` : (diffSec < 86400 ? `منذ ${{Math.floor(diffSec/3600)}} س` : `منذ ${{Math.floor(diffSec/86400)}} يوم`)));
-
-                        userObj.platforms['Codeforces'] = {{
-                            platform: 'Codeforces',
-                            handle: resolvedHandle,
-                            url: `https://codeforces.com/profile/${{resolvedHandle}}`,
-                            extra: uInfo.rating ? `Rating: ${{uInfo.rating}} (${{uInfo.rank}})` : 'Unrated',
-                            is_online: isCfOnline,
-                            last_seen_str: lastStr,
-                            last_seen_ms: maxCfMs,
-                            acAll: allAcSet.size,
-                            attAll: cfSubs.length,
-                            today: calcP(todayStartMs),
-                            week: calcP(weekStartMs),
-                            month: calcP(monthStartMs)
-                        }};
                     }}
                 }} catch (err) {{
-                    console.warn('CF browser fetch error:', err);
+                    console.warn('CF browser fetch warning:', err);
                 }}
             }} else {{
                 delete userObj.platforms['Codeforces'];
             }}
 
-            // Live fetch AtCoder directly in Browser
+            // 2. Live fetch AtCoder directly in Browser
             const acHandle = (prof.handles.atcoder || '').trim();
             if (acHandle) {{
                 try {{
                     const acResp = await fetch(`https://kenkoooo.com/atcoder/atcoder-api/v3/user/submissions?user=${{encodeURIComponent(acHandle)}}&from_second=0`);
-                    const acRaw = await acResp.json();
-                    if (Array.isArray(acRaw)) {{
-                        acRaw.sort((a, b) => (b.epoch_second || 0) - (a.epoch_second || 0));
-                        const acEvents = acRaw.slice(0, 200).map(s => {{
-                            const isAc = s.result === 'AC';
-                            return {{
-                                time: (s.epoch_second || 0) * 1000,
-                                type: 'submission',
-                                platform: 'AtCoder',
-                                probNum: s.problem_id || '',
-                                problemName: `${{s.problem_id}} (${{s.contest_id}})`,
-                                problemUrl: `https://atcoder.jp/contests/${{s.contest_id}}/tasks/${{s.problem_id}}`,
-                                status: isAc ? 'Accepted' : s.result,
-                                is_ac: isAc
+                    if (acResp.ok) {{
+                        const acRaw = await acResp.json();
+                        if (Array.isArray(acRaw)) {{
+                            acRaw.sort((a, b) => (b.epoch_second || 0) - (a.epoch_second || 0));
+                            acEvents = acRaw.slice(0, 200).map(s => {{
+                                const isAc = s.result === 'AC';
+                                return {{
+                                    time: (s.epoch_second || 0) * 1000,
+                                    type: 'submission',
+                                    platform: 'AtCoder',
+                                    probNum: s.problem_id || '',
+                                    problemName: `${{s.problem_id}} (${{s.contest_id}})`,
+                                    problemUrl: `https://atcoder.jp/contests/${{s.contest_id}}/tasks/${{s.problem_id}}`,
+                                    status: isAc ? 'Accepted' : s.result,
+                                    is_ac: isAc
+                                }};
+                            }});
+                            const acSessions = clusterEventsJS(acEvents, 30, 15);
+                            const calcP = (thresh) => {{
+                                const sIn = acSessions.filter(s => s.end_ms >= thresh);
+                                const eIn = acEvents.filter(e => e.time >= thresh && e.type === 'submission');
+                                const acSet = new Set(eIn.filter(e => e.is_ac).map(e => String(e.probNum || '').toLowerCase()));
+                                const mins = sIn.reduce((acc, x) => acc + x.duration_minutes, 0);
+                                return {{ solved: acSet.size, subs: eIn.length, time_minutes: mins, time_str: formatDurationJS(mins), sessions: sIn.length }};
                             }};
-                        }});
-                        allEvents.push(...acEvents);
-                        const acSessions = clusterEventsJS(acEvents, 30, 15);
-                        const calcP = (thresh) => {{
-                            const sIn = acSessions.filter(s => s.end_ms >= thresh);
-                            const eIn = acEvents.filter(e => e.time >= thresh && e.type === 'submission');
-                            const acSet = new Set(eIn.filter(e => e.is_ac).map(e => e.probNum));
-                            const mins = sIn.reduce((acc, x) => acc + x.duration_minutes, 0);
-                            return {{ solved: acSet.size, subs: eIn.length, time_minutes: mins, time_str: formatDurationJS(mins), sessions: sIn.length }};
-                        }};
-                        const allAcSet = new Set(acEvents.filter(e => e.is_ac).map(e => e.probNum));
-                        const maxAcMs = Math.max(...acEvents.map(e => e.time), 0);
-                        const isAcOnline = maxAcMs > 0 && (nowMs - maxAcMs) <= 30 * 60 * 1000;
-                        const diffSec = Math.max(0, Math.floor((nowMs - maxAcMs) / 1000));
-                        const lastStr = maxAcMs === 0 ? 'لا يوجد' : (diffSec < 60 ? 'متصل الآن' : (diffSec < 3600 ? `منذ ${{Math.floor(diffSec/60)}} د` : (diffSec < 86400 ? `منذ ${{Math.floor(diffSec/3600)}} س` : `منذ ${{Math.floor(diffSec/86400)}} يوم`)));
+                            const allAcSet = new Set(acEvents.filter(e => e.is_ac).map(e => String(e.probNum || '').toLowerCase()));
+                            const maxAcMs = Math.max(...acEvents.map(e => e.time), 0);
+                            const isAcOnline = maxAcMs > 0 && (nowMs - maxAcMs) <= 30 * 60 * 1000;
+                            const diffSec = Math.max(0, Math.floor((nowMs - maxAcMs) / 1000));
+                            const lastStr = maxAcMs === 0 ? 'لا يوجد' : (diffSec < 60 ? 'متصل الآن' : (diffSec < 3600 ? `منذ ${{Math.floor(diffSec/60)}} د` : (diffSec < 86400 ? `منذ ${{Math.floor(diffSec/3600)}} س` : `منذ ${{Math.floor(diffSec/86400)}} يوم`)));
 
-                        userObj.platforms['AtCoder'] = {{
-                            platform: 'AtCoder',
-                            handle: acHandle,
-                            url: `https://atcoder.jp/users/${{acHandle}}`,
-                            extra: '',
-                            is_online: isAcOnline,
-                            last_seen_str: lastStr,
-                            last_seen_ms: maxAcMs,
-                            acAll: allAcSet.size,
-                            attAll: acEvents.length,
-                            today: calcP(todayStartMs),
-                            week: calcP(weekStartMs),
-                            month: calcP(monthStartMs)
-                        }};
+                            userObj.platforms['AtCoder'] = {{
+                                platform: 'AtCoder',
+                                handle: acHandle,
+                                url: `https://atcoder.jp/users/${{acHandle}}`,
+                                extra: '',
+                                is_online: isAcOnline,
+                                last_seen_str: lastStr,
+                                last_seen_ms: maxAcMs,
+                                acAll: allAcSet.size,
+                                attAll: acEvents.length,
+                                today: calcP(todayStartMs),
+                                week: calcP(weekStartMs),
+                                month: calcP(monthStartMs)
+                            }};
+                        }}
                     }}
                 }} catch (err) {{
-                    console.warn('AtCoder browser fetch error:', err);
+                    console.warn('AtCoder browser fetch warning:', err);
                 }}
             }} else {{
                 delete userObj.platforms['AtCoder'];
             }}
 
-            // Preserve any existing server-fetched VJudge events so merging with live CF/AtCoder works seamlessly
-            if (existingUser && Array.isArray(existingUser.sessions) && prof.handles && prof.handles.vjudge) {{
-                existingUser.sessions.forEach(s => {{
-                    (s.timeline || []).forEach(t => {{
-                        if (t.platform === 'VJudge' && t.time) {{
-                            allEvents.push({{
-                                time: t.time,
-                                type: t.type || 'submission',
-                                platform: 'VJudge',
-                                probNum: t.probNum || '',
-                                problemName: t.problemName || t.probNum || '',
-                                problemUrl: t.problemUrl || '#',
-                                status: t.status || '',
-                                is_ac: !!t.is_ac,
-                                difficulty: t.difficulty || 0,
-                                diff_tier: t.diff_tier || '',
-                                prob_points: t.prob_points || 0
-                            }});
-                        }}
+            // 3. Check if there are any brand-new submissions strictly newer than existingUser's server data
+            const fetchedSubs = [...cfEvents, ...acEvents].filter(e => e.type === 'submission');
+            const hasNewSubmissions = fetchedSubs.some(e => (e.time || 0) > maxExistingSubMs);
+
+            // CRITICAL FIX: If the user already has authoritative server-analyzed VJudge+CF+AtCoder data
+            // and NO new submissions have occurred since then, DO NOT overwrite their deduplicated stats/sessions!
+            if (!hasServerData || hasNewSubmissions) {{
+                const unifiedEvents = [];
+                if (existingUser && Array.isArray(existingUser.sessions) && prof.handles && prof.handles.vjudge) {{
+                    existingUser.sessions.forEach(s => {{
+                        (s.timeline || []).forEach(t => {{
+                            if (t.platform === 'VJudge' && t.time) {{
+                                unifiedEvents.push({{
+                                    time: t.time,
+                                    type: t.type || 'submission',
+                                    platform: 'VJudge',
+                                    probNum: t.probNum || '',
+                                    problemName: t.problemName || t.probNum || '',
+                                    problemUrl: t.problemUrl || '#',
+                                    status: t.status || '',
+                                    is_ac: !!t.is_ac,
+                                    difficulty: t.difficulty || 0,
+                                    diff_tier: t.diff_tier || '',
+                                    prob_points: t.prob_points || 0
+                                }});
+                            }}
+                        }});
                     }});
+                }}
+
+                // Deduplicate CF & AtCoder events against VJudge events within 90s (same as tracker_core.py!)
+                [...cfEvents, ...acEvents].forEach(ev => {{
+                    if (ev.type === 'submission') {{
+                        const evProb = String(ev.probNum || '').toLowerCase().trim();
+                        const isDup = evProb && unifiedEvents.some(uEv =>
+                            uEv.type === 'submission' &&
+                            String(uEv.probNum || '').toLowerCase().trim() === evProb &&
+                            Math.abs((uEv.time || 0) - (ev.time || 0)) <= 90000
+                        );
+                        if (!isDup) unifiedEvents.push(ev);
+                    }} else {{
+                        unifiedEvents.push(ev);
+                    }}
                 }});
-            }}
 
-            if (allEvents.length > 0) {{
-                userObj.sessions = clusterEventsJS(allEvents, 30, 15);
-                const buildPeriodSummary = (threshMs, periodKey) => {{
-                    const sIn = userObj.sessions.filter(s => s.end_ms >= threshMs);
-                    const eIn = allEvents.filter(e => e.time >= threshMs && e.type === 'submission');
-                    const solved = Object.values(userObj.platforms).reduce((a, p) => a + (p[periodKey] ? p[periodKey].solved : 0), 0);
-                    const subs = Math.max(
-                        eIn.length,
-                        Object.values(userObj.platforms).reduce((a, p) => a + (p[periodKey] ? (p[periodKey].subs || 0) : 0), 0)
-                    );
-                    const mins = sIn.reduce((a, s) => a + s.duration_minutes, 0);
-                    const acMap = {{}};
-                    eIn.filter(e => e.is_ac).forEach(e => {{
-                        const k = `${{e.platform}}_${{e.probNum || e.problemName}}`;
-                        const dInfo = evaluateEventDifficultyJS(e);
-                        if (!acMap[k] || dInfo.prob_points > acMap[k].prob_points) acMap[k] = dInfo;
-                    }});
-                    const acList = Object.values(acMap);
-                    const recPts = acList.reduce((a, d) => a + (d.prob_points || 100), 0);
-                    const avgPts = acList.length > 0 ? (recPts / acList.length) : 120;
-                    const extraSolved = Math.max(0, solved - acList.length);
-                    const probPts = Math.round(recPts + extraSolved * avgPts);
-                    const avgDiff = acList.length > 0 ? Math.round(acList.reduce((a, d) => a + (d.difficulty || 1000), 0) / acList.length) : 0;
-                    const maxDiff = acList.length > 0 ? Math.max(...acList.map(d => d.difficulty || 0)) : 0;
-                    return {{
-                        solved,
-                        subs,
-                        time_minutes: mins,
-                        time_str: formatDurationJS(mins),
-                        sessions: sIn.length,
-                        problem_points: probPts,
-                        avg_difficulty: avgDiff,
-                        max_difficulty: maxDiff,
-                        score: calcScoreVal(probPts, subs, mins, sIn.length)
+                if (unifiedEvents.length > 0) {{
+                    userObj.sessions = clusterEventsJS(unifiedEvents, 30, 15);
+                    const buildPeriodSummary = (threshMs, periodKey) => {{
+                        const sIn = userObj.sessions.filter(s => s.end_ms >= threshMs);
+                        const eIn = unifiedEvents.filter(e => e.time >= threshMs && e.type === 'submission');
+                        const acMap = {{}};
+                        eIn.filter(e => e.is_ac).forEach(e => {{
+                            const k = String(e.probNum || e.problemName || '').toLowerCase().trim() || `${{e.platform}}_${{e.problemName}}`;
+                            const dInfo = evaluateEventDifficultyJS(e);
+                            if (!acMap[k] || dInfo.prob_points > acMap[k].prob_points) acMap[k] = dInfo;
+                        }});
+                        const acList = Object.values(acMap);
+                        const uniqueAc = acList.length;
+                        const maxPlatAc = Math.max(...Object.values(userObj.platforms).map(p => (p[periodKey] && p[periodKey].solved) || 0), 0);
+                        // Use max(uniqueAc, maxPlatAc) just like tracker_core.py, NEVER sum(VJudge + CF)!
+                        const solved = Math.max(uniqueAc, maxPlatAc);
+                        const subs = eIn.length;
+                        const mins = sIn.reduce((a, s) => a + s.duration_minutes, 0);
+                        const recPts = acList.reduce((a, d) => a + (d.prob_points || 100), 0);
+                        const avgPts = acList.length > 0 ? (recPts / acList.length) : 120;
+                        const extraSolved = Math.max(0, solved - acList.length);
+                        const probPts = Math.round(recPts + extraSolved * avgPts);
+                        const avgDiff = acList.length > 0 ? Math.round(acList.reduce((a, d) => a + (d.difficulty || 1000), 0) / acList.length) : 0;
+                        const maxDiff = acList.length > 0 ? Math.max(...acList.map(d => d.difficulty || 0)) : 0;
+                        return {{
+                            solved,
+                            subs,
+                            time_minutes: mins,
+                            time_str: formatDurationJS(mins),
+                            sessions: sIn.length,
+                            problem_points: probPts,
+                            avg_difficulty: avgDiff,
+                            max_difficulty: maxDiff,
+                            score: calcScoreVal(probPts, subs, mins, sIn.length)
+                        }};
                     }};
-                }};
-                userObj.today = buildPeriodSummary(todayStartMs, 'today');
-                userObj.week = buildPeriodSummary(weekStartMs, 'week');
-                userObj.month = buildPeriodSummary(monthStartMs, 'month');
+                    userObj.today = buildPeriodSummary(todayStartMs, 'today');
+                    userObj.week = buildPeriodSummary(weekStartMs, 'week');
+                    userObj.month = buildPeriodSummary(monthStartMs, 'month');
 
-                const latestEv = [...allEvents].sort((a, b) => b.time - a.time)[0];
-                if (latestEv) {{
-                    userObj.last_problem_str = `[${{latestEv.platform}}] ${{latestEv.problemName || latestEv.probNum}} (${{latestEv.status}})`;
-                    userObj.last_problem_url = latestEv.problemUrl || '#';
+                    const latestEv = [...unifiedEvents].sort((a, b) => b.time - a.time)[0];
+                    if (latestEv) {{
+                        userObj.last_problem_str = `[${{latestEv.platform}}] ${{latestEv.problemName || latestEv.probNum}} (${{latestEv.status}})`;
+                        userObj.last_problem_url = latestEv.problemUrl || '#';
+                    }}
+                }}
+
+                if (hasServerData && existingUser.all_time_ac) {{
+                    const newAcSet = new Set(fetchedSubs.filter(e => e.is_ac && e.time > maxExistingSubMs).map(e => String(e.probNum || '').toLowerCase()));
+                    userObj.all_time_ac = existingUser.all_time_ac + newAcSet.size;
+                }} else {{
+                    const vjAc = (userObj.platforms['VJudge'] && userObj.platforms['VJudge'].acAll) || 0;
+                    const cfAc = (userObj.platforms['Codeforces'] && userObj.platforms['Codeforces'].acAll) || 0;
+                    const acAc = (userObj.platforms['AtCoder'] && userObj.platforms['AtCoder'].acAll) || 0;
+                    userObj.all_time_ac = vjAc > 0 ? Math.max(vjAc, cfAc) + acAc : (cfAc + acAc);
                 }}
             }}
 
             userObj.active_platforms_now = Object.keys(userObj.platforms).filter(k => userObj.platforms[k].is_online);
             userObj.is_active_now = userObj.active_platforms_now.length > 0;
-            userObj.all_time_ac = Object.values(userObj.platforms).reduce((a, p) => a + (p.acAll || 0), 0);
-            const latestMs = Math.max(...Object.values(userObj.platforms).map(p => p.last_seen_ms || 0), 0);
+            const latestMs = Math.max(userObj.last_seen_ms || 0, ...Object.values(userObj.platforms).map(p => p.last_seen_ms || 0), 0);
             if (latestMs > 0) {{
+                userObj.last_seen_ms = latestMs;
                 const diffSec = Math.max(0, Math.floor((nowMs - latestMs) / 1000));
                 userObj.last_seen_str = diffSec < 60 ? 'متصل الآن' : (diffSec < 3600 ? `منذ ${{Math.floor(diffSec/60)}} دقيقة` : (diffSec < 86400 ? `منذ ${{Math.floor(diffSec/3600)}} ساعة` : `منذ ${{Math.floor(diffSec/86400)}} يوم`));
             }}
@@ -2320,7 +2426,7 @@ def generate_html_dashboard(users_data, config):
                 const acCount = subs.filter(e => e.is_ac).length;
                 const acPtsMap = {{}};
                 subs.filter(e => e.is_ac).forEach(e => {{
-                    const k = `${{e.platform}}_${{e.probNum || e.problemName}}`;
+                    const k = String(e.probNum || e.problemName || '').toLowerCase().trim() || `${{e.platform}}_${{e.problemName}}`;
                     const dInfo = evaluateEventDifficultyJS(e);
                     if (!acPtsMap[k] || dInfo.prob_points > acPtsMap[k]) acPtsMap[k] = dInfo.prob_points;
                 }});
@@ -2439,25 +2545,64 @@ def generate_html_dashboard(users_data, config):
                 saveLocalCache(bestTs);
                 renderDashboard();
 
+                const cfInfoMap = await prefetchCodeforcesUserInfoMap(bestTrainees);
+                const nowMs = Date.now();
+                // Immediately update live online status from the single batched user.info call
+                bestTrainees.forEach(prof => {{
+                    const cfH = (prof.handles && prof.handles.codeforces ? prof.handles.codeforces.trim().toLowerCase() : '');
+                    const uInfo = cfH && cfInfoMap[cfH];
+                    const uObj = (appState.users || []).find(u => u.id === prof.id);
+                    if (uInfo && uObj && uObj.platforms && uObj.platforms['Codeforces']) {{
+                        const lastOnlineMs = (uInfo.lastOnlineTimeSeconds || 0) * 1000;
+                        const maxCfMs = Math.max(lastOnlineMs, uObj.platforms['Codeforces'].last_seen_ms || 0);
+                        if (maxCfMs > 0) {{
+                            const isCfOnline = (nowMs - maxCfMs) <= 30 * 60 * 1000;
+                            const diffSec = Math.max(0, Math.floor((nowMs - maxCfMs) / 1000));
+                            uObj.platforms['Codeforces'].is_online = isCfOnline;
+                            uObj.platforms['Codeforces'].last_seen_ms = maxCfMs;
+                            uObj.platforms['Codeforces'].last_seen_str = diffSec < 60 ? 'متصل الآن' : (diffSec < 3600 ? `منذ ${{Math.floor(diffSec/60)}} د` : (diffSec < 86400 ? `منذ ${{Math.floor(diffSec/3600)}} س` : `منذ ${{Math.floor(diffSec/86400)}} يوم`));
+                            uObj.active_platforms_now = Object.keys(uObj.platforms).filter(k => uObj.platforms[k].is_online);
+                            uObj.is_active_now = uObj.active_platforms_now.length > 0;
+                            const overallMaxMs = Math.max(uObj.last_seen_ms || 0, maxCfMs);
+                            uObj.last_seen_ms = overallMaxMs;
+                            const oDiffSec = Math.max(0, Math.floor((nowMs - overallMaxMs) / 1000));
+                            uObj.last_seen_str = oDiffSec < 60 ? 'متصل الآن' : (oDiffSec < 3600 ? `منذ ${{Math.floor(oDiffSec/60)}} دقيقة` : (oDiffSec < 86400 ? `منذ ${{Math.floor(oDiffSec/3600)}} ساعة` : `منذ ${{Math.floor(oDiffSec/86400)}} يوم`));
+                        }}
+                    }}
+                }});
+
                 const toFetch = bestTrainees.filter(prof => {{
                     const existingU = (appState.users || []).find(u => u.id === prof.id);
                     const needsCf = prof.handles && prof.handles.codeforces && (!existingU || !existingU.platforms || !existingU.platforms['Codeforces']);
                     const needsAc = prof.handles && prof.handles.atcoder && (!existingU || !existingU.platforms || !existingU.platforms['AtCoder']);
                     const needsSessions = (prof.handles && (prof.handles.codeforces || prof.handles.atcoder)) && (!existingU || !existingU.sessions || existingU.sessions.length === 0);
-                    return forceRefetchAll || needsCf || needsAc || needsSessions;
+                    const cfH = (prof.handles && prof.handles.codeforces ? prof.handles.codeforces.trim().toLowerCase() : '');
+                    const uInfo = cfH && cfInfoMap[cfH];
+                    const lastOnlineMs = uInfo ? (uInfo.lastOnlineTimeSeconds || 0) * 1000 : 0;
+                    const maxSubMs = getMaxSubMsInUser(existingU);
+                    const hasNewCfActivity = lastOnlineMs > maxSubMs && (nowMs - lastOnlineMs) <= 24 * 3600 * 1000;
+                    return forceRefetchAll || needsCf || needsAc || needsSessions || hasNewCfActivity;
                 }});
 
-                const batchSize = 4;
-                for (let i = 0; i < toFetch.length; i += batchSize) {{
-                    const batch = toFetch.slice(i, i + batchSize);
-                    const updatedBatch = await Promise.all(batch.map(prof => fetchBrowserLiveStatsForProfile(prof)));
-                    updatedBatch.forEach(updatedU => {{
-                        if (!updatedU) return;
-                        const idx = appState.users.findIndex(u => u.id === updatedU.id);
-                        if (idx >= 0) appState.users[idx] = updatedU;
-                        else appState.users.push(updatedU);
-                    }});
-                    stampCurrentUpdateTime();
+                if (toFetch.length > 0) {{
+                    const batchSize = 2;
+                    for (let i = 0; i < toFetch.length; i += batchSize) {{
+                        const batch = toFetch.slice(i, i + batchSize);
+                        const updatedBatch = await Promise.all(batch.map(prof => fetchBrowserLiveStatsForProfile(prof, cfInfoMap)));
+                        updatedBatch.forEach(updatedU => {{
+                            if (!updatedU) return;
+                            const idx = appState.users.findIndex(u => u.id === updatedU.id);
+                            if (idx >= 0) appState.users[idx] = updatedU;
+                            else appState.users.push(updatedU);
+                        }});
+                        stampCurrentUpdateTime();
+                        saveLocalCache(bestTs);
+                        renderDashboard();
+                        if (i + batchSize < toFetch.length) {{
+                            await new Promise(res => setTimeout(res, 250));
+                        }}
+                    }}
+                }} else {{
                     saveLocalCache(bestTs);
                     renderDashboard();
                 }}
@@ -2599,7 +2744,7 @@ def generate_html_dashboard(users_data, config):
                 saveLocalCache(appState.config && appState.config.last_cloud_sync_ts);
                 renderDashboard();
             }}
-            await loadCloudSyncedProfiles(isStale);
+            await loadCloudSyncedProfiles(false);
         }});
 
         // 5-minute Countdown Timer
