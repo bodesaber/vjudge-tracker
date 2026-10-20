@@ -979,15 +979,7 @@ def generate_html_dashboard(users_data, config):
             document.getElementById('profileModal').classList.remove('open');
         }}
 
-        async function fetchBrowserLiveStatsForProfile(prof) {{
-            const nowMs = Date.now();
-            const todayStart = new Date();
-            todayStart.setHours(0, 0, 0, 0);
-            const todayStartMs = todayStart.getTime();
-            const weekStartMs = nowMs - 7 * 86400 * 1000;
-            const monthStartMs = nowMs - 30 * 86400 * 1000;
-
-            let existingUser = (appState.users || []).find(u => u.id === prof.id);
+        function buildInitialUserForProfile(prof, existingUser) {{
             let userObj = existingUser ? JSON.parse(JSON.stringify(existingUser)) : {{
                 id: prof.id,
                 name: prof.name,
@@ -1007,13 +999,12 @@ def generate_html_dashboard(users_data, config):
                 sessions: []
             }};
             userObj.name = prof.name;
-            userObj.handles = prof.handles;
-
-            if (prof.handles.vjudge && (!userObj.platforms['VJudge'] || userObj.platforms['VJudge'].handle !== prof.handles.vjudge)) {{
+            userObj.handles = prof.handles || {{}};
+            if (userObj.handles.vjudge && (!userObj.platforms['VJudge'] || userObj.platforms['VJudge'].handle !== userObj.handles.vjudge)) {{
                 userObj.platforms['VJudge'] = {{
                     platform: 'VJudge',
-                    handle: prof.handles.vjudge,
-                    url: `https://vjudge.net/user/${{prof.handles.vjudge}}`,
+                    handle: userObj.handles.vjudge,
+                    url: `https://vjudge.net/user/${{userObj.handles.vjudge}}`,
                     extra: 'تتم المزامنة عبر السيرفر السحابي 24/7',
                     is_online: false,
                     last_seen_str: 'قيد الجلب السحابي',
@@ -1024,9 +1015,129 @@ def generate_html_dashboard(users_data, config):
                     week: {{ solved: 0, subs: 0, time_str: '0 د', time_minutes: 0 }},
                     month: {{ solved: 0, subs: 0, time_str: '0 د', time_minutes: 0 }}
                 }};
-            }} else if (!prof.handles.vjudge) {{
+            }} else if (!userObj.handles.vjudge) {{
                 delete userObj.platforms['VJudge'];
             }}
+            return userObj;
+        }}
+
+        function saveLocalCache(customTs) {{
+            try {{
+                let nowSec = customTs || Math.floor(Date.now() / 1000);
+                if (nowSec > 100000000000) nowSec = Math.floor(nowSec / 1000);
+                const usersById = {{}};
+                (appState.users || []).forEach(u => {{
+                    if (u && u.id) usersById[u.id] = u;
+                }});
+                const trainees = (appState.config && appState.config.trainees) || [];
+                localStorage.setItem('vj_tracker_cloud_state_v3', JSON.stringify({{
+                    ts: nowSec,
+                    trainees: trainees,
+                    usersById: usersById
+                }}));
+                localStorage.setItem('vj_tracker_cloud_profiles_v2', JSON.stringify({{
+                    ts: nowSec,
+                    trainees: trainees
+                }}));
+            }} catch (e) {{
+                console.warn('saveLocalCache warning:', e);
+            }}
+        }}
+
+        function getLocalCache() {{
+            let best = {{ ts: 0, trainees: null, usersById: {{}} }};
+            try {{
+                const rawV3 = localStorage.getItem('vj_tracker_cloud_state_v3');
+                if (rawV3) {{
+                    const p3 = JSON.parse(rawV3);
+                    let ts3 = p3.ts || 0;
+                    if (ts3 > 100000000000) ts3 = Math.floor(ts3 / 1000);
+                    if (Array.isArray(p3.trainees) && p3.trainees.length > 0) {{
+                        best = {{ ts: ts3, trainees: p3.trainees, usersById: p3.usersById || {{}} }};
+                    }}
+                }}
+            }} catch (e) {{}}
+            try {{
+                const rawV2 = localStorage.getItem('vj_tracker_cloud_profiles_v2');
+                if (rawV2) {{
+                    const p2 = JSON.parse(rawV2);
+                    let ts2 = p2.ts || 0;
+                    if (ts2 > 100000000000) ts2 = Math.floor(ts2 / 1000);
+                    if (ts2 > best.ts && Array.isArray(p2.trainees) && p2.trainees.length > 0) {{
+                        best.ts = ts2;
+                        best.trainees = p2.trainees;
+                    }}
+                }}
+            }} catch (e) {{}}
+            return best;
+        }}
+
+        function applyOverlayToState(targetState, overlayTrainees, overlayUsersById, overlayTs) {{
+            if (!targetState || !Array.isArray(overlayTrainees) || overlayTrainees.length === 0) return targetState;
+            if (!targetState.config) targetState.config = {{}};
+            targetState.config.trainees = overlayTrainees;
+            if (overlayTs) {{
+                targetState.config.last_cloud_sync_ts = Math.max(targetState.config.last_cloud_sync_ts || 0, overlayTs);
+            }}
+            const serverUsersMap = {{}};
+            (targetState.users || []).forEach(u => {{
+                if (u && u.id) serverUsersMap[u.id] = u;
+            }});
+            const currentUsersMap = {{}};
+            (appState && appState.users ? appState.users : []).forEach(u => {{
+                if (u && u.id) currentUsersMap[u.id] = u;
+            }});
+            const mergedUsers = [];
+            for (const prof of overlayTrainees) {{
+                const sUser = serverUsersMap[prof.id];
+                const cUser = (overlayUsersById && overlayUsersById[prof.id]) || currentUsersMap[prof.id];
+                if (sUser) {{
+                    const uCopy = JSON.parse(JSON.stringify(sUser));
+                    uCopy.name = prof.name;
+                    uCopy.handles = prof.handles;
+                    if (cUser && cUser.platforms) {{
+                        ['Codeforces', 'AtCoder', 'CSES'].forEach(pk => {{
+                            if (cUser.platforms[pk] && (!uCopy.platforms[pk] || cUser.platforms[pk].handle === (prof.handles && prof.handles[pk.toLowerCase()]))) {{
+                                uCopy.platforms[pk] = cUser.platforms[pk];
+                            }}
+                        }});
+                    }}
+                    mergedUsers.push(uCopy);
+                }} else if (cUser) {{
+                    const uCopy = JSON.parse(JSON.stringify(cUser));
+                    uCopy.name = prof.name;
+                    uCopy.handles = prof.handles;
+                    mergedUsers.push(uCopy);
+                }} else {{
+                    mergedUsers.push(buildInitialUserForProfile(prof, null));
+                }}
+            }}
+            targetState.users = mergedUsers;
+            return targetState;
+        }}
+
+        function applyLocalCacheToState(targetState) {{
+            const local = getLocalCache();
+            const serverTs = (targetState && targetState.config && targetState.config.last_cloud_sync_ts) || 0;
+            if (local.trainees && local.ts >= serverTs) {{
+                applyOverlayToState(targetState, local.trainees, local.usersById, local.ts);
+            }}
+            return targetState;
+        }}
+
+        // Immediately apply localStorage cache before the very first render so profiles NEVER vanish on Refresh (F5)
+        applyLocalCacheToState(appState);
+
+        async function fetchBrowserLiveStatsForProfile(prof) {{
+            const nowMs = Date.now();
+            const todayStart = new Date();
+            todayStart.setHours(0, 0, 0, 0);
+            const todayStartMs = todayStart.getTime();
+            const weekStartMs = nowMs - 7 * 86400 * 1000;
+            const monthStartMs = nowMs - 30 * 86400 * 1000;
+
+            let existingUser = (appState.users || []).find(u => u.id === prof.id);
+            let userObj = buildInitialUserForProfile(prof, existingUser);
 
             let allEvents = [];
 
@@ -1271,14 +1382,15 @@ def generate_html_dashboard(users_data, config):
 
         async function syncProfilesToCloud(traineesList) {{
             const nowSec = Math.floor(Date.now() / 1000);
-            localStorage.setItem('vj_tracker_cloud_profiles_v2', JSON.stringify({{
-                ts: nowSec,
-                trainees: traineesList
-            }}));
+            if (appState && appState.config) {{
+                appState.config.trainees = traineesList;
+                appState.config.last_cloud_sync_ts = Math.max(appState.config.last_cloud_sync_ts || 0, nowSec);
+            }}
+            saveLocalCache(nowSec);
 
             const topic = (appState.config && appState.config.cloud_sync_topic) || 'vj_tracker_bodesaber_sync_v2';
             try {{
-                await fetch(`https://ntfy.sh/${{topic}}`, {{
+                const resp = await fetch(`https://ntfy.sh/${{topic}}`, {{
                     method: 'POST',
                     body: JSON.stringify({{
                         action: 'update_profiles',
@@ -1286,6 +1398,16 @@ def generate_html_dashboard(users_data, config):
                         trainees: traineesList
                     }})
                 }});
+                if (resp.ok) {{
+                    try {{
+                        const rJson = await resp.json();
+                        if (rJson && rJson.time) {{
+                            const srvTs = Math.max(nowSec, rJson.time);
+                            appState.config.last_cloud_sync_ts = srvTs;
+                            saveLocalCache(srvTs);
+                        }}
+                    }} catch (e) {{}}
+                }}
                 showToast('☁️ تم حفظ البروفايل في السحابة 24/7 وتحديث البيانات فوراً!');
             }} catch (e) {{
                 console.warn('Cloud sync post warning:', e);
@@ -1293,22 +1415,17 @@ def generate_html_dashboard(users_data, config):
             }}
         }}
 
-        async function loadCloudSyncedProfiles() {{
+        async function loadCloudSyncedProfiles(forceRefetchAll = false) {{
             const topic = (appState.config && appState.config.cloud_sync_topic) || 'vj_tracker_bodesaber_sync_v2';
             let bestTs = (appState.config && appState.config.last_cloud_sync_ts) || 0;
             let bestTrainees = null;
+            const localCache = getLocalCache();
 
             // 1. Check localStorage first
-            try {{
-                const localRaw = localStorage.getItem('vj_tracker_cloud_profiles_v2');
-                if (localRaw) {{
-                    const parsed = JSON.parse(localRaw);
-                    if (parsed.ts > bestTs && Array.isArray(parsed.trainees)) {{
-                        bestTs = parsed.ts;
-                        bestTrainees = parsed.trainees;
-                    }}
-                }}
-            }} catch (e) {{}}
+            if (localCache.trainees && localCache.ts >= bestTs) {{
+                bestTs = localCache.ts;
+                bestTrainees = localCache.trainees;
+            }}
 
             // 2. Check ntfy.sh cloud storage (24h history across all devices/browsers)
             try {{
@@ -1320,9 +1437,9 @@ def generate_html_dashboard(users_data, config):
                         if (!line.trim()) continue;
                         try {{
                             const msgObj = JSON.parse(line);
-                            if (msgObj.event === 'message' && msgObj.time > bestTs) {{
+                            if (msgObj.event === 'message' && msgObj.time >= bestTs) {{
                                 const payload = JSON.parse(msgObj.message || '{{}}');
-                                if (payload.action === 'update_profiles' && Array.isArray(payload.trainees)) {{
+                                if (payload.action === 'update_profiles' && Array.isArray(payload.trainees) && payload.trainees.length > 0) {{
                                     bestTs = msgObj.time;
                                     bestTrainees = payload.trainees;
                                 }}
@@ -1333,18 +1450,23 @@ def generate_html_dashboard(users_data, config):
             }} catch (e) {{}}
 
             if (bestTrainees) {{
-                appState.config.trainees = bestTrainees;
-                appState.config.last_cloud_sync_ts = bestTs;
-                // Keep only users in bestTrainees and fetch any newly added/updated profiles
-                const validIds = new Set(bestTrainees.map(t => t.id));
-                appState.users = (appState.users || []).filter(u => validIds.has(u.id));
-                for (const prof of bestTrainees) {{
-                    const updatedU = await fetchBrowserLiveStatsForProfile(prof);
-                    const idx = appState.users.findIndex(u => u.id === prof.id);
-                    if (idx >= 0) appState.users[idx] = updatedU;
-                    else appState.users.push(updatedU);
-                }}
+                applyOverlayToState(appState, bestTrainees, localCache.usersById, bestTs);
+                saveLocalCache(bestTs);
                 renderDashboard();
+
+                for (const prof of bestTrainees) {{
+                    const existingU = (appState.users || []).find(u => u.id === prof.id);
+                    const needsCf = prof.handles && prof.handles.codeforces && (!existingU || !existingU.platforms || !existingU.platforms['Codeforces']);
+                    const needsAc = prof.handles && prof.handles.atcoder && (!existingU || !existingU.platforms || !existingU.platforms['AtCoder']);
+                    if (forceRefetchAll || needsCf || needsAc) {{
+                        const updatedU = await fetchBrowserLiveStatsForProfile(prof);
+                        const idx = appState.users.findIndex(u => u.id === prof.id);
+                        if (idx >= 0) appState.users[idx] = updatedU;
+                        else appState.users.push(updatedU);
+                        saveLocalCache(bestTs);
+                        renderDashboard();
+                    }}
+                }}
             }}
         }}
 
@@ -1386,17 +1508,30 @@ def generate_html_dashboard(users_data, config):
             else trainees.push(newProf);
             appState.config.trainees = trainees;
 
+            // 1. Immediately create/update user card & save to localStorage BEFORE any network await
+            const existingUser = (appState.users || []).find(u => u.id === pid);
+            const initialUserObj = buildInitialUserForProfile(newProf, existingUser);
+            const uIdx0 = (appState.users || []).findIndex(u => u.id === pid);
+            if (uIdx0 >= 0) appState.users[uIdx0] = initialUserObj;
+            else appState.users.push(initialUserObj);
+
+            const nowSec = Math.floor(Date.now() / 1000);
+            appState.config.last_cloud_sync_ts = Math.max(appState.config.last_cloud_sync_ts || 0, nowSec);
+            saveLocalCache(nowSec);
+            renderDashboard();
+            closeProfileModal();
+
+            btn.disabled = false;
+            btn.innerText = '💾 حفظ سحابي وبدء التتبع فوراً';
+
+            // 2. Sync to ntfy.sh cloud and fetch live stats in parallel, saving full stats to localStorage when done
+            syncProfilesToCloud(trainees);
             const updatedUserObj = await fetchBrowserLiveStatsForProfile(newProf);
             const uIdx = (appState.users || []).findIndex(u => u.id === pid);
             if (uIdx >= 0) appState.users[uIdx] = updatedUserObj;
             else appState.users.push(updatedUserObj);
-
+            saveLocalCache(appState.config.last_cloud_sync_ts);
             renderDashboard();
-            closeProfileModal();
-            await syncProfilesToCloud(trainees);
-
-            btn.disabled = false;
-            btn.innerText = '💾 حفظ سحابي وبدء التتبع فوراً';
         }}
 
         async function deleteCurrentProfile() {{
@@ -1406,6 +1541,9 @@ def generate_html_dashboard(users_data, config):
 
             appState.config.trainees = (appState.config.trainees || []).filter(t => t.id !== pid);
             appState.users = (appState.users || []).filter(u => u.id !== pid);
+            const nowSec = Math.floor(Date.now() / 1000);
+            appState.config.last_cloud_sync_ts = Math.max(appState.config.last_cloud_sync_ts || 0, nowSec);
+            saveLocalCache(nowSec);
             renderDashboard();
             closeProfileModal();
             await syncProfilesToCloud(appState.config.trainees);
@@ -1417,34 +1555,30 @@ def generate_html_dashboard(users_data, config):
             btn.innerText = '⏳ جاري التحديث السحابي...';
             showToast('🔄 جاري جلب أحدث البيانات السحابية وفحص حالة الاتصال...');
 
-            // 1. Fetch latest data.json from GitHub Pages cloud
+            // 1. Fetch latest data.json from GitHub Pages cloud & merge local cache so added profiles never disappear
             try {{
                 const r = await fetch('data.json?t=' + Date.now(), {{ cache: 'no-store' }});
                 if (r.ok) {{
                     const d = await r.json();
-                    if (d && d.users) appState = d;
+                    if (d && d.users) {{
+                        appState = applyLocalCacheToState(d);
+                        renderDashboard();
+                    }}
                 }}
             }} catch (e) {{}}
 
-            // 2. Merge any newer cloud-synced profile changes from ntfy.sh / localStorage
-            await loadCloudSyncedProfiles();
+            // 2. Merge any newer cloud-synced profile changes from ntfy.sh / localStorage and force live refresh
+            await loadCloudSyncedProfiles(true);
 
-            // 3. Also refresh live Codeforces & AtCoder status directly in browser
-            const trainees = appState.config.trainees || [];
-            for (let i = 0; i < trainees.length; i++) {{
-                const updatedU = await fetchBrowserLiveStatsForProfile(trainees[i]);
-                const idx = appState.users.findIndex(u => u.id === trainees[i].id);
-                if (idx >= 0) appState.users[idx] = updatedU;
-                else appState.users.push(updatedU);
-            }}
             appState.updated_at = formatArabicDateJS(Date.now()) + ' - ' + formatArabicTimeJS(Date.now()) + ' (توقيت مصر)';
+            saveLocalCache(appState.config.last_cloud_sync_ts);
             renderDashboard();
             showToast('✅ تم تحديث كافة المنصات سحابياً بنجاح!');
             btn.disabled = false;
             btn.innerText = '🔄 تحديث البيانات الآن';
         }}
 
-        // On Page Load: render immediately, then sync latest data.json & cloud profiles
+        // On Page Load: localStorage cache is already applied synchronously; render immediately, then sync data.json & cloud
         window.addEventListener('DOMContentLoaded', async () => {{
             renderDashboard();
             try {{
@@ -1452,12 +1586,12 @@ def generate_html_dashboard(users_data, config):
                 if (r.ok) {{
                     const d = await r.json();
                     if (d && d.updated_ms >= (appState.updated_ms || 0)) {{
-                        appState = d;
+                        appState = applyLocalCacheToState(d);
                         renderDashboard();
                     }}
                 }}
             }} catch (e) {{}}
-            await loadCloudSyncedProfiles();
+            await loadCloudSyncedProfiles(false);
         }});
 
         // 5-minute Countdown Timer

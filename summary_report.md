@@ -1,13 +1,17 @@
 # 📊 تقرير متابعة نشاط المتدربين الشامل 24/7 (VJudge + Codeforces + AtCoder + CSES)
-**تاريخ التحديث:** الثلاثاء 20 أكتوبر 2026 - 03:14 م (بتوقيت مصر - قاعدة الـ 30 دقيقة للاتصال المتواصل)
+**تاريخ التحديث:** الثلاثاء 20 أكتوبر 2026 - 03:37 م (بتوقيت مصر - قاعدة الـ 30 دقيقة للاتصال المتواصل)
 
 ## 1. ملخص البروفايلات والنشاط العام
 | المتدرب | الحالة | آخر ظهور | اليوم | آخر 7 أيام | آخر 30 يوماً | المنصات المربوطة |
 | :--- | :---: | :---: | :---: | :---: | :---: | :--- |
-| **إسراء عبد الحق (Israa)** | 🟢 متصل (VJudge, Codeforces) | منذ 28 دقيقة (02:46 م) | **1 AC** (29 دقيقة) | **2 AC** (44 دقيقة) | **5 AC** (2 س و 57 د) | VJudge: `Israa_abdelhaq` (219 AC), Codeforces: `Isabella_` (98 AC), AtCoder: `Isabella_` (1 AC) |
-| **عمر عوض صابر (Omar)** | ⚪ غير متصل | منذ 10 ساعة (04:15 ص) | **0 AC** (5 دقيقة) | **4 AC** (1 س و 35 د) | **18 AC** (7 س و 51 د) | VJudge: `Omar_Awad_Saber` (492 AC), Codeforces: `Lumino` (95 AC), AtCoder: `Lumino` (24 AC) |
+| **إسراء عبد الحق (Israa)** | ⚪ غير متصل | منذ 50 دقيقة (02:46 م) | **1 AC** (29 دقيقة) | **2 AC** (44 دقيقة) | **5 AC** (2 س و 57 د) | VJudge: `Israa_abdelhaq` (219 AC), Codeforces: `Isabella_` (98 AC), AtCoder: `Isabella_` (1 AC) |
+| **عمر عوض صابر (Omar)** | ⚪ غير متصل | منذ 11 ساعة (04:15 ص) | **0 AC** (5 دقيقة) | **4 AC** (1 س و 35 د) | **18 AC** (7 س و 51 د) | VJudge: `Omar_Awad_Saber` (492 AC), Codeforces: `Lumino` (95 AC), AtCoder: `Lumino` (24 AC) |
 | **فاطمة الفقي (Fatema)** | ⚪ غير متصل | منذ 1 يوم (18-10-2026 06:16 PM) | **0 AC** (0 دقيقة) | **13 AC** (3 س و 36 د) | **65 AC** (19 س و 10 د) | VJudge: `Fatemaelfiky1` (421 AC), Codeforces: `Zhraa_` (107 AC) |
 | **عمرو خالد (Amr)** | ⚪ غير متصل | منذ 14 يوم (05-10-2026 06:13 PM) | **0 AC** (0 دقيقة) | **0 AC** (0 دقيقة) | **14 AC** (8 س و 24 د) | VJudge: `Amr2Khaled` (294 AC), Codeforces: `SHANKS-A` (98 AC), AtCoder: `SHANKS_A` (1 AC) |
+| **Youssef Saleh** | ⚪ غير متصل | منذ 11 ساعة (04:15 ص) | **0 AC** (5 دقيقة) | **14 AC** (4 س و 31 د) | **83 AC** (32 س و 19 د) | VJudge: `Youssef_Saleh` (463 AC), Codeforces: `nerdev` (91 AC) |
+| **Abdelhamid** | ⚪ غير متصل | منذ 11 ساعة (04:28 ص) | **0 AC** (5 دقيقة) | **7 AC** (2 س و 12 د) | **37 AC** (12 س و 55 د) | VJudge: `abdelhamid1` (342 AC), Codeforces: `Abdelhamid_` (84 AC) |
+| **esraa** | ⚪ غير متصل | منذ 11 ساعة (04:16 ص) | **0 AC** (5 دقيقة) | **12 AC** (5 س و 22 د) | **43 AC** (21 س و 7 د) | VJudge: `esraa_emary` (298 AC), Codeforces: `esoo` (67 AC) |
+| **Mohab** | ⚪ غير متصل | منذ 5 ساعة (09:53 ص) | **0 AC** (5 دقيقة) | **0 AC** (5 دقيقة) | **20 AC** (5 س و 9 د) | VJudge: `Mo_hab` (374 AC), Codeforces: `Mo_hab` (146 AC) |
 
 ## 2. سجل الجلسات التفصيلي والمسائل بالوقت
 
@@ -86,3 +90,79 @@
 | الأربعاء 30 سبتمبر 2026 | 03:13 م | 03:43 م | 30 دقيقة (اتصال متواصل) | **VJudge**: 30 دقيقة (2 AC) | `03:43:26 م` [VJudge] LightOJ 1068 (**Accepted**)<br>`03:42:39 م` [VJudge] LightOJ 1068 (**Accepted**)<br>`03:40:09 م` [VJudge] LightOJ 1068 (**Time Limit Exceeded**)<br>`03:39:26 م` [VJudge] LightOJ 1068 (**Runtime Error**)<br>`03:33:22 م` [VJudge] LightOJ 1068 (**Wrong Answer**)<br>`03:32:21 م` [VJudge] LightOJ 1068 (**Wrong Answer**) |
 | الأربعاء 30 سبتمبر 2026 | 12:44 ص | 01:04 ص | 20 دقيقة (اتصال متواصل) | **VJudge**: 20 دقيقة (0 AC)<br>**Codeforces**: 20 دقيقة (0 AC) | `01:04:54 ص` [VJudge] CodeForces 628D (**Wrong answer on test 14**)<br>`12:59:28 ص` [VJudge] CodeForces 628D (**Wrong answer on test 14**) |
 | الثلاثاء 29 سبتمبر 2026 | 11:20 م | 11:35 م | 15 دقيقة (اتصال متواصل) | **VJudge**: 15 دقيقة (1 AC) | `11:35:46 م` [VJudge] SPOJ CPCRC1C (**Accepted**) |
+
+### 👤 Youssef Saleh
+| التاريخ | من | إلى | مدة النشاط | تفصيل المنصات | المسائل بالتوقيت |
+| :--- | :---: | :---: | :---: | :--- | :--- |
+| الثلاثاء 20 أكتوبر 2026 | 04:10 ص | 04:15 ص | 5 دقيقة (فتح وتصفح المنصة) | **Codeforces**: 5 دقيقة (0 AC) | `04:15:05 ص` [Codeforces] 👁️ فاتح كود فورسز (متصل أونلاين) (**Online**) |
+| السبت 17 أكتوبر 2026 | 07:33 م | 08:00 م | 27 دقيقة (اتصال متواصل) | **Codeforces**: 27 دقيقة (2 AC) | `08:00:36 م` [Codeforces] 2261B - What's the Capital of France? (**Accepted**)<br>`07:48:26 م` [Codeforces] 2261D1 - Come Be My Friend, Don't Be So Scared (Easy Version) (**Accepted**) |
+| السبت 17 أكتوبر 2026 | 06:34 م | 07:09 م | 35 دقيقة (اتصال متواصل) | **Codeforces**: 35 دقيقة (0 AC) | `07:09:49 م` [Codeforces] 2261D1 - Come Be My Friend, Don't Be So Scared (Easy Version) (**Wrong Answer**)<br>`06:49:28 م` [Codeforces] 2261D1 - Come Be My Friend, Don't Be So Scared (Easy Version) (**Wrong Answer**) |
+| السبت 17 أكتوبر 2026 | 06:02 م | 06:17 م | 15 دقيقة (اتصال متواصل) | **Codeforces**: 15 دقيقة (1 AC) | `06:17:20 م` [Codeforces] 2261C - I Know About a Million Things (**Accepted**) |
+| السبت 17 أكتوبر 2026 | 05:30 م | 05:45 م | 15 دقيقة (اتصال متواصل) | **Codeforces**: 15 دقيقة (1 AC) | `05:45:21 م` [Codeforces] 2261A - Hey, It's Me, Souvlakity (**Accepted**) |
+| الجمعة 16 أكتوبر 2026 | 02:46 م | 03:01 م | 15 دقيقة (اتصال متواصل) | **Codeforces**: 15 دقيقة (1 AC) | `03:01:12 م` [Codeforces] 1365D - Solve The Maze (**Accepted**) |
+| الجمعة 16 أكتوبر 2026 | 06:44 ص | 07:28 ص | 44 دقيقة (اتصال متواصل) | **Codeforces**: 44 دقيقة (2 AC) | `07:28:33 ص` [Codeforces] 580C - Kefa and Park (**Accepted**)<br>`07:01:44 ص` [Codeforces] 1675D - Vertical Paths (**Accepted**)<br>`06:59:23 ص` [Codeforces] 1675D - Vertical Paths (**Wrong Answer**) |
+| الجمعة 16 أكتوبر 2026 | 12:57 ص | 01:12 ص | 15 دقيقة (اتصال متواصل) | **Codeforces**: 15 دقيقة (1 AC) | `01:12:50 ص` [Codeforces] 1627C - Not Assigning (**Accepted**) |
+| الخميس 15 أكتوبر 2026 | 09:17 م | 09:32 م | 15 دقيقة (اتصال متواصل) | **Codeforces**: 15 دقيقة (1 AC) | `09:32:15 م` [Codeforces] 1843D - Apple Tree (**Accepted**) |
+| الخميس 15 أكتوبر 2026 | 08:40 م | 08:55 م | 15 دقيقة (اتصال متواصل) | **Codeforces**: 15 دقيقة (1 AC) | `08:55:16 م` [Codeforces] 1676G - White-Black Balanced Subtrees (**Accepted**) |
+| الخميس 15 أكتوبر 2026 | 06:49 م | 07:14 م | 25 دقيقة (اتصال متواصل) | **Codeforces**: 25 دقيقة (2 AC) | `07:14:27 م` [Codeforces] 500A - New Year Transportation (**Accepted**)<br>`07:04:42 م` [Codeforces] 500A - New Year Transportation (**Accepted**) |
+| الأربعاء 14 أكتوبر 2026 | 06:09 م | 06:24 م | 15 دقيقة (اتصال متواصل) | **Codeforces**: 15 دقيقة (1 AC) | `06:24:19 م` [Codeforces] 115A - Party (**Accepted**) |
+| الأربعاء 14 أكتوبر 2026 | 03:59 م | 04:14 م | 15 دقيقة (اتصال متواصل) | **Codeforces**: 15 دقيقة (1 AC) | `04:14:36 م` [Codeforces] 505B - Mr. Kitayuta's Colorful Graph (**Accepted**) |
+| الثلاثاء 13 أكتوبر 2026 | 07:00 م | 07:15 م | 15 دقيقة (اتصال متواصل) | **Codeforces**: 15 دقيقة (1 AC) | `07:15:38 م` [Codeforces] 842D - Vitya and Strange Lesson (**Accepted**) |
+| الإثنين 12 أكتوبر 2026 | 02:36 م | 02:51 م | 15 دقيقة (اتصال متواصل) | **Codeforces**: 15 دقيقة (1 AC) | `02:51:48 م` [Codeforces] 1416C - XOR Inverse (**Accepted**) |
+
+### 👤 Abdelhamid
+| التاريخ | من | إلى | مدة النشاط | تفصيل المنصات | المسائل بالتوقيت |
+| :--- | :---: | :---: | :---: | :--- | :--- |
+| الثلاثاء 20 أكتوبر 2026 | 04:23 ص | 04:28 ص | 5 دقيقة (فتح وتصفح المنصة) | **Codeforces**: 5 دقيقة (0 AC) | `04:28:53 ص` [Codeforces] 👁️ فاتح كود فورسز (متصل أونلاين) (**Online**) |
+| الخميس 15 أكتوبر 2026 | 09:10 م | 09:25 م | 15 دقيقة (اتصال متواصل) | **Codeforces**: 15 دقيقة (1 AC) | `09:25:47 م` [Codeforces] 1304C - Air Conditioner (**Accepted**) |
+| الخميس 15 أكتوبر 2026 | 05:04 م | 06:02 م | 58 دقيقة (اتصال متواصل) | **Codeforces**: 58 دقيقة (2 AC) | `06:02:48 م` [Codeforces] 1093D - Beautiful Graph (**Accepted**)<br>`05:59:41 م` [Codeforces] 1093D - Beautiful Graph (**Wrong Answer**)<br>`05:57:39 م` [Codeforces] 1093D - Beautiful Graph (**Wrong Answer**)<br>`05:47:56 م` [Codeforces] 1093D - Beautiful Graph (**Wrong Answer**)<br>`05:46:17 م` [Codeforces] 1093D - Beautiful Graph (**Wrong Answer**)<br>`05:19:38 م` [Codeforces] 2276D - Caveman (**Accepted**) |
+| الأربعاء 14 أكتوبر 2026 | 04:36 م | 05:30 م | 54 دقيقة (اتصال متواصل) | **Codeforces**: 54 دقيقة (4 AC) | `05:30:15 م` [Codeforces] 1227D2 - Optimal Subsequences (Hard Version) (**Accepted**)<br>`05:29:59 م` [Codeforces] 1227D1 - Optimal Subsequences (Easy Version) (**Accepted**)<br>`05:03:21 م` [Codeforces] 1220C - Substring Game in the Lesson (**Accepted**)<br>`04:51:24 م` [Codeforces] 1883F - You Are So Beautiful (**Accepted**) |
+| الأحد 11 أكتوبر 2026 | 10:05 م | 10:29 م | 24 دقيقة (اتصال متواصل) | **VJudge**: 24 دقيقة (2 AC)<br>**Codeforces**: 24 دقيقة (2 AC) | `10:29:09 م` [VJudge] CodeForces 1490D (**Accepted**)<br>`10:20:09 م` [VJudge] CodeForces 579A (**Accepted**) |
+| الجمعة 9 أكتوبر 2026 | 06:20 م | 06:35 م | 15 دقيقة (اتصال متواصل) | **Codeforces**: 15 دقيقة (0 AC) | `06:35:09 م` [Codeforces] 100971A - Treasure Island (**Wrong Answer**) |
+| الخميس 8 أكتوبر 2026 | 09:56 م | 10:11 م | 15 دقيقة (اتصال متواصل) | **Codeforces**: 15 دقيقة (0 AC) | `10:11:58 م` [Codeforces] 2275E - Repentance Is Already on the Way (**Wrong Answer**) |
+| الخميس 8 أكتوبر 2026 | 09:07 م | 09:30 م | 23 دقيقة (اتصال متواصل) | **Codeforces**: 23 دقيقة (1 AC) | `09:30:14 م` [Codeforces] 2275D - Precision Alignment (**Accepted**)<br>`09:25:58 م` [Codeforces] 2275D - Precision Alignment (**Wrong Answer**)<br>`09:24:24 م` [Codeforces] 2275D - Precision Alignment (**Wrong Answer**)<br>`09:22:38 م` [Codeforces] 2275D - Precision Alignment (**Wrong Answer**) |
+| الخميس 8 أكتوبر 2026 | 06:02 م | 06:38 م | 36 دقيقة (اتصال متواصل) | **Codeforces**: 36 دقيقة (3 AC) | `06:38:40 م` [Codeforces] 2275C - Unrequited Love (**Accepted**)<br>`06:25:41 م` [Codeforces] 2275B - Did Not Go to Print (**Accepted**)<br>`06:17:30 م` [Codeforces] 2275A - In Search of Convenience (**Accepted**) |
+| الإثنين 5 أكتوبر 2026 | 05:57 م | 06:12 م | 15 دقيقة (اتصال متواصل) | **Codeforces**: 15 دقيقة (1 AC) | `06:12:27 م` [Codeforces] 1826A - Trust Nobody (**Accepted**) |
+| الإثنين 5 أكتوبر 2026 | 05:06 م | 05:21 م | 15 دقيقة (اتصال متواصل) | **Codeforces**: 15 دقيقة (1 AC) | `05:21:56 م` [Codeforces] 246B - Increase and Decrease (**Accepted**) |
+| الأحد 4 أكتوبر 2026 | 04:36 م | 06:33 م | 1 س و 57 د (اتصال متواصل) | **Codeforces**: 1 س و 57 د (6 AC) | `06:33:20 م` [Codeforces] 765C - Table Tennis Game 2 (**Accepted**)<br>`06:29:52 م` [Codeforces] 765C - Table Tennis Game 2 (**Wrong Answer**)<br>`06:24:55 م` [Codeforces] 2134C - Even Larger (**Accepted**)<br>`06:00:49 م` [Codeforces] 151B - Phone Numbers (**Accepted**)<br>`05:59:13 م` [Codeforces] 151B - Phone Numbers (**Wrong Answer**)<br>`05:31:25 م` [Codeforces] 1605B - Reverse Sort (**Accepted**) |
+| الأربعاء 30 سبتمبر 2026 | 05:33 م | 06:17 م | 44 دقيقة (اتصال متواصل) | **Codeforces**: 44 دقيقة (2 AC) | `06:17:33 م` [Codeforces] 1946C - Tree Cutting (**Accepted**)<br>`05:51:22 م` [Codeforces] 1946B - Maximum Sum (**Accepted**)<br>`05:48:41 م` [Codeforces] 1946B - Maximum Sum (**Wrong Answer**) |
+| الثلاثاء 29 سبتمبر 2026 | 03:54 م | 04:09 م | 15 دقيقة (اتصال متواصل) | **Codeforces**: 15 دقيقة (1 AC) | `04:09:53 م` [Codeforces] 103A - Testing Pants for Sadness (**Accepted**) |
+| الإثنين 28 سبتمبر 2026 | 01:35 م | 01:51 م | 17 دقيقة (اتصال متواصل) | **Codeforces**: 17 دقيقة (1 AC) | `01:51:34 م` [Codeforces] 276C - Little Girl and Maximum Sum (**Accepted**)<br>`01:50:00 م` [Codeforces] 276C - Little Girl and Maximum Sum (**Runtime Error**) |
+
+### 👤 esraa
+| التاريخ | من | إلى | مدة النشاط | تفصيل المنصات | المسائل بالتوقيت |
+| :--- | :---: | :---: | :---: | :--- | :--- |
+| الثلاثاء 20 أكتوبر 2026 | 04:11 ص | 04:16 ص | 5 دقيقة (فتح وتصفح المنصة) | **Codeforces**: 5 دقيقة (0 AC) | `04:16:50 ص` [Codeforces] 👁️ فاتح كود فورسز (متصل أونلاين) (**Online**) |
+| الأحد 18 أكتوبر 2026 | 04:13 م | 04:58 م | 46 دقيقة (اتصال متواصل) | **VJudge**: 26 دقيقة (2 AC)<br>**Codeforces**: 46 دقيقة (3 AC) | `04:58:34 م` [VJudge] CodeForces 501B (**Accepted**)<br>`04:48:19 م` [VJudge] CodeForces 501B (**Wrong answer on test 1**)<br>`04:47:57 م` [VJudge] CodeForces 204B (**Accepted**)<br>`04:28:04 م` [Codeforces] 1468C - Berpizza (**Accepted**) |
+| الأحد 18 أكتوبر 2026 | 10:04 ص | 10:19 ص | 15 دقيقة (اتصال متواصل) | **Codeforces**: 15 دقيقة (1 AC) | `10:19:31 ص` [Codeforces] 1468C - Berpizza (**Accepted**) |
+| الأحد 18 أكتوبر 2026 | 06:52 ص | 07:07 ص | 15 دقيقة (اتصال متواصل) | **VJudge**: 15 دقيقة (1 AC)<br>**Codeforces**: 15 دقيقة (1 AC) | `07:07:27 ص` [VJudge] CodeForces 204B (**Accepted**) |
+| الأحد 18 أكتوبر 2026 | 05:45 ص | 06:22 ص | 37 دقيقة (اتصال متواصل) | **VJudge**: 15 دقيقة (0 AC)<br>**Codeforces**: 37 دقيقة (0 AC) | `06:22:38 ص` [Codeforces] 501B - Misha and Changing Handles (**Wrong Answer**)<br>`06:00:42 ص` [VJudge] CodeForces 501B (**Wrong answer on test 1**) |
+| الأحد 18 أكتوبر 2026 | 05:09 ص | 05:24 ص | 15 دقيقة (اتصال متواصل) | **Codeforces**: 15 دقيقة (1 AC) | `05:24:31 ص` [Codeforces] 1468C - Berpizza (**Accepted**) |
+| الأحد 18 أكتوبر 2026 | 04:34 ص | 04:49 ص | 15 دقيقة (اتصال متواصل) | **Codeforces**: 15 دقيقة (1 AC) | `04:49:06 ص` [Codeforces] 1468C - Berpizza (**Accepted**) |
+| السبت 17 أكتوبر 2026 | 03:13 ص | 04:37 ص | 1 س و 24 د (اتصال متواصل) | **Codeforces**: 1 س و 24 د (4 AC) | `04:37:23 ص` [Codeforces] 1453A - Cancel the Trains (**Accepted**)<br>`04:24:42 ص` [Codeforces] 572B - Order Book (**Accepted**)<br>`03:56:26 ص` [Codeforces] 572B - Order Book (**Wrong Answer**)<br>`03:41:06 ص` [Codeforces] 615A - Bulbs (**Accepted**)<br>`03:37:14 ص` [Codeforces] 615A - Bulbs (**Wrong Answer**)<br>`03:28:27 ص` [Codeforces] 4C - Registration System (**Accepted**) |
+| الجمعة 16 أكتوبر 2026 | 05:45 م | 06:00 م | 15 دقيقة (اتصال متواصل) | **Codeforces**: 15 دقيقة (1 AC) | `06:00:16 م` [Codeforces] 443A - Anton and Letters (**Accepted**) |
+| الجمعة 16 أكتوبر 2026 | 05:14 م | 05:29 م | 15 دقيقة (اتصال متواصل) | **Codeforces**: 15 دقيقة (1 AC) | `05:29:35 م` [Codeforces] 1238B - Kill `Em All (**Accepted**) |
+| الجمعة 16 أكتوبر 2026 | 03:24 م | 04:24 م | 1 ساعة (اتصال متواصل) | **Codeforces**: 1 ساعة (3 AC) | `04:24:39 م` [Codeforces] 637B - Chat Order (**Accepted**)<br>`04:08:15 م` [Codeforces] 474A - Keyboard (**Accepted**)<br>`03:39:48 م` [Codeforces] 236A - Boy or Girl (**Accepted**) |
+| الأحد 11 أكتوبر 2026 | 07:07 ص | 07:28 ص | 21 دقيقة (اتصال متواصل) | **Codeforces**: 21 دقيقة (3 AC) | `07:28:37 ص` [Codeforces] 102961X - Sum of Three Values (**Accepted**)<br>`07:27:22 ص` [Codeforces] 102961Y - Sum of Four Values (**Accepted**)<br>`07:22:42 ص` [Codeforces] 797B - Odd sum (**Accepted**) |
+| السبت 10 أكتوبر 2026 | 07:59 م | 08:14 م | 15 دقيقة (اتصال متواصل) | **Codeforces**: 15 دقيقة (0 AC) | `08:14:21 م` [Codeforces] 797B - Odd sum (**Wrong Answer**) |
+| الجمعة 9 أكتوبر 2026 | 06:38 م | 07:21 م | 43 دقيقة (اتصال متواصل) | **Codeforces**: 43 دقيقة (2 AC) | `07:21:27 م` [Codeforces] 2242C - Unstable Elements (**Accepted**)<br>`07:09:19 م` [Codeforces] 2242C - Unstable Elements (**Accepted**)<br>`06:53:04 م` [Codeforces] 2242C - Unstable Elements (**Wrong Answer**) |
+| الجمعة 9 أكتوبر 2026 | 01:25 م | 02:30 م | 1 س و 4 د (اتصال متواصل) | **Codeforces**: 1 س و 4 د (0 AC) | `02:30:09 م` [Codeforces] 2242C - Unstable Elements (**Wrong Answer**)<br>`02:28:34 م` [Codeforces] 2242C - Unstable Elements (**Wrong Answer**)<br>`02:17:07 م` [Codeforces] 2242C - Unstable Elements (**Wrong Answer**)<br>`02:14:21 م` [Codeforces] 2242C - Unstable Elements (**Wrong Answer**)<br>`02:09:39 م` [Codeforces] 2242C - Unstable Elements (**Wrong Answer**)<br>`01:48:52 م` [Codeforces] 2242C - Unstable Elements (**Wrong Answer**) |
+
+### 👤 Mohab
+| التاريخ | من | إلى | مدة النشاط | تفصيل المنصات | المسائل بالتوقيت |
+| :--- | :---: | :---: | :---: | :--- | :--- |
+| الثلاثاء 20 أكتوبر 2026 | 09:48 ص | 09:53 ص | 5 دقيقة (فتح وتصفح المنصة) | **Codeforces**: 5 دقيقة (0 AC) | `09:53:18 ص` [Codeforces] 👁️ فاتح كود فورسز (متصل أونلاين) (**Online**) |
+| الأحد 11 أكتوبر 2026 | 10:03 م | 10:47 م | 44 دقيقة (اتصال متواصل) | **VJudge**: 32 دقيقة (3 AC)<br>**Codeforces**: 43 دقيقة (3 AC) | `10:47:17 م` [Codeforces] 1490D - Permutation Transformation (**Accepted**)<br>`10:40:06 م` [Codeforces] 1490D - Permutation Transformation (**Accepted**)<br>`10:35:05 م` [VJudge] CodeForces 1490D (**Accepted**)<br>`10:19:42 م` [VJudge] CodeForces 579A (**Accepted**)<br>`10:18:29 م` [VJudge] CodeForces 579A (**Accepted**) |
+| السبت 10 أكتوبر 2026 | 07:44 م | 07:59 م | 15 دقيقة (اتصال متواصل) | **Codeforces**: 15 دقيقة (1 AC) | `07:59:48 م` [Codeforces] 2271C - XOR Problem (**Accepted**) |
+| السبت 10 أكتوبر 2026 | 05:57 م | 06:32 م | 35 دقيقة (اتصال متواصل) | **Codeforces**: 35 دقيقة (2 AC) | `06:32:18 م` [Codeforces] 2271B - MEX Game (**Accepted**)<br>`06:12:35 م` [Codeforces] 2271A - Robot Odd Moves (**Accepted**) |
+| الأربعاء 7 أكتوبر 2026 | 05:35 م | 06:18 م | 43 دقيقة (اتصال متواصل) | **Codeforces**: 43 دقيقة (3 AC) | `06:18:21 م` [Codeforces] 2275C - Unrequited Love (**Accepted**)<br>`06:06:18 م` [Codeforces] 2275B - Did Not Go to Print (**Accepted**)<br>`06:04:27 م` [Codeforces] 2275B - Did Not Go to Print (**Wrong Answer**)<br>`05:50:15 م` [Codeforces] 2275A - In Search of Convenience (**Accepted**) |
+| الإثنين 5 أكتوبر 2026 | 02:46 ص | 03:01 ص | 15 دقيقة (اتصال متواصل) | **Codeforces**: 15 دقيقة (1 AC) | `03:01:00 ص` [Codeforces] 1748C - Zero-Sum Prefixes (**Accepted**) |
+| الجمعة 2 أكتوبر 2026 | 12:36 ص | 12:51 ص | 15 دقيقة (اتصال متواصل) | **VJudge**: 15 دقيقة (1 AC)<br>**Codeforces**: 15 دقيقة (1 AC) | `12:51:37 ص` [VJudge] CodeForces 1175A (**Accepted**) |
+| الثلاثاء 29 سبتمبر 2026 | 04:57 م | 05:12 م | 15 دقيقة (اتصال متواصل) | **Codeforces**: 15 دقيقة (1 AC) | `05:12:43 م` [Codeforces] 2269A - SauSaGe Bank (**Accepted**) |
+| الجمعة 25 سبتمبر 2026 | 06:58 م | 07:13 م | 15 دقيقة (اتصال متواصل) | **Codeforces**: 15 دقيقة (1 AC) | `07:13:37 م` [Codeforces] 2267C - GCD Treasury (**Accepted**) |
+| الجمعة 25 سبتمبر 2026 | 06:16 م | 06:31 م | 15 دقيقة (اتصال متواصل) | **Codeforces**: 15 دقيقة (1 AC) | `06:31:40 م` [Codeforces] 2267D - Backrooms Hill (**Accepted**) |
+| الجمعة 25 سبتمبر 2026 | 05:24 م | 06:00 م | 36 دقيقة (اتصال متواصل) | **Codeforces**: 36 دقيقة (2 AC) | `06:00:01 م` [Codeforces] 2267B - Fashionable Array (**Accepted**)<br>`05:39:31 م` [Codeforces] 2267A - Turn Into a Palindrome (**Accepted**) |
+| الثلاثاء 22 سبتمبر 2026 | 01:49 م | 02:04 م | 15 دقيقة (اتصال متواصل) | **Codeforces**: 15 دقيقة (1 AC) | `02:04:09 م` [Codeforces] 2266D - Falling Concrete (**Accepted**) |
+| الإثنين 21 سبتمبر 2026 | 06:32 م | 06:47 م | 15 دقيقة (اتصال متواصل) | **Codeforces**: 15 دقيقة (1 AC) | `06:47:46 م` [Codeforces] 2266E - Prime Destruction (**Accepted**) |
+| الإثنين 21 سبتمبر 2026 | 05:23 م | 05:49 م | 26 دقيقة (اتصال متواصل) | **Codeforces**: 26 دقيقة (3 AC) | `05:49:30 م` [Codeforces] 2266C - AND, OR, Sort! (**Accepted**)<br>`05:41:31 م` [Codeforces] 2266B - Three Piles (**Accepted**)<br>`05:38:52 م` [Codeforces] 2266A - Good Contest (**Accepted**) |
+| الأحد 20 سبتمبر 2026 | 03:07 م | 03:22 م | 15 دقيقة (اتصال متواصل) | **Codeforces**: 15 دقيقة (1 AC) | `03:22:13 م` [Codeforces] 1352E - Special Elements (**Accepted**) |
