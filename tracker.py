@@ -1856,6 +1856,49 @@ def generate_html_dashboard(users_data, config):
             return userObj;
         }}
 
+        // Clean up legacy bloated localStorage keys (>2.5MB) that caused QuotaExceededError and stuck 4:10 timestamps
+        (function cleanupLegacyStorage() {{
+            try {{
+                let rescuedTrainees = null;
+                let rescuedTs = 0;
+                const rawV3 = localStorage.getItem('vj_tracker_cloud_state_v3');
+                if (rawV3) {{
+                    try {{
+                        const p3 = JSON.parse(rawV3);
+                        let ts3 = p3.ts || 0;
+                        if (ts3 > 100000000000) ts3 = Math.floor(ts3 / 1000);
+                        if (Array.isArray(p3.trainees) && p3.trainees.length > 0) {{
+                            rescuedTrainees = p3.trainees;
+                            rescuedTs = ts3;
+                        }}
+                    }} catch (e) {{}}
+                    localStorage.removeItem('vj_tracker_cloud_state_v3');
+                }}
+                const rawV2 = localStorage.getItem('vj_tracker_cloud_profiles_v2');
+                if (rawV2) {{
+                    try {{
+                        const p2 = JSON.parse(rawV2);
+                        let ts2 = p2.ts || 0;
+                        if (ts2 > 100000000000) ts2 = Math.floor(ts2 / 1000);
+                        if (ts2 > rescuedTs && Array.isArray(p2.trainees) && p2.trainees.length > 0) {{
+                            rescuedTrainees = p2.trainees;
+                            rescuedTs = ts2;
+                        }}
+                    }} catch (e) {{}}
+                    localStorage.removeItem('vj_tracker_cloud_profiles_v2');
+                }}
+                localStorage.removeItem('vj_tracker_cloud_profiles_v1');
+                if (rescuedTrainees && !localStorage.getItem('vj_tracker_meta_v4')) {{
+                    localStorage.setItem('vj_tracker_meta_v4', JSON.stringify({{
+                        ts: rescuedTs,
+                        updated_ms: 0,
+                        updated_at: '',
+                        trainees: rescuedTrainees
+                    }}));
+                }}
+            }} catch (e) {{}}
+        }})();
+
         function stampCurrentUpdateTime() {{
             const nowMs = Date.now();
             appState.updated_ms = nowMs;
@@ -1866,22 +1909,28 @@ def generate_html_dashboard(users_data, config):
             try {{
                 let nowSec = customTs || (appState.config && appState.config.last_cloud_sync_ts) || Math.floor(Date.now() / 1000);
                 if (nowSec > 100000000000) nowSec = Math.floor(nowSec / 1000);
-                const usersById = {{}};
-                (appState.users || []).forEach(u => {{
-                    if (u && u.id) usersById[u.id] = u;
-                }});
                 const trainees = (appState.config && appState.config.trainees) || [];
-                localStorage.setItem('vj_tracker_cloud_state_v3', JSON.stringify({{
+                // 1. Always save lightweight metadata (~2KB) FIRST so it never hits QuotaExceededError
+                localStorage.setItem('vj_tracker_meta_v4', JSON.stringify({{
                     ts: nowSec,
                     updated_ms: appState.updated_ms || Date.now(),
                     updated_at: appState.updated_at || '',
-                    trainees: trainees,
-                    usersById: usersById
-                }}));
-                localStorage.setItem('vj_tracker_cloud_profiles_v2', JSON.stringify({{
-                    ts: nowSec,
                     trainees: trainees
                 }}));
+                // 2. Save compact user stats (~120KB total) with recent 20 sessions per user
+                const compactUsersById = {{}};
+                (appState.users || []).forEach(u => {{
+                    if (u && u.id) {{
+                        compactUsersById[u.id] = {{
+                            ...u,
+                            sessions: (u.sessions || []).slice(0, 20).map(s => ({{
+                                ...s,
+                                timeline: (s.timeline || []).slice(0, 15)
+                            }}))
+                        }};
+                    }}
+                }});
+                localStorage.setItem('vj_tracker_users_v4', JSON.stringify(compactUsersById));
             }} catch (e) {{
                 console.warn('saveLocalCache warning:', e);
             }}
@@ -1890,32 +1939,23 @@ def generate_html_dashboard(users_data, config):
         function getLocalCache() {{
             let best = {{ ts: 0, updated_ms: 0, updated_at: '', trainees: null, usersById: {{}} }};
             try {{
-                const rawV3 = localStorage.getItem('vj_tracker_cloud_state_v3');
-                if (rawV3) {{
-                    const p3 = JSON.parse(rawV3);
-                    let ts3 = p3.ts || 0;
-                    if (ts3 > 100000000000) ts3 = Math.floor(ts3 / 1000);
-                    if (Array.isArray(p3.trainees) && p3.trainees.length > 0) {{
-                        best = {{
-                            ts: ts3,
-                            updated_ms: p3.updated_ms || 0,
-                            updated_at: p3.updated_at || '',
-                            trainees: p3.trainees,
-                            usersById: p3.usersById || {{}}
-                        }};
+                const rawMeta = localStorage.getItem('vj_tracker_meta_v4');
+                if (rawMeta) {{
+                    const m = JSON.parse(rawMeta);
+                    let ts = m.ts || 0;
+                    if (ts > 100000000000) ts = Math.floor(ts / 1000);
+                    if (Array.isArray(m.trainees) && m.trainees.length > 0) {{
+                        best.ts = ts;
+                        best.updated_ms = m.updated_ms || 0;
+                        best.updated_at = m.updated_at || '';
+                        best.trainees = m.trainees;
                     }}
                 }}
             }} catch (e) {{}}
             try {{
-                const rawV2 = localStorage.getItem('vj_tracker_cloud_profiles_v2');
-                if (rawV2) {{
-                    const p2 = JSON.parse(rawV2);
-                    let ts2 = p2.ts || 0;
-                    if (ts2 > 100000000000) ts2 = Math.floor(ts2 / 1000);
-                    if (ts2 > best.ts && Array.isArray(p2.trainees) && p2.trainees.length > 0) {{
-                        best.ts = ts2;
-                        best.trainees = p2.trainees;
-                    }}
+                const rawUsers = localStorage.getItem('vj_tracker_users_v4');
+                if (rawUsers) {{
+                    best.usersById = JSON.parse(rawUsers) || {{}};
                 }}
             }} catch (e) {{}}
             return best;

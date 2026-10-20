@@ -843,6 +843,6 @@ def analyze_trainee_profile(profile, pings_history, session_gap_min=30, coding_b
         "month": comb_month,
         "peak_hours_str": peak_hours_str,
         "platforms": per_platform_summary,
-        "sessions": unified_sessions
+        "sessions": unified_sessions[:45]
     }
 
