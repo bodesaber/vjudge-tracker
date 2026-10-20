@@ -1,6 +1,6 @@
 {
-  "updated_at": "الثلاثاء 20 أكتوبر 2026 - 03:10 م (توقيت مصر)",
-  "updated_ms": 1792498201338,
+  "updated_at": "الثلاثاء 20 أكتوبر 2026 - 03:13 م (توقيت مصر)",
+  "updated_ms": 1792498394057,
   "config": {
     "trainees": [
       {
@@ -42,12 +42,22 @@
           "atcoder": "SHANKS_A",
           "cses": ""
         }
+      },
+      {
+        "id": "user_1792498245376",
+        "name": "Youssef Saleh",
+        "handles": {
+          "vjudge": "Youssef_Saleh",
+          "codeforces": "nerdev",
+          "atcoder": "",
+          "cses": ""
+        }
       }
     ],
     "session_gap_minutes": 30,
     "coding_buffer_minutes": 15,
     "cloud_sync_topic": "vj_tracker_bodesaber_sync_v2",
-    "last_cloud_sync_ts": 1792497321
+    "last_cloud_sync_ts": 1792498246
   },
   "users": [
     {
@@ -65,7 +75,7 @@
         "VJudge",
         "Codeforces"
       ],
-      "last_seen_str": "منذ 23 دقيقة (02:46 م)",
+      "last_seen_str": "منذ 26 دقيقة (02:46 م)",
       "last_seen_ms": 1792496790000,
       "last_problem_str": "[VJudge] CodeForces 2139C (Accepted)",
       "all_time_ac": 299,
@@ -98,7 +108,7 @@
           "url": "https://vjudge.net/user/Israa_abdelhaq",
           "extra": "",
           "is_online": true,
-          "last_seen_str": "منذ 23 د",
+          "last_seen_str": "منذ 26 د",
           "last_seen_ms": 1792496788000,
           "acAll": 219,
           "attAll": 232,
@@ -127,7 +137,7 @@
           "url": "https://codeforces.com/profile/Isabella_",
           "extra": "Rating: 1204 (pupil)",
           "is_online": true,
-          "last_seen_str": "منذ 23 د",
+          "last_seen_str": "منذ 26 د",
           "last_seen_ms": 1792496790000,
           "acAll": 98,
           "attAll": 200,
@@ -24132,6 +24142,5082 @@
               "probNum": "242C",
               "problemName": "242C - King's Path",
               "problemUrl": "https://codeforces.com/contest/242/problem/C",
+              "status": "Accepted",
+              "is_ac": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "user_1792498245376",
+      "name": "Youssef Saleh",
+      "handles": {
+        "vjudge": "Youssef_Saleh",
+        "codeforces": "nerdev",
+        "atcoder": "",
+        "cses": ""
+      },
+      "avatar": "https://cn.cravatar.com/avatar/4a47b3b2c8db6ecbdbef91d74c317beb?d=retro",
+      "is_active_now": false,
+      "active_platforms_now": [],
+      "last_seen_str": "منذ 10 ساعة (04:15 ص)",
+      "last_seen_ms": 1792458905000,
+      "last_problem_str": "[Codeforces] 👁️ فاتح كود فورسز (متصل أونلاين) (Online)",
+      "all_time_ac": 537,
+      "today": {
+        "solved": 0,
+        "subs": 0,
+        "time_minutes": 5,
+        "time_str": "5 دقيقة",
+        "sessions": 1
+      },
+      "week": {
+        "solved": 14,
+        "subs": 18,
+        "time_minutes": 271,
+        "time_str": "4 س و 31 د",
+        "sessions": 14
+      },
+      "month": {
+        "solved": 83,
+        "subs": 174,
+        "time_minutes": 1939,
+        "time_str": "32 س و 19 د",
+        "sessions": 81
+      },
+      "peak_hours_str": "الذروة حوالي 01:00 م (ظهراً وعصراً (12ظ-6م))",
+      "platforms": {
+        "VJudge": {
+          "platform": "VJudge",
+          "handle": "Youssef_Saleh",
+          "url": "https://vjudge.net/user/Youssef_Saleh",
+          "extra": "",
+          "is_online": false,
+          "last_seen_str": "منذ 8 يوم",
+          "last_seen_ms": 1791748344000,
+          "acAll": 463,
+          "attAll": 480,
+          "today": {
+            "solved": 0,
+            "subs": 0,
+            "time_str": "0 دقيقة",
+            "time_minutes": 0
+          },
+          "week": {
+            "solved": 0,
+            "subs": 0,
+            "time_str": "0 دقيقة",
+            "time_minutes": 0
+          },
+          "month": {
+            "solved": 20,
+            "subs": 64,
+            "time_str": "9 س و 7 د",
+            "time_minutes": 547
+          }
+        },
+        "Codeforces": {
+          "platform": "Codeforces",
+          "handle": "nerdev",
+          "url": "https://codeforces.com/profile/nerdev",
+          "extra": "Rating: 1303 (pupil)",
+          "is_online": false,
+          "last_seen_str": "منذ 10 س",
+          "last_seen_ms": 1792458905000,
+          "acAll": 91,
+          "attAll": 200,
+          "today": {
+            "solved": 0,
+            "subs": 0,
+            "time_str": "5 دقيقة",
+            "time_minutes": 5
+          },
+          "week": {
+            "solved": 14,
+            "subs": 18,
+            "time_str": "4 س و 31 د",
+            "time_minutes": 271
+          },
+          "month": {
+            "solved": 79,
+            "subs": 184,
+            "time_str": "31 س و 15 د",
+            "time_minutes": 1875
+          }
+        }
+      },
+      "sessions": [
+        {
+          "date_str": "الثلاثاء 20 أكتوبر 2026",
+          "start_str": "04:10 ص",
+          "end_str": "04:15 ص",
+          "start_ms": 1792458605000,
+          "end_ms": 1792458905000,
+          "duration_minutes": 5,
+          "duration_str": "5 دقيقة (فتح وتصفح المنصة)",
+          "submissions_count": 0,
+          "accepted_count": 0,
+          "pings_count": 1,
+          "problems": [],
+          "platform_breakdown": {
+            "Codeforces": {
+              "duration_minutes": 5,
+              "duration_str": "5 دقيقة",
+              "subs_count": 0,
+              "ac_count": 0,
+              "pings_count": 1
+            }
+          },
+          "timeline": [
+            {
+              "time_str": "04:15:05 ص",
+              "platform": "Codeforces",
+              "type": "online_ping",
+              "probNum": "تصفح المنصة",
+              "problemName": "👁️ فاتح كود فورسز (متصل أونلاين)",
+              "problemUrl": "https://codeforces.com/profile/nerdev",
+              "status": "Online",
+              "is_ac": false
+            }
+          ]
+        },
+        {
+          "date_str": "السبت 17 أكتوبر 2026",
+          "start_str": "07:33 م",
+          "end_str": "08:00 م",
+          "start_ms": 1792254806000,
+          "end_ms": 1792256436000,
+          "duration_minutes": 27,
+          "duration_str": "27 دقيقة (اتصال متواصل)",
+          "submissions_count": 2,
+          "accepted_count": 2,
+          "pings_count": 0,
+          "problems": [
+            "2261D1",
+            "2261B"
+          ],
+          "platform_breakdown": {
+            "Codeforces": {
+              "duration_minutes": 27,
+              "duration_str": "27 دقيقة",
+              "subs_count": 2,
+              "ac_count": 2,
+              "pings_count": 0
+            }
+          },
+          "timeline": [
+            {
+              "time_str": "08:00:36 م",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "2261B",
+              "problemName": "2261B - What's the Capital of France?",
+              "problemUrl": "https://codeforces.com/contest/2261/problem/B",
+              "status": "Accepted",
+              "is_ac": true
+            },
+            {
+              "time_str": "07:48:26 م",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "2261D1",
+              "problemName": "2261D1 - Come Be My Friend, Don't Be So Scared (Easy Version)",
+              "problemUrl": "https://codeforces.com/contest/2261/problem/D1",
+              "status": "Accepted",
+              "is_ac": true
+            }
+          ]
+        },
+        {
+          "date_str": "السبت 17 أكتوبر 2026",
+          "start_str": "06:34 م",
+          "end_str": "07:09 م",
+          "start_ms": 1792251268000,
+          "end_ms": 1792253389000,
+          "duration_minutes": 35,
+          "duration_str": "35 دقيقة (اتصال متواصل)",
+          "submissions_count": 2,
+          "accepted_count": 0,
+          "pings_count": 0,
+          "problems": [
+            "2261D1"
+          ],
+          "platform_breakdown": {
+            "Codeforces": {
+              "duration_minutes": 35,
+              "duration_str": "35 دقيقة",
+              "subs_count": 2,
+              "ac_count": 0,
+              "pings_count": 0
+            }
+          },
+          "timeline": [
+            {
+              "time_str": "07:09:49 م",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "2261D1",
+              "problemName": "2261D1 - Come Be My Friend, Don't Be So Scared (Easy Version)",
+              "problemUrl": "https://codeforces.com/contest/2261/problem/D1",
+              "status": "Wrong Answer",
+              "is_ac": false
+            },
+            {
+              "time_str": "06:49:28 م",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "2261D1",
+              "problemName": "2261D1 - Come Be My Friend, Don't Be So Scared (Easy Version)",
+              "problemUrl": "https://codeforces.com/contest/2261/problem/D1",
+              "status": "Wrong Answer",
+              "is_ac": false
+            }
+          ]
+        },
+        {
+          "date_str": "السبت 17 أكتوبر 2026",
+          "start_str": "06:02 م",
+          "end_str": "06:17 م",
+          "start_ms": 1792249340000,
+          "end_ms": 1792250240000,
+          "duration_minutes": 15,
+          "duration_str": "15 دقيقة (اتصال متواصل)",
+          "submissions_count": 1,
+          "accepted_count": 1,
+          "pings_count": 0,
+          "problems": [
+            "2261C"
+          ],
+          "platform_breakdown": {
+            "Codeforces": {
+              "duration_minutes": 15,
+              "duration_str": "15 دقيقة",
+              "subs_count": 1,
+              "ac_count": 1,
+              "pings_count": 0
+            }
+          },
+          "timeline": [
+            {
+              "time_str": "06:17:20 م",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "2261C",
+              "problemName": "2261C - I Know About a Million Things",
+              "problemUrl": "https://codeforces.com/contest/2261/problem/C",
+              "status": "Accepted",
+              "is_ac": true
+            }
+          ]
+        },
+        {
+          "date_str": "السبت 17 أكتوبر 2026",
+          "start_str": "05:30 م",
+          "end_str": "05:45 م",
+          "start_ms": 1792247421000,
+          "end_ms": 1792248321000,
+          "duration_minutes": 15,
+          "duration_str": "15 دقيقة (اتصال متواصل)",
+          "submissions_count": 1,
+          "accepted_count": 1,
+          "pings_count": 0,
+          "problems": [
+            "2261A"
+          ],
+          "platform_breakdown": {
+            "Codeforces": {
+              "duration_minutes": 15,
+              "duration_str": "15 دقيقة",
+              "subs_count": 1,
+              "ac_count": 1,
+              "pings_count": 0
+            }
+          },
+          "timeline": [
+            {
+              "time_str": "05:45:21 م",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "2261A",
+              "problemName": "2261A - Hey, It's Me, Souvlakity",
+              "problemUrl": "https://codeforces.com/contest/2261/problem/A",
+              "status": "Accepted",
+              "is_ac": true
+            }
+          ]
+        },
+        {
+          "date_str": "الجمعة 16 أكتوبر 2026",
+          "start_str": "02:46 م",
+          "end_str": "03:01 م",
+          "start_ms": 1792151172000,
+          "end_ms": 1792152072000,
+          "duration_minutes": 15,
+          "duration_str": "15 دقيقة (اتصال متواصل)",
+          "submissions_count": 1,
+          "accepted_count": 1,
+          "pings_count": 0,
+          "problems": [
+            "1365D"
+          ],
+          "platform_breakdown": {
+            "Codeforces": {
+              "duration_minutes": 15,
+              "duration_str": "15 دقيقة",
+              "subs_count": 1,
+              "ac_count": 1,
+              "pings_count": 0
+            }
+          },
+          "timeline": [
+            {
+              "time_str": "03:01:12 م",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "1365D",
+              "problemName": "1365D - Solve The Maze",
+              "problemUrl": "https://codeforces.com/contest/1365/problem/D",
+              "status": "Accepted",
+              "is_ac": true
+            }
+          ]
+        },
+        {
+          "date_str": "الجمعة 16 أكتوبر 2026",
+          "start_str": "06:44 ص",
+          "end_str": "07:28 ص",
+          "start_ms": 1792122263000,
+          "end_ms": 1792124913000,
+          "duration_minutes": 44,
+          "duration_str": "44 دقيقة (اتصال متواصل)",
+          "submissions_count": 3,
+          "accepted_count": 2,
+          "pings_count": 0,
+          "problems": [
+            "1675D",
+            "580C"
+          ],
+          "platform_breakdown": {
+            "Codeforces": {
+              "duration_minutes": 44,
+              "duration_str": "44 دقيقة",
+              "subs_count": 3,
+              "ac_count": 2,
+              "pings_count": 0
+            }
+          },
+          "timeline": [
+            {
+              "time_str": "07:28:33 ص",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "580C",
+              "problemName": "580C - Kefa and Park",
+              "problemUrl": "https://codeforces.com/contest/580/problem/C",
+              "status": "Accepted",
+              "is_ac": true
+            },
+            {
+              "time_str": "07:01:44 ص",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "1675D",
+              "problemName": "1675D - Vertical Paths",
+              "problemUrl": "https://codeforces.com/contest/1675/problem/D",
+              "status": "Accepted",
+              "is_ac": true
+            },
+            {
+              "time_str": "06:59:23 ص",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "1675D",
+              "problemName": "1675D - Vertical Paths",
+              "problemUrl": "https://codeforces.com/contest/1675/problem/D",
+              "status": "Wrong Answer",
+              "is_ac": false
+            }
+          ]
+        },
+        {
+          "date_str": "الجمعة 16 أكتوبر 2026",
+          "start_str": "12:57 ص",
+          "end_str": "01:12 ص",
+          "start_ms": 1792101470000,
+          "end_ms": 1792102370000,
+          "duration_minutes": 15,
+          "duration_str": "15 دقيقة (اتصال متواصل)",
+          "submissions_count": 1,
+          "accepted_count": 1,
+          "pings_count": 0,
+          "problems": [
+            "1627C"
+          ],
+          "platform_breakdown": {
+            "Codeforces": {
+              "duration_minutes": 15,
+              "duration_str": "15 دقيقة",
+              "subs_count": 1,
+              "ac_count": 1,
+              "pings_count": 0
+            }
+          },
+          "timeline": [
+            {
+              "time_str": "01:12:50 ص",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "1627C",
+              "problemName": "1627C - Not Assigning",
+              "problemUrl": "https://codeforces.com/contest/1627/problem/C",
+              "status": "Accepted",
+              "is_ac": true
+            }
+          ]
+        },
+        {
+          "date_str": "الخميس 15 أكتوبر 2026",
+          "start_str": "09:17 م",
+          "end_str": "09:32 م",
+          "start_ms": 1792088235000,
+          "end_ms": 1792089135000,
+          "duration_minutes": 15,
+          "duration_str": "15 دقيقة (اتصال متواصل)",
+          "submissions_count": 1,
+          "accepted_count": 1,
+          "pings_count": 0,
+          "problems": [
+            "1843D"
+          ],
+          "platform_breakdown": {
+            "Codeforces": {
+              "duration_minutes": 15,
+              "duration_str": "15 دقيقة",
+              "subs_count": 1,
+              "ac_count": 1,
+              "pings_count": 0
+            }
+          },
+          "timeline": [
+            {
+              "time_str": "09:32:15 م",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "1843D",
+              "problemName": "1843D - Apple Tree",
+              "problemUrl": "https://codeforces.com/contest/1843/problem/D",
+              "status": "Accepted",
+              "is_ac": true
+            }
+          ]
+        },
+        {
+          "date_str": "الخميس 15 أكتوبر 2026",
+          "start_str": "08:40 م",
+          "end_str": "08:55 م",
+          "start_ms": 1792086016000,
+          "end_ms": 1792086916000,
+          "duration_minutes": 15,
+          "duration_str": "15 دقيقة (اتصال متواصل)",
+          "submissions_count": 1,
+          "accepted_count": 1,
+          "pings_count": 0,
+          "problems": [
+            "1676G"
+          ],
+          "platform_breakdown": {
+            "Codeforces": {
+              "duration_minutes": 15,
+              "duration_str": "15 دقيقة",
+              "subs_count": 1,
+              "ac_count": 1,
+              "pings_count": 0
+            }
+          },
+          "timeline": [
+            {
+              "time_str": "08:55:16 م",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "1676G",
+              "problemName": "1676G - White-Black Balanced Subtrees",
+              "problemUrl": "https://codeforces.com/contest/1676/problem/G",
+              "status": "Accepted",
+              "is_ac": true
+            }
+          ]
+        },
+        {
+          "date_str": "الخميس 15 أكتوبر 2026",
+          "start_str": "06:49 م",
+          "end_str": "07:14 م",
+          "start_ms": 1792079382000,
+          "end_ms": 1792080867000,
+          "duration_minutes": 25,
+          "duration_str": "25 دقيقة (اتصال متواصل)",
+          "submissions_count": 2,
+          "accepted_count": 2,
+          "pings_count": 0,
+          "problems": [
+            "500A"
+          ],
+          "platform_breakdown": {
+            "Codeforces": {
+              "duration_minutes": 25,
+              "duration_str": "25 دقيقة",
+              "subs_count": 2,
+              "ac_count": 2,
+              "pings_count": 0
+            }
+          },
+          "timeline": [
+            {
+              "time_str": "07:14:27 م",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "500A",
+              "problemName": "500A - New Year Transportation",
+              "problemUrl": "https://codeforces.com/contest/500/problem/A",
+              "status": "Accepted",
+              "is_ac": true
+            },
+            {
+              "time_str": "07:04:42 م",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "500A",
+              "problemName": "500A - New Year Transportation",
+              "problemUrl": "https://codeforces.com/contest/500/problem/A",
+              "status": "Accepted",
+              "is_ac": true
+            }
+          ]
+        },
+        {
+          "date_str": "الأربعاء 14 أكتوبر 2026",
+          "start_str": "06:09 م",
+          "end_str": "06:24 م",
+          "start_ms": 1791990559000,
+          "end_ms": 1791991459000,
+          "duration_minutes": 15,
+          "duration_str": "15 دقيقة (اتصال متواصل)",
+          "submissions_count": 1,
+          "accepted_count": 1,
+          "pings_count": 0,
+          "problems": [
+            "115A"
+          ],
+          "platform_breakdown": {
+            "Codeforces": {
+              "duration_minutes": 15,
+              "duration_str": "15 دقيقة",
+              "subs_count": 1,
+              "ac_count": 1,
+              "pings_count": 0
+            }
+          },
+          "timeline": [
+            {
+              "time_str": "06:24:19 م",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "115A",
+              "problemName": "115A - Party",
+              "problemUrl": "https://codeforces.com/contest/115/problem/A",
+              "status": "Accepted",
+              "is_ac": true
+            }
+          ]
+        },
+        {
+          "date_str": "الأربعاء 14 أكتوبر 2026",
+          "start_str": "03:59 م",
+          "end_str": "04:14 م",
+          "start_ms": 1791982776000,
+          "end_ms": 1791983676000,
+          "duration_minutes": 15,
+          "duration_str": "15 دقيقة (اتصال متواصل)",
+          "submissions_count": 1,
+          "accepted_count": 1,
+          "pings_count": 0,
+          "problems": [
+            "505B"
+          ],
+          "platform_breakdown": {
+            "Codeforces": {
+              "duration_minutes": 15,
+              "duration_str": "15 دقيقة",
+              "subs_count": 1,
+              "ac_count": 1,
+              "pings_count": 0
+            }
+          },
+          "timeline": [
+            {
+              "time_str": "04:14:36 م",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "505B",
+              "problemName": "505B - Mr. Kitayuta's Colorful Graph",
+              "problemUrl": "https://codeforces.com/contest/505/problem/B",
+              "status": "Accepted",
+              "is_ac": true
+            }
+          ]
+        },
+        {
+          "date_str": "الثلاثاء 13 أكتوبر 2026",
+          "start_str": "07:00 م",
+          "end_str": "07:15 م",
+          "start_ms": 1791907238000,
+          "end_ms": 1791908138000,
+          "duration_minutes": 15,
+          "duration_str": "15 دقيقة (اتصال متواصل)",
+          "submissions_count": 1,
+          "accepted_count": 1,
+          "pings_count": 0,
+          "problems": [
+            "842D"
+          ],
+          "platform_breakdown": {
+            "Codeforces": {
+              "duration_minutes": 15,
+              "duration_str": "15 دقيقة",
+              "subs_count": 1,
+              "ac_count": 1,
+              "pings_count": 0
+            }
+          },
+          "timeline": [
+            {
+              "time_str": "07:15:38 م",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "842D",
+              "problemName": "842D - Vitya and Strange Lesson",
+              "problemUrl": "https://codeforces.com/contest/842/problem/D",
+              "status": "Accepted",
+              "is_ac": true
+            }
+          ]
+        },
+        {
+          "date_str": "الإثنين 12 أكتوبر 2026",
+          "start_str": "02:36 م",
+          "end_str": "02:51 م",
+          "start_ms": 1791805008000,
+          "end_ms": 1791805908000,
+          "duration_minutes": 15,
+          "duration_str": "15 دقيقة (اتصال متواصل)",
+          "submissions_count": 1,
+          "accepted_count": 1,
+          "pings_count": 0,
+          "problems": [
+            "1416C"
+          ],
+          "platform_breakdown": {
+            "Codeforces": {
+              "duration_minutes": 15,
+              "duration_str": "15 دقيقة",
+              "subs_count": 1,
+              "ac_count": 1,
+              "pings_count": 0
+            }
+          },
+          "timeline": [
+            {
+              "time_str": "02:51:48 م",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "1416C",
+              "problemName": "1416C - XOR Inverse",
+              "problemUrl": "https://codeforces.com/contest/1416/problem/C",
+              "status": "Accepted",
+              "is_ac": true
+            }
+          ]
+        },
+        {
+          "date_str": "الإثنين 12 أكتوبر 2026",
+          "start_str": "01:35 ص",
+          "end_str": "01:57 ص",
+          "start_ms": 1791758138000,
+          "end_ms": 1791759473000,
+          "duration_minutes": 22,
+          "duration_str": "22 دقيقة (اتصال متواصل)",
+          "submissions_count": 4,
+          "accepted_count": 1,
+          "pings_count": 0,
+          "problems": [
+            "1983F"
+          ],
+          "platform_breakdown": {
+            "Codeforces": {
+              "duration_minutes": 22,
+              "duration_str": "22 دقيقة",
+              "subs_count": 4,
+              "ac_count": 1,
+              "pings_count": 0
+            }
+          },
+          "timeline": [
+            {
+              "time_str": "01:57:53 ص",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "1983F",
+              "problemName": "1983F - array-value",
+              "problemUrl": "https://codeforces.com/contest/1983/problem/F",
+              "status": "Accepted",
+              "is_ac": true
+            },
+            {
+              "time_str": "01:54:13 ص",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "1983F",
+              "problemName": "1983F - array-value",
+              "problemUrl": "https://codeforces.com/contest/1983/problem/F",
+              "status": "Time Limit Exceeded",
+              "is_ac": false
+            },
+            {
+              "time_str": "01:52:32 ص",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "1983F",
+              "problemName": "1983F - array-value",
+              "problemUrl": "https://codeforces.com/contest/1983/problem/F",
+              "status": "Runtime Error",
+              "is_ac": false
+            },
+            {
+              "time_str": "01:50:38 ص",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "1983F",
+              "problemName": "1983F - array-value",
+              "problemUrl": "https://codeforces.com/contest/1983/problem/F",
+              "status": "Memory Limit Exceeded",
+              "is_ac": false
+            }
+          ]
+        },
+        {
+          "date_str": "الأحد 11 أكتوبر 2026",
+          "start_str": "10:09 م",
+          "end_str": "10:52 م",
+          "start_ms": 1791745752000,
+          "end_ms": 1791748344000,
+          "duration_minutes": 43,
+          "duration_str": "43 دقيقة (اتصال متواصل)",
+          "submissions_count": 2,
+          "accepted_count": 2,
+          "pings_count": 0,
+          "problems": [
+            "579A",
+            "1490D"
+          ],
+          "platform_breakdown": {
+            "VJudge": {
+              "duration_minutes": 43,
+              "duration_str": "43 دقيقة",
+              "subs_count": 2,
+              "ac_count": 2,
+              "pings_count": 0
+            },
+            "Codeforces": {
+              "duration_minutes": 43,
+              "duration_str": "43 دقيقة",
+              "subs_count": 2,
+              "ac_count": 2,
+              "pings_count": 0
+            }
+          },
+          "timeline": [
+            {
+              "time_str": "10:52:24 م",
+              "platform": "VJudge",
+              "type": "submission",
+              "probNum": "1490D",
+              "problemName": "CodeForces 1490D",
+              "problemUrl": "https://vjudge.net/problem/CodeForces-1490D",
+              "status": "Accepted",
+              "is_ac": true
+            },
+            {
+              "time_str": "10:24:12 م",
+              "platform": "VJudge",
+              "type": "submission",
+              "probNum": "579A",
+              "problemName": "CodeForces 579A",
+              "problemUrl": "https://vjudge.net/problem/CodeForces-579A",
+              "status": "Accepted",
+              "is_ac": true
+            }
+          ]
+        },
+        {
+          "date_str": "الأحد 11 أكتوبر 2026",
+          "start_str": "06:52 م",
+          "end_str": "07:11 م",
+          "start_ms": 1791733945000,
+          "end_ms": 1791735063000,
+          "duration_minutes": 19,
+          "duration_str": "19 دقيقة (اتصال متواصل)",
+          "submissions_count": 2,
+          "accepted_count": 1,
+          "pings_count": 0,
+          "problems": [
+            "456D"
+          ],
+          "platform_breakdown": {
+            "Codeforces": {
+              "duration_minutes": 19,
+              "duration_str": "19 دقيقة",
+              "subs_count": 2,
+              "ac_count": 1,
+              "pings_count": 0
+            }
+          },
+          "timeline": [
+            {
+              "time_str": "07:11:03 م",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "456D",
+              "problemName": "456D - A Lot of Games",
+              "problemUrl": "https://codeforces.com/contest/456/problem/D",
+              "status": "Accepted",
+              "is_ac": true
+            },
+            {
+              "time_str": "07:07:25 م",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "456D",
+              "problemName": "456D - A Lot of Games",
+              "problemUrl": "https://codeforces.com/contest/456/problem/D",
+              "status": "Wrong Answer",
+              "is_ac": false
+            }
+          ]
+        },
+        {
+          "date_str": "الأحد 11 أكتوبر 2026",
+          "start_str": "06:12 م",
+          "end_str": "06:27 م",
+          "start_ms": 1791731540000,
+          "end_ms": 1791732440000,
+          "duration_minutes": 15,
+          "duration_str": "15 دقيقة (اتصال متواصل)",
+          "submissions_count": 1,
+          "accepted_count": 0,
+          "pings_count": 0,
+          "problems": [
+            "456D"
+          ],
+          "platform_breakdown": {
+            "Codeforces": {
+              "duration_minutes": 15,
+              "duration_str": "15 دقيقة",
+              "subs_count": 1,
+              "ac_count": 0,
+              "pings_count": 0
+            }
+          },
+          "timeline": [
+            {
+              "time_str": "06:27:20 م",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "456D",
+              "problemName": "456D - A Lot of Games",
+              "problemUrl": "https://codeforces.com/contest/456/problem/D",
+              "status": "Wrong Answer",
+              "is_ac": false
+            }
+          ]
+        },
+        {
+          "date_str": "الأحد 11 أكتوبر 2026",
+          "start_str": "05:30 م",
+          "end_str": "05:45 م",
+          "start_ms": 1791729008000,
+          "end_ms": 1791729908000,
+          "duration_minutes": 15,
+          "duration_str": "15 دقيقة (اتصال متواصل)",
+          "submissions_count": 1,
+          "accepted_count": 1,
+          "pings_count": 0,
+          "problems": [
+            "1792D"
+          ],
+          "platform_breakdown": {
+            "Codeforces": {
+              "duration_minutes": 15,
+              "duration_str": "15 دقيقة",
+              "subs_count": 1,
+              "ac_count": 1,
+              "pings_count": 0
+            }
+          },
+          "timeline": [
+            {
+              "time_str": "05:45:08 م",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "1792D",
+              "problemName": "1792D - Fixed Prefix Permutations",
+              "problemUrl": "https://codeforces.com/contest/1792/problem/D",
+              "status": "Accepted",
+              "is_ac": true
+            }
+          ]
+        },
+        {
+          "date_str": "الأحد 11 أكتوبر 2026",
+          "start_str": "01:50 م",
+          "end_str": "02:05 م",
+          "start_ms": 1791715827000,
+          "end_ms": 1791716727000,
+          "duration_minutes": 15,
+          "duration_str": "15 دقيقة (اتصال متواصل)",
+          "submissions_count": 1,
+          "accepted_count": 1,
+          "pings_count": 0,
+          "problems": [
+            "1902E"
+          ],
+          "platform_breakdown": {
+            "Codeforces": {
+              "duration_minutes": 15,
+              "duration_str": "15 دقيقة",
+              "subs_count": 1,
+              "ac_count": 1,
+              "pings_count": 0
+            }
+          },
+          "timeline": [
+            {
+              "time_str": "02:05:27 م",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "1902E",
+              "problemName": "1902E - Collapsing Strings",
+              "problemUrl": "https://codeforces.com/contest/1902/problem/E",
+              "status": "Accepted",
+              "is_ac": true
+            }
+          ]
+        },
+        {
+          "date_str": "الأحد 11 أكتوبر 2026",
+          "start_str": "03:24 ص",
+          "end_str": "03:39 ص",
+          "start_ms": 1791678259000,
+          "end_ms": 1791679159000,
+          "duration_minutes": 15,
+          "duration_str": "15 دقيقة (اتصال متواصل)",
+          "submissions_count": 1,
+          "accepted_count": 1,
+          "pings_count": 0,
+          "problems": [
+            "1851F"
+          ],
+          "platform_breakdown": {
+            "Codeforces": {
+              "duration_minutes": 15,
+              "duration_str": "15 دقيقة",
+              "subs_count": 1,
+              "ac_count": 1,
+              "pings_count": 0
+            }
+          },
+          "timeline": [
+            {
+              "time_str": "03:39:19 ص",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "1851F",
+              "problemName": "1851F - Lisa and the Martians",
+              "problemUrl": "https://codeforces.com/contest/1851/problem/F",
+              "status": "Accepted",
+              "is_ac": true
+            }
+          ]
+        },
+        {
+          "date_str": "السبت 10 أكتوبر 2026",
+          "start_str": "10:41 م",
+          "end_str": "11:00 م",
+          "start_ms": 1791661286000,
+          "end_ms": 1791662440000,
+          "duration_minutes": 19,
+          "duration_str": "19 دقيقة (اتصال متواصل)",
+          "submissions_count": 2,
+          "accepted_count": 1,
+          "pings_count": 0,
+          "problems": [
+            "1986G1"
+          ],
+          "platform_breakdown": {
+            "Codeforces": {
+              "duration_minutes": 19,
+              "duration_str": "19 دقيقة",
+              "subs_count": 2,
+              "ac_count": 1,
+              "pings_count": 0
+            }
+          },
+          "timeline": [
+            {
+              "time_str": "11:00:40 م",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "1986G1",
+              "problemName": "1986G1 - Permutation Problem (Simple Version)",
+              "problemUrl": "https://codeforces.com/contest/1986/problem/G1",
+              "status": "Accepted",
+              "is_ac": true
+            },
+            {
+              "time_str": "10:56:26 م",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "1986G1",
+              "problemName": "1986G1 - Permutation Problem (Simple Version)",
+              "problemUrl": "https://codeforces.com/contest/1986/problem/G1",
+              "status": "Memory Limit Exceeded",
+              "is_ac": false
+            }
+          ]
+        },
+        {
+          "date_str": "الخميس 8 أكتوبر 2026",
+          "start_str": "11:43 م",
+          "end_str": "12:02 ص",
+          "start_ms": 1791492199000,
+          "end_ms": 1791493346000,
+          "duration_minutes": 19,
+          "duration_str": "19 دقيقة (اتصال متواصل)",
+          "submissions_count": 2,
+          "accepted_count": 1,
+          "pings_count": 0,
+          "problems": [
+            "271D"
+          ],
+          "platform_breakdown": {
+            "Codeforces": {
+              "duration_minutes": 19,
+              "duration_str": "19 دقيقة",
+              "subs_count": 2,
+              "ac_count": 1,
+              "pings_count": 0
+            }
+          },
+          "timeline": [
+            {
+              "time_str": "12:02:26 ص",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "271D",
+              "problemName": "271D - Good Substrings",
+              "problemUrl": "https://codeforces.com/contest/271/problem/D",
+              "status": "Accepted",
+              "is_ac": true
+            },
+            {
+              "time_str": "11:58:19 م",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "271D",
+              "problemName": "271D - Good Substrings",
+              "problemUrl": "https://codeforces.com/contest/271/problem/D",
+              "status": "Time Limit Exceeded",
+              "is_ac": false
+            }
+          ]
+        },
+        {
+          "date_str": "الخميس 8 أكتوبر 2026",
+          "start_str": "10:28 م",
+          "end_str": "10:49 م",
+          "start_ms": 1791487700000,
+          "end_ms": 1791488952000,
+          "duration_minutes": 21,
+          "duration_str": "21 دقيقة (اتصال متواصل)",
+          "submissions_count": 2,
+          "accepted_count": 1,
+          "pings_count": 0,
+          "problems": [
+            "817E"
+          ],
+          "platform_breakdown": {
+            "Codeforces": {
+              "duration_minutes": 21,
+              "duration_str": "21 دقيقة",
+              "subs_count": 2,
+              "ac_count": 1,
+              "pings_count": 0
+            }
+          },
+          "timeline": [
+            {
+              "time_str": "10:49:12 م",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "817E",
+              "problemName": "817E - Choosing The Commander",
+              "problemUrl": "https://codeforces.com/contest/817/problem/E",
+              "status": "Accepted",
+              "is_ac": true
+            },
+            {
+              "time_str": "10:43:20 م",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "817E",
+              "problemName": "817E - Choosing The Commander",
+              "problemUrl": "https://codeforces.com/contest/817/problem/E",
+              "status": "Wrong Answer",
+              "is_ac": false
+            }
+          ]
+        },
+        {
+          "date_str": "الخميس 8 أكتوبر 2026",
+          "start_str": "09:09 م",
+          "end_str": "09:26 م",
+          "start_ms": 1791482943000,
+          "end_ms": 1791484003000,
+          "duration_minutes": 18,
+          "duration_str": "18 دقيقة (اتصال متواصل)",
+          "submissions_count": 2,
+          "accepted_count": 1,
+          "pings_count": 0,
+          "problems": [
+            "282E"
+          ],
+          "platform_breakdown": {
+            "Codeforces": {
+              "duration_minutes": 18,
+              "duration_str": "18 دقيقة",
+              "subs_count": 2,
+              "ac_count": 1,
+              "pings_count": 0
+            }
+          },
+          "timeline": [
+            {
+              "time_str": "09:26:43 م",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "282E",
+              "problemName": "282E - Sausage Maximization",
+              "problemUrl": "https://codeforces.com/contest/282/problem/E",
+              "status": "Accepted",
+              "is_ac": true
+            },
+            {
+              "time_str": "09:24:03 م",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "282E",
+              "problemName": "282E - Sausage Maximization",
+              "problemUrl": "https://codeforces.com/contest/282/problem/E",
+              "status": "Wrong Answer",
+              "is_ac": false
+            }
+          ]
+        },
+        {
+          "date_str": "الخميس 8 أكتوبر 2026",
+          "start_str": "07:49 م",
+          "end_str": "08:04 م",
+          "start_ms": 1791478190000,
+          "end_ms": 1791479090000,
+          "duration_minutes": 15,
+          "duration_str": "15 دقيقة (اتصال متواصل)",
+          "submissions_count": 1,
+          "accepted_count": 1,
+          "pings_count": 0,
+          "problems": [
+            "2093G"
+          ],
+          "platform_breakdown": {
+            "Codeforces": {
+              "duration_minutes": 15,
+              "duration_str": "15 دقيقة",
+              "subs_count": 1,
+              "ac_count": 1,
+              "pings_count": 0
+            }
+          },
+          "timeline": [
+            {
+              "time_str": "08:04:50 م",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "2093G",
+              "problemName": "2093G - Shorten the Array",
+              "problemUrl": "https://codeforces.com/contest/2093/problem/G",
+              "status": "Accepted",
+              "is_ac": true
+            }
+          ]
+        },
+        {
+          "date_str": "الخميس 8 أكتوبر 2026",
+          "start_str": "04:22 م",
+          "end_str": "04:37 م",
+          "start_ms": 1791465732000,
+          "end_ms": 1791466632000,
+          "duration_minutes": 15,
+          "duration_str": "15 دقيقة (اتصال متواصل)",
+          "submissions_count": 1,
+          "accepted_count": 1,
+          "pings_count": 0,
+          "problems": [
+            "665E"
+          ],
+          "platform_breakdown": {
+            "Codeforces": {
+              "duration_minutes": 15,
+              "duration_str": "15 دقيقة",
+              "subs_count": 1,
+              "ac_count": 1,
+              "pings_count": 0
+            }
+          },
+          "timeline": [
+            {
+              "time_str": "04:37:12 م",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "665E",
+              "problemName": "665E - Beautiful Subarrays",
+              "problemUrl": "https://codeforces.com/contest/665/problem/E",
+              "status": "Accepted",
+              "is_ac": true
+            }
+          ]
+        },
+        {
+          "date_str": "الخميس 8 أكتوبر 2026",
+          "start_str": "03:42 م",
+          "end_str": "04:01 م",
+          "start_ms": 1791463379000,
+          "end_ms": 1791464495000,
+          "duration_minutes": 19,
+          "duration_str": "19 دقيقة (اتصال متواصل)",
+          "submissions_count": 2,
+          "accepted_count": 2,
+          "pings_count": 0,
+          "problems": [
+            "665E"
+          ],
+          "platform_breakdown": {
+            "Codeforces": {
+              "duration_minutes": 19,
+              "duration_str": "19 دقيقة",
+              "subs_count": 2,
+              "ac_count": 2,
+              "pings_count": 0
+            }
+          },
+          "timeline": [
+            {
+              "time_str": "04:01:35 م",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "665E",
+              "problemName": "665E - Beautiful Subarrays",
+              "problemUrl": "https://codeforces.com/contest/665/problem/E",
+              "status": "Accepted",
+              "is_ac": true
+            },
+            {
+              "time_str": "03:57:59 م",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "665E",
+              "problemName": "665E - Beautiful Subarrays",
+              "problemUrl": "https://codeforces.com/contest/665/problem/E",
+              "status": "Accepted",
+              "is_ac": true
+            }
+          ]
+        },
+        {
+          "date_str": "الأربعاء 7 أكتوبر 2026",
+          "start_str": "07:46 م",
+          "end_str": "08:05 م",
+          "start_ms": 1791391581000,
+          "end_ms": 1791392702000,
+          "duration_minutes": 19,
+          "duration_str": "19 دقيقة (اتصال متواصل)",
+          "submissions_count": 2,
+          "accepted_count": 1,
+          "pings_count": 0,
+          "problems": [
+            "2275E"
+          ],
+          "platform_breakdown": {
+            "Codeforces": {
+              "duration_minutes": 19,
+              "duration_str": "19 دقيقة",
+              "subs_count": 2,
+              "ac_count": 1,
+              "pings_count": 0
+            }
+          },
+          "timeline": [
+            {
+              "time_str": "08:05:02 م",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "2275E",
+              "problemName": "2275E - Repentance Is Already on the Way",
+              "problemUrl": "https://codeforces.com/contest/2275/problem/E",
+              "status": "Accepted",
+              "is_ac": true
+            },
+            {
+              "time_str": "08:01:21 م",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "2275E",
+              "problemName": "2275E - Repentance Is Already on the Way",
+              "problemUrl": "https://codeforces.com/contest/2275/problem/E",
+              "status": "Wrong Answer",
+              "is_ac": false
+            }
+          ]
+        },
+        {
+          "date_str": "الأربعاء 7 أكتوبر 2026",
+          "start_str": "06:21 م",
+          "end_str": "06:39 م",
+          "start_ms": 1791386489000,
+          "end_ms": 1791387596000,
+          "duration_minutes": 18,
+          "duration_str": "18 دقيقة (اتصال متواصل)",
+          "submissions_count": 2,
+          "accepted_count": 1,
+          "pings_count": 0,
+          "problems": [
+            "2275C"
+          ],
+          "platform_breakdown": {
+            "Codeforces": {
+              "duration_minutes": 18,
+              "duration_str": "18 دقيقة",
+              "subs_count": 2,
+              "ac_count": 1,
+              "pings_count": 0
+            }
+          },
+          "timeline": [
+            {
+              "time_str": "06:39:56 م",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "2275C",
+              "problemName": "2275C - Unrequited Love",
+              "problemUrl": "https://codeforces.com/contest/2275/problem/C",
+              "status": "Accepted",
+              "is_ac": true
+            },
+            {
+              "time_str": "06:36:29 م",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "2275C",
+              "problemName": "2275C - Unrequited Love",
+              "problemUrl": "https://codeforces.com/contest/2275/problem/C",
+              "status": "Wrong Answer",
+              "is_ac": false
+            }
+          ]
+        },
+        {
+          "date_str": "الأربعاء 7 أكتوبر 2026",
+          "start_str": "05:36 م",
+          "end_str": "06:02 م",
+          "start_ms": 1791383785000,
+          "end_ms": 1791385358000,
+          "duration_minutes": 26,
+          "duration_str": "26 دقيقة (اتصال متواصل)",
+          "submissions_count": 2,
+          "accepted_count": 2,
+          "pings_count": 0,
+          "problems": [
+            "2275A",
+            "2275B"
+          ],
+          "platform_breakdown": {
+            "Codeforces": {
+              "duration_minutes": 26,
+              "duration_str": "26 دقيقة",
+              "subs_count": 2,
+              "ac_count": 2,
+              "pings_count": 0
+            }
+          },
+          "timeline": [
+            {
+              "time_str": "06:02:38 م",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "2275B",
+              "problemName": "2275B - Did Not Go to Print",
+              "problemUrl": "https://codeforces.com/contest/2275/problem/B",
+              "status": "Accepted",
+              "is_ac": true
+            },
+            {
+              "time_str": "05:51:25 م",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "2275A",
+              "problemName": "2275A - In Search of Convenience",
+              "problemUrl": "https://codeforces.com/contest/2275/problem/A",
+              "status": "Accepted",
+              "is_ac": true
+            }
+          ]
+        },
+        {
+          "date_str": "الثلاثاء 6 أكتوبر 2026",
+          "start_str": "10:51 م",
+          "end_str": "11:06 م",
+          "start_ms": 1791316277000,
+          "end_ms": 1791317177000,
+          "duration_minutes": 15,
+          "duration_str": "15 دقيقة (اتصال متواصل)",
+          "submissions_count": 1,
+          "accepted_count": 1,
+          "pings_count": 0,
+          "problems": [
+            "1722F"
+          ],
+          "platform_breakdown": {
+            "Codeforces": {
+              "duration_minutes": 15,
+              "duration_str": "15 دقيقة",
+              "subs_count": 1,
+              "ac_count": 1,
+              "pings_count": 0
+            }
+          },
+          "timeline": [
+            {
+              "time_str": "11:06:17 م",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "1722F",
+              "problemName": "1722F - L-shapes",
+              "problemUrl": "https://codeforces.com/contest/1722/problem/F",
+              "status": "Accepted",
+              "is_ac": true
+            }
+          ]
+        },
+        {
+          "date_str": "الثلاثاء 6 أكتوبر 2026",
+          "start_str": "09:41 م",
+          "end_str": "10:10 م",
+          "start_ms": 1791312118000,
+          "end_ms": 1791313853000,
+          "duration_minutes": 29,
+          "duration_str": "29 دقيقة (اتصال متواصل)",
+          "submissions_count": 2,
+          "accepted_count": 2,
+          "pings_count": 0,
+          "problems": [
+            "1676G",
+            "1843D"
+          ],
+          "platform_breakdown": {
+            "Codeforces": {
+              "duration_minutes": 29,
+              "duration_str": "29 دقيقة",
+              "subs_count": 2,
+              "ac_count": 2,
+              "pings_count": 0
+            }
+          },
+          "timeline": [
+            {
+              "time_str": "10:10:53 م",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "1843D",
+              "problemName": "1843D - Apple Tree",
+              "problemUrl": "https://codeforces.com/contest/1843/problem/D",
+              "status": "Accepted",
+              "is_ac": true
+            },
+            {
+              "time_str": "09:56:58 م",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "1676G",
+              "problemName": "1676G - White-Black Balanced Subtrees",
+              "problemUrl": "https://codeforces.com/contest/1676/problem/G",
+              "status": "Accepted",
+              "is_ac": true
+            }
+          ]
+        },
+        {
+          "date_str": "الثلاثاء 6 أكتوبر 2026",
+          "start_str": "08:40 م",
+          "end_str": "09:21 م",
+          "start_ms": 1791308414000,
+          "end_ms": 1791310887000,
+          "duration_minutes": 41,
+          "duration_str": "41 دقيقة (اتصال متواصل)",
+          "submissions_count": 2,
+          "accepted_count": 1,
+          "pings_count": 0,
+          "problems": [
+            "1365D"
+          ],
+          "platform_breakdown": {
+            "Codeforces": {
+              "duration_minutes": 41,
+              "duration_str": "41 دقيقة",
+              "subs_count": 2,
+              "ac_count": 1,
+              "pings_count": 0
+            }
+          },
+          "timeline": [
+            {
+              "time_str": "09:21:27 م",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "1365D",
+              "problemName": "1365D - Solve The Maze",
+              "problemUrl": "https://codeforces.com/contest/1365/problem/D",
+              "status": "Accepted",
+              "is_ac": true
+            },
+            {
+              "time_str": "08:55:14 م",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "1365D",
+              "problemName": "1365D - Solve The Maze",
+              "problemUrl": "https://codeforces.com/contest/1365/problem/D",
+              "status": "Wrong Answer",
+              "is_ac": false
+            }
+          ]
+        },
+        {
+          "date_str": "الإثنين 5 أكتوبر 2026",
+          "start_str": "09:02 م",
+          "end_str": "09:17 م",
+          "start_ms": 1791223347000,
+          "end_ms": 1791224247000,
+          "duration_minutes": 15,
+          "duration_str": "15 دقيقة (اتصال متواصل)",
+          "submissions_count": 1,
+          "accepted_count": 1,
+          "pings_count": 0,
+          "problems": [
+            "706D"
+          ],
+          "platform_breakdown": {
+            "Codeforces": {
+              "duration_minutes": 15,
+              "duration_str": "15 دقيقة",
+              "subs_count": 1,
+              "ac_count": 1,
+              "pings_count": 0
+            }
+          },
+          "timeline": [
+            {
+              "time_str": "09:17:27 م",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "706D",
+              "problemName": "706D - Vasiliy's Multiset",
+              "problemUrl": "https://codeforces.com/contest/706/problem/D",
+              "status": "Accepted",
+              "is_ac": true
+            }
+          ]
+        },
+        {
+          "date_str": "الإثنين 5 أكتوبر 2026",
+          "start_str": "05:10 م",
+          "end_str": "05:38 م",
+          "start_ms": 1791209428000,
+          "end_ms": 1791211094000,
+          "duration_minutes": 28,
+          "duration_str": "28 دقيقة (اتصال متواصل)",
+          "submissions_count": 2,
+          "accepted_count": 2,
+          "pings_count": 0,
+          "problems": [
+            "246B",
+            "2255B"
+          ],
+          "platform_breakdown": {
+            "Codeforces": {
+              "duration_minutes": 28,
+              "duration_str": "28 دقيقة",
+              "subs_count": 2,
+              "ac_count": 2,
+              "pings_count": 0
+            }
+          },
+          "timeline": [
+            {
+              "time_str": "05:38:14 م",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "2255B",
+              "problemName": "2255B - A Ribbon for Tomorrow",
+              "problemUrl": "https://codeforces.com/contest/2255/problem/B",
+              "status": "Accepted",
+              "is_ac": true
+            },
+            {
+              "time_str": "05:25:28 م",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "246B",
+              "problemName": "246B - Increase and Decrease",
+              "problemUrl": "https://codeforces.com/contest/246/problem/B",
+              "status": "Accepted",
+              "is_ac": true
+            }
+          ]
+        },
+        {
+          "date_str": "الأحد 4 أكتوبر 2026",
+          "start_str": "06:56 م",
+          "end_str": "07:11 م",
+          "start_ms": 1791129401000,
+          "end_ms": 1791130301000,
+          "duration_minutes": 15,
+          "duration_str": "15 دقيقة (اتصال متواصل)",
+          "submissions_count": 1,
+          "accepted_count": 1,
+          "pings_count": 0,
+          "problems": [
+            "2181H"
+          ],
+          "platform_breakdown": {
+            "Codeforces": {
+              "duration_minutes": 15,
+              "duration_str": "15 دقيقة",
+              "subs_count": 1,
+              "ac_count": 1,
+              "pings_count": 0
+            }
+          },
+          "timeline": [
+            {
+              "time_str": "07:11:41 م",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "2181H",
+              "problemName": "2181H - Honey Cake",
+              "problemUrl": "https://codeforces.com/contest/2181/problem/H",
+              "status": "Accepted",
+              "is_ac": true
+            }
+          ]
+        },
+        {
+          "date_str": "الأحد 4 أكتوبر 2026",
+          "start_str": "05:24 م",
+          "end_str": "06:16 م",
+          "start_ms": 1791123899000,
+          "end_ms": 1791126995000,
+          "duration_minutes": 52,
+          "duration_str": "52 دقيقة (اتصال متواصل)",
+          "submissions_count": 4,
+          "accepted_count": 3,
+          "pings_count": 0,
+          "problems": [
+            "1609B",
+            "825A",
+            "1604B"
+          ],
+          "platform_breakdown": {
+            "Codeforces": {
+              "duration_minutes": 52,
+              "duration_str": "52 دقيقة",
+              "subs_count": 4,
+              "ac_count": 3,
+              "pings_count": 0
+            }
+          },
+          "timeline": [
+            {
+              "time_str": "06:16:35 م",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "1604B",
+              "problemName": "1604B - XOR Specia-LIS-t",
+              "problemUrl": "https://codeforces.com/contest/1604/problem/B",
+              "status": "Accepted",
+              "is_ac": true
+            },
+            {
+              "time_str": "05:57:45 م",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "1604B",
+              "problemName": "1604B - XOR Specia-LIS-t",
+              "problemUrl": "https://codeforces.com/contest/1604/problem/B",
+              "status": "Wrong Answer",
+              "is_ac": false
+            },
+            {
+              "time_str": "05:47:24 م",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "825A",
+              "problemName": "825A - Binary Protocol",
+              "problemUrl": "https://codeforces.com/contest/825/problem/A",
+              "status": "Accepted",
+              "is_ac": true
+            },
+            {
+              "time_str": "05:39:59 م",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "1609B",
+              "problemName": "1609B - William the Vigilant",
+              "problemUrl": "https://codeforces.com/contest/1609/problem/B",
+              "status": "Accepted",
+              "is_ac": true
+            }
+          ]
+        },
+        {
+          "date_str": "الأحد 4 أكتوبر 2026",
+          "start_str": "04:17 م",
+          "end_str": "04:54 م",
+          "start_ms": 1791119822000,
+          "end_ms": 1791122060000,
+          "duration_minutes": 37,
+          "duration_str": "37 دقيقة (اتصال متواصل)",
+          "submissions_count": 2,
+          "accepted_count": 1,
+          "pings_count": 0,
+          "problems": [
+            "743D"
+          ],
+          "platform_breakdown": {
+            "Codeforces": {
+              "duration_minutes": 37,
+              "duration_str": "37 دقيقة",
+              "subs_count": 2,
+              "ac_count": 1,
+              "pings_count": 0
+            }
+          },
+          "timeline": [
+            {
+              "time_str": "04:54:20 م",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "743D",
+              "problemName": "743D - Chloe and pleasant prizes",
+              "problemUrl": "https://codeforces.com/contest/743/problem/D",
+              "status": "Accepted",
+              "is_ac": true
+            },
+            {
+              "time_str": "04:32:02 م",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "743D",
+              "problemName": "743D - Chloe and pleasant prizes",
+              "problemUrl": "https://codeforces.com/contest/743/problem/D",
+              "status": "Wrong Answer",
+              "is_ac": false
+            }
+          ]
+        },
+        {
+          "date_str": "السبت 3 أكتوبر 2026",
+          "start_str": "11:00 م",
+          "end_str": "11:15 م",
+          "start_ms": 1791057608000,
+          "end_ms": 1791058508000,
+          "duration_minutes": 15,
+          "duration_str": "15 دقيقة (اتصال متواصل)",
+          "submissions_count": 1,
+          "accepted_count": 1,
+          "pings_count": 0,
+          "problems": [
+            "203C"
+          ],
+          "platform_breakdown": {
+            "Codeforces": {
+              "duration_minutes": 15,
+              "duration_str": "15 دقيقة",
+              "subs_count": 1,
+              "ac_count": 1,
+              "pings_count": 0
+            }
+          },
+          "timeline": [
+            {
+              "time_str": "11:15:08 م",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "203C",
+              "problemName": "203C - Photographer",
+              "problemUrl": "https://codeforces.com/contest/203/problem/C",
+              "status": "Accepted",
+              "is_ac": true
+            }
+          ]
+        },
+        {
+          "date_str": "السبت 3 أكتوبر 2026",
+          "start_str": "10:28 م",
+          "end_str": "10:43 م",
+          "start_ms": 1791055728000,
+          "end_ms": 1791056628000,
+          "duration_minutes": 15,
+          "duration_str": "15 دقيقة (اتصال متواصل)",
+          "submissions_count": 1,
+          "accepted_count": 1,
+          "pings_count": 0,
+          "problems": [
+            "25C"
+          ],
+          "platform_breakdown": {
+            "Codeforces": {
+              "duration_minutes": 15,
+              "duration_str": "15 دقيقة",
+              "subs_count": 1,
+              "ac_count": 1,
+              "pings_count": 0
+            }
+          },
+          "timeline": [
+            {
+              "time_str": "10:43:48 م",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "25C",
+              "problemName": "25C - Roads in Berland",
+              "problemUrl": "https://codeforces.com/contest/25/problem/C",
+              "status": "Accepted",
+              "is_ac": true
+            }
+          ]
+        },
+        {
+          "date_str": "السبت 3 أكتوبر 2026",
+          "start_str": "07:49 م",
+          "end_str": "08:25 م",
+          "start_ms": 1791046159000,
+          "end_ms": 1791048328000,
+          "duration_minutes": 36,
+          "duration_str": "36 دقيقة (اتصال متواصل)",
+          "submissions_count": 3,
+          "accepted_count": 3,
+          "pings_count": 0,
+          "problems": [
+            "236C"
+          ],
+          "platform_breakdown": {
+            "Codeforces": {
+              "duration_minutes": 36,
+              "duration_str": "36 دقيقة",
+              "subs_count": 3,
+              "ac_count": 3,
+              "pings_count": 0
+            }
+          },
+          "timeline": [
+            {
+              "time_str": "08:25:28 م",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "236C",
+              "problemName": "236C - LCM Challenge",
+              "problemUrl": "https://codeforces.com/contest/236/problem/C",
+              "status": "Accepted",
+              "is_ac": true
+            },
+            {
+              "time_str": "08:14:54 م",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "236C",
+              "problemName": "236C - LCM Challenge",
+              "problemUrl": "https://codeforces.com/contest/236/problem/C",
+              "status": "Accepted",
+              "is_ac": true
+            },
+            {
+              "time_str": "08:04:19 م",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "236C",
+              "problemName": "236C - LCM Challenge",
+              "problemUrl": "https://codeforces.com/contest/236/problem/C",
+              "status": "Accepted",
+              "is_ac": true
+            }
+          ]
+        },
+        {
+          "date_str": "السبت 3 أكتوبر 2026",
+          "start_str": "12:19 م",
+          "end_str": "12:34 م",
+          "start_ms": 1791019142000,
+          "end_ms": 1791020042000,
+          "duration_minutes": 15,
+          "duration_str": "15 دقيقة (اتصال متواصل)",
+          "submissions_count": 1,
+          "accepted_count": 1,
+          "pings_count": 0,
+          "problems": [
+            "327D"
+          ],
+          "platform_breakdown": {
+            "Codeforces": {
+              "duration_minutes": 15,
+              "duration_str": "15 دقيقة",
+              "subs_count": 1,
+              "ac_count": 1,
+              "pings_count": 0
+            }
+          },
+          "timeline": [
+            {
+              "time_str": "12:34:02 م",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "327D",
+              "problemName": "327D - Block Tower",
+              "problemUrl": "https://codeforces.com/contest/327/problem/D",
+              "status": "Accepted",
+              "is_ac": true
+            }
+          ]
+        },
+        {
+          "date_str": "الأربعاء 30 سبتمبر 2026",
+          "start_str": "10:29 م",
+          "end_str": "10:44 م",
+          "start_ms": 1790796568000,
+          "end_ms": 1790797468000,
+          "duration_minutes": 15,
+          "duration_str": "15 دقيقة (اتصال متواصل)",
+          "submissions_count": 1,
+          "accepted_count": 1,
+          "pings_count": 0,
+          "problems": [
+            "519D"
+          ],
+          "platform_breakdown": {
+            "Codeforces": {
+              "duration_minutes": 15,
+              "duration_str": "15 دقيقة",
+              "subs_count": 1,
+              "ac_count": 1,
+              "pings_count": 0
+            }
+          },
+          "timeline": [
+            {
+              "time_str": "10:44:28 م",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "519D",
+              "problemName": "519D - A and B and Interesting Substrings",
+              "problemUrl": "https://codeforces.com/contest/519/problem/D",
+              "status": "Accepted",
+              "is_ac": true
+            }
+          ]
+        },
+        {
+          "date_str": "الأربعاء 30 سبتمبر 2026",
+          "start_str": "09:17 م",
+          "end_str": "09:32 م",
+          "start_ms": 1790792267000,
+          "end_ms": 1790793167000,
+          "duration_minutes": 15,
+          "duration_str": "15 دقيقة (اتصال متواصل)",
+          "submissions_count": 1,
+          "accepted_count": 1,
+          "pings_count": 0,
+          "problems": [
+            "711D"
+          ],
+          "platform_breakdown": {
+            "Codeforces": {
+              "duration_minutes": 15,
+              "duration_str": "15 دقيقة",
+              "subs_count": 1,
+              "ac_count": 1,
+              "pings_count": 0
+            }
+          },
+          "timeline": [
+            {
+              "time_str": "09:32:47 م",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "711D",
+              "problemName": "711D - Directed Roads",
+              "problemUrl": "https://codeforces.com/contest/711/problem/D",
+              "status": "Accepted",
+              "is_ac": true
+            }
+          ]
+        },
+        {
+          "date_str": "الأربعاء 30 سبتمبر 2026",
+          "start_str": "04:19 م",
+          "end_str": "04:34 م",
+          "start_ms": 1790774380000,
+          "end_ms": 1790775280000,
+          "duration_minutes": 15,
+          "duration_str": "15 دقيقة (اتصال متواصل)",
+          "submissions_count": 1,
+          "accepted_count": 1,
+          "pings_count": 0,
+          "problems": [
+            "645D"
+          ],
+          "platform_breakdown": {
+            "Codeforces": {
+              "duration_minutes": 15,
+              "duration_str": "15 دقيقة",
+              "subs_count": 1,
+              "ac_count": 1,
+              "pings_count": 0
+            }
+          },
+          "timeline": [
+            {
+              "time_str": "04:34:40 م",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "645D",
+              "problemName": "645D - Robot Rapping Results Report",
+              "problemUrl": "https://codeforces.com/contest/645/problem/D",
+              "status": "Accepted",
+              "is_ac": true
+            }
+          ]
+        },
+        {
+          "date_str": "الثلاثاء 29 سبتمبر 2026",
+          "start_str": "06:41 م",
+          "end_str": "07:45 م",
+          "start_ms": 1790696466000,
+          "end_ms": 1790700336000,
+          "duration_minutes": 64,
+          "duration_str": "1 س و 4 د (اتصال متواصل)",
+          "submissions_count": 5,
+          "accepted_count": 1,
+          "pings_count": 0,
+          "problems": [
+            "16E"
+          ],
+          "platform_breakdown": {
+            "Codeforces": {
+              "duration_minutes": 64,
+              "duration_str": "1 س و 4 د",
+              "subs_count": 5,
+              "ac_count": 1,
+              "pings_count": 0
+            }
+          },
+          "timeline": [
+            {
+              "time_str": "07:45:36 م",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "16E",
+              "problemName": "16E - Fish",
+              "problemUrl": "https://codeforces.com/contest/16/problem/E",
+              "status": "Accepted",
+              "is_ac": true
+            },
+            {
+              "time_str": "07:35:39 م",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "16E",
+              "problemName": "16E - Fish",
+              "problemUrl": "https://codeforces.com/contest/16/problem/E",
+              "status": "Wrong Answer",
+              "is_ac": false
+            },
+            {
+              "time_str": "07:21:17 م",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "16E",
+              "problemName": "16E - Fish",
+              "problemUrl": "https://codeforces.com/contest/16/problem/E",
+              "status": "Time Limit Exceeded",
+              "is_ac": false
+            },
+            {
+              "time_str": "07:09:33 م",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "16E",
+              "problemName": "16E - Fish",
+              "problemUrl": "https://codeforces.com/contest/16/problem/E",
+              "status": "Time Limit Exceeded",
+              "is_ac": false
+            },
+            {
+              "time_str": "06:56:06 م",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "16E",
+              "problemName": "16E - Fish",
+              "problemUrl": "https://codeforces.com/contest/16/problem/E",
+              "status": "Wrong Answer",
+              "is_ac": false
+            }
+          ]
+        },
+        {
+          "date_str": "الثلاثاء 29 سبتمبر 2026",
+          "start_str": "03:35 م",
+          "end_str": "04:25 م",
+          "start_ms": 1790685304000,
+          "end_ms": 1790688327000,
+          "duration_minutes": 50,
+          "duration_str": "50 دقيقة (اتصال متواصل)",
+          "submissions_count": 4,
+          "accepted_count": 3,
+          "pings_count": 0,
+          "problems": [
+            "622A",
+            "2144B",
+            "2167D"
+          ],
+          "platform_breakdown": {
+            "Codeforces": {
+              "duration_minutes": 50,
+              "duration_str": "50 دقيقة",
+              "subs_count": 4,
+              "ac_count": 3,
+              "pings_count": 0
+            }
+          },
+          "timeline": [
+            {
+              "time_str": "04:25:27 م",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "2167D",
+              "problemName": "2167D - Yet Another Array Problem",
+              "problemUrl": "https://codeforces.com/contest/2167/problem/D",
+              "status": "Accepted",
+              "is_ac": true
+            },
+            {
+              "time_str": "04:18:52 م",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "2167D",
+              "problemName": "2167D - Yet Another Array Problem",
+              "problemUrl": "https://codeforces.com/contest/2167/problem/D",
+              "status": "Wrong Answer",
+              "is_ac": false
+            },
+            {
+              "time_str": "04:02:26 م",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "2144B",
+              "problemName": "2144B - Maximum Cost Permutation",
+              "problemUrl": "https://codeforces.com/contest/2144/problem/B",
+              "status": "Accepted",
+              "is_ac": true
+            },
+            {
+              "time_str": "03:50:04 م",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "622A",
+              "problemName": "622A - Infinite Sequence",
+              "problemUrl": "https://codeforces.com/contest/622/problem/A",
+              "status": "Accepted",
+              "is_ac": true
+            }
+          ]
+        },
+        {
+          "date_str": "الإثنين 28 سبتمبر 2026",
+          "start_str": "11:42 م",
+          "end_str": "11:59 م",
+          "start_ms": 1790628135000,
+          "end_ms": 1790629180000,
+          "duration_minutes": 17,
+          "duration_str": "17 دقيقة (اتصال متواصل)",
+          "submissions_count": 2,
+          "accepted_count": 1,
+          "pings_count": 0,
+          "problems": [
+            "581D"
+          ],
+          "platform_breakdown": {
+            "Codeforces": {
+              "duration_minutes": 17,
+              "duration_str": "17 دقيقة",
+              "subs_count": 2,
+              "ac_count": 1,
+              "pings_count": 0
+            }
+          },
+          "timeline": [
+            {
+              "time_str": "11:59:40 م",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "581D",
+              "problemName": "581D - Three Logos",
+              "problemUrl": "https://codeforces.com/contest/581/problem/D",
+              "status": "Accepted",
+              "is_ac": true
+            },
+            {
+              "time_str": "11:57:15 م",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "581D",
+              "problemName": "581D - Three Logos",
+              "problemUrl": "https://codeforces.com/contest/581/problem/D",
+              "status": "Wrong Answer",
+              "is_ac": false
+            }
+          ]
+        },
+        {
+          "date_str": "الإثنين 28 سبتمبر 2026",
+          "start_str": "10:35 م",
+          "end_str": "10:50 م",
+          "start_ms": 1790624106000,
+          "end_ms": 1790625006000,
+          "duration_minutes": 15,
+          "duration_str": "15 دقيقة (اتصال متواصل)",
+          "submissions_count": 1,
+          "accepted_count": 1,
+          "pings_count": 0,
+          "problems": [
+            "233C"
+          ],
+          "platform_breakdown": {
+            "Codeforces": {
+              "duration_minutes": 15,
+              "duration_str": "15 دقيقة",
+              "subs_count": 1,
+              "ac_count": 1,
+              "pings_count": 0
+            }
+          },
+          "timeline": [
+            {
+              "time_str": "10:50:06 م",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "233C",
+              "problemName": "233C - Cycles",
+              "problemUrl": "https://codeforces.com/contest/233/problem/C",
+              "status": "Accepted",
+              "is_ac": true
+            }
+          ]
+        },
+        {
+          "date_str": "الإثنين 28 سبتمبر 2026",
+          "start_str": "09:43 م",
+          "end_str": "10:01 م",
+          "start_ms": 1790621008000,
+          "end_ms": 1790622098000,
+          "duration_minutes": 18,
+          "duration_str": "18 دقيقة (اتصال متواصل)",
+          "submissions_count": 2,
+          "accepted_count": 0,
+          "pings_count": 0,
+          "problems": [
+            "233C"
+          ],
+          "platform_breakdown": {
+            "Codeforces": {
+              "duration_minutes": 18,
+              "duration_str": "18 دقيقة",
+              "subs_count": 2,
+              "ac_count": 0,
+              "pings_count": 0
+            }
+          },
+          "timeline": [
+            {
+              "time_str": "10:01:38 م",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "233C",
+              "problemName": "233C - Cycles",
+              "problemUrl": "https://codeforces.com/contest/233/problem/C",
+              "status": "Wrong Answer",
+              "is_ac": false
+            },
+            {
+              "time_str": "09:58:28 م",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "233C",
+              "problemName": "233C - Cycles",
+              "problemUrl": "https://codeforces.com/contest/233/problem/C",
+              "status": "Wrong Answer",
+              "is_ac": false
+            }
+          ]
+        },
+        {
+          "date_str": "الإثنين 28 سبتمبر 2026",
+          "start_str": "07:31 م",
+          "end_str": "07:46 م",
+          "start_ms": 1790613086000,
+          "end_ms": 1790613986000,
+          "duration_minutes": 15,
+          "duration_str": "15 دقيقة (اتصال متواصل)",
+          "submissions_count": 1,
+          "accepted_count": 1,
+          "pings_count": 0,
+          "problems": [
+            "342C"
+          ],
+          "platform_breakdown": {
+            "Codeforces": {
+              "duration_minutes": 15,
+              "duration_str": "15 دقيقة",
+              "subs_count": 1,
+              "ac_count": 1,
+              "pings_count": 0
+            }
+          },
+          "timeline": [
+            {
+              "time_str": "07:46:26 م",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "342C",
+              "problemName": "342C - Cupboard and Balloons",
+              "problemUrl": "https://codeforces.com/contest/342/problem/C",
+              "status": "Accepted",
+              "is_ac": true
+            }
+          ]
+        },
+        {
+          "date_str": "الإثنين 28 سبتمبر 2026",
+          "start_str": "06:52 م",
+          "end_str": "07:07 م",
+          "start_ms": 1790610742000,
+          "end_ms": 1790611642000,
+          "duration_minutes": 15,
+          "duration_str": "15 دقيقة (اتصال متواصل)",
+          "submissions_count": 1,
+          "accepted_count": 0,
+          "pings_count": 0,
+          "problems": [
+            "342C"
+          ],
+          "platform_breakdown": {
+            "Codeforces": {
+              "duration_minutes": 15,
+              "duration_str": "15 دقيقة",
+              "subs_count": 1,
+              "ac_count": 0,
+              "pings_count": 0
+            }
+          },
+          "timeline": [
+            {
+              "time_str": "07:07:22 م",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "342C",
+              "problemName": "342C - Cupboard and Balloons",
+              "problemUrl": "https://codeforces.com/contest/342/problem/C",
+              "status": "Wrong Answer",
+              "is_ac": false
+            }
+          ]
+        },
+        {
+          "date_str": "الإثنين 28 سبتمبر 2026",
+          "start_str": "05:45 م",
+          "end_str": "06:00 م",
+          "start_ms": 1790606758000,
+          "end_ms": 1790607658000,
+          "duration_minutes": 15,
+          "duration_str": "15 دقيقة (اتصال متواصل)",
+          "submissions_count": 1,
+          "accepted_count": 1,
+          "pings_count": 0,
+          "problems": [
+            "116C"
+          ],
+          "platform_breakdown": {
+            "Codeforces": {
+              "duration_minutes": 15,
+              "duration_str": "15 دقيقة",
+              "subs_count": 1,
+              "ac_count": 1,
+              "pings_count": 0
+            }
+          },
+          "timeline": [
+            {
+              "time_str": "06:00:58 م",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "116C",
+              "problemName": "116C - Party",
+              "problemUrl": "https://codeforces.com/contest/116/problem/C",
+              "status": "Accepted",
+              "is_ac": true
+            }
+          ]
+        },
+        {
+          "date_str": "الإثنين 28 سبتمبر 2026",
+          "start_str": "04:08 م",
+          "end_str": "04:54 م",
+          "start_ms": 1790600893000,
+          "end_ms": 1790603689000,
+          "duration_minutes": 47,
+          "duration_str": "47 دقيقة (اتصال متواصل)",
+          "submissions_count": 3,
+          "accepted_count": 2,
+          "pings_count": 0,
+          "problems": [
+            "443D",
+            "265D"
+          ],
+          "platform_breakdown": {
+            "Codeforces": {
+              "duration_minutes": 47,
+              "duration_str": "47 دقيقة",
+              "subs_count": 3,
+              "ac_count": 2,
+              "pings_count": 0
+            }
+          },
+          "timeline": [
+            {
+              "time_str": "04:54:49 م",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "265D",
+              "problemName": "265D - Good Sequences",
+              "problemUrl": "https://codeforces.com/contest/265/problem/D",
+              "status": "Accepted",
+              "is_ac": true
+            },
+            {
+              "time_str": "04:29:00 م",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "443D",
+              "problemName": "443D - Andrey and Problem",
+              "problemUrl": "https://codeforces.com/contest/443/problem/D",
+              "status": "Accepted",
+              "is_ac": true
+            },
+            {
+              "time_str": "04:23:13 م",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "443D",
+              "problemName": "443D - Andrey and Problem",
+              "problemUrl": "https://codeforces.com/contest/443/problem/D",
+              "status": "Wrong Answer",
+              "is_ac": false
+            }
+          ]
+        },
+        {
+          "date_str": "الإثنين 28 سبتمبر 2026",
+          "start_str": "01:29 ص",
+          "end_str": "01:44 ص",
+          "start_ms": 1790548148000,
+          "end_ms": 1790549097000,
+          "duration_minutes": 16,
+          "duration_str": "16 دقيقة (اتصال متواصل)",
+          "submissions_count": 2,
+          "accepted_count": 0,
+          "pings_count": 0,
+          "problems": [
+            "2269A",
+            "12B"
+          ],
+          "platform_breakdown": {
+            "Codeforces": {
+              "duration_minutes": 16,
+              "duration_str": "16 دقيقة",
+              "subs_count": 2,
+              "ac_count": 0,
+              "pings_count": 0
+            }
+          },
+          "timeline": [
+            {
+              "time_str": "01:44:57 ص",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "12B",
+              "problemName": "12B - Correct Solution?",
+              "problemUrl": "https://codeforces.com/contest/12/problem/B",
+              "status": "Compilation Error",
+              "is_ac": false
+            },
+            {
+              "time_str": "01:44:08 ص",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "2269A",
+              "problemName": "2269A - SauSaGe Bank",
+              "problemUrl": "https://codeforces.com/contest/2269/problem/A",
+              "status": "Compilation Error",
+              "is_ac": false
+            }
+          ]
+        },
+        {
+          "date_str": "الأحد 27 سبتمبر 2026",
+          "start_str": "06:33 م",
+          "end_str": "06:51 م",
+          "start_ms": 1790523229000,
+          "end_ms": 1790524278000,
+          "duration_minutes": 17,
+          "duration_str": "17 دقيقة (اتصال متواصل)",
+          "submissions_count": 3,
+          "accepted_count": 1,
+          "pings_count": 0,
+          "problems": [
+            "911G"
+          ],
+          "platform_breakdown": {
+            "VJudge": {
+              "duration_minutes": 17,
+              "duration_str": "17 دقيقة",
+              "subs_count": 3,
+              "ac_count": 1,
+              "pings_count": 0
+            },
+            "Codeforces": {
+              "duration_minutes": 17,
+              "duration_str": "17 دقيقة",
+              "subs_count": 2,
+              "ac_count": 0,
+              "pings_count": 0
+            }
+          },
+          "timeline": [
+            {
+              "time_str": "06:51:18 م",
+              "platform": "VJudge",
+              "type": "submission",
+              "probNum": "911G",
+              "problemName": "CodeForces 911G",
+              "problemUrl": "https://vjudge.net/problem/CodeForces-911G",
+              "status": "Runtime error on test 2",
+              "is_ac": false
+            },
+            {
+              "time_str": "06:50:44 م",
+              "platform": "VJudge",
+              "type": "submission",
+              "probNum": "911G",
+              "problemName": "CodeForces 911G",
+              "problemUrl": "https://vjudge.net/problem/CodeForces-911G",
+              "status": "Accepted",
+              "is_ac": true
+            },
+            {
+              "time_str": "06:48:49 م",
+              "platform": "VJudge",
+              "type": "submission",
+              "probNum": "911G",
+              "problemName": "CodeForces 911G",
+              "problemUrl": "https://vjudge.net/problem/CodeForces-911G",
+              "status": "Wrong answer on test 2",
+              "is_ac": false
+            }
+          ]
+        },
+        {
+          "date_str": "الأحد 27 سبتمبر 2026",
+          "start_str": "05:06 م",
+          "end_str": "05:21 م",
+          "start_ms": 1790517965000,
+          "end_ms": 1790518865000,
+          "duration_minutes": 15,
+          "duration_str": "15 دقيقة (اتصال متواصل)",
+          "submissions_count": 1,
+          "accepted_count": 0,
+          "pings_count": 0,
+          "problems": [
+            "911G"
+          ],
+          "platform_breakdown": {
+            "VJudge": {
+              "duration_minutes": 15,
+              "duration_str": "15 دقيقة",
+              "subs_count": 1,
+              "ac_count": 0,
+              "pings_count": 0
+            },
+            "Codeforces": {
+              "duration_minutes": 15,
+              "duration_str": "15 دقيقة",
+              "subs_count": 1,
+              "ac_count": 0,
+              "pings_count": 0
+            }
+          },
+          "timeline": [
+            {
+              "time_str": "05:21:05 م",
+              "platform": "VJudge",
+              "type": "submission",
+              "probNum": "911G",
+              "problemName": "CodeForces 911G",
+              "problemUrl": "https://vjudge.net/problem/CodeForces-911G",
+              "status": "Wrong answer on test 2",
+              "is_ac": false
+            }
+          ]
+        },
+        {
+          "date_str": "الأحد 27 سبتمبر 2026",
+          "start_str": "01:43 م",
+          "end_str": "01:58 م",
+          "start_ms": 1790505822000,
+          "end_ms": 1790506722000,
+          "duration_minutes": 15,
+          "duration_str": "15 دقيقة (اتصال متواصل)",
+          "submissions_count": 1,
+          "accepted_count": 1,
+          "pings_count": 0,
+          "problems": [
+            "1921F"
+          ],
+          "platform_breakdown": {
+            "VJudge": {
+              "duration_minutes": 15,
+              "duration_str": "15 دقيقة",
+              "subs_count": 1,
+              "ac_count": 1,
+              "pings_count": 0
+            },
+            "Codeforces": {
+              "duration_minutes": 15,
+              "duration_str": "15 دقيقة",
+              "subs_count": 1,
+              "ac_count": 1,
+              "pings_count": 0
+            }
+          },
+          "timeline": [
+            {
+              "time_str": "01:58:42 م",
+              "platform": "VJudge",
+              "type": "submission",
+              "probNum": "1921F",
+              "problemName": "CodeForces 1921F",
+              "problemUrl": "https://vjudge.net/problem/CodeForces-1921F",
+              "status": "Accepted",
+              "is_ac": true
+            }
+          ]
+        },
+        {
+          "date_str": "الأحد 27 سبتمبر 2026",
+          "start_str": "09:56 ص",
+          "end_str": "10:45 ص",
+          "start_ms": 1790492178000,
+          "end_ms": 1790495112000,
+          "duration_minutes": 49,
+          "duration_str": "49 دقيقة (اتصال متواصل)",
+          "submissions_count": 5,
+          "accepted_count": 2,
+          "pings_count": 0,
+          "problems": [
+            "348C"
+          ],
+          "platform_breakdown": {
+            "VJudge": {
+              "duration_minutes": 15,
+              "duration_str": "15 دقيقة",
+              "subs_count": 1,
+              "ac_count": 1,
+              "pings_count": 0
+            },
+            "Codeforces": {
+              "duration_minutes": 49,
+              "duration_str": "49 دقيقة",
+              "subs_count": 5,
+              "ac_count": 2,
+              "pings_count": 0
+            }
+          },
+          "timeline": [
+            {
+              "time_str": "10:45:12 ص",
+              "platform": "VJudge",
+              "type": "submission",
+              "probNum": "348C",
+              "problemName": "CodeForces 348C",
+              "problemUrl": "https://vjudge.net/problem/CodeForces-348C",
+              "status": "Accepted",
+              "is_ac": true
+            },
+            {
+              "time_str": "10:43:35 ص",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "348C",
+              "problemName": "348C - Subset Sums",
+              "problemUrl": "https://codeforces.com/contest/348/problem/C",
+              "status": "Accepted",
+              "is_ac": true
+            },
+            {
+              "time_str": "10:29:49 ص",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "348C",
+              "problemName": "348C - Subset Sums",
+              "problemUrl": "https://codeforces.com/contest/348/problem/C",
+              "status": "Wrong Answer",
+              "is_ac": false
+            },
+            {
+              "time_str": "10:17:25 ص",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "348C",
+              "problemName": "348C - Subset Sums",
+              "problemUrl": "https://codeforces.com/contest/348/problem/C",
+              "status": "Wrong Answer",
+              "is_ac": false
+            },
+            {
+              "time_str": "10:11:18 ص",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "348C",
+              "problemName": "348C - Subset Sums",
+              "problemUrl": "https://codeforces.com/contest/348/problem/C",
+              "status": "Wrong Answer",
+              "is_ac": false
+            }
+          ]
+        },
+        {
+          "date_str": "السبت 26 سبتمبر 2026",
+          "start_str": "05:41 م",
+          "end_str": "06:05 م",
+          "start_ms": 1790433665000,
+          "end_ms": 1790435159000,
+          "duration_minutes": 25,
+          "duration_str": "25 دقيقة (اتصال متواصل)",
+          "submissions_count": 3,
+          "accepted_count": 2,
+          "pings_count": 0,
+          "problems": [
+            "447E",
+            "446C"
+          ],
+          "platform_breakdown": {
+            "VJudge": {
+              "duration_minutes": 15,
+              "duration_str": "15 دقيقة",
+              "subs_count": 1,
+              "ac_count": 1,
+              "pings_count": 0
+            },
+            "Codeforces": {
+              "duration_minutes": 25,
+              "duration_str": "25 دقيقة",
+              "subs_count": 3,
+              "ac_count": 2,
+              "pings_count": 0
+            }
+          },
+          "timeline": [
+            {
+              "time_str": "06:05:59 م",
+              "platform": "VJudge",
+              "type": "submission",
+              "probNum": "446C",
+              "problemName": "CodeForces 446C",
+              "problemUrl": "https://vjudge.net/problem/CodeForces-446C",
+              "status": "Accepted",
+              "is_ac": true
+            },
+            {
+              "time_str": "06:00:22 م",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "447E",
+              "problemName": "447E - DZY Loves Fibonacci Numbers",
+              "problemUrl": "https://codeforces.com/contest/447/problem/E",
+              "status": "Accepted",
+              "is_ac": true
+            },
+            {
+              "time_str": "05:56:05 م",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "447E",
+              "problemName": "447E - DZY Loves Fibonacci Numbers",
+              "problemUrl": "https://codeforces.com/contest/447/problem/E",
+              "status": "Wrong Answer",
+              "is_ac": false
+            }
+          ]
+        },
+        {
+          "date_str": "السبت 26 سبتمبر 2026",
+          "start_str": "10:28 ص",
+          "end_str": "10:43 ص",
+          "start_ms": 1790407731000,
+          "end_ms": 1790408631000,
+          "duration_minutes": 15,
+          "duration_str": "15 دقيقة (اتصال متواصل)",
+          "submissions_count": 1,
+          "accepted_count": 1,
+          "pings_count": 0,
+          "problems": [
+            "342E"
+          ],
+          "platform_breakdown": {
+            "VJudge": {
+              "duration_minutes": 15,
+              "duration_str": "15 دقيقة",
+              "subs_count": 1,
+              "ac_count": 1,
+              "pings_count": 0
+            },
+            "Codeforces": {
+              "duration_minutes": 15,
+              "duration_str": "15 دقيقة",
+              "subs_count": 1,
+              "ac_count": 1,
+              "pings_count": 0
+            }
+          },
+          "timeline": [
+            {
+              "time_str": "10:43:51 ص",
+              "platform": "VJudge",
+              "type": "submission",
+              "probNum": "342E",
+              "problemName": "CodeForces 342E",
+              "problemUrl": "https://vjudge.net/problem/CodeForces-342E",
+              "status": "Accepted",
+              "is_ac": true
+            }
+          ]
+        },
+        {
+          "date_str": "الجمعة 25 سبتمبر 2026",
+          "start_str": "12:34 م",
+          "end_str": "01:03 م",
+          "start_ms": 1790328868000,
+          "end_ms": 1790330611000,
+          "duration_minutes": 29,
+          "duration_str": "29 دقيقة (اتصال متواصل)",
+          "submissions_count": 6,
+          "accepted_count": 3,
+          "pings_count": 0,
+          "problems": [
+            "103366G"
+          ],
+          "platform_breakdown": {
+            "VJudge": {
+              "duration_minutes": 29,
+              "duration_str": "29 دقيقة",
+              "subs_count": 6,
+              "ac_count": 3,
+              "pings_count": 0
+            },
+            "Codeforces": {
+              "duration_minutes": 29,
+              "duration_str": "29 دقيقة",
+              "subs_count": 4,
+              "ac_count": 2,
+              "pings_count": 0
+            }
+          },
+          "timeline": [
+            {
+              "time_str": "01:03:31 م",
+              "platform": "VJudge",
+              "type": "submission",
+              "probNum": "103366G",
+              "problemName": "Gym 103366G",
+              "problemUrl": "https://vjudge.net/problem/Gym-103366G",
+              "status": "Accepted",
+              "is_ac": true
+            },
+            {
+              "time_str": "12:55:34 م",
+              "platform": "VJudge",
+              "type": "submission",
+              "probNum": "103366G",
+              "problemName": "Gym 103366G",
+              "problemUrl": "https://vjudge.net/problem/Gym-103366G",
+              "status": "Accepted",
+              "is_ac": true
+            },
+            {
+              "time_str": "12:54:57 م",
+              "platform": "VJudge",
+              "type": "submission",
+              "probNum": "103366G",
+              "problemName": "Gym 103366G",
+              "problemUrl": "https://vjudge.net/problem/Gym-103366G",
+              "status": "Time limit exceeded on test 14",
+              "is_ac": false
+            },
+            {
+              "time_str": "12:54:22 م",
+              "platform": "VJudge",
+              "type": "submission",
+              "probNum": "103366G",
+              "problemName": "Gym 103366G",
+              "problemUrl": "https://vjudge.net/problem/Gym-103366G",
+              "status": "Time limit exceeded on test 12",
+              "is_ac": false
+            },
+            {
+              "time_str": "12:53:35 م",
+              "platform": "VJudge",
+              "type": "submission",
+              "probNum": "103366G",
+              "problemName": "Gym 103366G",
+              "problemUrl": "https://vjudge.net/problem/Gym-103366G",
+              "status": "Accepted",
+              "is_ac": true
+            },
+            {
+              "time_str": "12:49:28 م",
+              "platform": "VJudge",
+              "type": "submission",
+              "probNum": "103366G",
+              "problemName": "Gym 103366G",
+              "problemUrl": "https://vjudge.net/problem/Gym-103366G",
+              "status": "Time limit exceeded on test 12",
+              "is_ac": false
+            }
+          ]
+        },
+        {
+          "date_str": "الجمعة 25 سبتمبر 2026",
+          "start_str": "11:21 ص",
+          "end_str": "12:00 م",
+          "start_ms": 1790324484000,
+          "end_ms": 1790326825000,
+          "duration_minutes": 39,
+          "duration_str": "39 دقيقة (اتصال متواصل)",
+          "submissions_count": 2,
+          "accepted_count": 2,
+          "pings_count": 0,
+          "problems": [
+            "617E"
+          ],
+          "platform_breakdown": {
+            "VJudge": {
+              "duration_minutes": 39,
+              "duration_str": "39 دقيقة",
+              "subs_count": 2,
+              "ac_count": 2,
+              "pings_count": 0
+            },
+            "Codeforces": {
+              "duration_minutes": 39,
+              "duration_str": "39 دقيقة",
+              "subs_count": 2,
+              "ac_count": 2,
+              "pings_count": 0
+            }
+          },
+          "timeline": [
+            {
+              "time_str": "12:00:25 م",
+              "platform": "VJudge",
+              "type": "submission",
+              "probNum": "617E",
+              "problemName": "CodeForces 617E",
+              "problemUrl": "https://vjudge.net/problem/CodeForces-617E",
+              "status": "Accepted",
+              "is_ac": true
+            },
+            {
+              "time_str": "11:36:24 ص",
+              "platform": "VJudge",
+              "type": "submission",
+              "probNum": "617E",
+              "problemName": "CodeForces 617E",
+              "problemUrl": "https://vjudge.net/problem/CodeForces-617E",
+              "status": "Accepted",
+              "is_ac": true
+            }
+          ]
+        },
+        {
+          "date_str": "الجمعة 25 سبتمبر 2026",
+          "start_str": "08:35 ص",
+          "end_str": "08:50 ص",
+          "start_ms": 1790314527000,
+          "end_ms": 1790315427000,
+          "duration_minutes": 15,
+          "duration_str": "15 دقيقة (اتصال متواصل)",
+          "submissions_count": 1,
+          "accepted_count": 1,
+          "pings_count": 0,
+          "problems": [
+            "abc293_g"
+          ],
+          "platform_breakdown": {
+            "VJudge": {
+              "duration_minutes": 15,
+              "duration_str": "15 دقيقة",
+              "subs_count": 1,
+              "ac_count": 1,
+              "pings_count": 0
+            }
+          },
+          "timeline": [
+            {
+              "time_str": "08:50:27 ص",
+              "platform": "VJudge",
+              "type": "submission",
+              "probNum": "abc293_g",
+              "problemName": "AtCoder abc293_g",
+              "problemUrl": "https://vjudge.net/problem/AtCoder-abc293_g",
+              "status": "Accepted",
+              "is_ac": true
+            }
+          ]
+        },
+        {
+          "date_str": "الخميس 24 سبتمبر 2026",
+          "start_str": "12:35 م",
+          "end_str": "01:01 م",
+          "start_ms": 1790242548000,
+          "end_ms": 1790244106000,
+          "duration_minutes": 26,
+          "duration_str": "26 دقيقة (اتصال متواصل)",
+          "submissions_count": 3,
+          "accepted_count": 2,
+          "pings_count": 0,
+          "problems": [
+            "220B",
+            "86D"
+          ],
+          "platform_breakdown": {
+            "VJudge": {
+              "duration_minutes": 26,
+              "duration_str": "26 دقيقة",
+              "subs_count": 3,
+              "ac_count": 2,
+              "pings_count": 0
+            },
+            "Codeforces": {
+              "duration_minutes": 25,
+              "duration_str": "25 دقيقة",
+              "subs_count": 2,
+              "ac_count": 2,
+              "pings_count": 0
+            }
+          },
+          "timeline": [
+            {
+              "time_str": "01:01:46 م",
+              "platform": "VJudge",
+              "type": "submission",
+              "probNum": "86D",
+              "problemName": "CodeForces 86D",
+              "problemUrl": "https://vjudge.net/problem/CodeForces-86D",
+              "status": "Accepted",
+              "is_ac": true
+            },
+            {
+              "time_str": "12:52:05 م",
+              "platform": "VJudge",
+              "type": "submission",
+              "probNum": "220B",
+              "problemName": "CodeForces 220B",
+              "problemUrl": "https://vjudge.net/problem/CodeForces-220B",
+              "status": "Accepted",
+              "is_ac": true
+            },
+            {
+              "time_str": "12:50:48 م",
+              "platform": "VJudge",
+              "type": "submission",
+              "probNum": "220B",
+              "problemName": "CodeForces 220B",
+              "problemUrl": "https://vjudge.net/problem/CodeForces-220B",
+              "status": "Runtime error on test 4",
+              "is_ac": false
+            }
+          ]
+        },
+        {
+          "date_str": "الأربعاء 23 سبتمبر 2026",
+          "start_str": "12:51 م",
+          "end_str": "02:24 م",
+          "start_ms": 1790157083000,
+          "end_ms": 1790162644000,
+          "duration_minutes": 93,
+          "duration_str": "1 س و 33 د (اتصال متواصل)",
+          "submissions_count": 14,
+          "accepted_count": 3,
+          "pings_count": 0,
+          "problems": [
+            "398D"
+          ],
+          "platform_breakdown": {
+            "VJudge": {
+              "duration_minutes": 70,
+              "duration_str": "1 س و 10 د",
+              "subs_count": 12,
+              "ac_count": 1,
+              "pings_count": 0
+            },
+            "Codeforces": {
+              "duration_minutes": 91,
+              "duration_str": "1 س و 31 د",
+              "subs_count": 10,
+              "ac_count": 3,
+              "pings_count": 0
+            }
+          },
+          "timeline": [
+            {
+              "time_str": "02:24:04 م",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "398D",
+              "problemName": "398D - Instant Messanger",
+              "problemUrl": "https://codeforces.com/contest/398/problem/D",
+              "status": "Accepted",
+              "is_ac": true
+            },
+            {
+              "time_str": "02:12:09 م",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "398D",
+              "problemName": "398D - Instant Messanger",
+              "problemUrl": "https://codeforces.com/contest/398/problem/D",
+              "status": "Accepted",
+              "is_ac": true
+            },
+            {
+              "time_str": "02:01:24 م",
+              "platform": "VJudge",
+              "type": "submission",
+              "probNum": "398D",
+              "problemName": "CodeForces 398D",
+              "problemUrl": "https://vjudge.net/problem/CodeForces-398D",
+              "status": "Accepted",
+              "is_ac": true
+            },
+            {
+              "time_str": "01:48:00 م",
+              "platform": "VJudge",
+              "type": "submission",
+              "probNum": "398D",
+              "problemName": "CodeForces 398D",
+              "problemUrl": "https://vjudge.net/problem/CodeForces-398D",
+              "status": "Wrong answer on test 8",
+              "is_ac": false
+            },
+            {
+              "time_str": "01:47:36 م",
+              "platform": "VJudge",
+              "type": "submission",
+              "probNum": "398D",
+              "problemName": "CodeForces 398D",
+              "problemUrl": "https://vjudge.net/problem/CodeForces-398D",
+              "status": "Wrong answer on test 8",
+              "is_ac": false
+            },
+            {
+              "time_str": "01:30:58 م",
+              "platform": "VJudge",
+              "type": "submission",
+              "probNum": "398D",
+              "problemName": "CodeForces 398D",
+              "problemUrl": "https://vjudge.net/problem/CodeForces-398D",
+              "status": "Wrong answer on test 8",
+              "is_ac": false
+            },
+            {
+              "time_str": "01:22:29 م",
+              "platform": "VJudge",
+              "type": "submission",
+              "probNum": "398D",
+              "problemName": "CodeForces 398D",
+              "problemUrl": "https://vjudge.net/problem/CodeForces-398D",
+              "status": "Wrong answer on test 8",
+              "is_ac": false
+            },
+            {
+              "time_str": "01:18:53 م",
+              "platform": "VJudge",
+              "type": "submission",
+              "probNum": "398D",
+              "problemName": "CodeForces 398D",
+              "problemUrl": "https://vjudge.net/problem/CodeForces-398D",
+              "status": "Wrong answer on test 8",
+              "is_ac": false
+            },
+            {
+              "time_str": "01:13:42 م",
+              "platform": "VJudge",
+              "type": "submission",
+              "probNum": "398D",
+              "problemName": "CodeForces 398D",
+              "problemUrl": "https://vjudge.net/problem/CodeForces-398D",
+              "status": "Time limit exceeded on test 8",
+              "is_ac": false
+            },
+            {
+              "time_str": "01:10:38 م",
+              "platform": "VJudge",
+              "type": "submission",
+              "probNum": "398D",
+              "problemName": "CodeForces 398D",
+              "problemUrl": "https://vjudge.net/problem/CodeForces-398D",
+              "status": "Compilation error",
+              "is_ac": false
+            },
+            {
+              "time_str": "01:10:19 م",
+              "platform": "VJudge",
+              "type": "submission",
+              "probNum": "398D",
+              "problemName": "CodeForces 398D",
+              "problemUrl": "https://vjudge.net/problem/CodeForces-398D",
+              "status": "Compilation error",
+              "is_ac": false
+            },
+            {
+              "time_str": "01:07:45 م",
+              "platform": "VJudge",
+              "type": "submission",
+              "probNum": "398D",
+              "problemName": "CodeForces 398D",
+              "problemUrl": "https://vjudge.net/problem/CodeForces-398D",
+              "status": "Time limit exceeded on test 8",
+              "is_ac": false
+            },
+            {
+              "time_str": "01:06:51 م",
+              "platform": "VJudge",
+              "type": "submission",
+              "probNum": "398D",
+              "problemName": "CodeForces 398D",
+              "problemUrl": "https://vjudge.net/problem/CodeForces-398D",
+              "status": "Time limit exceeded on test 8",
+              "is_ac": false
+            },
+            {
+              "time_str": "01:06:23 م",
+              "platform": "VJudge",
+              "type": "submission",
+              "probNum": "398D",
+              "problemName": "CodeForces 398D",
+              "problemUrl": "https://vjudge.net/problem/CodeForces-398D",
+              "status": "Time limit exceeded on test 8",
+              "is_ac": false
+            }
+          ]
+        },
+        {
+          "date_str": "الأربعاء 23 سبتمبر 2026",
+          "start_str": "12:14 م",
+          "end_str": "12:32 م",
+          "start_ms": 1790154895000,
+          "end_ms": 1790155943000,
+          "duration_minutes": 17,
+          "duration_str": "17 دقيقة (اتصال متواصل)",
+          "submissions_count": 3,
+          "accepted_count": 0,
+          "pings_count": 0,
+          "problems": [
+            "398D"
+          ],
+          "platform_breakdown": {
+            "VJudge": {
+              "duration_minutes": 17,
+              "duration_str": "17 دقيقة",
+              "subs_count": 3,
+              "ac_count": 0,
+              "pings_count": 0
+            },
+            "Codeforces": {
+              "duration_minutes": 17,
+              "duration_str": "17 دقيقة",
+              "subs_count": 2,
+              "ac_count": 0,
+              "pings_count": 0
+            }
+          },
+          "timeline": [
+            {
+              "time_str": "12:32:23 م",
+              "platform": "VJudge",
+              "type": "submission",
+              "probNum": "398D",
+              "problemName": "CodeForces 398D",
+              "problemUrl": "https://vjudge.net/problem/CodeForces-398D",
+              "status": "Time limit exceeded on test 8",
+              "is_ac": false
+            },
+            {
+              "time_str": "12:31:55 م",
+              "platform": "VJudge",
+              "type": "submission",
+              "probNum": "398D",
+              "problemName": "CodeForces 398D",
+              "problemUrl": "https://vjudge.net/problem/CodeForces-398D",
+              "status": "Time limit exceeded on test 8",
+              "is_ac": false
+            },
+            {
+              "time_str": "12:29:55 م",
+              "platform": "VJudge",
+              "type": "submission",
+              "probNum": "398D",
+              "problemName": "CodeForces 398D",
+              "problemUrl": "https://vjudge.net/problem/CodeForces-398D",
+              "status": "Time limit exceeded on test 8",
+              "is_ac": false
+            }
+          ]
+        },
+        {
+          "date_str": "الأربعاء 23 سبتمبر 2026",
+          "start_str": "11:20 ص",
+          "end_str": "11:51 ص",
+          "start_ms": 1790151659000,
+          "end_ms": 1790153490000,
+          "duration_minutes": 31,
+          "duration_str": "31 دقيقة (اتصال متواصل)",
+          "submissions_count": 9,
+          "accepted_count": 0,
+          "pings_count": 0,
+          "problems": [
+            "398D"
+          ],
+          "platform_breakdown": {
+            "VJudge": {
+              "duration_minutes": 31,
+              "duration_str": "31 دقيقة",
+              "subs_count": 9,
+              "ac_count": 0,
+              "pings_count": 0
+            },
+            "Codeforces": {
+              "duration_minutes": 31,
+              "duration_str": "31 دقيقة",
+              "subs_count": 8,
+              "ac_count": 0,
+              "pings_count": 0
+            }
+          },
+          "timeline": [
+            {
+              "time_str": "11:51:30 ص",
+              "platform": "VJudge",
+              "type": "submission",
+              "probNum": "398D",
+              "problemName": "CodeForces 398D",
+              "problemUrl": "https://vjudge.net/problem/CodeForces-398D",
+              "status": "Time limit exceeded on test 8",
+              "is_ac": false
+            },
+            {
+              "time_str": "11:45:24 ص",
+              "platform": "VJudge",
+              "type": "submission",
+              "probNum": "398D",
+              "problemName": "CodeForces 398D",
+              "problemUrl": "https://vjudge.net/problem/CodeForces-398D",
+              "status": "Time limit exceeded on test 8",
+              "is_ac": false
+            },
+            {
+              "time_str": "11:44:36 ص",
+              "platform": "VJudge",
+              "type": "submission",
+              "probNum": "398D",
+              "problemName": "CodeForces 398D",
+              "problemUrl": "https://vjudge.net/problem/CodeForces-398D",
+              "status": "Wrong answer on test 7",
+              "is_ac": false
+            },
+            {
+              "time_str": "11:43:36 ص",
+              "platform": "VJudge",
+              "type": "submission",
+              "probNum": "398D",
+              "problemName": "CodeForces 398D",
+              "problemUrl": "https://vjudge.net/problem/CodeForces-398D",
+              "status": "Wrong answer on test 7",
+              "is_ac": false
+            },
+            {
+              "time_str": "11:43:02 ص",
+              "platform": "VJudge",
+              "type": "submission",
+              "probNum": "398D",
+              "problemName": "CodeForces 398D",
+              "problemUrl": "https://vjudge.net/problem/CodeForces-398D",
+              "status": "Time limit exceeded on test 8",
+              "is_ac": false
+            },
+            {
+              "time_str": "11:41:43 ص",
+              "platform": "VJudge",
+              "type": "submission",
+              "probNum": "398D",
+              "problemName": "CodeForces 398D",
+              "problemUrl": "https://vjudge.net/problem/CodeForces-398D",
+              "status": "Time limit exceeded on test 8",
+              "is_ac": false
+            },
+            {
+              "time_str": "11:40:22 ص",
+              "platform": "VJudge",
+              "type": "submission",
+              "probNum": "398D",
+              "problemName": "CodeForces 398D",
+              "problemUrl": "https://vjudge.net/problem/CodeForces-398D",
+              "status": "Time limit exceeded on test 8",
+              "is_ac": false
+            },
+            {
+              "time_str": "11:39:08 ص",
+              "platform": "VJudge",
+              "type": "submission",
+              "probNum": "398D",
+              "problemName": "CodeForces 398D",
+              "problemUrl": "https://vjudge.net/problem/CodeForces-398D",
+              "status": "Time limit exceeded on test 8",
+              "is_ac": false
+            },
+            {
+              "time_str": "11:35:59 ص",
+              "platform": "VJudge",
+              "type": "submission",
+              "probNum": "398D",
+              "problemName": "CodeForces 398D",
+              "problemUrl": "https://vjudge.net/problem/CodeForces-398D",
+              "status": "Wrong answer on test 4",
+              "is_ac": false
+            }
+          ]
+        },
+        {
+          "date_str": "الثلاثاء 22 سبتمبر 2026",
+          "start_str": "02:56 م",
+          "end_str": "03:35 م",
+          "start_ms": 1790078205000,
+          "end_ms": 1790080512000,
+          "duration_minutes": 38,
+          "duration_str": "38 دقيقة (اتصال متواصل)",
+          "submissions_count": 2,
+          "accepted_count": 2,
+          "pings_count": 0,
+          "problems": [
+            "DQUERY",
+            "GIVEAWAY"
+          ],
+          "platform_breakdown": {
+            "VJudge": {
+              "duration_minutes": 38,
+              "duration_str": "38 دقيقة",
+              "subs_count": 2,
+              "ac_count": 2,
+              "pings_count": 0
+            }
+          },
+          "timeline": [
+            {
+              "time_str": "03:35:12 م",
+              "platform": "VJudge",
+              "type": "submission",
+              "probNum": "GIVEAWAY",
+              "problemName": "SPOJ GIVEAWAY",
+              "problemUrl": "https://vjudge.net/problem/SPOJ-GIVEAWAY",
+              "status": "Accepted",
+              "is_ac": true
+            },
+            {
+              "time_str": "03:11:45 م",
+              "platform": "VJudge",
+              "type": "submission",
+              "probNum": "DQUERY",
+              "problemName": "SPOJ DQUERY",
+              "problemUrl": "https://vjudge.net/problem/SPOJ-DQUERY",
+              "status": "Accepted",
+              "is_ac": true
+            }
+          ]
+        },
+        {
+          "date_str": "الثلاثاء 22 سبتمبر 2026",
+          "start_str": "01:10 م",
+          "end_str": "01:44 م",
+          "start_ms": 1790071832000,
+          "end_ms": 1790073878000,
+          "duration_minutes": 34,
+          "duration_str": "34 دقيقة (اتصال متواصل)",
+          "submissions_count": 6,
+          "accepted_count": 1,
+          "pings_count": 0,
+          "problems": [
+            "13E"
+          ],
+          "platform_breakdown": {
+            "VJudge": {
+              "duration_minutes": 34,
+              "duration_str": "34 دقيقة",
+              "subs_count": 6,
+              "ac_count": 1,
+              "pings_count": 0
+            },
+            "Codeforces": {
+              "duration_minutes": 34,
+              "duration_str": "34 دقيقة",
+              "subs_count": 5,
+              "ac_count": 1,
+              "pings_count": 0
+            }
+          },
+          "timeline": [
+            {
+              "time_str": "01:44:38 م",
+              "platform": "VJudge",
+              "type": "submission",
+              "probNum": "13E",
+              "problemName": "CodeForces 13E",
+              "problemUrl": "https://vjudge.net/problem/CodeForces-13E",
+              "status": "Accepted",
+              "is_ac": true
+            },
+            {
+              "time_str": "01:38:51 م",
+              "platform": "VJudge",
+              "type": "submission",
+              "probNum": "13E",
+              "problemName": "CodeForces 13E",
+              "problemUrl": "https://vjudge.net/problem/CodeForces-13E",
+              "status": "Time limit exceeded on test 12",
+              "is_ac": false
+            },
+            {
+              "time_str": "01:37:50 م",
+              "platform": "VJudge",
+              "type": "submission",
+              "probNum": "13E",
+              "problemName": "CodeForces 13E",
+              "problemUrl": "https://vjudge.net/problem/CodeForces-13E",
+              "status": "Time limit exceeded on test 12",
+              "is_ac": false
+            },
+            {
+              "time_str": "01:36:59 م",
+              "platform": "VJudge",
+              "type": "submission",
+              "probNum": "13E",
+              "problemName": "CodeForces 13E",
+              "problemUrl": "https://vjudge.net/problem/CodeForces-13E",
+              "status": "Wrong answer on test 10",
+              "is_ac": false
+            },
+            {
+              "time_str": "01:34:45 م",
+              "platform": "VJudge",
+              "type": "submission",
+              "probNum": "13E",
+              "problemName": "CodeForces 13E",
+              "problemUrl": "https://vjudge.net/problem/CodeForces-13E",
+              "status": "Time limit exceeded on test 12",
+              "is_ac": false
+            },
+            {
+              "time_str": "01:25:32 م",
+              "platform": "VJudge",
+              "type": "submission",
+              "probNum": "13E",
+              "problemName": "CodeForces 13E",
+              "problemUrl": "https://vjudge.net/problem/CodeForces-13E",
+              "status": "Wrong answer on test 10",
+              "is_ac": false
+            }
+          ]
+        },
+        {
+          "date_str": "الثلاثاء 22 سبتمبر 2026",
+          "start_str": "06:51 ص",
+          "end_str": "07:16 ص",
+          "start_ms": 1790049066000,
+          "end_ms": 1790050611000,
+          "duration_minutes": 26,
+          "duration_str": "26 دقيقة (اتصال متواصل)",
+          "submissions_count": 3,
+          "accepted_count": 1,
+          "pings_count": 0,
+          "problems": [
+            "2264C"
+          ],
+          "platform_breakdown": {
+            "Codeforces": {
+              "duration_minutes": 26,
+              "duration_str": "26 دقيقة",
+              "subs_count": 3,
+              "ac_count": 1,
+              "pings_count": 0
+            }
+          },
+          "timeline": [
+            {
+              "time_str": "07:16:51 ص",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "2264C",
+              "problemName": "2264C - Madamant's Skating Dynasty",
+              "problemUrl": "https://codeforces.com/contest/2264/problem/C",
+              "status": "Accepted",
+              "is_ac": true
+            },
+            {
+              "time_str": "07:09:20 ص",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "2264C",
+              "problemName": "2264C - Madamant's Skating Dynasty",
+              "problemUrl": "https://codeforces.com/contest/2264/problem/C",
+              "status": "Wrong Answer",
+              "is_ac": false
+            },
+            {
+              "time_str": "07:06:06 ص",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "2264C",
+              "problemName": "2264C - Madamant's Skating Dynasty",
+              "problemUrl": "https://codeforces.com/contest/2264/problem/C",
+              "status": "Wrong Answer",
+              "is_ac": false
+            }
+          ]
+        },
+        {
+          "date_str": "الثلاثاء 22 سبتمبر 2026",
+          "start_str": "06:02 ص",
+          "end_str": "06:17 ص",
+          "start_ms": 1790046122000,
+          "end_ms": 1790047022000,
+          "duration_minutes": 15,
+          "duration_str": "15 دقيقة (اتصال متواصل)",
+          "submissions_count": 1,
+          "accepted_count": 1,
+          "pings_count": 0,
+          "problems": [
+            "2266D"
+          ],
+          "platform_breakdown": {
+            "Codeforces": {
+              "duration_minutes": 15,
+              "duration_str": "15 دقيقة",
+              "subs_count": 1,
+              "ac_count": 1,
+              "pings_count": 0
+            }
+          },
+          "timeline": [
+            {
+              "time_str": "06:17:02 ص",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "2266D",
+              "problemName": "2266D - Falling Concrete",
+              "problemUrl": "https://codeforces.com/contest/2266/problem/D",
+              "status": "Accepted",
+              "is_ac": true
+            }
+          ]
+        },
+        {
+          "date_str": "الإثنين 21 سبتمبر 2026",
+          "start_str": "07:46 م",
+          "end_str": "08:01 م",
+          "start_ms": 1790009206000,
+          "end_ms": 1790010106000,
+          "duration_minutes": 15,
+          "duration_str": "15 دقيقة (اتصال متواصل)",
+          "submissions_count": 1,
+          "accepted_count": 1,
+          "pings_count": 0,
+          "problems": [
+            "2266E"
+          ],
+          "platform_breakdown": {
+            "Codeforces": {
+              "duration_minutes": 15,
+              "duration_str": "15 دقيقة",
+              "subs_count": 1,
+              "ac_count": 1,
+              "pings_count": 0
+            }
+          },
+          "timeline": [
+            {
+              "time_str": "08:01:46 م",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "2266E",
+              "problemName": "2266E - Prime Destruction",
+              "problemUrl": "https://codeforces.com/contest/2266/problem/E",
+              "status": "Accepted",
+              "is_ac": true
+            }
+          ]
+        },
+        {
+          "date_str": "الإثنين 21 سبتمبر 2026",
+          "start_str": "07:16 م",
+          "end_str": "07:31 م",
+          "start_ms": 1790007379000,
+          "end_ms": 1790008279000,
+          "duration_minutes": 15,
+          "duration_str": "15 دقيقة (اتصال متواصل)",
+          "submissions_count": 1,
+          "accepted_count": 0,
+          "pings_count": 0,
+          "problems": [
+            "2266E"
+          ],
+          "platform_breakdown": {
+            "Codeforces": {
+              "duration_minutes": 15,
+              "duration_str": "15 دقيقة",
+              "subs_count": 1,
+              "ac_count": 0,
+              "pings_count": 0
+            }
+          },
+          "timeline": [
+            {
+              "time_str": "07:31:19 م",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "2266E",
+              "problemName": "2266E - Prime Destruction",
+              "problemUrl": "https://codeforces.com/contest/2266/problem/E",
+              "status": "Wrong Answer",
+              "is_ac": false
+            }
+          ]
+        },
+        {
+          "date_str": "الإثنين 21 سبتمبر 2026",
+          "start_str": "05:22 م",
+          "end_str": "06:10 م",
+          "start_ms": 1790000561000,
+          "end_ms": 1790003433000,
+          "duration_minutes": 48,
+          "duration_str": "48 دقيقة (اتصال متواصل)",
+          "submissions_count": 3,
+          "accepted_count": 3,
+          "pings_count": 0,
+          "problems": [
+            "2266A",
+            "2266B",
+            "2266C"
+          ],
+          "platform_breakdown": {
+            "Codeforces": {
+              "duration_minutes": 48,
+              "duration_str": "48 دقيقة",
+              "subs_count": 3,
+              "ac_count": 3,
+              "pings_count": 0
+            }
+          },
+          "timeline": [
+            {
+              "time_str": "06:10:33 م",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "2266C",
+              "problemName": "2266C - AND, OR, Sort!",
+              "problemUrl": "https://codeforces.com/contest/2266/problem/C",
+              "status": "Accepted",
+              "is_ac": true
+            },
+            {
+              "time_str": "05:43:53 م",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "2266B",
+              "problemName": "2266B - Three Piles",
+              "problemUrl": "https://codeforces.com/contest/2266/problem/B",
+              "status": "Accepted",
+              "is_ac": true
+            },
+            {
+              "time_str": "05:37:41 م",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "2266A",
+              "problemName": "2266A - Good Contest",
+              "problemUrl": "https://codeforces.com/contest/2266/problem/A",
+              "status": "Accepted",
+              "is_ac": true
+            }
+          ]
+        },
+        {
+          "date_str": "الإثنين 21 سبتمبر 2026",
+          "start_str": "05:55 ص",
+          "end_str": "06:10 ص",
+          "start_ms": 1789959338000,
+          "end_ms": 1789960238000,
+          "duration_minutes": 15,
+          "duration_str": "15 دقيقة (اتصال متواصل)",
+          "submissions_count": 1,
+          "accepted_count": 1,
+          "pings_count": 0,
+          "problems": [
+            "105164B"
+          ],
+          "platform_breakdown": {
+            "VJudge": {
+              "duration_minutes": 15,
+              "duration_str": "15 دقيقة",
+              "subs_count": 1,
+              "ac_count": 1,
+              "pings_count": 0
+            },
+            "Codeforces": {
+              "duration_minutes": 15,
+              "duration_str": "15 دقيقة",
+              "subs_count": 1,
+              "ac_count": 1,
+              "pings_count": 0
+            }
+          },
+          "timeline": [
+            {
+              "time_str": "06:10:38 ص",
+              "platform": "VJudge",
+              "type": "submission",
+              "probNum": "105164B",
+              "problemName": "Gym 105164B",
+              "problemUrl": "https://vjudge.net/problem/Gym-105164B",
+              "status": "Accepted",
+              "is_ac": true
+            }
+          ]
+        },
+        {
+          "date_str": "الإثنين 21 سبتمبر 2026",
+          "start_str": "05:25 ص",
+          "end_str": "05:40 ص",
+          "start_ms": 1789957521000,
+          "end_ms": 1789958421000,
+          "duration_minutes": 15,
+          "duration_str": "15 دقيقة (اتصال متواصل)",
+          "submissions_count": 1,
+          "accepted_count": 1,
+          "pings_count": 0,
+          "problems": [
+            "3169"
+          ],
+          "platform_breakdown": {
+            "VJudge": {
+              "duration_minutes": 15,
+              "duration_str": "15 دقيقة",
+              "subs_count": 1,
+              "ac_count": 1,
+              "pings_count": 0
+            }
+          },
+          "timeline": [
+            {
+              "time_str": "05:40:21 ص",
+              "platform": "VJudge",
+              "type": "submission",
+              "probNum": "3169",
+              "problemName": "CSES 3169",
+              "problemUrl": "https://vjudge.net/problem/CSES-3169",
+              "status": "Accepted",
+              "is_ac": true
+            }
+          ]
+        },
+        {
+          "date_str": "الأحد 20 سبتمبر 2026",
+          "start_str": "06:23 م",
+          "end_str": "06:38 م",
+          "start_ms": 1789917831000,
+          "end_ms": 1789918731000,
+          "duration_minutes": 15,
+          "duration_str": "15 دقيقة (اتصال متواصل)",
+          "submissions_count": 1,
+          "accepted_count": 1,
+          "pings_count": 0,
+          "problems": [
+            "104990C"
+          ],
+          "platform_breakdown": {
+            "VJudge": {
+              "duration_minutes": 15,
+              "duration_str": "15 دقيقة",
+              "subs_count": 1,
+              "ac_count": 1,
+              "pings_count": 0
+            },
+            "Codeforces": {
+              "duration_minutes": 15,
+              "duration_str": "15 دقيقة",
+              "subs_count": 1,
+              "ac_count": 1,
+              "pings_count": 0
+            }
+          },
+          "timeline": [
+            {
+              "time_str": "06:38:51 م",
+              "platform": "VJudge",
+              "type": "submission",
+              "probNum": "104990C",
+              "problemName": "Gym 104990C",
+              "problemUrl": "https://vjudge.net/problem/Gym-104990C",
+              "status": "Accepted",
+              "is_ac": true
+            }
+          ]
+        },
+        {
+          "date_str": "الأحد 20 سبتمبر 2026",
+          "start_str": "04:54 م",
+          "end_str": "06:02 م",
+          "start_ms": 1789912468000,
+          "end_ms": 1789916531000,
+          "duration_minutes": 68,
+          "duration_str": "1 س و 8 د (اتصال متواصل)",
+          "submissions_count": 7,
+          "accepted_count": 1,
+          "pings_count": 0,
+          "problems": [
+            "102644H"
+          ],
+          "platform_breakdown": {
+            "VJudge": {
+              "duration_minutes": 68,
+              "duration_str": "1 س و 8 د",
+              "subs_count": 7,
+              "ac_count": 1,
+              "pings_count": 0
+            },
+            "Codeforces": {
+              "duration_minutes": 68,
+              "duration_str": "1 س و 8 د",
+              "subs_count": 6,
+              "ac_count": 1,
+              "pings_count": 0
+            }
+          },
+          "timeline": [
+            {
+              "time_str": "06:02:11 م",
+              "platform": "VJudge",
+              "type": "submission",
+              "probNum": "102644H",
+              "problemName": "Gym 102644H",
+              "problemUrl": "https://vjudge.net/problem/Gym-102644H",
+              "status": "Accepted",
+              "is_ac": true
+            },
+            {
+              "time_str": "05:49:37 م",
+              "platform": "VJudge",
+              "type": "submission",
+              "probNum": "102644H",
+              "problemName": "Gym 102644H",
+              "problemUrl": "https://vjudge.net/problem/Gym-102644H",
+              "status": "Runtime error on test 4",
+              "is_ac": false
+            },
+            {
+              "time_str": "05:38:47 م",
+              "platform": "VJudge",
+              "type": "submission",
+              "probNum": "102644H",
+              "problemName": "Gym 102644H",
+              "problemUrl": "https://vjudge.net/problem/Gym-102644H",
+              "status": "Time limit exceeded on test 22",
+              "is_ac": false
+            },
+            {
+              "time_str": "05:37:41 م",
+              "platform": "VJudge",
+              "type": "submission",
+              "probNum": "102644H",
+              "problemName": "Gym 102644H",
+              "problemUrl": "https://vjudge.net/problem/Gym-102644H",
+              "status": "Wrong answer on test 8",
+              "is_ac": false
+            },
+            {
+              "time_str": "05:35:49 م",
+              "platform": "VJudge",
+              "type": "submission",
+              "probNum": "102644H",
+              "problemName": "Gym 102644H",
+              "problemUrl": "https://vjudge.net/problem/Gym-102644H",
+              "status": "Wrong answer on test 8",
+              "is_ac": false
+            },
+            {
+              "time_str": "05:14:20 م",
+              "platform": "VJudge",
+              "type": "submission",
+              "probNum": "102644H",
+              "problemName": "Gym 102644H",
+              "problemUrl": "https://vjudge.net/problem/Gym-102644H",
+              "status": "Time limit exceeded on test 22",
+              "is_ac": false
+            },
+            {
+              "time_str": "05:09:28 م",
+              "platform": "VJudge",
+              "type": "submission",
+              "probNum": "102644H",
+              "problemName": "Gym 102644H",
+              "problemUrl": "https://vjudge.net/problem/Gym-102644H",
+              "status": "Time limit exceeded on test 22",
+              "is_ac": false
+            }
+          ]
+        },
+        {
+          "date_str": "الأحد 20 سبتمبر 2026",
+          "start_str": "02:14 م",
+          "end_str": "02:29 م",
+          "start_ms": 1789902880000,
+          "end_ms": 1789903780000,
+          "duration_minutes": 15,
+          "duration_str": "15 دقيقة (اتصال متواصل)",
+          "submissions_count": 1,
+          "accepted_count": 1,
+          "pings_count": 0,
+          "problems": [
+            "1724"
+          ],
+          "platform_breakdown": {
+            "VJudge": {
+              "duration_minutes": 15,
+              "duration_str": "15 دقيقة",
+              "subs_count": 1,
+              "ac_count": 1,
+              "pings_count": 0
+            }
+          },
+          "timeline": [
+            {
+              "time_str": "02:29:40 م",
+              "platform": "VJudge",
+              "type": "submission",
+              "probNum": "1724",
+              "problemName": "CSES 1724",
+              "problemUrl": "https://vjudge.net/problem/CSES-1724",
+              "status": "Accepted",
+              "is_ac": true
+            }
+          ]
+        },
+        {
+          "date_str": "الأحد 20 سبتمبر 2026",
+          "start_str": "01:42 م",
+          "end_str": "01:57 م",
+          "start_ms": 1789900978000,
+          "end_ms": 1789901878000,
+          "duration_minutes": 15,
+          "duration_str": "15 دقيقة (اتصال متواصل)",
+          "submissions_count": 1,
+          "accepted_count": 1,
+          "pings_count": 0,
+          "problems": [
+            "1723"
+          ],
+          "platform_breakdown": {
+            "VJudge": {
+              "duration_minutes": 15,
+              "duration_str": "15 دقيقة",
+              "subs_count": 1,
+              "ac_count": 1,
+              "pings_count": 0
+            }
+          },
+          "timeline": [
+            {
+              "time_str": "01:57:58 م",
+              "platform": "VJudge",
+              "type": "submission",
+              "probNum": "1723",
+              "problemName": "CSES 1723",
+              "problemUrl": "https://vjudge.net/problem/CSES-1723",
+              "status": "Accepted",
+              "is_ac": true
+            }
+          ]
+        },
+        {
+          "date_str": "الأحد 20 سبتمبر 2026",
+          "start_str": "12:53 م",
+          "end_str": "01:19 م",
+          "start_ms": 1789898023000,
+          "end_ms": 1789899564000,
+          "duration_minutes": 26,
+          "duration_str": "26 دقيقة (اتصال متواصل)",
+          "submissions_count": 3,
+          "accepted_count": 1,
+          "pings_count": 0,
+          "problems": [
+            "102644I"
+          ],
+          "platform_breakdown": {
+            "VJudge": {
+              "duration_minutes": 26,
+              "duration_str": "26 دقيقة",
+              "subs_count": 3,
+              "ac_count": 1,
+              "pings_count": 0
+            },
+            "Codeforces": {
+              "duration_minutes": 26,
+              "duration_str": "26 دقيقة",
+              "subs_count": 3,
+              "ac_count": 1,
+              "pings_count": 0
+            }
+          },
+          "timeline": [
+            {
+              "time_str": "01:19:24 م",
+              "platform": "VJudge",
+              "type": "submission",
+              "probNum": "102644I",
+              "problemName": "Gym 102644I",
+              "problemUrl": "https://vjudge.net/problem/Gym-102644I",
+              "status": "Accepted",
+              "is_ac": true
+            },
+            {
+              "time_str": "01:12:33 م",
+              "platform": "VJudge",
+              "type": "submission",
+              "probNum": "102644I",
+              "problemName": "Gym 102644I",
+              "problemUrl": "https://vjudge.net/problem/Gym-102644I",
+              "status": "Time limit exceeded on test 40",
+              "is_ac": false
+            },
+            {
+              "time_str": "01:08:43 م",
+              "platform": "VJudge",
+              "type": "submission",
+              "probNum": "102644I",
+              "problemName": "Gym 102644I",
+              "problemUrl": "https://vjudge.net/problem/Gym-102644I",
+              "status": "Time limit exceeded on test 28",
+              "is_ac": false
+            }
+          ]
+        },
+        {
+          "date_str": "الأحد 20 سبتمبر 2026",
+          "start_str": "12:02 م",
+          "end_str": "12:17 م",
+          "start_ms": 1789894938000,
+          "end_ms": 1789895838000,
+          "duration_minutes": 15,
+          "duration_str": "15 دقيقة (اتصال متواصل)",
+          "submissions_count": 1,
+          "accepted_count": 1,
+          "pings_count": 0,
+          "problems": [
+            "102644G"
+          ],
+          "platform_breakdown": {
+            "VJudge": {
+              "duration_minutes": 15,
+              "duration_str": "15 دقيقة",
+              "subs_count": 1,
+              "ac_count": 1,
+              "pings_count": 0
+            },
+            "Codeforces": {
+              "duration_minutes": 15,
+              "duration_str": "15 دقيقة",
+              "subs_count": 1,
+              "ac_count": 1,
+              "pings_count": 0
+            }
+          },
+          "timeline": [
+            {
+              "time_str": "12:17:18 م",
+              "platform": "VJudge",
+              "type": "submission",
+              "probNum": "102644G",
+              "problemName": "Gym 102644G",
+              "problemUrl": "https://vjudge.net/problem/Gym-102644G",
+              "status": "Accepted",
+              "is_ac": true
+            }
+          ]
+        },
+        {
+          "date_str": "الأحد 20 سبتمبر 2026",
+          "start_str": "10:06 ص",
+          "end_str": "10:21 ص",
+          "start_ms": 1789888018000,
+          "end_ms": 1789888918000,
+          "duration_minutes": 15,
+          "duration_str": "15 دقيقة (اتصال متواصل)",
+          "submissions_count": 1,
+          "accepted_count": 1,
+          "pings_count": 0,
+          "problems": [
+            "102644F"
+          ],
+          "platform_breakdown": {
+            "VJudge": {
+              "duration_minutes": 15,
+              "duration_str": "15 دقيقة",
+              "subs_count": 1,
+              "ac_count": 1,
+              "pings_count": 0
+            },
+            "Codeforces": {
+              "duration_minutes": 15,
+              "duration_str": "15 دقيقة",
+              "subs_count": 1,
+              "ac_count": 1,
+              "pings_count": 0
+            }
+          },
+          "timeline": [
+            {
+              "time_str": "10:21:58 ص",
+              "platform": "VJudge",
+              "type": "submission",
+              "probNum": "102644F",
+              "problemName": "Gym 102644F",
+              "problemUrl": "https://vjudge.net/problem/Gym-102644F",
+              "status": "Accepted",
+              "is_ac": true
+            }
+          ]
+        },
+        {
+          "date_str": "الأحد 20 سبتمبر 2026",
+          "start_str": "09:22 ص",
+          "end_str": "09:37 ص",
+          "start_ms": 1789885366000,
+          "end_ms": 1789886266000,
+          "duration_minutes": 15,
+          "duration_str": "15 دقيقة (اتصال متواصل)",
+          "submissions_count": 1,
+          "accepted_count": 1,
+          "pings_count": 0,
+          "problems": [
+            "102644E"
+          ],
+          "platform_breakdown": {
+            "VJudge": {
+              "duration_minutes": 15,
+              "duration_str": "15 دقيقة",
+              "subs_count": 1,
+              "ac_count": 1,
+              "pings_count": 0
+            },
+            "Codeforces": {
+              "duration_minutes": 15,
+              "duration_str": "15 دقيقة",
+              "subs_count": 1,
+              "ac_count": 1,
+              "pings_count": 0
+            }
+          },
+          "timeline": [
+            {
+              "time_str": "09:37:46 ص",
+              "platform": "VJudge",
+              "type": "submission",
+              "probNum": "102644E",
+              "problemName": "Gym 102644E",
+              "problemUrl": "https://vjudge.net/problem/Gym-102644E",
+              "status": "Accepted",
+              "is_ac": true
+            }
+          ]
+        },
+        {
+          "date_str": "الأحد 20 سبتمبر 2026",
+          "start_str": "03:43 ص",
+          "end_str": "03:58 ص",
+          "start_ms": 1789865015000,
+          "end_ms": 1789865915000,
+          "duration_minutes": 15,
+          "duration_str": "15 دقيقة (اتصال متواصل)",
+          "submissions_count": 1,
+          "accepted_count": 1,
+          "pings_count": 0,
+          "problems": [
+            "102644D"
+          ],
+          "platform_breakdown": {
+            "VJudge": {
+              "duration_minutes": 15,
+              "duration_str": "15 دقيقة",
+              "subs_count": 1,
+              "ac_count": 1,
+              "pings_count": 0
+            },
+            "Codeforces": {
+              "duration_minutes": 15,
+              "duration_str": "15 دقيقة",
+              "subs_count": 1,
+              "ac_count": 1,
+              "pings_count": 0
+            }
+          },
+          "timeline": [
+            {
+              "time_str": "03:58:35 ص",
+              "platform": "VJudge",
+              "type": "submission",
+              "probNum": "102644D",
+              "problemName": "Gym 102644D",
+              "problemUrl": "https://vjudge.net/problem/Gym-102644D",
+              "status": "Accepted",
+              "is_ac": true
+            }
+          ]
+        },
+        {
+          "date_str": "السبت 19 سبتمبر 2026",
+          "start_str": "03:36 م",
+          "end_str": "03:51 م",
+          "start_ms": 1789821419000,
+          "end_ms": 1789822319000,
+          "duration_minutes": 15,
+          "duration_str": "15 دقيقة (اتصال متواصل)",
+          "submissions_count": 1,
+          "accepted_count": 1,
+          "pings_count": 0,
+          "problems": [
+            "102644B"
+          ],
+          "platform_breakdown": {
+            "VJudge": {
+              "duration_minutes": 15,
+              "duration_str": "15 دقيقة",
+              "subs_count": 1,
+              "ac_count": 1,
+              "pings_count": 0
+            },
+            "Codeforces": {
+              "duration_minutes": 15,
+              "duration_str": "15 دقيقة",
+              "subs_count": 1,
+              "ac_count": 1,
+              "pings_count": 0
+            }
+          },
+          "timeline": [
+            {
+              "time_str": "03:51:59 م",
+              "platform": "VJudge",
+              "type": "submission",
+              "probNum": "102644B",
+              "problemName": "Gym 102644B",
+              "problemUrl": "https://vjudge.net/problem/Gym-102644B",
+              "status": "Accepted",
+              "is_ac": true
+            }
+          ]
+        },
+        {
+          "date_str": "السبت 19 سبتمبر 2026",
+          "start_str": "02:44 م",
+          "end_str": "02:59 م",
+          "start_ms": 1789818295000,
+          "end_ms": 1789819195000,
+          "duration_minutes": 15,
+          "duration_str": "15 دقيقة (اتصال متواصل)",
+          "submissions_count": 1,
+          "accepted_count": 1,
+          "pings_count": 0,
+          "problems": [
+            "102644A"
+          ],
+          "platform_breakdown": {
+            "VJudge": {
+              "duration_minutes": 15,
+              "duration_str": "15 دقيقة",
+              "subs_count": 1,
+              "ac_count": 1,
+              "pings_count": 0
+            },
+            "Codeforces": {
+              "duration_minutes": 15,
+              "duration_str": "15 دقيقة",
+              "subs_count": 1,
+              "ac_count": 1,
+              "pings_count": 0
+            }
+          },
+          "timeline": [
+            {
+              "time_str": "02:59:55 م",
+              "platform": "VJudge",
+              "type": "submission",
+              "probNum": "102644A",
+              "problemName": "Gym 102644A",
+              "problemUrl": "https://vjudge.net/problem/Gym-102644A",
+              "status": "Accepted",
+              "is_ac": true
+            }
+          ]
+        },
+        {
+          "date_str": "السبت 19 سبتمبر 2026",
+          "start_str": "02:06 م",
+          "end_str": "02:21 م",
+          "start_ms": 1789815969000,
+          "end_ms": 1789816869000,
+          "duration_minutes": 15,
+          "duration_str": "15 دقيقة (اتصال متواصل)",
+          "submissions_count": 1,
+          "accepted_count": 1,
+          "pings_count": 0,
+          "problems": [
+            "1096"
+          ],
+          "platform_breakdown": {
+            "VJudge": {
+              "duration_minutes": 15,
+              "duration_str": "15 دقيقة",
+              "subs_count": 1,
+              "ac_count": 1,
+              "pings_count": 0
+            }
+          },
+          "timeline": [
+            {
+              "time_str": "02:21:09 م",
+              "platform": "VJudge",
+              "type": "submission",
+              "probNum": "1096",
+              "problemName": "CSES 1096",
+              "problemUrl": "https://vjudge.net/problem/CSES-1096",
+              "status": "Accepted",
+              "is_ac": true
+            }
+          ]
+        },
+        {
+          "date_str": "السبت 19 سبتمبر 2026",
+          "start_str": "10:22 ص",
+          "end_str": "10:38 ص",
+          "start_ms": 1789802530000,
+          "end_ms": 1789803513000,
+          "duration_minutes": 16,
+          "duration_str": "16 دقيقة (اتصال متواصل)",
+          "submissions_count": 2,
+          "accepted_count": 1,
+          "pings_count": 0,
+          "problems": [
+            "102644C"
+          ],
+          "platform_breakdown": {
+            "VJudge": {
+              "duration_minutes": 16,
+              "duration_str": "16 دقيقة",
+              "subs_count": 2,
+              "ac_count": 1,
+              "pings_count": 0
+            },
+            "Codeforces": {
+              "duration_minutes": 15,
+              "duration_str": "15 دقيقة",
+              "subs_count": 1,
+              "ac_count": 1,
+              "pings_count": 0
+            }
+          },
+          "timeline": [
+            {
+              "time_str": "10:38:33 ص",
+              "platform": "VJudge",
+              "type": "submission",
+              "probNum": "102644C",
+              "problemName": "Gym 102644C",
+              "problemUrl": "https://vjudge.net/problem/Gym-102644C",
+              "status": "Accepted",
+              "is_ac": true
+            },
+            {
+              "time_str": "10:37:10 ص",
+              "platform": "VJudge",
+              "type": "submission",
+              "probNum": "102644C",
+              "problemName": "Gym 102644C",
+              "problemUrl": "https://vjudge.net/problem/Gym-102644C",
+              "status": "Time limit exceeded on test 4",
+              "is_ac": false
+            }
+          ]
+        },
+        {
+          "date_str": "الجمعة 18 سبتمبر 2026",
+          "start_str": "09:10 ص",
+          "end_str": "09:25 ص",
+          "start_ms": 1789711834000,
+          "end_ms": 1789712734000,
+          "duration_minutes": 15,
+          "duration_str": "15 دقيقة (اتصال متواصل)",
+          "submissions_count": 1,
+          "accepted_count": 1,
+          "pings_count": 0,
+          "problems": [
+            "1919F1"
+          ],
+          "platform_breakdown": {
+            "VJudge": {
+              "duration_minutes": 15,
+              "duration_str": "15 دقيقة",
+              "subs_count": 1,
+              "ac_count": 1,
+              "pings_count": 0
+            },
+            "Codeforces": {
+              "duration_minutes": 15,
+              "duration_str": "15 دقيقة",
+              "subs_count": 1,
+              "ac_count": 1,
+              "pings_count": 0
+            }
+          },
+          "timeline": [
+            {
+              "time_str": "09:25:34 ص",
+              "platform": "VJudge",
+              "type": "submission",
+              "probNum": "1919F1",
+              "problemName": "CodeForces 1919F1",
+              "problemUrl": "https://vjudge.net/problem/CodeForces-1919F1",
+              "status": "Accepted",
+              "is_ac": true
+            }
+          ]
+        },
+        {
+          "date_str": "الجمعة 18 سبتمبر 2026",
+          "start_str": "05:59 ص",
+          "end_str": "06:30 ص",
+          "start_ms": 1789700399000,
+          "end_ms": 1789702243000,
+          "duration_minutes": 31,
+          "duration_str": "31 دقيقة (اتصال متواصل)",
+          "submissions_count": 3,
+          "accepted_count": 3,
+          "pings_count": 0,
+          "problems": [
+            "630P",
+            "100883I"
+          ],
+          "platform_breakdown": {
+            "VJudge": {
+              "duration_minutes": 31,
+              "duration_str": "31 دقيقة",
+              "subs_count": 3,
+              "ac_count": 3,
+              "pings_count": 0
+            },
+            "Codeforces": {
+              "duration_minutes": 31,
+              "duration_str": "31 دقيقة",
+              "subs_count": 2,
+              "ac_count": 2,
+              "pings_count": 0
+            }
+          },
+          "timeline": [
+            {
+              "time_str": "06:30:43 ص",
+              "platform": "VJudge",
+              "type": "submission",
+              "probNum": "100883I",
+              "problemName": "Gym 100883I",
+              "problemUrl": "https://vjudge.net/problem/Gym-100883I",
+              "status": "Accepted",
+              "is_ac": true
+            },
+            {
+              "time_str": "06:30:06 ص",
+              "platform": "VJudge",
+              "type": "submission",
+              "probNum": "100883I",
+              "problemName": "Gym 100883I",
+              "problemUrl": "https://vjudge.net/problem/Gym-100883I",
+              "status": "Accepted",
+              "is_ac": true
+            },
+            {
+              "time_str": "06:14:59 ص",
+              "platform": "VJudge",
+              "type": "submission",
+              "probNum": "630P",
+              "problemName": "CodeForces 630P",
+              "problemUrl": "https://vjudge.net/problem/CodeForces-630P",
+              "status": "Accepted",
+              "is_ac": true
+            }
+          ]
+        },
+        {
+          "date_str": "الجمعة 18 سبتمبر 2026",
+          "start_str": "05:05 ص",
+          "end_str": "05:20 ص",
+          "start_ms": 1789697139000,
+          "end_ms": 1789698039000,
+          "duration_minutes": 15,
+          "duration_str": "15 دقيقة (اتصال متواصل)",
+          "submissions_count": 1,
+          "accepted_count": 1,
+          "pings_count": 0,
+          "problems": [
+            "101972C"
+          ],
+          "platform_breakdown": {
+            "VJudge": {
+              "duration_minutes": 15,
+              "duration_str": "15 دقيقة",
+              "subs_count": 1,
+              "ac_count": 1,
+              "pings_count": 0
+            },
+            "Codeforces": {
+              "duration_minutes": 15,
+              "duration_str": "15 دقيقة",
+              "subs_count": 1,
+              "ac_count": 1,
+              "pings_count": 0
+            }
+          },
+          "timeline": [
+            {
+              "time_str": "05:20:39 ص",
+              "platform": "VJudge",
+              "type": "submission",
+              "probNum": "101972C",
+              "problemName": "Gym 101972C",
+              "problemUrl": "https://vjudge.net/problem/Gym-101972C",
+              "status": "Accepted",
+              "is_ac": true
+            }
+          ]
+        },
+        {
+          "date_str": "الجمعة 18 سبتمبر 2026",
+          "start_str": "02:30 ص",
+          "end_str": "02:45 ص",
+          "start_ms": 1789687832000,
+          "end_ms": 1789688732000,
+          "duration_minutes": 15,
+          "duration_str": "15 دقيقة (اتصال متواصل)",
+          "submissions_count": 1,
+          "accepted_count": 1,
+          "pings_count": 0,
+          "problems": [
+            "100488A"
+          ],
+          "platform_breakdown": {
+            "VJudge": {
+              "duration_minutes": 15,
+              "duration_str": "15 دقيقة",
+              "subs_count": 1,
+              "ac_count": 1,
+              "pings_count": 0
+            }
+          },
+          "timeline": [
+            {
+              "time_str": "02:45:32 ص",
+              "platform": "VJudge",
+              "type": "submission",
+              "probNum": "100488A",
+              "problemName": "Gym 100488A",
+              "problemUrl": "https://vjudge.net/problem/Gym-100488A",
+              "status": "Accepted",
+              "is_ac": true
+            }
+          ]
+        },
+        {
+          "date_str": "الخميس 17 سبتمبر 2026",
+          "start_str": "03:50 م",
+          "end_str": "04:33 م",
+          "start_ms": 1789649426000,
+          "end_ms": 1789651981000,
+          "duration_minutes": 43,
+          "duration_str": "43 دقيقة (اتصال متواصل)",
+          "submissions_count": 2,
+          "accepted_count": 2,
+          "pings_count": 0,
+          "problems": [
+            "630Q",
+            "101755B"
+          ],
+          "platform_breakdown": {
+            "VJudge": {
+              "duration_minutes": 43,
+              "duration_str": "43 دقيقة",
+              "subs_count": 2,
+              "ac_count": 2,
+              "pings_count": 0
+            }
+          },
+          "timeline": [
+            {
+              "time_str": "04:33:01 م",
+              "platform": "VJudge",
+              "type": "submission",
+              "probNum": "101755B",
+              "problemName": "Gym 101755B",
+              "problemUrl": "https://vjudge.net/problem/Gym-101755B",
+              "status": "Accepted",
+              "is_ac": true
+            },
+            {
+              "time_str": "04:05:26 م",
+              "platform": "VJudge",
+              "type": "submission",
+              "probNum": "630Q",
+              "problemName": "CodeForces 630Q",
+              "problemUrl": "https://vjudge.net/problem/CodeForces-630Q",
+              "status": "Accepted",
+              "is_ac": true
+            }
+          ]
+        },
+        {
+          "date_str": "الخميس 17 سبتمبر 2026",
+          "start_str": "06:39 ص",
+          "end_str": "06:56 ص",
+          "start_ms": 1789616370000,
+          "end_ms": 1789617417000,
+          "duration_minutes": 17,
+          "duration_str": "17 دقيقة (اتصال متواصل)",
+          "submissions_count": 2,
+          "accepted_count": 2,
+          "pings_count": 0,
+          "problems": [
+            "630O"
+          ],
+          "platform_breakdown": {
+            "VJudge": {
+              "duration_minutes": 17,
+              "duration_str": "17 دقيقة",
+              "subs_count": 2,
+              "ac_count": 2,
+              "pings_count": 0
+            }
+          },
+          "timeline": [
+            {
+              "time_str": "06:56:57 ص",
+              "platform": "VJudge",
+              "type": "submission",
+              "probNum": "630O",
+              "problemName": "CodeForces 630O",
+              "problemUrl": "https://vjudge.net/problem/CodeForces-630O",
+              "status": "Accepted",
+              "is_ac": true
+            },
+            {
+              "time_str": "06:54:30 ص",
+              "platform": "VJudge",
+              "type": "submission",
+              "probNum": "630O",
+              "problemName": "CodeForces 630O",
+              "problemUrl": "https://vjudge.net/problem/CodeForces-630O",
+              "status": "Accepted",
+              "is_ac": true
+            }
+          ]
+        },
+        {
+          "date_str": "الأربعاء 16 سبتمبر 2026",
+          "start_str": "10:36 م",
+          "end_str": "10:51 م",
+          "start_ms": 1789587409000,
+          "end_ms": 1789588309000,
+          "duration_minutes": 15,
+          "duration_str": "15 دقيقة (اتصال متواصل)",
+          "submissions_count": 1,
+          "accepted_count": 1,
+          "pings_count": 0,
+          "problems": [
+            "105055I"
+          ],
+          "platform_breakdown": {
+            "VJudge": {
+              "duration_minutes": 15,
+              "duration_str": "15 دقيقة",
+              "subs_count": 1,
+              "ac_count": 1,
+              "pings_count": 0
+            }
+          },
+          "timeline": [
+            {
+              "time_str": "10:51:49 م",
+              "platform": "VJudge",
+              "type": "submission",
+              "probNum": "105055I",
+              "problemName": "Gym 105055I",
+              "problemUrl": "https://vjudge.net/problem/Gym-105055I",
+              "status": "Accepted",
+              "is_ac": true
+            }
+          ]
+        },
+        {
+          "date_str": "الأربعاء 16 سبتمبر 2026",
+          "start_str": "09:10 م",
+          "end_str": "10:19 م",
+          "start_ms": 1789582246000,
+          "end_ms": 1789586389000,
+          "duration_minutes": 69,
+          "duration_str": "1 س و 9 د (اتصال متواصل)",
+          "submissions_count": 8,
+          "accepted_count": 1,
+          "pings_count": 0,
+          "problems": [
+            "104663H"
+          ],
+          "platform_breakdown": {
+            "VJudge": {
+              "duration_minutes": 69,
+              "duration_str": "1 س و 9 د",
+              "subs_count": 8,
+              "ac_count": 1,
+              "pings_count": 0
+            }
+          },
+          "timeline": [
+            {
+              "time_str": "10:19:49 م",
+              "platform": "VJudge",
+              "type": "submission",
+              "probNum": "104663H",
+              "problemName": "Gym 104663H",
+              "problemUrl": "https://vjudge.net/problem/Gym-104663H",
+              "status": "Accepted",
+              "is_ac": true
+            },
+            {
+              "time_str": "10:09:22 م",
+              "platform": "VJudge",
+              "type": "submission",
+              "probNum": "104663H",
+              "problemName": "Gym 104663H",
+              "problemUrl": "https://vjudge.net/problem/Gym-104663H",
+              "status": "Wrong answer on test 3",
+              "is_ac": false
+            },
+            {
+              "time_str": "10:07:20 م",
+              "platform": "VJudge",
+              "type": "submission",
+              "probNum": "104663H",
+              "problemName": "Gym 104663H",
+              "problemUrl": "https://vjudge.net/problem/Gym-104663H",
+              "status": "Wrong answer on test 2",
+              "is_ac": false
+            },
+            {
+              "time_str": "10:03:03 م",
+              "platform": "VJudge",
+              "type": "submission",
+              "probNum": "104663H",
+              "problemName": "Gym 104663H",
+              "problemUrl": "https://vjudge.net/problem/Gym-104663H",
+              "status": "Wrong answer on test 3",
+              "is_ac": false
+            },
+            {
+              "time_str": "09:56:57 م",
+              "platform": "VJudge",
+              "type": "submission",
+              "probNum": "104663H",
+              "problemName": "Gym 104663H",
+              "problemUrl": "https://vjudge.net/problem/Gym-104663H",
+              "status": "Wrong answer on test 3",
+              "is_ac": false
+            },
+            {
+              "time_str": "09:51:04 م",
+              "platform": "VJudge",
+              "type": "submission",
+              "probNum": "104663H",
+              "problemName": "Gym 104663H",
+              "problemUrl": "https://vjudge.net/problem/Gym-104663H",
+              "status": "Wrong answer on test 3",
+              "is_ac": false
+            },
+            {
+              "time_str": "09:43:20 م",
+              "platform": "VJudge",
+              "type": "submission",
+              "probNum": "104663H",
+              "problemName": "Gym 104663H",
+              "problemUrl": "https://vjudge.net/problem/Gym-104663H",
+              "status": "Wrong answer on test 3",
+              "is_ac": false
+            },
+            {
+              "time_str": "09:25:46 م",
+              "platform": "VJudge",
+              "type": "submission",
+              "probNum": "104663H",
+              "problemName": "Gym 104663H",
+              "problemUrl": "https://vjudge.net/problem/Gym-104663H",
+              "status": "Wrong answer on test 3",
+              "is_ac": false
+            }
+          ]
+        },
+        {
+          "date_str": "الأربعاء 16 سبتمبر 2026",
+          "start_str": "07:25 م",
+          "end_str": "08:00 م",
+          "start_ms": 1789575923000,
+          "end_ms": 1789578021000,
+          "duration_minutes": 35,
+          "duration_str": "35 دقيقة (اتصال متواصل)",
+          "submissions_count": 2,
+          "accepted_count": 1,
+          "pings_count": 0,
+          "problems": [
+            "104974I"
+          ],
+          "platform_breakdown": {
+            "VJudge": {
+              "duration_minutes": 35,
+              "duration_str": "35 دقيقة",
+              "subs_count": 2,
+              "ac_count": 1,
+              "pings_count": 0
+            }
+          },
+          "timeline": [
+            {
+              "time_str": "08:00:21 م",
+              "platform": "VJudge",
+              "type": "submission",
+              "probNum": "104974I",
+              "problemName": "Gym 104974I",
+              "problemUrl": "https://vjudge.net/problem/Gym-104974I",
+              "status": "Accepted",
+              "is_ac": true
+            },
+            {
+              "time_str": "07:40:23 م",
+              "platform": "VJudge",
+              "type": "submission",
+              "probNum": "104974I",
+              "problemName": "Gym 104974I",
+              "problemUrl": "https://vjudge.net/problem/Gym-104974I",
+              "status": "Wrong answer on test 8",
+              "is_ac": false
+            }
+          ]
+        },
+        {
+          "date_str": "الأربعاء 22 يوليو 2026",
+          "start_str": "02:25 ص",
+          "end_str": "02:40 ص",
+          "start_ms": 1784676328000,
+          "end_ms": 1784677228000,
+          "duration_minutes": 15,
+          "duration_str": "15 دقيقة (اتصال متواصل)",
+          "submissions_count": 1,
+          "accepted_count": 1,
+          "pings_count": 0,
+          "problems": [
+            "294C"
+          ],
+          "platform_breakdown": {
+            "VJudge": {
+              "duration_minutes": 15,
+              "duration_str": "15 دقيقة",
+              "subs_count": 1,
+              "ac_count": 1,
+              "pings_count": 0
+            }
+          },
+          "timeline": [
+            {
+              "time_str": "02:40:28 ص",
+              "platform": "VJudge",
+              "type": "submission",
+              "probNum": "294C",
+              "problemName": "CodeForces 294C",
+              "problemUrl": "https://vjudge.net/problem/CodeForces-294C",
               "status": "Accepted",
               "is_ac": true
             }

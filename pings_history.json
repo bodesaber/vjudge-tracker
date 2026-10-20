@@ -63,5 +63,18 @@
       "status": "Online",
       "is_ac": false
     }
+  ],
+  "user_1792498245376": [
+    {
+      "id": "ping_cf_1792458905000",
+      "type": "online_ping",
+      "platform": "Codeforces",
+      "time": 1792458905000,
+      "probNum": "تصفح المنصة",
+      "problemName": "👁️ فاتح كود فورسز (متصل أونلاين)",
+      "problemUrl": "https://codeforces.com/profile/nerdev",
+      "status": "Online",
+      "is_ac": false
+    }
   ]
 }
