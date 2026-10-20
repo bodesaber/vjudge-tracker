@@ -203,6 +203,128 @@ def save_pings_history(pings):
     except Exception as e:
         print(f"[-] Error saving pings history: {e}")
 
+_CF_PROBLEMSET_RATINGS = None
+_ATCODER_MODELS_DIFF = None
+
+def get_global_difficulty_maps():
+    global _CF_PROBLEMSET_RATINGS, _ATCODER_MODELS_DIFF
+    if _CF_PROBLEMSET_RATINGS is None:
+        _CF_PROBLEMSET_RATINGS = {}
+        try:
+            req = urllib.request.Request("https://codeforces.com/api/problemset.problems", headers={"User-Agent": "Mozilla/5.0"})
+            with urllib.request.urlopen(req, timeout=10) as resp:
+                data = json.loads(resp.read().decode("utf-8", errors="ignore"))
+                for p in data.get("result", {}).get("problems", []):
+                    if p.get("rating"):
+                        code = f"{p.get('contestId', '')}{p.get('index', '')}".upper()
+                        _CF_PROBLEMSET_RATINGS[code] = int(p["rating"])
+        except Exception as e:
+            print(f"[-] Note: CF problemset rating map fetch: {e}")
+
+    if _ATCODER_MODELS_DIFF is None:
+        _ATCODER_MODELS_DIFF = {}
+        try:
+            req = urllib.request.Request("https://kenkoooo.com/atcoder/resources/problem-models.json", headers={"User-Agent": "Mozilla/5.0"})
+            with urllib.request.urlopen(req, timeout=10) as resp:
+                data = json.loads(resp.read().decode("utf-8", errors="ignore"))
+                for k, v in data.items():
+                    if isinstance(v, dict) and v.get("difficulty") is not None:
+                        _ATCODER_MODELS_DIFF[k.lower()] = float(v["difficulty"])
+        except Exception as e:
+            print(f"[-] Note: AtCoder problem models fetch: {e}")
+
+    return _CF_PROBLEMSET_RATINGS, _ATCODER_MODELS_DIFF
+
+def rating_to_points_and_tier(rating):
+    r = int(rating or 1000)
+    if r <= 850:
+        return 80, "🟢 سهل"
+    elif r <= 950:
+        return 100, "🟢 سهل"
+    elif r <= 1050:
+        return 130, "🔵 فوق المبتدئ"
+    elif r <= 1150:
+        return 160, "🔵 فوق المبتدئ"
+    elif r <= 1250:
+        return 195, "🟣 متوسط"
+    elif r <= 1350:
+        return 235, "🟣 متوسط"
+    elif r <= 1450:
+        return 280, "🟠 فوق المتوسط"
+    elif r <= 1550:
+        return 335, "🟠 فوق المتوسط"
+    elif r <= 1650:
+        return 400, "🔴 صعب"
+    elif r <= 1750:
+        return 470, "🔴 صعب"
+    elif r <= 1850:
+        return 550, "🔴 صعب"
+    elif r <= 1950:
+        return 640, "🔥 صعب جداً"
+    elif r <= 2050:
+        return 740, "🔥 صعب جداً"
+    elif r <= 2150:
+        return 850, "🔥 صعب جداً"
+    else:
+        pts = int(960 + max(0, (r - 2200)) * 0.6)
+        return pts, "👑 ماستر"
+
+def evaluate_problem_difficulty(ev):
+    if ev.get("type") == "online_ping":
+        return 0, "", 0
+
+    cf_map, ac_map = get_global_difficulty_maps()
+    raw_diff = ev.get("difficulty", 0) or 0
+    if raw_diff >= 800:
+        pts, tier = rating_to_points_and_tier(raw_diff)
+        return int(raw_diff), tier, pts
+
+    plat = (ev.get("platform") or "").strip()
+    remote_oj = (ev.get("remote_oj") or plat).strip()
+    prob_num = (ev.get("probNum") or "").strip()
+    prob_upper = prob_num.upper()
+
+    rating = 0
+    if remote_oj.lower() in ("codeforces", "gym") or plat.lower() == "codeforces":
+        if prob_upper in cf_map:
+            rating = cf_map[prob_upper]
+        else:
+            m = re.match(r"^(\d+)([A-Z])", prob_upper)
+            if m:
+                cid_str, letter = m.group(1), m.group(2)
+                is_gym = len(cid_str) >= 6 or remote_oj.lower() == "gym"
+                idx_ord = max(0, ord(letter) - ord("A"))
+                if is_gym:
+                    rating = min(2300, 1200 + idx_ord * 200)
+                else:
+                    rating = min(2500, 850 + idx_ord * 280)
+            else:
+                rating = 1200
+    elif remote_oj.lower() == "atcoder" or plat.lower() == "atcoder":
+        p_low = prob_num.lower()
+        if p_low in ac_map:
+            d_val = ac_map[p_low]
+            rating = max(800, int(round((d_val + 600) / 100.0) * 100))
+        elif p_low.startswith("dp_"):
+            letter = p_low.split("_")[-1][:1]
+            idx_ord = max(0, ord(letter) - ord("a")) if letter.isalpha() else 3
+            rating = min(2400, 1100 + idx_ord * 60)
+        else:
+            letter = p_low.split("_")[-1][:1]
+            idx_map = {"a": 800, "b": 950, "c": 1200, "d": 1450, "e": 1750, "f": 2000, "g": 2250, "h": 2400}
+            rating = idx_map.get(letter, 1200)
+    elif remote_oj.lower() in ("lightoj", "spoj", "toph"):
+        rating = 1500
+    elif remote_oj.lower() == "cses" or plat.lower() == "cses":
+        rating = 1400
+    elif remote_oj.lower() in ("uva", "dmoj", "kattis", "ural", "POJ"):
+        rating = 1350
+    else:
+        rating = 1200
+
+    pts, tier = rating_to_points_and_tier(rating)
+    return int(rating), tier, pts
+
 def cluster_events_into_sessions(events, max_gap_minutes=30, coding_buffer=15):
     """
     Clusters activity events (submissions + online presence pings) using the 30-minute rule:
@@ -277,8 +399,13 @@ def cluster_events_into_sessions(events, max_gap_minutes=30, coding_buffer=15):
 
         # Format timeline items (newest first inside session or chronological)
         timeline = []
+        unique_session_ac_pts = {}
         for e in sorted(s_events, key=lambda x: x["time"], reverse=True):
             ev_dt = to_cairo_dt(e["time"])
+            diff_val, diff_tier, prob_pts = evaluate_problem_difficulty(e)
+            if e.get("type") == "submission" and e.get("is_ac"):
+                pkey = f"{e.get('remote_oj', e.get('platform', ''))}_{e.get('probNum', '')}"
+                unique_session_ac_pts[pkey] = max(unique_session_ac_pts.get(pkey, 0), prob_pts)
             timeline.append({
                 "time": e["time"],
                 "time_str": format_arabic_time(ev_dt, include_seconds=True),
@@ -288,10 +415,14 @@ def cluster_events_into_sessions(events, max_gap_minutes=30, coding_buffer=15):
                 "problemName": e.get("problemName", ""),
                 "problemUrl": e.get("problemUrl", "#"),
                 "status": e.get("status", ""),
-                "is_ac": e.get("is_ac", False)
+                "is_ac": e.get("is_ac", False),
+                "difficulty": diff_val,
+                "diff_tier": diff_tier,
+                "prob_points": prob_pts
             })
 
-        session_score = int(round((ac_count * 100) + (duration_minutes * 1) + (len(sub_events) * 5) + 15))
+        session_prob_pts = sum(unique_session_ac_pts.values())
+        session_score = int(round(session_prob_pts + (duration_minutes * 1) + (len(sub_events) * 5) + 15))
         processed_sessions.append({
             "date_iso": start_dt.strftime("%Y-%m-%d"),
             "month_iso": start_dt.strftime("%Y-%m"),
@@ -307,6 +438,7 @@ def cluster_events_into_sessions(events, max_gap_minutes=30, coding_buffer=15):
             "submissions_count": len(sub_events),
             "accepted_count": ac_count,
             "pings_count": len(ping_events),
+            "problem_points": session_prob_pts,
             "score": session_score,
             "problems": probs,
             "platform_breakdown": plat_stats,
@@ -604,20 +736,46 @@ def analyze_trainee_profile(profile, pings_history, session_gap_min=30, coding_b
     def calc_unified_period(thresh_ms, period_key):
         s_in = [s for s in unified_sessions if s["end_ms"] >= thresh_ms]
         evs_in = [e for e in unified_events if e["time"] >= thresh_ms and e.get("type") == "submission"]
-        unique_ac = len(set(f"{e.get('remote_oj','')}_{e.get('probNum','')}" for e in evs_in if e.get("is_ac")))
-        # Also ensure it's at least as large as individual platform official count
+        ac_map_period = {}
+        for e in evs_in:
+            if e.get("is_ac"):
+                pkey = f"{e.get('remote_oj', e.get('platform', ''))}_{e.get('probNum', '')}"
+                diff_v, diff_t, p_pts = evaluate_problem_difficulty(e)
+                if pkey not in ac_map_period or p_pts > ac_map_period[pkey]["pts"]:
+                    ac_map_period[pkey] = {
+                        "pts": p_pts,
+                        "diff": diff_v,
+                        "tier": diff_t,
+                        "name": e.get("problemName", e.get("probNum", ""))
+                    }
+        unique_ac = len(ac_map_period)
         max_plat_ac = max([p[period_key]["solved"] for p in per_platform_summary.values()], default=0)
         solved_count = max(unique_ac, max_plat_ac)
+
+        avg_diff = int(round(sum(x["diff"] for x in ac_map_period.values()) / unique_ac)) if unique_ac > 0 else 0
+        max_diff = max([x["diff"] for x in ac_map_period.values()], default=0)
+        hardest_obj = max(ac_map_period.values(), key=lambda x: x["diff"]) if ac_map_period else None
+        hardest_str = f"{hardest_obj['name']} ({hardest_obj['diff']})" if hardest_obj else "—"
+
+        recorded_prob_pts = sum(x["pts"] for x in ac_map_period.values())
+        avg_pts_per_prob = (recorded_prob_pts / unique_ac) if unique_ac > 0 else 120
+        extra_unseen_ac = max(0, solved_count - unique_ac)
+        total_prob_pts = int(round(recorded_prob_pts + extra_unseen_ac * avg_pts_per_prob))
+
         total_mins = sum(s["duration_minutes"] for s in s_in)
         subs_count = len(evs_in)
         sess_count = len(s_in)
-        score = int(round((solved_count * 100) + (total_mins * 1) + (subs_count * 5) + (sess_count * 15)))
+        score = int(round(total_prob_pts + (total_mins * 1) + (subs_count * 5) + (sess_count * 15)))
         return {
             "solved": solved_count,
             "subs": subs_count,
             "time_minutes": total_mins,
             "time_str": format_duration(total_mins),
             "sessions": sess_count,
+            "problem_points": total_prob_pts,
+            "avg_difficulty": avg_diff,
+            "max_difficulty": max_diff,
+            "hardest_problem": hardest_str,
             "score": score
         }
 
@@ -632,9 +790,13 @@ def analyze_trainee_profile(profile, pings_history, session_gap_min=30, coding_b
         vj_cf_ac = len(set(s["probNum"] for s in vj_subs if s.get("is_ac") and s.get("remote_oj") == "CodeForces"))
         total_all_time_ac = max(per_platform_summary["VJudge"]["acAll"], total_all_time_ac - vj_cf_ac)
 
+    all_ac_events_info = [evaluate_problem_difficulty(e) for e in unified_events if e.get("type") == "submission" and e.get("is_ac")]
+    overall_avg_diff = int(round(sum(x[0] for x in all_ac_events_info) / len(all_ac_events_info))) if all_ac_events_info else 1100
+    overall_max_diff = max([x[0] for x in all_ac_events_info], default=0)
+    overall_avg_pts = (sum(x[2] for x in all_ac_events_info) / len(all_ac_events_info)) if all_ac_events_info else 130
     total_rec_mins = sum(s["duration_minutes"] for s in unified_sessions)
     total_rec_subs = sum(s["submissions_count"] for s in unified_sessions)
-    all_time_score = int(round((total_all_time_ac * 100) + (total_rec_mins * 1) + (total_rec_subs * 5) + (len(unified_sessions) * 15)))
+    all_time_score = int(round((total_all_time_ac * overall_avg_pts) + (total_rec_mins * 1) + (total_rec_subs * 5) + (len(unified_sessions) * 15)))
 
     # Peak hours calculation
     slots = {"فجر / ليل متأخر (12ص-6ص)": 0, "صباحاً (6ص-12ظ)": 0, "ظهراً وعصراً (12ظ-6م)": 0, "مساءً (6م-12ص)": 0}
@@ -674,6 +836,8 @@ def analyze_trainee_profile(profile, pings_history, session_gap_min=30, coding_b
         "last_problem_str": last_problem_str,
         "all_time_ac": total_all_time_ac,
         "all_time_score": all_time_score,
+        "avg_difficulty": overall_avg_diff,
+        "max_difficulty": overall_max_diff,
         "today": comb_today,
         "week": comb_week,
         "month": comb_month,

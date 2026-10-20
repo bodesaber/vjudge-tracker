@@ -951,9 +951,17 @@ def generate_html_dashboard(users_data, config):
             </div>
 
             <div class="score-formula-note">
-                💡 <strong>كيف يُحسب السكور (نظام النقاط الذكي)؟</strong>
-                كل مسألة مقبولة (<strong>AC</strong>) = <strong>100 نقطة</strong> &nbsp;|&nbsp;
-                كل دقيقة نشاط متصل على المنصات = <strong>1 نقطة</strong> (الساعة = 60 نقطة) &nbsp;|&nbsp;
+                💡 <strong>كيف يُحسب السكور (نظام النقاط الذكي المعتمد على صعوبة المسائل + وقت النشاط)؟</strong><br>
+                🎯 <strong>نقاط حل المسألة (AC) حسب تقييم صعوبتها (Difficulty Rating):</strong>
+                🟢 سهل (800-900) = <strong>80–100 نقطة</strong> &nbsp;|&nbsp;
+                🔵 فوق المبتدئ (1000-1100) = <strong>130–160 نقطة</strong> &nbsp;|&nbsp;
+                🟣 متوسط (1200-1300) = <strong>195–235 نقطة</strong> &nbsp;|&nbsp;
+                🟠 فوق المتوسط (1400-1500) = <strong>280–335 نقطة</strong> &nbsp;|&nbsp;
+                🔴 صعب (1600-1800) = <strong>400–550 نقطة</strong> &nbsp;|&nbsp;
+                🔥 صعب جداً (1900-2100) = <strong>640–850 نقطة</strong> &nbsp;|&nbsp;
+                👑 ماستر (2200+) = <strong>960+ نقطة</strong>.<br>
+                ⏱️ <strong>نقاط الالتزام والنشاط:</strong>
+                كل دقيقة نشاط متصل = <strong>1 نقطة</strong> (الساعة = 60 نقطة) &nbsp;|&nbsp;
                 كل محاولة إرسال (<strong>Submission</strong>) = <strong>5 نقاط</strong> &nbsp;|&nbsp;
                 كل جلسة تدريب = <strong>15 نقطة</strong>.
             </div>
@@ -1101,8 +1109,52 @@ def generate_html_dashboard(users_data, config):
             return withSec ? `${{hh}}:${{m}}:${{s}} ${{period}}` : `${{hh}}:${{m}} ${{period}}`;
         }}
 
-        function calcScoreVal(solved, subs, mins, sessCount) {{
-            return Math.round((solved || 0) * 100 + (mins || 0) * 1 + (subs || 0) * 5 + (sessCount || 0) * 15);
+        function ratingToPointsAndTierJS(rating) {{
+            const r = Math.round(rating || 1000);
+            if (r <= 850) return {{ pts: 80, tier: '🟢 سهل' }};
+            if (r <= 950) return {{ pts: 100, tier: '🟢 سهل' }};
+            if (r <= 1050) return {{ pts: 130, tier: '🔵 فوق المبتدئ' }};
+            if (r <= 1150) return {{ pts: 160, tier: '🔵 فوق المبتدئ' }};
+            if (r <= 1250) return {{ pts: 195, tier: '🟣 متوسط' }};
+            if (r <= 1350) return {{ pts: 235, tier: '🟣 متوسط' }};
+            if (r <= 1450) return {{ pts: 280, tier: '🟠 فوق المتوسط' }};
+            if (r <= 1550) return {{ pts: 335, tier: '🟠 فوق المتوسط' }};
+            if (r <= 1650) return {{ pts: 400, tier: '🔴 صعب' }};
+            if (r <= 1750) return {{ pts: 470, tier: '🔴 صعب' }};
+            if (r <= 1850) return {{ pts: 550, tier: '🔴 صعب' }};
+            if (r <= 1950) return {{ pts: 640, tier: '🔥 صعب جداً' }};
+            if (r <= 2050) return {{ pts: 740, tier: '🔥 صعب جداً' }};
+            if (r <= 2150) return {{ pts: 850, tier: '🔥 صعب جداً' }};
+            return {{ pts: Math.round(960 + Math.max(0, r - 2200) * 0.6), tier: '👑 ماستر' }};
+        }}
+
+        function evaluateEventDifficultyJS(t) {{
+            if (t.type === 'online_ping') return {{ difficulty: 0, diff_tier: '', prob_points: 0 }};
+            if (t.difficulty && t.prob_points) {{
+                return {{ difficulty: t.difficulty, diff_tier: t.diff_tier || ratingToPointsAndTierJS(t.difficulty).tier, prob_points: t.prob_points }};
+            }}
+            let rating = t.difficulty || 0;
+            if (rating < 800) {{
+                const pCode = String(t.probNum || t.problemName || '').toUpperCase();
+                const m = pCode.match(/^(\d+)([A-Z])/);
+                if (m) {{
+                    const isGym = m[1].length >= 6;
+                    const ord = Math.max(0, m[2].charCodeAt(0) - 65);
+                    rating = isGym ? Math.min(2300, 1200 + ord * 200) : Math.min(2500, 850 + ord * 280);
+                }} else if ((t.platform || '').toLowerCase() === 'atcoder') {{
+                    const suffix = String(t.probNum || '').toLowerCase().split('_').pop();
+                    const map = {{ a: 800, b: 950, c: 1200, d: 1450, e: 1750, f: 2000, g: 2250, h: 2400 }};
+                    rating = map[suffix] || 1200;
+                }} else {{
+                    rating = 1300;
+                }}
+            }}
+            const info = ratingToPointsAndTierJS(rating);
+            return {{ difficulty: rating, diff_tier: info.tier, prob_points: info.pts }};
+        }}
+
+        function calcScoreVal(probPts, subs, mins, sessCount) {{
+            return Math.round((probPts || 0) + (mins || 0) * 1 + (subs || 0) * 5 + (sessCount || 0) * 15);
         }}
 
         function getSessionDateIso(s) {{
@@ -1176,25 +1228,42 @@ def generate_html_dashboard(users_data, config):
 
             const filterSessions = (pred) => (u.sessions || []).filter(pred);
             const collectProblemsFromSessions = (sessList) => {{
-                const acProbs = [];
-                const seen = new Set();
+                const acProbsMap = {{}};
                 sessList.forEach(s => {{
                     (s.timeline || []).forEach(t => {{
                         if (t.type === 'submission' && t.is_ac) {{
                             const key = `${{t.platform}}_${{t.probNum || t.problemName}}`;
-                            if (!seen.has(key)) {{
-                                seen.add(key);
-                                acProbs.push({{
+                            const dInfo = evaluateEventDifficultyJS(t);
+                            if (!acProbsMap[key] || dInfo.prob_points > acProbsMap[key].prob_points) {{
+                                acProbsMap[key] = {{
                                     name: t.problemName || t.probNum,
                                     url: t.problemUrl || '#',
                                     platform: t.platform || '',
-                                    time_str: t.time_str || ''
-                                }});
+                                    time_str: t.time_str || '',
+                                    difficulty: dInfo.difficulty,
+                                    diff_tier: dInfo.diff_tier,
+                                    prob_points: dInfo.prob_points
+                                }};
                             }}
                         }}
                     }});
                 }});
-                return acProbs;
+                return Object.values(acProbsMap).sort((a, b) => (b.difficulty || 0) - (a.difficulty || 0));
+            }};
+
+            const summarizeProblemsStats = (acProbs, totalSolvedCount, fallbackProbPts, fallbackAvgDiff, fallbackMaxDiff) => {{
+                const recPts = acProbs.reduce((a, p) => a + (p.prob_points || 100), 0);
+                const avgPts = acProbs.length > 0 ? (recPts / acProbs.length) : 120;
+                const extraSolved = Math.max(0, totalSolvedCount - acProbs.length);
+                const computedProbPts = Math.round(recPts + extraSolved * avgPts);
+                const probPts = Math.max(fallbackProbPts || 0, computedProbPts);
+                const avgDiff = acProbs.length > 0
+                    ? Math.round(acProbs.reduce((a, p) => a + (p.difficulty || 1000), 0) / acProbs.length)
+                    : (fallbackAvgDiff || 0);
+                const maxDiff = acProbs.length > 0
+                    ? Math.max(...acProbs.map(p => p.difficulty || 0))
+                    : (fallbackMaxDiff || 0);
+                return {{ probPts, avgDiff, maxDiff }};
             }};
 
             if (mode === 'today' || mode === 'week' || mode === 'month') {{
@@ -1206,13 +1275,17 @@ def generate_html_dashboard(users_data, config):
                 const subs = pObj.subs || 0;
                 const mins = pObj.time_minutes || 0;
                 const sessCount = pObj.sessions || sIn.length;
-                const score = calcScoreVal(solved, subs, mins, sessCount);
+                const pStats = summarizeProblemsStats(acProbs, solved, pObj.problem_points, pObj.avg_difficulty, pObj.max_difficulty);
+                const score = pObj.score || calcScoreVal(pStats.probPts, subs, mins, sessCount);
                 return {{
                     solved,
                     subs,
                     time_minutes: mins,
                     time_str: pObj.time_str || formatDurationJS(mins),
                     sessions: sessCount,
+                    problem_points: pStats.probPts,
+                    avg_difficulty: pStats.avgDiff,
+                    max_difficulty: pStats.maxDiff,
                     score,
                     acProblems: acProbs
                 }};
@@ -1225,13 +1298,17 @@ def generate_html_dashboard(users_data, config):
                 const mins = sAll.reduce((a, s) => a + (s.duration_minutes || 0), 0);
                 const subs = sAll.reduce((a, s) => a + (s.submissions_count || 0), 0);
                 const sessCount = sAll.length;
-                const score = u.all_time_score || calcScoreVal(solved, subs, mins, sessCount);
+                const pStats = summarizeProblemsStats(acProbs, solved, 0, u.avg_difficulty, u.max_difficulty);
+                const score = u.all_time_score || calcScoreVal(pStats.probPts, subs, mins, sessCount);
                 return {{
                     solved,
                     subs,
                     time_minutes: mins,
                     time_str: formatDurationJS(mins),
                     sessions: sessCount,
+                    problem_points: pStats.probPts,
+                    avg_difficulty: pStats.avgDiff,
+                    max_difficulty: pStats.maxDiff,
                     score,
                     acProblems: acProbs
                 }};
@@ -1256,13 +1333,17 @@ def generate_html_dashboard(users_data, config):
             const subs = sFiltered.reduce((a, s) => a + (s.submissions_count || 0), 0);
             const mins = sFiltered.reduce((a, s) => a + (s.duration_minutes || 0), 0);
             const sessCount = sFiltered.length;
-            const score = calcScoreVal(solved, subs, mins, sessCount);
+            const pStats = summarizeProblemsStats(acProbs, solved, 0, 0, 0);
+            const score = calcScoreVal(pStats.probPts, subs, mins, sessCount);
             return {{
                 solved,
                 subs,
                 time_minutes: mins,
                 time_str: formatDurationJS(mins),
                 sessions: sessCount,
+                problem_points: pStats.probPts,
+                avg_difficulty: pStats.avgDiff,
+                max_difficulty: pStats.maxDiff,
                 score,
                 acProblems: acProbs
             }};
@@ -1441,9 +1522,18 @@ def generate_html_dashboard(users_data, config):
 
                     const probsHtml = st.acProblems && st.acProblems.length > 0
                         ? st.acProblems.slice(0, 8).map(p =>
-                            `<a href="${{p.url}}" target="_blank" style="display:inline-block; background:#dcfce7; color:#166534; padding:2px 8px; border-radius:6px; font-size:0.73rem; font-weight:700; text-decoration:none; margin:2px;">✅ ${{p.name}}</a>`
+                            `<a href="${{p.url}}" target="_blank" style="display:inline-block; background:#dcfce7; color:#166534; padding:3px 8px; border-radius:6px; font-size:0.73rem; font-weight:700; text-decoration:none; margin:2px; border:1px solid #bbf7d0;">
+                                ✅ ${{p.name}}
+                                <span style="background:#fef3c7; color:#b45309; padding:1px 5px; border-radius:4px; margin-right:3px; font-weight:800;">
+                                    ${{p.diff_tier || '🎯'}} ${{p.difficulty || ''}} (+${{p.prob_points || 100}}ن)
+                                </span>
+                            </a>`
                         ).join('') + (st.acProblems.length > 8 ? `<span style="font-size:0.74rem; color:#64748b; font-weight:700;"> +${{st.acProblems.length - 8}} مسألة أخرى</span>` : '')
                         : `<span style="color:#94a3b8; font-size:0.78rem;">${{st.solved > 0 ? `حل ${{st.solved}} مسألة AC` : 'لا توجد مسائل محلولة في هذه الفترة'}}</span>`;
+
+                    const diffSummaryHtml = st.avg_difficulty > 0
+                        ? `<div style="font-size:0.72rem; color:#b45309; font-weight:800; margin-top:4px;">🎯 متوسط الصعوبة: ${{st.avg_difficulty}} (أعلى: ${{st.max_difficulty}})</div>`
+                        : '';
 
                     return `
                         <tr>
@@ -1456,11 +1546,12 @@ def generate_html_dashboard(users_data, config):
                                 <div style="font-weight:800; font-size:1rem; color:#1e40af;">🌟 ${{st.score.toLocaleString()}} نقطة</div>
                                 <div class="score-bar-wrap"><div class="score-bar-fill" style="width:${{pct}}%;"></div></div>
                                 <div style="font-size:0.7rem; color:#64748b; margin-top:3px;">
-                                    (${{st.solved * 100}} للحل + ${{st.time_minutes}} للوقت + ${{st.subs * 5}} للمحاولات + ${{st.sessions * 15}} للجلسات)
+                                    (${{(st.problem_points || 0).toLocaleString()}} لصعوبة المسائل + ${{st.time_minutes}} للوقت + ${{st.subs * 5}} للمحاولات + ${{st.sessions * 15}} للجلسات)
                                 </div>
                             </td>
                             <td style="text-align:center;">
                                 <span class="badge badge-ac" style="font-size:0.86rem; padding:4px 10px;">✅ ${{st.solved}} AC</span>
+                                ${{diffSummaryHtml}}
                             </td>
                             <td style="text-align:center; font-weight:700; color:#334155;">${{st.subs}} محاولة (${{st.sessions}} جلسة)</td>
                             <td style="text-align:center;"><span class="dur-badge">⏱️ ${{st.time_str}}</span></td>
@@ -1642,18 +1733,26 @@ def generate_html_dashboard(users_data, config):
 
                 const tlHtml = (s.timeline || []).map(t => {{
                     let statusBadge = '';
+                    let diffBadge = '';
                     if (t.type === 'online_ping') {{
                         statusBadge = `<span class="badge badge-ping">👁️ متصل أونلاين</span>`;
-                    }} else if (t.is_ac) {{
-                        statusBadge = `<span class="badge badge-ac">✅ ${{t.status}}</span>`;
                     }} else {{
-                        statusBadge = `<span class="badge badge-wa">❌ ${{t.status}}</span>`;
+                        const dInfo = evaluateEventDifficultyJS(t);
+                        if (dInfo.difficulty > 0) {{
+                            diffBadge = `<span style="background:#fef3c7;color:#b45309;padding:2px 7px;border-radius:6px;font-size:0.71rem;font-weight:800;white-space:nowrap;">${{dInfo.diff_tier}} (${{dInfo.difficulty}}) • ${{t.is_ac ? `+${{dInfo.prob_points}}ن` : '+5ن'}}</span>`;
+                        }}
+                        if (t.is_ac) {{
+                            statusBadge = `<span class="badge badge-ac">✅ ${{t.status}}</span>`;
+                        }} else {{
+                            statusBadge = `<span class="badge badge-wa">❌ ${{t.status}}</span>`;
+                        }}
                     }}
                     return `
                         <div class="timeline-item">
                             <span class="timeline-time">${{t.time_str}}</span>
                             <span class="plat-tag plat-${{t.platform}}">${{t.platform}}</span>
                             <a href="${{t.problemUrl}}" target="_blank" style="color:#0f172a;font-weight:600;text-decoration:none;flex:1;">${{t.problemName}}</a>
+                            ${{diffBadge}}
                             ${{statusBadge}}
                         </div>
                     `;
@@ -1905,7 +2004,8 @@ def generate_html_dashboard(users_data, config):
                                 problemName: `${{code}} - ${{p.name || ''}}`,
                                 problemUrl: `https://codeforces.com/contest/${{p.contestId}}/problem/${{p.index}}`,
                                 status: isAc ? 'Accepted' : (s.verdict || '').replace(/_/g, ' '),
-                                is_ac: isAc
+                                is_ac: isAc,
+                                difficulty: p.rating || 0
                             }};
                         }});
 

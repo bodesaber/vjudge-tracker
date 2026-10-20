@@ -66,6 +66,8 @@ class CodeforcesAdapter(BaseJudgeAdapter):
                             "problemUrl": f"https://codeforces.com/contest/{cid}/problem/{idx}" if cid else f"https://codeforces.com/problemset/problem/{cid}/{idx}",
                             "status": status_str,
                             "is_ac": is_ac,
+                            "difficulty": prob.get("rating", 0) or 0,
+                            "tags": prob.get("tags", []),
                             "language": s.get("programmingLanguage", ""),
                             "avatarUrl": ""
                         })
