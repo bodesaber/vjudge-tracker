@@ -2,8 +2,10 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
+    <!-- Auto-refresh every 5 minutes (300 seconds) -->
+    <meta http-equiv="refresh" content="300">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>لوحة متابعة نشاط المتدربين على VJudge (24/7)</title>
+    <title>لوحة متابعة نشاط المتدربين على VJudge (تحديث كل 5 دقائق)</title>
     <style>
         :root {
             --primary: #2563eb;
@@ -65,12 +67,45 @@
             font-weight: bold;
             margin-right: 8px;
         }
+        .refresh-pill {
+            background: rgba(59, 130, 246, 0.2);
+            color: #93c5fd;
+            border: 1px solid rgba(59, 130, 246, 0.4);
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.78rem;
+            display: inline-block;
+            margin-right: 6px;
+        }
+        .header-actions {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 8px;
+        }
         .last-update {
             background: rgba(255,255,255,0.1);
-            padding: 8px 16px;
+            padding: 7px 14px;
             border-radius: 20px;
-            font-size: 0.85rem;
+            font-size: 0.82rem;
             color: #cbd5e1;
+        }
+        .btn-reload {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 7px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.82rem;
+            font-weight: 600;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .btn-reload:hover {
+            background: var(--primary-dark);
         }
         .cards-grid {
             display: grid;
@@ -92,13 +127,13 @@
         }
         .user-header {
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             gap: 14px;
             margin-bottom: 14px;
         }
         .avatar {
-            width: 52px;
-            height: 52px;
+            width: 54px;
+            height: 54px;
             border-radius: 50%;
             border: 2px solid var(--border);
             object-fit: cover;
@@ -112,6 +147,15 @@
         }
         .user-title a:hover {
             color: var(--primary);
+        }
+        .alltime-banner {
+            background: #fef3c7;
+            color: #92400e;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 0.82rem;
+            margin-top: 5px;
+            display: inline-block;
         }
         .badge {
             display: inline-block;
@@ -298,11 +342,21 @@
     <div class="container">
         <div class="header">
             <div>
-                <h1>📊 لوحة متابعة نشاط المتدربين على VJudge <span class="cloud-badge">24/7 Cloud Tracker</span></h1>
-                <p>رصد دقيق لفترات فتح وحل المسائل (اليوم - الأسبوع - الشهر) مع توقيت البداية والنهاية</p>
+                <h1>
+                    📊 لوحة متابعة نشاط المتدربين على VJudge 
+                    <span class="cloud-badge">24/7 Cloud</span>
+                    <span class="refresh-pill">تحديث كل 5 دقائق</span>
+                </h1>
+                <p>رصد دقيق لمواعيد فتح وحل المسائل (اليوم - الأسبوع - الشهر) مع توقيت البداية والنهاية</p>
             </div>
-            <div class="last-update">
-                🕒 آخر تحديث: الثلاثاء 20 أكتوبر 2026 - 01:54 م (توقيت مصر)
+            <div class="header-actions">
+                <div class="last-update">
+                    🕒 آخر تحديث: الثلاثاء 20 أكتوبر 2026 - 02:10 م (توقيت مصر)
+                </div>
+                <div style="display: flex; align-items: center; gap: 8px;">
+                    <span id="countdown" style="font-size: 0.8rem; color: #94a3b8;">التحديث القادم خلال: 05:00</span>
+                    <button class="btn-reload" onclick="location.reload();">🔄 تحديث الآن</button>
+                </div>
             </div>
         </div>
 
@@ -318,8 +372,11 @@
                         </h3>
                         <span class="badge badge-offline">⚪ غير نشط</span>
                     </div>
-                    <div style="font-size: 0.8rem; color: #64748b; margin-top: 2px;">
-                        آخر ظهور: <strong>منذ 4 يوم (15-10-2026)</strong> | آخر مسألة: <em>CodeForces 2124B (Accepted)</em>
+                    <div class="alltime-banner">
+                        🏆 إجمالي المسائل المحلولة كلياً: <strong>219 مسألة AC</strong> (من 232 محاولة)
+                    </div>
+                    <div style="font-size: 0.8rem; color: #64748b; margin-top: 4px;">
+                        آخر ظهور: <strong>منذ 4 يوم (15-10-2026)</strong> | <em>CodeForces 2124B (Accepted)</em>
                     </div>
                 </div>
             </div>
@@ -362,8 +419,11 @@
                         </h3>
                         <span class="badge badge-offline">⚪ غير نشط</span>
                     </div>
-                    <div style="font-size: 0.8rem; color: #64748b; margin-top: 2px;">
-                        آخر ظهور: <strong>منذ 1 يوم (18-10-2026)</strong> | آخر مسألة: <em>AtCoder abc180_e (Accepted)</em>
+                    <div class="alltime-banner">
+                        🏆 إجمالي المسائل المحلولة كلياً: <strong>492 مسألة AC</strong> (من 513 محاولة)
+                    </div>
+                    <div style="font-size: 0.8rem; color: #64748b; margin-top: 4px;">
+                        آخر ظهور: <strong>منذ 1 يوم (18-10-2026)</strong> | <em>AtCoder abc180_e (Accepted)</em>
                     </div>
                 </div>
             </div>
@@ -382,7 +442,7 @@
                 </div>
                 <div class="matrix-cell">
                     <span class="matrix-title">📊 آخر 30 يوماً</span>
-                    <div class="matrix-val text-purple">17 <span class="matrix-unit">مسائل AC</span></div>
+                    <div class="matrix-val text-purple">16 <span class="matrix-unit">مسائل AC</span></div>
                     <div class="matrix-sub">7 س و 24 د حل (16 جلسة)</div>
                 </div>
             </div>
@@ -406,8 +466,11 @@
                         </h3>
                         <span class="badge badge-offline">⚪ غير نشط</span>
                     </div>
-                    <div style="font-size: 0.8rem; color: #64748b; margin-top: 2px;">
-                        آخر ظهور: <strong>منذ 7 يوم (12-10-2026)</strong> | آخر مسألة: <em>CodeForces 877D (Wrong answer on test 5)</em>
+                    <div class="alltime-banner">
+                        🏆 إجمالي المسائل المحلولة كلياً: <strong>421 مسألة AC</strong> (من 453 محاولة)
+                    </div>
+                    <div style="font-size: 0.8rem; color: #64748b; margin-top: 4px;">
+                        آخر ظهور: <strong>منذ 7 يوم (12-10-2026)</strong> | <em>CodeForces 877D (Wrong answer on test 5)</em>
                     </div>
                 </div>
             </div>
@@ -426,7 +489,7 @@
                 </div>
                 <div class="matrix-cell">
                     <span class="matrix-title">📊 آخر 30 يوماً</span>
-                    <div class="matrix-val text-purple">25 <span class="matrix-unit">مسائل AC</span></div>
+                    <div class="matrix-val text-purple">6 <span class="matrix-unit">مسائل AC</span></div>
                     <div class="matrix-sub">7 س و 42 د حل (7 جلسة)</div>
                 </div>
             </div>
@@ -450,8 +513,11 @@
                         </h3>
                         <span class="badge badge-offline">⚪ غير نشط</span>
                     </div>
-                    <div style="font-size: 0.8rem; color: #64748b; margin-top: 2px;">
-                        آخر ظهور: <strong>منذ 14 يوم (05-10-2026)</strong> | آخر مسألة: <em>AtCoder abc336_e (Accepted)</em>
+                    <div class="alltime-banner">
+                        🏆 إجمالي المسائل المحلولة كلياً: <strong>294 مسألة AC</strong> (من 313 محاولة)
+                    </div>
+                    <div style="font-size: 0.8rem; color: #64748b; margin-top: 4px;">
+                        آخر ظهور: <strong>منذ 14 يوم (05-10-2026)</strong> | <em>AtCoder abc336_e (Accepted)</em>
                     </div>
                 </div>
             </div>
@@ -2179,6 +2245,20 @@
                 }
             });
         }
+
+        // 5-minute Countdown Timer
+        let secondsLeft = 300;
+        const countdownEl = document.getElementById('countdown');
+        setInterval(() => {
+            secondsLeft--;
+            if (secondsLeft <= 0) {
+                location.reload();
+            } else {
+                const m = Math.floor(secondsLeft / 60);
+                const s = secondsLeft % 60;
+                countdownEl.innerText = `التحديث القادم خلال: ${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+            }
+        }, 1000);
     </script>
 </body>
 </html>

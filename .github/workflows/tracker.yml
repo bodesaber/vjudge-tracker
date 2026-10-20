@@ -2,8 +2,8 @@ name: VJudge 24-7 Activity Tracker
 
 on:
   schedule:
-    # Runs every 15 minutes 24/7 in the cloud
-    - cron: '*/15 * * * *'
+    # Runs every 5 minutes 24/7 in the cloud
+    - cron: '*/5 * * * *'
   workflow_dispatch: # Allows manual trigger from GitHub UI
   push:
     branches: [ main ]
@@ -31,5 +31,5 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action Tracker"
-          git add index.html activity_dashboard.html sessions_report.csv summary_report.md
-          git diff --quiet && git diff --staged --quiet || (git commit -m "Auto-update VJudge trainee stats [skip ci]" && git push)
+          git add index.html activity_dashboard.html sessions_report.csv summary_report.md config.json
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Auto-update VJudge trainee stats (5m refresh) [skip ci]" && git push)

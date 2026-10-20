@@ -6,8 +6,7 @@
     "Amr2Khaled"
   ],
   "session_gap_minutes": 60,
-  "check_interval_minutes": 15,
+  "check_interval_minutes": 5,
   "fetch_limit": 100,
-  "days_back": 30
+  "timezone_offset_hours": 3
 }
-

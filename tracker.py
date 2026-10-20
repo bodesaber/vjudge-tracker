@@ -5,13 +5,14 @@ import time
 import datetime
 import urllib.request
 import urllib.error
+import re
 import csv
 from collections import defaultdict
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 CONFIG_FILE = os.path.join(SCRIPT_DIR, "config.json")
 HTML_FILE = os.path.join(SCRIPT_DIR, "activity_dashboard.html")
-INDEX_FILE = os.path.join(SCRIPT_DIR, "index.html")  # For GitHub Pages direct hosting
+INDEX_FILE = os.path.join(SCRIPT_DIR, "index.html")
 CSV_FILE = os.path.join(SCRIPT_DIR, "sessions_report.csv")
 MD_FILE = os.path.join(SCRIPT_DIR, "summary_report.md")
 
@@ -70,7 +71,7 @@ def load_config():
         default_cfg = {
             "trainees": ["Israa_abdelhaq", "Omar_Awad_Saber", "Fatemaelfiky1", "Amr2Khaled"],
             "session_gap_minutes": 60,
-            "check_interval_minutes": 15,
+            "check_interval_minutes": 5,
             "fetch_limit": 100,
             "timezone_offset_hours": 3
         }
@@ -79,6 +80,27 @@ def load_config():
         return default_cfg
     with open(CONFIG_FILE, "r", encoding="utf-8") as f:
         return json.load(f)
+
+def fetch_official_profile_data(username):
+    """
+    Fetches the official profile metrics directly from https://vjudge.net/user/{username}
+    Extracts acAll (total solved), attAll (total attempted), ac1d, ac7d, ac30d.
+    """
+    url = f"https://vjudge.net/user/{username}"
+    req = urllib.request.Request(
+        url,
+        headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"}
+    )
+    try:
+        with urllib.request.urlopen(req, timeout=12) as resp:
+            html = resp.read().decode("utf-8", errors="ignore")
+            m = re.search(r'id=["\']profile-header-data["\']>(.*?)</script>', html)
+            if m:
+                data = json.loads(m.group(1))
+                return data.get("counts", {})
+    except Exception as e:
+        print(f"[-] Profile data fetch error for {username}: {e}")
+    return {}
 
 def fetch_submissions(username, limit=100):
     url = f"https://vjudge.net/status/data?start=0&length={limit}&un={username}"
@@ -91,7 +113,7 @@ def fetch_submissions(username, limit=100):
             data = json.loads(resp.read().decode("utf-8"))
             return data.get("data", [])
     except Exception as e:
-        print(f"[-] Error fetching data for {username}: {e}")
+        print(f"[-] Submissions fetch error for {username}: {e}")
         return []
 
 def cluster_into_sessions(subs, max_gap_minutes=60):
@@ -148,11 +170,18 @@ def cluster_into_sessions(subs, max_gap_minutes=60):
     processed_sessions.sort(key=lambda x: x["start_dt"], reverse=True)
     return processed_sessions
 
-def analyze_user_comprehensive(username, all_subs, max_gap_minutes=60):
+def analyze_user_comprehensive(username, all_subs, official_counts, max_gap_minutes=60):
     now = get_cairo_now()
     today_start = datetime.datetime(now.year, now.month, now.day, tzinfo=CAIRO_TZ)
     week_start = now - datetime.timedelta(days=7)
     month_start = now - datetime.timedelta(days=30)
+
+    # Official counts fallback
+    ac_all_official = official_counts.get("acAll", 0)
+    att_all_official = official_counts.get("attAll", 0)
+    ac_1d_official = official_counts.get("ac1d", 0)
+    ac_7d_official = official_counts.get("ac7d", 0)
+    ac_30d_official = official_counts.get("ac30d", 0)
 
     if not all_subs:
         return {
@@ -161,10 +190,11 @@ def analyze_user_comprehensive(username, all_subs, max_gap_minutes=60):
             "is_active_now": False,
             "last_seen_str": "لا توجد بيانات",
             "last_problem_str": "—",
-            "today": {"solved": 0, "subs": 0, "time_str": "0 د", "sessions": 0},
-            "week": {"solved": 0, "subs": 0, "time_str": "0 د", "sessions": 0},
-            "month": {"solved": 0, "subs": 0, "time_str": "0 د", "sessions": 0},
-            "all_time": {"solved": 0, "subs": 0, "time_str": "0 د", "sessions": 0},
+            "all_time_ac": ac_all_official,
+            "all_time_att": att_all_official,
+            "today": {"solved": ac_1d_official, "subs": 0, "time_str": "0 د", "sessions": 0},
+            "week": {"solved": ac_7d_official, "subs": 0, "time_str": "0 د", "sessions": 0},
+            "month": {"solved": ac_30d_official, "subs": 0, "time_str": "0 د", "sessions": 0},
             "peak_hours_str": "غير محدد",
             "sessions": [],
             "recent_subs": []
@@ -193,33 +223,39 @@ def analyze_user_comprehensive(username, all_subs, max_gap_minutes=60):
     # Cluster all sessions
     all_sessions = cluster_into_sessions(all_subs, max_gap_minutes=max_gap_minutes)
 
-    # Periodic breakdowns
-    def compute_period_stats(dt_threshold):
+    # Periodic breakdowns (combining official AC with session time)
+    def compute_period_time(dt_threshold):
         period_subs = [s for s in all_subs if to_cairo_dt(s["time"]) >= dt_threshold]
         period_sessions = [s for s in all_sessions if s["start_dt"] >= dt_threshold]
-        solved = set(s.get("probNum") for s in period_subs if s.get("status") == "Accepted")
         total_mins = sum(s["duration_minutes"] for s in period_sessions)
         return {
-            "solved": len(solved),
             "subs": len(period_subs),
             "time_str": format_duration(total_mins),
             "total_mins": total_mins,
             "sessions": len(period_sessions)
         }
 
-    today_stats = compute_period_stats(today_start)
-    week_stats = compute_period_stats(week_start)
-    month_stats = compute_period_stats(month_start)
+    today_time = compute_period_time(today_start)
+    week_time = compute_period_time(week_start)
+    month_time = compute_period_time(month_start)
 
-    # All-time
-    all_time_solved = set(s.get("probNum") for s in all_subs if s.get("status") == "Accepted")
-    all_time_mins = sum(s["duration_minutes"] for s in all_sessions)
-    all_time_stats = {
-        "solved": len(all_time_solved),
-        "subs": len(all_subs),
-        "time_str": format_duration(all_time_mins),
-        "total_mins": all_time_mins,
-        "sessions": len(all_sessions)
+    today_stats = {
+        "solved": ac_1d_official,
+        "subs": today_time["subs"],
+        "time_str": today_time["time_str"],
+        "sessions": today_time["sessions"]
+    }
+    week_stats = {
+        "solved": ac_7d_official,
+        "subs": week_time["subs"],
+        "time_str": week_time["time_str"],
+        "sessions": week_time["sessions"]
+    }
+    month_stats = {
+        "solved": ac_30d_official,
+        "subs": month_time["subs"],
+        "time_str": month_time["time_str"],
+        "sessions": month_time["sessions"]
     }
 
     # Peak hours / Active time of day
@@ -251,18 +287,6 @@ def analyze_user_comprehensive(username, all_subs, max_gap_minutes=60):
     else:
         peak_hours_str = top_slot[0]
 
-    # Recent 10 submissions formatted
-    recent_subs = []
-    for s in all_subs[:12]:
-        dt = to_cairo_dt(s["time"])
-        recent_subs.append({
-            "problem": f"{s.get('oj', '')} {s.get('probNum', '')}",
-            "time_str": format_arabic_datetime(dt) + " - " + format_arabic_time(dt),
-            "status": s.get("status", "Unknown"),
-            "is_ac": (s.get("status") == "Accepted"),
-            "language": s.get("language", "")
-        })
-
     return {
         "username": username,
         "avatar": latest_sub.get("avatarUrl", ""),
@@ -270,13 +294,13 @@ def analyze_user_comprehensive(username, all_subs, max_gap_minutes=60):
         "last_seen_str": last_seen_str,
         "last_seen_dt": last_seen_dt,
         "last_problem_str": latest_prob,
+        "all_time_ac": ac_all_official,
+        "all_time_att": att_all_official,
         "today": today_stats,
         "week": week_stats,
         "month": month_stats,
-        "all_time": all_time_stats,
         "peak_hours_str": peak_hours_str,
-        "sessions": all_sessions,
-        "recent_subs": recent_subs
+        "sessions": all_sessions
     }
 
 def generate_html_dashboard(users_data):
@@ -300,8 +324,11 @@ def generate_html_dashboard(users_data):
                         </h3>
                         <span class="badge {badge_class}">{badge_text}</span>
                     </div>
-                    <div style="font-size: 0.8rem; color: #64748b; margin-top: 2px;">
-                        آخر ظهور: <strong>{u['last_seen_str']}</strong> | آخر مسألة: <em>{u['last_problem_str']}</em>
+                    <div class="alltime-banner">
+                        🏆 إجمالي المسائل المحلولة كلياً: <strong>{u['all_time_ac']} مسألة AC</strong> (من {u['all_time_att']} محاولة)
+                    </div>
+                    <div style="font-size: 0.8rem; color: #64748b; margin-top: 4px;">
+                        آخر ظهور: <strong>{u['last_seen_str']}</strong> | <em>{u['last_problem_str']}</em>
                     </div>
                 </div>
             </div>
@@ -371,8 +398,10 @@ def generate_html_dashboard(users_data):
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
+    <!-- Auto-refresh every 5 minutes (300 seconds) -->
+    <meta http-equiv="refresh" content="300">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>لوحة متابعة نشاط المتدربين على VJudge (24/7)</title>
+    <title>لوحة متابعة نشاط المتدربين على VJudge (تحديث كل 5 دقائق)</title>
     <style>
         :root {{
             --primary: #2563eb;
@@ -434,12 +463,45 @@ def generate_html_dashboard(users_data):
             font-weight: bold;
             margin-right: 8px;
         }}
+        .refresh-pill {{
+            background: rgba(59, 130, 246, 0.2);
+            color: #93c5fd;
+            border: 1px solid rgba(59, 130, 246, 0.4);
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.78rem;
+            display: inline-block;
+            margin-right: 6px;
+        }}
+        .header-actions {{
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 8px;
+        }}
         .last-update {{
             background: rgba(255,255,255,0.1);
-            padding: 8px 16px;
+            padding: 7px 14px;
             border-radius: 20px;
-            font-size: 0.85rem;
+            font-size: 0.82rem;
             color: #cbd5e1;
+        }}
+        .btn-reload {{
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 7px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.82rem;
+            font-weight: 600;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }}
+        .btn-reload:hover {{
+            background: var(--primary-dark);
         }}
         .cards-grid {{
             display: grid;
@@ -461,13 +523,13 @@ def generate_html_dashboard(users_data):
         }}
         .user-header {{
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             gap: 14px;
             margin-bottom: 14px;
         }}
         .avatar {{
-            width: 52px;
-            height: 52px;
+            width: 54px;
+            height: 54px;
             border-radius: 50%;
             border: 2px solid var(--border);
             object-fit: cover;
@@ -481,6 +543,15 @@ def generate_html_dashboard(users_data):
         }}
         .user-title a:hover {{
             color: var(--primary);
+        }}
+        .alltime-banner {{
+            background: #fef3c7;
+            color: #92400e;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 0.82rem;
+            margin-top: 5px;
+            display: inline-block;
         }}
         .badge {{
             display: inline-block;
@@ -667,11 +738,21 @@ def generate_html_dashboard(users_data):
     <div class="container">
         <div class="header">
             <div>
-                <h1>📊 لوحة متابعة نشاط المتدربين على VJudge <span class="cloud-badge">24/7 Cloud Tracker</span></h1>
-                <p>رصد دقيق لفترات فتح وحل المسائل (اليوم - الأسبوع - الشهر) مع توقيت البداية والنهاية</p>
+                <h1>
+                    📊 لوحة متابعة نشاط المتدربين على VJudge 
+                    <span class="cloud-badge">24/7 Cloud</span>
+                    <span class="refresh-pill">تحديث كل 5 دقائق</span>
+                </h1>
+                <p>رصد دقيق لمواعيد فتح وحل المسائل (اليوم - الأسبوع - الشهر) مع توقيت البداية والنهاية</p>
             </div>
-            <div class="last-update">
-                🕒 آخر تحديث: {now_str}
+            <div class="header-actions">
+                <div class="last-update">
+                    🕒 آخر تحديث: {now_str}
+                </div>
+                <div style="display: flex; align-items: center; gap: 8px;">
+                    <span id="countdown" style="font-size: 0.8rem; color: #94a3b8;">التحديث القادم خلال: 05:00</span>
+                    <button class="btn-reload" onclick="location.reload();">🔄 تحديث الآن</button>
+                </div>
             </div>
         </div>
 
@@ -721,6 +802,20 @@ def generate_html_dashboard(users_data):
                 }}
             }});
         }}
+
+        // 5-minute Countdown Timer
+        let secondsLeft = 300;
+        const countdownEl = document.getElementById('countdown');
+        setInterval(() => {{
+            secondsLeft--;
+            if (secondsLeft <= 0) {{
+                location.reload();
+            }} else {{
+                const m = Math.floor(secondsLeft / 60);
+                const s = secondsLeft % 60;
+                countdownEl.innerText = `التحديث القادم خلال: ${{m.toString().padStart(2, '0')}}:${{s.toString().padStart(2, '0')}}`;
+            }}
+        }}, 1000);
     </script>
 </body>
 </html>
@@ -736,6 +831,7 @@ def generate_csv_report(users_data):
         for s in u["sessions"]:
             rows.append({
                 "المتدرب": u["username"],
+                "إجمالي المسائل الكلي": u["all_time_ac"],
                 "اليوم": format_arabic_datetime(s["start_dt"]),
                 "بداية الجلسة": format_arabic_time(s["start_dt"]),
                 "نهاية الجلسة": format_arabic_time(s["end_dt"]),
@@ -744,7 +840,7 @@ def generate_csv_report(users_data):
                 "المقبول": s["accepted_count"],
                 "المسائل": ", ".join(s["problems"][:8])
             })
-    fieldnames = ["المتدرب", "اليوم", "بداية الجلسة", "نهاية الجلسة", "مدة النشاط", "عدد التقديمات", "المقبول", "المسائل"]
+    fieldnames = ["المتدرب", "إجمالي المسائل الكلي", "اليوم", "بداية الجلسة", "نهاية الجلسة", "مدة النشاط", "عدد التقديمات", "المقبول", "المسائل"]
     with open(CSV_FILE, "w", encoding="utf-8-sig", newline="") as f:
         writer = csv.DictWriter(f, fieldnames=fieldnames)
         writer.writeheader()
@@ -754,22 +850,22 @@ def generate_markdown_report(users_data):
     now_dt = get_cairo_now()
     now_str = format_arabic_datetime(now_dt) + " - " + format_arabic_time(now_dt)
     lines = [
-        f"# تقرير فترات نشاط المتدربين على VJudge (24/7 Monitor)",
+        f"# تقرير فترات نشاط المتدربين على VJudge (تحديث كل 5 دقائق)",
         f"**تاريخ التحديث:** {now_str} (بتوقيت مصر)",
         "",
-        "## نظرة عامة على المتدربين (اليوم / الأسبوع / الشهر)",
-        "| المتدرب | الحالة | آخر ظهور | اليوم (AC) | آخر 7 أيام (AC) | آخر 30 يوماً (AC) | وقت الذروة |",
+        "## نظرة عامة على المتدربين",
+        "| المتدرب | الحالة | الإجمالي الكلي (AC) | اليوم (AC) | آخر 7 أيام (AC) | آخر 30 يوماً (AC) | وقت الذروة |",
         "| :--- | :---: | :---: | :---: | :---: | :---: | :--- |"
     ]
     for u in users_data:
         status_icon = "🟢 نشط الآن" if u["is_active_now"] else "⚪ غير نشط"
         lines.append(
-            f"| **[{u['username']}](https://vjudge.net/user/{u['username']})** | {status_icon} | {u['last_seen_str']} | **{u['today']['solved']} مسألة** ({u['today']['time_str']}) | **{u['week']['solved']} مسألة** ({u['week']['time_str']}) | **{u['month']['solved']} مسألة** ({u['month']['time_str']}) | {u['peak_hours_str']} |"
+            f"| **[{u['username']}](https://vjudge.net/user/{u['username']})** | {status_icon} | **{u['all_time_ac']} مسألة** | **{u['today']['solved']} مسألة** ({u['today']['time_str']}) | **{u['week']['solved']} مسألة** ({u['week']['time_str']}) | **{u['month']['solved']} مسألة** ({u['month']['time_str']}) | {u['peak_hours_str']} |"
         )
 
     lines.append("\n## تفاصيل جلسات النشاط الأخيرة (من - إلى)")
     for u in users_data:
-        lines.append(f"\n### المتدرب: {u['username']}")
+        lines.append(f"\n### المتدرب: {u['username']} (إجمالي الحل الكلي: {u['all_time_ac']} مسألة)")
         if not u["sessions"]:
             lines.append("_لا توجد جلسات في الفترة المحددة_")
             continue
@@ -791,15 +887,16 @@ def run_once():
     gap_min = config.get("session_gap_minutes", 60)
     limit = config.get("fetch_limit", 100)
 
-    print(f"[*] Starting activity analysis for {len(trainees)} trainees...")
+    print(f"[*] Starting activity analysis for {len(trainees)} trainees (5-min interval)...")
     users_data = []
 
     for username in trainees:
         print(f"  -> Fetching data for {username}...")
+        official_counts = fetch_official_profile_data(username)
         subs = fetch_submissions(username, limit=limit)
-        stats = analyze_user_comprehensive(username, subs, max_gap_minutes=gap_min)
+        stats = analyze_user_comprehensive(username, subs, official_counts, max_gap_minutes=gap_min)
         users_data.append(stats)
-        time.sleep(0.5)
+        time.sleep(0.4)
 
     print("[*] Generating reports...")
     generate_html_dashboard(users_data)
@@ -807,27 +904,26 @@ def run_once():
     generate_markdown_report(users_data)
 
     print("\n" + "="*65)
-    print("        ملخص نشاط المتدربين (اليوم / الأسبوع / الشهر)")
+    print("        ملخص نشاط المتدربين الرسمي (تحديث كل 5 دقائق)")
     print("="*65)
     for u in users_data:
         status_txt = "🟢 نشط الآن" if u["is_active_now"] else "⚪ غير نشط"
         print(f"\n[{u['username']}] {status_txt}")
-        print(f"  - آخر ظهور: {u['last_seen_str']} (آخر مسألة: {u['last_problem_str']})")
-        print(f"  - اليوم:       {u['today']['solved']} مسألة AC | وقت الحل: {u['today']['time_str']} ({u['today']['subs']} تقديم)")
-        print(f"  - آخر 7 أيام:   {u['week']['solved']} مسألة AC | وقت الحل: {u['week']['time_str']} ({u['week']['sessions']} جلسات)")
-        print(f"  - آخر 30 يوماً: {u['month']['solved']} مسألة AC | وقت الحل: {u['month']['time_str']} ({u['month']['sessions']} جلسة)")
-        print(f"  - أوقات الذروة: {u['peak_hours_str']}")
+        print(f"  - الإجمالي الكلي: {u['all_time_ac']} مسألة AC (من {u['all_time_att']} محاولة)")
+        print(f"  - اليوم:          {u['today']['solved']} مسألة AC | وقت الحل: {u['today']['time_str']}")
+        print(f"  - آخر 7 أيام:      {u['week']['solved']} مسألة AC | وقت الحل: {u['week']['time_str']}")
+        print(f"  - آخر 30 يوماً:    {u['month']['solved']} مسألة AC | وقت الحل: {u['month']['time_str']}")
+        print(f"  - أوقات الذروة:    {u['peak_hours_str']}")
 
     print("\n" + "="*65)
     print(f"[✓] Dashboard HTML: {HTML_FILE}")
     print(f"[✓] GitHub Pages:   {INDEX_FILE}")
     print(f"[✓] Excel / CSV:    {CSV_FILE}")
-    print(f"[✓] Markdown:       {MD_FILE}")
     print("="*65)
 
 def run_watch():
     config = load_config()
-    interval = config.get("check_interval_minutes", 15)
+    interval = config.get("check_interval_minutes", 5)
     print(f"[*] Starting Watch Mode (refreshing every {interval} minutes). Press Ctrl+C to stop.")
     while True:
         try:
