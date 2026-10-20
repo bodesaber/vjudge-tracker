@@ -1,13 +1,61 @@
 {
   "trainees": [
-    "Israa_abdelhaq",
-    "Omar_Awad_Saber",
-    "Fatemaelfiky1",
-    "Amr2Khaled"
+    {
+      "id": "israa",
+      "name": "إسراء عبد الحق (Israa)",
+      "handles": {
+        "vjudge": "Israa_abdelhaq",
+        "codeforces": "Isabella_",
+        "atcoder": "Isabella_",
+        "cses": ""
+      }
+    },
+    {
+      "id": "omar",
+      "name": "عمر عوض صابر (Omar)",
+      "handles": {
+        "vjudge": "Omar_Awad_Saber",
+        "codeforces": "Lumino",
+        "atcoder": "Lumino",
+        "cses": ""
+      }
+    },
+    {
+      "id": "fatema",
+      "name": "فاطمة الفقي (Fatema)",
+      "handles": {
+        "vjudge": "Fatemaelfiky1",
+        "codeforces": "Zhraa_",
+        "atcoder": "",
+        "cses": ""
+      }
+    },
+    {
+      "id": "amr",
+      "name": "عمرو خالد (Amr)",
+      "handles": {
+        "vjudge": "Amr2Khaled",
+        "codeforces": "SHANKS-A",
+        "atcoder": "SHANKS_A",
+        "cses": ""
+      }
+    },
+    {
+      "id": "test_tourist",
+      "name": "Test Profile (Tourist)",
+      "handles": {
+        "vjudge": "tourist",
+        "codeforces": "tourist",
+        "atcoder": "tourist",
+        "cses": "1"
+      }
+    }
   ],
   "session_gap_minutes": 30,
   "coding_buffer_minutes": 15,
   "check_interval_minutes": 5,
-  "fetch_limit": 100,
-  "timezone_offset_hours": 3
+  "fetch_limit": 200,
+  "timezone_offset_hours": 3,
+  "cloud_sync_topic": "vj_tracker_bodesaber_sync_v2",
+  "last_cloud_sync_ts": 1792497304
 }

@@ -3,422 +3,140 @@ import sys
 import json
 import time
 import datetime
-import urllib.request
-import urllib.error
-import re
 import csv
-from collections import defaultdict
 
-# Add current directory to path for imports
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 if SCRIPT_DIR not in sys.path:
     sys.path.insert(0, SCRIPT_DIR)
 
-from platforms import get_adapter
+import tracker_core as tc
 
-CONFIG_FILE = os.path.join(SCRIPT_DIR, "config.json")
-HTML_FILE = os.path.join(SCRIPT_DIR, "activity_dashboard.html")
-INDEX_FILE = os.path.join(SCRIPT_DIR, "index.html")
-CSV_FILE = os.path.join(SCRIPT_DIR, "sessions_report.csv")
-MD_FILE = os.path.join(SCRIPT_DIR, "summary_report.md")
+CONFIG_FILE = tc.CONFIG_FILE
+DATA_JSON_FILE = tc.DATA_JSON_FILE
+HTML_FILE = tc.HTML_FILE
+INDEX_FILE = tc.INDEX_FILE
+CSV_FILE = tc.CSV_FILE
+MD_FILE = tc.MD_FILE
 
-# Default timezone: Cairo, Egypt (UTC+3)
-CAIRO_TZ = datetime.timezone(datetime.timedelta(hours=3))
-
-ARABIC_DAYS = {
-    "Monday": "الإثنين",
-    "Tuesday": "الثلاثاء",
-    "Wednesday": "الأربعاء",
-    "Thursday": "الخميس",
-    "Friday": "الجمعة",
-    "Saturday": "السبت",
-    "Sunday": "الأحد"
-}
-
-ARABIC_MONTHS = {
-    1: "يناير", 2: "فبراير", 3: "مارس", 4: "أبريل", 5: "مايو", 6: "يونيو",
-    7: "يوليو", 8: "أغسطس", 9: "سبتمبر", 10: "أكتوبر", 11: "نوفمبر", 12: "ديسمبر"
-}
-
-def get_cairo_now():
-    return datetime.datetime.now(CAIRO_TZ)
-
-def to_cairo_dt(timestamp_ms):
-    return datetime.datetime.fromtimestamp(timestamp_ms / 1000, tz=CAIRO_TZ)
-
-def format_arabic_datetime(dt):
-    day_name = ARABIC_DAYS.get(dt.strftime("%A"), dt.strftime("%A"))
-    month_name = ARABIC_MONTHS.get(dt.month, str(dt.month))
-    return f"{day_name} {dt.day} {month_name} {dt.year}"
-
-def format_arabic_time(dt):
-    hour = dt.hour
-    minute = dt.minute
-    period = "م" if hour >= 12 else "ص"
-    display_hour = hour % 12
-    if display_hour == 0:
-        display_hour = 12
-    return f"{display_hour:02d}:{minute:02d} {period}"
-
-def format_duration(total_minutes):
-    if total_minutes <= 0:
-        return "0 دقيقة"
-    hours = total_minutes // 60
-    mins = total_minutes % 60
-    if hours > 0 and mins > 0:
-        return f"{hours} س و {mins} د"
-    elif hours > 0:
-        return f"{hours} ساعة"
-    else:
-        return f"{mins} دقيقة"
-
-def load_config():
-    if not os.path.exists(CONFIG_FILE):
-        default_cfg = {
-            "trainees": ["Israa_abdelhaq", "Omar_Awad_Saber", "Fatemaelfiky1", "Amr2Khaled"],
-            "session_gap_minutes": 30,
-            "coding_buffer_minutes": 15,
-            "check_interval_minutes": 5,
-            "fetch_limit": 100,
-            "timezone_offset_hours": 3
-        }
-        with open(CONFIG_FILE, "w", encoding="utf-8") as f:
-            json.dump(default_cfg, f, indent=2, ensure_ascii=False)
-        return default_cfg
-    with open(CONFIG_FILE, "r", encoding="utf-8") as f:
-        return json.load(f)
-
-def cluster_into_sessions(subs, max_gap_minutes=30, coding_buffer=15):
-    """
-    Groups submissions into continuous active sessions:
-    If gap between consecutive submissions <= max_gap_minutes (e.g. 30 mins),
-    the trainee was continuously active/connected (writing code, testing, submitting).
-    """
-    if not subs:
-        return []
-
-    valid_subs = sorted(subs, key=lambda x: x["time"])
-    sessions = []
-    current_session = [valid_subs[0]]
-
-    for sub in valid_subs[1:]:
-        prev_sub = current_session[-1]
-        gap_min = (sub["time"] - prev_sub["time"]) / (1000 * 60)
-        if gap_min <= max_gap_minutes:
-            current_session.append(sub)
-        else:
-            sessions.append(current_session)
-            current_session = [sub]
-    if current_session:
-        sessions.append(current_session)
-
-    processed_sessions = []
-    for s in sessions:
-        start_dt = to_cairo_dt(s[0]["time"])
-        end_dt = to_cairo_dt(s[-1]["time"])
-        total_seconds = int((end_dt - start_dt).total_seconds())
-
-        is_single = (len(s) == 1 or total_seconds == 0)
-        if is_single:
-            dur_display = f"محاولة فردية (~{coding_buffer} د)"
-            dur_minutes = coding_buffer
-        else:
-            actual_span_mins = total_seconds // 60
-            dur_minutes = actual_span_mins + coding_buffer
-            dur_display = f"{format_duration(actual_span_mins)} (اتصال متواصل)"
-
-        probs = list(dict.fromkeys(x.get("probNum", "—") for x in s))
-        ac_count = sum(1 for x in s if x.get("is_ac", False))
-
-        processed_sessions.append({
-            "start_dt": start_dt,
-            "end_dt": end_dt,
-            "duration_str": dur_display,
-            "duration_minutes": dur_minutes,
-            "is_single": is_single,
-            "submissions_count": len(s),
-            "accepted_count": ac_count,
-            "problems": probs,
-            "raw_subs": s
-        })
-
-    # Sort sessions newest first
-    processed_sessions.sort(key=lambda x: x["start_dt"], reverse=True)
-    return processed_sessions
-
-def analyze_trainee(trainee_config, session_gap_min=30, coding_buffer=15, fetch_limit=100):
-    # Determine handles
-    if isinstance(trainee_config, str):
-        display_name = trainee_config
-        vjudge_handle = trainee_config
-        cf_handle = None
-    elif isinstance(trainee_config, dict):
-        display_name = trainee_config.get("name", trainee_config.get("vjudge", "Unknown"))
-        vjudge_handle = trainee_config.get("vjudge")
-        cf_handle = trainee_config.get("codeforces")
-    else:
-        return None
-
-    all_subs = []
-    official_counts = {}
-    avatar = ""
-
-    # Fetch from VJudge adapter
-    if vjudge_handle:
-        vj_adapter = get_adapter("vjudge")
-        if vj_adapter:
-            counts = vj_adapter.fetch_profile(vjudge_handle)
-            official_counts = counts
-            avatar = counts.get("avatar", "")
-            subs = vj_adapter.fetch_submissions(vjudge_handle, limit=fetch_limit)
-            all_subs.extend(subs)
-
-    # Fetch from Codeforces adapter if configured
-    if cf_handle:
-        cf_adapter = get_adapter("codeforces")
-        if cf_adapter:
-            cf_profile = cf_adapter.fetch_profile(cf_handle)
-            if not avatar and cf_profile.get("avatar"):
-                avatar = cf_profile["avatar"]
-            cf_subs = cf_adapter.fetch_submissions(cf_handle, limit=fetch_limit)
-            all_subs.extend(cf_subs)
-
-    # Sort all submissions chronologically
-    all_subs.sort(key=lambda x: x["time"])
-
-    now = get_cairo_now()
-    today_start = datetime.datetime(now.year, now.month, now.day, tzinfo=CAIRO_TZ)
-    week_start = now - datetime.timedelta(days=7)
-    month_start = now - datetime.timedelta(days=30)
-
-    ac_all_official = official_counts.get("acAll", sum(1 for s in all_subs if s.get("is_ac")))
-    att_all_official = official_counts.get("attAll", len(all_subs))
-    ac_1d_official = official_counts.get("ac1d", 0)
-    ac_7d_official = official_counts.get("ac7d", 0)
-    ac_30d_official = official_counts.get("ac30d", 0)
-
-    if not all_subs:
-        return {
-            "username": display_name,
-            "vjudge_handle": vjudge_handle,
-            "avatar": avatar,
-            "is_active_now": False,
-            "last_seen_str": "لا توجد تقديمات حديثة",
-            "last_problem_str": "—",
-            "all_time_ac": ac_all_official,
-            "all_time_att": att_all_official,
-            "today": {"solved": ac_1d_official, "subs": 0, "time_str": "0 د", "sessions": 0},
-            "week": {"solved": ac_7d_official, "subs": 0, "time_str": "0 د", "sessions": 0},
-            "month": {"solved": ac_30d_official, "subs": 0, "time_str": "0 د", "sessions": 0},
-            "peak_hours_str": "غير محدد",
-            "sessions": []
-        }
-
-    latest_sub = max(all_subs, key=lambda x: x["time"])
-    last_seen_dt = to_cairo_dt(latest_sub["time"])
-    time_since_last = (now - last_seen_dt).total_seconds()
-
-    # Active now if submitted in the last 30 minutes
-    is_active_now = (time_since_last <= 30 * 60)
-
-    if time_since_last < 60:
-        last_seen_str = "الآن (منذ لحظات)"
-    elif time_since_last < 3600:
-        last_seen_str = f"منذ {int(time_since_last // 60)} دقيقة"
-    elif time_since_last < 86400:
-        last_seen_str = f"منذ {int(time_since_last // 3600)} ساعة"
-    else:
-        days = int(time_since_last // 86400)
-        last_seen_str = f"منذ {days} يوم ({last_seen_dt.strftime('%d-%m-%Y')})"
-
-    latest_prob = f"{latest_sub.get('oj', '')} {latest_sub.get('probNum', '')} ({latest_sub.get('status', '')})"
-
-    # Cluster into sessions with 30-min rule
-    all_sessions = cluster_into_sessions(all_subs, max_gap_minutes=session_gap_min, coding_buffer=coding_buffer)
-
-    def compute_period_time(dt_threshold):
-        period_subs = [s for s in all_subs if to_cairo_dt(s["time"]) >= dt_threshold]
-        period_sessions = [s for s in all_sessions if s["start_dt"] >= dt_threshold]
-        total_mins = sum(s["duration_minutes"] for s in period_sessions)
-        return {
-            "subs": len(period_subs),
-            "time_str": format_duration(total_mins),
-            "total_mins": total_mins,
-            "sessions": len(period_sessions)
-        }
-
-    today_time = compute_period_time(today_start)
-    week_time = compute_period_time(week_start)
-    month_time = compute_period_time(month_start)
-
-    today_stats = {
-        "solved": ac_1d_official,
-        "subs": today_time["subs"],
-        "time_str": today_time["time_str"],
-        "sessions": today_time["sessions"]
-    }
-    week_stats = {
-        "solved": ac_7d_official,
-        "subs": week_time["subs"],
-        "time_str": week_time["time_str"],
-        "sessions": week_time["sessions"]
-    }
-    month_stats = {
-        "solved": ac_30d_official,
-        "subs": month_time["subs"],
-        "time_str": month_time["time_str"],
-        "sessions": month_time["sessions"]
-    }
-
-    # Peak hours calculation
-    slots = {"فجر / ليل متأخر (12ص-6ص)": 0, "صباحاً (6ص-12ظ)": 0, "ظهراً وعصراً (12ظ-6م)": 0, "مساءً (6م-12ص)": 0}
-    hours_count = defaultdict(int)
-
-    for sub in all_subs:
-        dt = to_cairo_dt(sub["time"])
-        h = dt.hour
-        hours_count[h] += 1
-        if 0 <= h < 6:
-            slots["فجر / ليل متأخر (12ص-6ص)"] += 1
-        elif 6 <= h < 12:
-            slots["صباحاً (6ص-12ظ)"] += 1
-        elif 12 <= h < 18:
-            slots["ظهراً وعصراً (12ظ-6م)"] += 1
-        else:
-            slots["مساءً (6م-12ص)"] += 1
-
-    top_slot = max(slots.items(), key=lambda x: x[1]) if any(slots.values()) else ("غير محدد", 0)
-    sorted_hours = sorted(hours_count.items(), key=lambda x: x[1], reverse=True)
-    if sorted_hours and sorted_hours[0][1] > 0:
-        top_h = sorted_hours[0][0]
-        period = "م" if top_h >= 12 else "ص"
-        display_h = top_h % 12
-        if display_h == 0:
-            display_h = 12
-        peak_hours_str = f"الذروة حوالي {display_h:02d}:00 {period} ({top_slot[0]})"
-    else:
-        peak_hours_str = top_slot[0]
-
-    return {
-        "username": display_name,
-        "vjudge_handle": vjudge_handle,
-        "avatar": avatar,
-        "is_active_now": is_active_now,
-        "last_seen_str": last_seen_str,
-        "last_seen_dt": last_seen_dt,
-        "last_problem_str": latest_prob,
-        "all_time_ac": ac_all_official,
-        "all_time_att": att_all_official,
-        "today": today_stats,
-        "week": week_stats,
-        "month": month_stats,
-        "peak_hours_str": peak_hours_str,
-        "sessions": all_sessions
-    }
-
-def generate_html_dashboard(users_data):
-    now_dt = get_cairo_now()
-    now_str = format_arabic_datetime(now_dt) + " - " + format_arabic_time(now_dt) + " (توقيت مصر)"
-
-    cards_html = ""
+def serialize_users_data(users_data):
+    """ Prepares JSON-serializable dict for embedding into HTML and data.json """
+    out = []
     for u in users_data:
-        badge_class = "badge-online" if u["is_active_now"] else "badge-offline"
-        badge_text = "🟢 متصل يحل الآن" if u["is_active_now"] else "⚪ غير متصل"
-        avatar_src = u["avatar"] if u["avatar"] else "https://cdn.vjudge.net.cn/user/avatar/default.png"
-        profile_url = f"https://vjudge.net/user/{u['vjudge_handle']}" if u.get("vjudge_handle") else "#"
-
-        cards_html += f"""
-        <div class="user-card" id="card-{u['username']}">
-            <div class="user-header">
-                <img src="{avatar_src}" alt="{u['username']}" class="avatar" onerror="this.src='https://cdn.vjudge.net.cn/user/avatar/default.png'">
-                <div style="flex: 1;">
-                    <div style="display: flex; justify-content: space-between; align-items: center;">
-                        <h3 class="user-title">
-                            <a href="{profile_url}" target="_blank">{u['username']}</a>
-                        </h3>
-                        <span class="badge {badge_class}">{badge_text}</span>
-                    </div>
-                    <div class="alltime-banner">
-                        🏆 إجمالي المسائل المحلولة كلياً: <strong>{u['all_time_ac']} مسألة AC</strong> (من {u['all_time_att']} محاولة)
-                    </div>
-                    <div style="font-size: 0.8rem; color: #64748b; margin-top: 4px;">
-                        آخر ظهور: <strong>{u['last_seen_str']}</strong> | <em>{u['last_problem_str']}</em>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Periodic Breakdown Matrix -->
-            <div class="period-matrix">
-                <div class="matrix-cell">
-                    <span class="matrix-title">📅 اليوم</span>
-                    <div class="matrix-val text-success">{u['today']['solved']} <span class="matrix-unit">مسائل AC</span></div>
-                    <div class="matrix-sub">{u['today']['time_str']} نشاط ({u['today']['subs']} تقديم)</div>
-                </div>
-                <div class="matrix-cell">
-                    <span class="matrix-title">🗓️ آخر 7 أيام</span>
-                    <div class="matrix-val text-primary">{u['week']['solved']} <span class="matrix-unit">مسائل AC</span></div>
-                    <div class="matrix-sub">{u['week']['time_str']} نشاط ({u['week']['sessions']} جلسات)</div>
-                </div>
-                <div class="matrix-cell">
-                    <span class="matrix-title">📊 آخر 30 يوماً</span>
-                    <div class="matrix-val text-purple">{u['month']['solved']} <span class="matrix-unit">مسائل AC</span></div>
-                    <div class="matrix-sub">{u['month']['time_str']} نشاط ({u['month']['sessions']} جلسة)</div>
-                </div>
-            </div>
-
-            <div class="peak-box">
-                <span class="peak-icon">⏰</span>
-                <div>
-                    <strong>فترات النشاط المعتادة:</strong>
-                    <div style="font-size: 0.88rem; color: #334155; margin-top: 2px;">{u['peak_hours_str']}</div>
-                </div>
-            </div>
-        </div>
-        """
-
-    # Build Sessions Table rows
-    table_rows_html = ""
-    for u in users_data:
-        profile_url = f"https://vjudge.net/user/{u['vjudge_handle']}" if u.get("vjudge_handle") else "#"
+        u_copy = dict(u)
+        sessions_clean = []
         for s in u["sessions"]:
-            day_str = format_arabic_datetime(s["start_dt"])
-            start_str = format_arabic_time(s["start_dt"])
-            end_str = format_arabic_time(s["end_dt"])
-            dur_class = "dur-single" if s["is_single"] else "dur-multi"
-            ac_badge = f"<span class='badge badge-ac'>{s['accepted_count']} AC</span>" if s["accepted_count"] > 0 else "<span class='badge badge-wa'>0 AC</span>"
-            probs_tags = "".join([f"<span class='prob-tag'>{p}</span>" for p in s["problems"][:6]])
+            s_copy = dict(s)
+            s_copy.pop("start_dt", None)
+            s_copy.pop("end_dt", None)
+            sessions_clean.append(s_copy)
+        u_copy["sessions"] = sessions_clean
+        out.append(u_copy)
+    return out
 
-            table_rows_html += f"""
-            <tr data-user="{u['username']}">
-                <td>
-                    <strong><a href="{profile_url}" target="_blank" class="user-link">{u['username']}</a></strong>
-                </td>
-                <td>{day_str}</td>
-                <td><span class="time-badge start-time">{start_str}</span></td>
-                <td><span class="time-badge end-time">{end_str}</span></td>
-                <td><span class="{dur_class}">{s['duration_str']}</span></td>
-                <td>{s['submissions_count']}</td>
-                <td>{ac_badge}</td>
-                <td><div class="prob-list">{probs_tags}</div></td>
-            </tr>
-            """
-
-    # Filter buttons for Trainees
-    user_filters_html = '<button class="filter-btn active" onclick="filterUser(\'all\', this)">الكل</button>'
+def generate_csv_report(users_data):
+    rows = []
     for u in users_data:
-        uname = u["username"]
-        user_filters_html += f'<button class="filter-btn" onclick="filterUser(\'{uname}\', this)">{uname}</button>'
+        for s in u["sessions"]:
+            plat_str = " | ".join([
+                f"{pk}: {pv['duration_str']} ({pv['ac_count']} AC/{pv['subs_count']} محاولة)"
+                for pk, pv in s["platform_breakdown"].items()
+            ])
+            timeline_str = " ، ".join([
+                f"[{t['time_str']} - {t['platform']}] {t['problemName']} ({t['status']})"
+                for t in s["timeline"][:10]
+            ])
+            rows.append({
+                "اسم المتدرب": u["name"],
+                "التاريخ": s["date_str"],
+                "بداية الجلسة (من)": s["start_str"],
+                "نهاية الجلسة (إلى)": s["end_str"],
+                "مدة النشاط الكلية": s["duration_str"],
+                "تفصيل المنصات في الجلسة": plat_str,
+                "إجمالي المحاولات": s["submissions_count"],
+                "المسائل المقبولة (AC)": s["accepted_count"],
+                "تفاصيل المسائل بالتوقيت": timeline_str
+            })
+    fieldnames = [
+        "اسم المتدرب", "التاريخ", "بداية الجلسة (من)", "نهاية الجلسة (إلى)",
+        "مدة النشاط الكلية", "تفصيل المنصات في الجلسة", "إجمالي المحاولات",
+        "المسائل المقبولة (AC)", "تفاصيل المسائل بالتوقيت"
+    ]
+    with open(CSV_FILE, "w", encoding="utf-8-sig", newline="") as f:
+        writer = csv.DictWriter(f, fieldnames=fieldnames)
+        writer.writeheader()
+        writer.writerows(rows)
+
+def generate_markdown_report(users_data):
+    now_dt = tc.get_cairo_now()
+    now_str = tc.format_arabic_datetime(now_dt) + " - " + tc.format_arabic_time(now_dt)
+    lines = [
+        "# 📊 تقرير متابعة نشاط المتدربين الشامل (VJudge + Codeforces + AtCoder + CSES)",
+        f"**تاريخ التحديث:** {now_str} (بتوقيت مصر - قاعدة الـ 30 دقيقة للاتصال المتواصل)",
+        "",
+        "## 1. ملخص البروفايلات والنشاط العام",
+        "| المتدرب | الحالة | آخر ظهور | اليوم | آخر 7 أيام | آخر 30 يوماً | المنصات المربوطة |",
+        "| :--- | :---: | :---: | :---: | :---: | :---: | :--- |"
+    ]
+    for u in users_data:
+        status_icon = f"🟢 متصل ({', '.join(u['active_platforms_now'])})" if u["is_active_now"] else "⚪ غير متصل"
+        plats_info = ", ".join([f"{pk}: `{pv['handle']}` ({pv['acAll']} AC)" for pk, pv in u["platforms"].items()])
+        lines.append(
+            f"| **{u['name']}** | {status_icon} | {u['last_seen_str']} | **{u['today']['solved']} AC** ({u['today']['time_str']}) | **{u['week']['solved']} AC** ({u['week']['time_str']}) | **{u['month']['solved']} AC** ({u['month']['time_str']}) | {plats_info} |"
+        )
+
+    lines.append("\n## 2. سجل الجلسات التفصيلي والمسائل بالوقت")
+    for u in users_data:
+        lines.append(f"\n### 👤 {u['name']}")
+        if not u["sessions"]:
+            lines.append("_لا توجد جلسات مسجلة_")
+            continue
+        lines.append("| التاريخ | من | إلى | مدة النشاط | تفصيل المنصات | المسائل بالتوقيت |")
+        lines.append("| :--- | :---: | :---: | :---: | :--- | :--- |")
+        for s in u["sessions"][:15]:
+            plat_str = "<br>".join([
+                f"**{pk}**: {pv['duration_str']} ({pv['ac_count']} AC)"
+                for pk, pv in s["platform_breakdown"].items()
+            ])
+            tl_str = "<br>".join([
+                f"`{t['time_str']}` [{t['platform']}] {t['problemName']} (**{t['status']}**)"
+                for t in s["timeline"][:6]
+            ])
+            lines.append(f"| {s['date_str']} | {s['start_str']} | {s['end_str']} | {s['duration_str']} | {plat_str} | {tl_str} |")
+
+    with open(MD_FILE, "w", encoding="utf-8") as f:
+        f.write("\n".join(lines))
+
+def generate_html_dashboard(users_data, config):
+    now_dt = tc.get_cairo_now()
+    now_str = tc.format_arabic_datetime(now_dt) + " - " + tc.format_arabic_time(now_dt) + " (توقيت مصر)"
+    serializable_users = serialize_users_data(users_data)
+
+    payload_obj = {
+        "updated_at": now_str,
+        "updated_ms": int(now_dt.timestamp() * 1000),
+        "config": {
+            "trainees": config.get("trainees", []),
+            "session_gap_minutes": config.get("session_gap_minutes", 30),
+            "coding_buffer_minutes": config.get("coding_buffer_minutes", 15),
+            "cloud_sync_topic": config.get("cloud_sync_topic", "vj_tracker_bodesaber_sync_v2")
+        },
+        "users": serializable_users
+    }
+
+    with open(DATA_JSON_FILE, "w", encoding="utf-8") as f:
+        json.dump(payload_obj, f, ensure_ascii=False, indent=2)
+
+    embedded_json = json.dumps(payload_obj, ensure_ascii=False)
 
     html_content = f"""<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="refresh" content="300">
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>لوحة متابعة نشاط المتدربين (24/7)</title>
+    <title>منصة متابعة المتدربين الشاملة (VJudge • Codeforces • AtCoder • CSES)</title>
     <style>
         :root {{
             --primary: #2563eb;
@@ -429,9 +147,9 @@ def generate_html_dashboard(users_data):
             --text-muted: #64748b;
             --border: #e2e8f0;
             --success: #16a34a;
-            --success-bg: #dcfce7;
-            --purple: #9333ea;
-            --radius: 12px;
+            --purple: #7c3aed;
+            --orange: #ea580c;
+            --radius: 14px;
         }}
         * {{
             box-sizing: border-box;
@@ -446,16 +164,16 @@ def generate_html_dashboard(users_data):
             direction: rtl;
         }}
         .container {{
-            max-width: 1300px;
+            max-width: 1380px;
             margin: 0 auto;
         }}
         .header {{
-            background: linear-gradient(135deg, #1e293b, #0f172a);
+            background: linear-gradient(135deg, #0f172a, #1e293b);
             color: #ffffff;
             padding: 24px 28px;
             border-radius: var(--radius);
-            margin-bottom: 24px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+            margin-bottom: 20px;
+            box-shadow: 0 8px 24px rgba(15, 23, 42, 0.12);
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -463,128 +181,141 @@ def generate_html_dashboard(users_data):
             gap: 16px;
         }}
         .header h1 {{
-            font-size: 1.7rem;
-            margin-bottom: 4px;
+            font-size: 1.65rem;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
         }}
         .header p {{
             color: #94a3b8;
             font-size: 0.92rem;
         }}
         .cloud-badge {{
-            display: inline-block;
             background: #10b981;
             color: white;
-            padding: 3px 8px;
-            border-radius: 6px;
+            padding: 3px 10px;
+            border-radius: 8px;
             font-size: 0.75rem;
             font-weight: bold;
-            margin-right: 8px;
         }}
         .refresh-pill {{
             background: rgba(59, 130, 246, 0.2);
             color: #93c5fd;
             border: 1px solid rgba(59, 130, 246, 0.4);
-            padding: 4px 10px;
-            border-radius: 12px;
-            font-size: 0.78rem;
-            display: inline-block;
-            margin-right: 6px;
+            padding: 3px 10px;
+            border-radius: 8px;
+            font-size: 0.75rem;
         }}
         .header-actions {{
             display: flex;
             flex-direction: column;
             align-items: flex-end;
-            gap: 8px;
+            gap: 10px;
         }}
-        .last-update {{
-            background: rgba(255,255,255,0.1);
-            padding: 7px 14px;
-            border-radius: 20px;
-            font-size: 0.82rem;
-            color: #cbd5e1;
+        .action-btns {{
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
         }}
-        .btn-reload {{
-            background: var(--primary);
-            color: white;
+        .btn {{
             border: none;
-            padding: 7px 16px;
-            border-radius: 20px;
+            padding: 9px 18px;
+            border-radius: 10px;
             cursor: pointer;
-            font-size: 0.82rem;
+            font-size: 0.88rem;
             font-weight: 600;
             transition: all 0.2s;
-            display: flex;
+            display: inline-flex;
             align-items: center;
             gap: 6px;
         }}
-        .btn-reload:hover {{
-            background: var(--primary-dark);
+        .btn-add {{
+            background: #10b981;
+            color: white;
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+        }}
+        .btn-add:hover {{ background: #059669; transform: translateY(-1px); }}
+        .btn-reload {{
+            background: var(--primary);
+            color: white;
+        }}
+        .btn-reload:hover {{ background: var(--primary-dark); }}
+        .btn-outline {{
+            background: #f8fafc;
+            color: #334155;
+            border: 1px solid #cbd5e1;
+            padding: 5px 12px;
+            font-size: 0.8rem;
+            border-radius: 8px;
+        }}
+        .btn-outline:hover {{ background: #e2e8f0; }}
+        .last-update {{
+            background: rgba(255,255,255,0.08);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: #cbd5e1;
         }}
         .rule-note {{
-            background: #e0f2fe;
-            border: 1px solid #bae6fd;
-            color: #0369a1;
-            padding: 10px 16px;
-            border-radius: 8px;
+            background: #eff6ff;
+            border: 1px solid #bfdbfe;
+            color: #1e40af;
+            padding: 12px 18px;
+            border-radius: 10px;
             font-size: 0.88rem;
-            margin-bottom: 24px;
+            margin-bottom: 22px;
             display: flex;
+            justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
             gap: 10px;
         }}
         .cards-grid {{
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
-            gap: 20px;
-            margin-bottom: 28px;
+            grid-template-columns: repeat(auto-fit, minmax(560px, 1fr));
+            gap: 22px;
+            margin-bottom: 32px;
+        }}
+        @media (max-width: 640px) {{
+            .cards-grid {{ grid-template-columns: 1fr; }}
         }}
         .user-card {{
             background: var(--card-bg);
             border: 1px solid var(--border);
             border-radius: var(--radius);
-            padding: 20px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+            padding: 22px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.03);
             transition: transform 0.2s, box-shadow 0.2s;
         }}
         .user-card:hover {{
-            transform: translateY(-2px);
-            box-shadow: 0 6px 14px rgba(0,0,0,0.06);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.06);
         }}
         .user-header {{
             display: flex;
             align-items: flex-start;
             gap: 14px;
-            margin-bottom: 14px;
+            margin-bottom: 16px;
+            padding-bottom: 14px;
+            border-bottom: 1px solid #f1f5f9;
         }}
         .avatar {{
-            width: 54px;
-            height: 54px;
+            width: 58px;
+            height: 58px;
             border-radius: 50%;
             border: 2px solid var(--border);
             object-fit: cover;
+            background: #f8fafc;
         }}
         .user-title {{
-            font-size: 1.25rem;
-        }}
-        .user-title a {{
+            font-size: 1.3rem;
+            font-weight: 700;
             color: var(--text-main);
-            text-decoration: none;
-        }}
-        .user-title a:hover {{
-            color: var(--primary);
-        }}
-        .alltime-banner {{
-            background: #fef3c7;
-            color: #92400e;
-            padding: 4px 8px;
-            border-radius: 6px;
-            font-size: 0.82rem;
-            margin-top: 5px;
-            display: inline-block;
         }}
         .badge {{
             display: inline-block;
-            padding: 3px 10px;
+            padding: 4px 10px;
             border-radius: 12px;
             font-size: 0.78rem;
             font-weight: 600;
@@ -603,62 +334,86 @@ def generate_html_dashboard(users_data):
             background: #f1f5f9;
             color: #64748b;
         }}
-        .badge-ac {{
-            background: #dcfce7;
-            color: #166534;
+        .badge-ac {{ background: #dcfce7; color: #166534; }}
+        .badge-wa {{ background: #fee2e2; color: #991b1b; }}
+        .badge-ping {{ background: #e0f2fe; color: #0369a1; }}
+        .plat-tag {{
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 6px;
+            font-size: 0.74rem;
+            font-weight: 700;
         }}
-        .badge-wa {{
-            background: #fee2e2;
-            color: #991b1b;
-        }}
+        .plat-VJudge {{ background: #ffedd5; color: #c2410c; border: 1px solid #fed7aa; }}
+        .plat-Codeforces {{ background: #dbeafe; color: #1d4ed8; border: 1px solid #bfdbfe; }}
+        .plat-AtCoder {{ background: #f3e8ff; color: #6d28d9; border: 1px solid #e9d5ff; }}
+        .plat-CSES {{ background: #dcfce7; color: #15803d; border: 1px solid #bbf7d0; }}
+
         .period-matrix {{
             display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 8px;
-            margin-bottom: 14px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 16px;
         }}
         .matrix-cell {{
             background: #f8fafc;
             border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 10px 8px;
+            border-radius: 10px;
+            padding: 10px;
             text-align: center;
         }}
         .matrix-title {{
-            font-size: 0.75rem;
+            font-size: 0.76rem;
             font-weight: 600;
             color: var(--text-muted);
             display: block;
-            margin-bottom: 3px;
+            margin-bottom: 4px;
         }}
         .matrix-val {{
             font-size: 1.25rem;
-            font-weight: bold;
-            line-height: 1.2;
-        }}
-        .matrix-unit {{
-            font-size: 0.72rem;
-            font-weight: normal;
+            font-weight: 800;
         }}
         .matrix-sub {{
-            font-size: 0.72rem;
-            color: #64748b;
-            margin-top: 4px;
+            font-size: 0.75rem;
+            color: #475569;
+            margin-top: 3px;
+            font-weight: 600;
         }}
         .text-primary {{ color: var(--primary) !important; }}
         .text-success {{ color: var(--success) !important; }}
         .text-purple {{ color: var(--purple) !important; }}
-        .peak-box {{
-            background: #eff6ff;
-            border: 1px solid #dbeafe;
+
+        .plat-breakdown-table {{
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.82rem;
+            margin-bottom: 14px;
+            border: 1px solid var(--border);
             border-radius: 8px;
-            padding: 10px 14px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
+            overflow: hidden;
         }}
-        .peak-icon {{
-            font-size: 1.4rem;
+        .plat-breakdown-table th {{
+            background: #f1f5f9;
+            color: #475569;
+            padding: 8px 10px;
+            font-weight: 600;
+            font-size: 0.76rem;
+        }}
+        .plat-breakdown-table td {{
+            padding: 8px 10px;
+            border-top: 1px solid var(--border);
+        }}
+        .peak-box {{
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 9px 12px;
+            font-size: 0.84rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
         }}
         .section-header {{
             display: flex;
@@ -668,10 +423,6 @@ def generate_html_dashboard(users_data):
             flex-wrap: wrap;
             gap: 12px;
         }}
-        .section-header h2 {{
-            font-size: 1.35rem;
-            color: var(--text-main);
-        }}
         .filter-buttons {{
             display: flex;
             gap: 8px;
@@ -680,11 +431,11 @@ def generate_html_dashboard(users_data):
         .filter-btn {{
             background: #ffffff;
             border: 1px solid var(--border);
-            padding: 6px 14px;
+            padding: 7px 15px;
             border-radius: 20px;
             cursor: pointer;
-            font-size: 0.85rem;
-            font-weight: 500;
+            font-size: 0.84rem;
+            font-weight: 600;
             transition: all 0.2s;
         }}
         .filter-btn:hover, .filter-btn.active {{
@@ -696,70 +447,185 @@ def generate_html_dashboard(users_data):
             background: var(--card-bg);
             border: 1px solid var(--border);
             border-radius: var(--radius);
-            box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
             overflow-x: auto;
         }}
-        table {{
+        table.sessions-table {{
             width: 100%;
             border-collapse: collapse;
             text-align: right;
-            font-size: 0.9rem;
+            font-size: 0.88rem;
         }}
-        th {{
+        table.sessions-table th {{
             background: #f1f5f9;
-            color: #475569;
-            padding: 13px 16px;
-            font-weight: 600;
+            color: #334155;
+            padding: 13px 14px;
+            font-weight: 700;
             border-bottom: 1px solid var(--border);
             white-space: nowrap;
         }}
-        td {{
-            padding: 12px 16px;
+        table.sessions-table td {{
+            padding: 12px 14px;
             border-bottom: 1px solid var(--border);
-            color: var(--text-main);
+            vertical-align: top;
         }}
-        tr:hover td {{
+        table.sessions-table tr:hover td {{
             background-color: #f8fafc;
-        }}
-        .user-link {{
-            color: var(--primary);
-            text-decoration: none;
         }}
         .time-badge {{
             display: inline-block;
             padding: 3px 8px;
             border-radius: 6px;
-            font-weight: 600;
+            font-weight: 700;
+            font-size: 0.8rem;
+            white-space: nowrap;
+        }}
+        .start-time {{ background: #e0f2fe; color: #0369a1; }}
+        .end-time {{ background: #fef3c7; color: #92400e; }}
+        .dur-badge {{
+            display: inline-block;
+            font-weight: 700;
+            color: #15803d;
+            background: #dcfce7;
+            padding: 3px 9px;
+            border-radius: 6px;
             font-size: 0.8rem;
         }}
-        .start-time {{
-            background: #e0f2fe;
-            color: #0369a1;
-        }}
-        .end-time {{
-            background: #fef3c7;
-            color: #92400e;
-        }}
-        .dur-multi {{
-            font-weight: bold;
-            color: #15803d;
-        }}
-        .dur-single {{
-            color: #64748b;
-            font-size: 0.82rem;
-        }}
-        .prob-list {{
+        .plat-mini-list {{
             display: flex;
+            flex-direction: column;
             gap: 5px;
-            flex-wrap: wrap;
         }}
-        .prob-tag {{
-            background: #f1f5f9;
-            padding: 2px 6px;
-            border-radius: 4px;
-            font-size: 0.75rem;
-            color: #334155;
+        .plat-mini-item {{
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }}
+        .timeline-list {{
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            max-height: 190px;
+            overflow-y: auto;
+            padding-left: 4px;
+        }}
+        .timeline-item {{
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            font-size: 0.8rem;
+            background: #f8fafc;
+            padding: 4px 8px;
+            border-radius: 6px;
             border: 1px solid #e2e8f0;
+        }}
+        .timeline-time {{
+            font-family: monospace;
+            font-weight: 700;
+            color: #475569;
+            background: #e2e8f0;
+            padding: 1px 5px;
+            border-radius: 4px;
+            white-space: nowrap;
+        }}
+
+        /* Modal Styles */
+        .modal-backdrop {{
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 23, 42, 0.65);
+            backdrop-filter: blur(3px);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 16px;
+        }}
+        .modal-backdrop.open {{
+            display: flex;
+        }}
+        .modal-box {{
+            background: #ffffff;
+            border-radius: 16px;
+            width: 100%;
+            max-width: 540px;
+            padding: 26px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            max-height: 92vh;
+            overflow-y: auto;
+        }}
+        .modal-header {{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 18px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border);
+        }}
+        .modal-header h3 {{ font-size: 1.25rem; color: var(--text-main); }}
+        .close-btn {{
+            background: none;
+            border: none;
+            font-size: 1.4rem;
+            cursor: pointer;
+            color: #64748b;
+        }}
+        .form-group {{
+            margin-bottom: 14px;
+        }}
+        .form-group label {{
+            display: block;
+            font-size: 0.86rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+            color: #1e293b;
+        }}
+        .form-group input {{
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            font-size: 0.92rem;
+            outline: none;
+            transition: border 0.2s;
+        }}
+        .form-group input:focus {{
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+        }}
+        .form-hint {{
+            font-size: 0.76rem;
+            color: #64748b;
+            margin-top: 3px;
+        }}
+        .modal-footer {{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+            padding-top: 14px;
+            border-top: 1px solid var(--border);
+            gap: 10px;
+        }}
+        .btn-danger {{
+            background: #fee2e2;
+            color: #b91c1c;
+        }}
+        .btn-danger:hover {{ background: #fecaca; }}
+        .toast {{
+            position: fixed;
+            bottom: 24px;
+            left: 24px;
+            background: #0f172a;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 10px;
+            font-size: 0.88rem;
+            font-weight: 600;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            z-index: 2000;
+            display: none;
         }}
     </style>
 </head>
@@ -768,73 +634,816 @@ def generate_html_dashboard(users_data):
         <div class="header">
             <div>
                 <h1>
-                    📊 لوحة متابعة نشاط المتدربين
-                    <span class="cloud-badge">24/7 Cloud</span>
-                    <span class="refresh-pill">تحديث كل 5 دقائق</span>
+                    📊 منصة متابعة نشاط المتدربين الشاملة
+                    <span class="cloud-badge">VJudge • Codeforces • AtCoder • CSES</span>
+                    <span class="refresh-pill">تحديث تلقائي 24/7 كل 5 دقائق</span>
                 </h1>
-                <p>رصد دقيق لفترات الاتصال وحل المسائل (اليوم - الأسبوع - الشهر) مع توقيت البداية والنهاية</p>
+                <p>إدارة بروفايلات المتدربين وربط حساباتهم عبر المنصات ورصد فترات فتح الموقع والحلول بالوقت الدقيق مباشرة من المتصفح</p>
             </div>
             <div class="header-actions">
-                <div class="last-update">
-                    🕒 آخر تحديث: {now_str}
+                <div class="action-btns">
+                    <button class="btn btn-add" onclick="openProfileModal(null)">➕ إنشاء بروفايل متدرب جديد</button>
+                    <button class="btn btn-reload" id="btnLiveRefresh" onclick="triggerLiveRefresh()">🔄 تحديث البيانات الآن</button>
                 </div>
-                <div style="display: flex; align-items: center; gap: 8px;">
+                <div style="display: flex; align-items: center; gap: 12px;">
                     <span id="countdown" style="font-size: 0.8rem; color: #94a3b8;">التحديث القادم خلال: 05:00</span>
-                    <button class="btn-reload" onclick="location.reload();">🔄 تحديث الآن</button>
+                    <div class="last-update" id="lastUpdateText">🕒 آخر تحديث: {now_str}</div>
                 </div>
             </div>
         </div>
 
         <div class="rule-note">
-            💡 <strong>قاعدة رصد الجلسات (30 دقيقة):</strong> طالما لا يتجاوز الفارق بين المحاولات 30 دقيقة، يُعتبر المتدرب متصلاً ومستمراً في كتابة الكود والتفكير داخل VS Code. إذا تجاوز التوقف 30 دقيقة، تُغلق الجلسة تلقائياً.
-        </div>
-
-        <div class="cards-grid">
-            {cards_html}
-        </div>
-
-        <div class="section-header">
-            <h2>سجل جلسات النشاط (من - إلى)</h2>
-            <div class="filter-buttons">
-                {user_filters_html}
+            <div>
+                💡 <strong>نظام البروفايل الموحد وقاعدة الـ 30 دقيقة:</strong> يمكنك ربط هاندل <strong>VJudge و Codeforces و AtCoder و CSES</strong> لنفس المتدرب من زر <strong>"🔗 ربط / تعديل المنصات"</strong>. يرصد النظام وقت فتح المنصة (حتى بدون حل) ووقت الحلول، وطالما لم ينقطع المتدرب لأكثر من <strong>30 دقيقة</strong> تُحسب كجلسة اتصال متواصلة مع تفصيل وقت وأسئلة كل منصة بالتوقيت.
             </div>
         </div>
 
+        <div class="cards-grid" id="cardsGrid"></div>
+
+        <div class="section-header">
+            <h2>⏱️ سجل الجلسات التفصيلي (من الساعة كذا للساعة كذا + تفصيل كل منصة والمسائل بالتوقيت)</h2>
+            <div class="filter-buttons" id="userFilterButtons"></div>
+        </div>
+
         <div class="table-card">
-            <table>
+            <table class="sessions-table">
                 <thead>
                     <tr>
                         <th>المتدرب</th>
                         <th>التاريخ</th>
-                        <th>بداية الجلسة (من)</th>
-                        <th>نهاية الجلسة (إلى)</th>
-                        <th>مدة النشاط المتصل</th>
-                        <th>التقديمات</th>
-                        <th>النتيجة</th>
-                        <th>المسائل</th>
+                        <th>فترة الفتح (من ⬅️ إلى)</th>
+                        <th>مدة النشاط الكلية</th>
+                        <th>تفصيل الوقت والحلول لكل منصة</th>
+                        <th>المسائل والأحداث بالتوقيت الدقيق (بالتايمز)</th>
                     </tr>
                 </thead>
-                <tbody id="sessionsTableBody">
-                    {table_rows_html}
-                </tbody>
+                <tbody id="sessionsTableBody"></tbody>
             </table>
         </div>
     </div>
 
-    <script>
-        function filterUser(username, btn) {{
-            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
+    <!-- Create / Edit Trainee Profile Modal -->
+    <div class="modal-backdrop" id="profileModal">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h3 id="modalTitle">➕ إنشاء بروفايل متدرب جديد</h3>
+                <button class="close-btn" onclick="closeProfileModal()">&times;</button>
+            </div>
+            <form id="profileForm" onsubmit="saveProfileFromModal(event)">
+                <input type="hidden" id="profId">
+                <div class="form-group">
+                    <label>👤 اسم المتدرب (الاسم المعروض في البروفايل) *</label>
+                    <input type="text" id="profName" required placeholder="مثال: عمر عوض صابر">
+                    <div class="form-hint">اكتب اسم الشخص عشان تربط تحته كل حساباته في المنصات المختلفة كشخص واحد.</div>
+                </div>
+                <div class="form-group">
+                    <label>🟧 هاندل VJudge (اختياري)</label>
+                    <input type="text" id="profVjudge" placeholder="مثال: Omar_Awad_Saber" dir="ltr">
+                </div>
+                <div class="form-group">
+                    <label>🟦 هاندل Codeforces (اختياري)</label>
+                    <input type="text" id="profCodeforces" placeholder="مثال: Lumino" dir="ltr">
+                    <div class="form-hint">يرصد تلقائياً آخر ظهور أونلاين (حتى لو فتح يتصفح بدون حل) + كل المسائل والتوقيتات.</div>
+                </div>
+                <div class="form-group">
+                    <label>⬜ هاندل AtCoder (اختياري)</label>
+                    <input type="text" id="profAtcoder" placeholder="مثال: Lumino" dir="ltr">
+                </div>
+                <div class="form-group">
+                    <label>🟩 رقم مستخدم CSES User ID (اختياري)</label>
+                    <input type="text" id="profCses" placeholder="مثال: 12345" dir="ltr">
+                </div>
+                <div class="modal-footer">
+                    <div>
+                        <button type="button" class="btn btn-danger" id="btnDeleteProfile" style="display:none;" onclick="deleteCurrentProfile()">🗑️ حذف البروفايل</button>
+                    </div>
+                    <div style="display:flex; gap:8px;">
+                        <button type="button" class="btn btn-outline" onclick="closeProfileModal()">إلغاء</button>
+                        <button type="submit" class="btn btn-add" id="btnSaveProfile">💾 حفظ وبدء التتبع فوراً</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
 
-            const rows = document.querySelectorAll('#sessionsTableBody tr');
-            rows.forEach(r => {{
-                if (username === 'all' || r.getAttribute('data-user') === username) {{
-                    r.style.display = '';
-                }} else {{
-                    r.style.display = 'none';
-                }}
-            }});
+    <div class="toast" id="toastMsg"></div>
+
+    <script>
+        // Embedded initial state from Python / GitHub Actions
+        const INITIAL_DATA = {embedded_json};
+        let appState = JSON.parse(JSON.stringify(INITIAL_DATA));
+        let currentFilterUser = 'all';
+
+        const ARABIC_DAYS = ['الأحد', 'الإثنين', 'الثلاثاء', 'الأربعاء', 'الخميس', 'الجمعة', 'السبت'];
+        const ARABIC_MONTHS = ['يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو', 'يوليو', 'أغسطس', 'سبتمبر', 'أكتوبر', 'نوفمبر', 'ديسمبر'];
+
+        function showToast(msg, duration = 4000) {{
+            const el = document.getElementById('toastMsg');
+            el.innerText = msg;
+            el.style.display = 'block';
+            setTimeout(() => {{ el.style.display = 'none'; }}, duration);
         }}
+
+        function formatDurationJS(totalMins) {{
+            totalMins = Math.round(totalMins || 0);
+            if (totalMins <= 0) return '0 دقيقة';
+            const h = Math.floor(totalMins / 60);
+            const m = totalMins % 60;
+            if (h > 0 && m > 0) return `${{h}} س و ${{m}} د`;
+            if (h > 0) return `${{h}} ساعة`;
+            return `${{m}} دقيقة`;
+        }}
+
+        function formatArabicDateJS(ms) {{
+            const d = new Date(ms);
+            return `${{ARABIC_DAYS[d.getDay()]}} ${{d.getDate()}} ${{ARABIC_MONTHS[d.getMonth()]}} ${{d.getFullYear()}}`;
+        }}
+
+        function formatArabicTimeJS(ms, withSec = false) {{
+            const d = new Date(ms);
+            let h = d.getHours();
+            const m = String(d.getMinutes()).padStart(2, '0');
+            const s = String(d.getSeconds()).padStart(2, '0');
+            const period = h >= 12 ? 'م' : 'ص';
+            h = h % 12 || 12;
+            const hh = String(h).padStart(2, '0');
+            return withSec ? `${{hh}}:${{m}}:${{s}} ${{period}}` : `${{hh}}:${{m}} ${{period}}`;
+        }}
+
+        function renderDashboard() {{
+            const users = appState.users || [];
+            document.getElementById('lastUpdateText').innerText = '🕒 آخر تحديث: ' + (appState.updated_at || '');
+
+            // Render Trainee Cards
+            const cardsGrid = document.getElementById('cardsGrid');
+            cardsGrid.innerHTML = users.map(u => {{
+                const badgeClass = u.is_active_now ? 'badge-online' : 'badge-offline';
+                const activePlats = (u.active_platforms_now && u.active_platforms_now.length) ? ` (${{u.active_platforms_now.join(' + ')}})` : '';
+                const badgeText = u.is_active_now ? `🟢 متصل الآن${{activePlats}}` : '⚪ غير متصل حالياً';
+                const avatarSrc = u.avatar || 'https://cdn.vjudge.net.cn/user/avatar/default.png';
+
+                // Per-platform rows
+                const plats = u.platforms || {{}};
+                const platRows = Object.keys(plats).map(pk => {{
+                    const pv = plats[pk];
+                    const pStatus = pv.is_online
+                        ? `<span class="badge badge-online" style="font-size:0.7rem;padding:2px 6px;">🟢 متصل الآن</span>`
+                        : `<span style="color:#64748b;font-size:0.76rem;">⚪ ${{pv.last_seen_str}}</span>`;
+                    return `
+                        <tr>
+                            <td>
+                                <span class="plat-tag plat-${{pk}}">${{pk}}</span>
+                                <a href="${{pv.url}}" target="_blank" style="font-weight:700;color:#0f172a;text-decoration:none;margin-right:4px;" dir="ltr">${{pv.handle}}</a>
+                                ${{pv.extra ? `<div style="font-size:0.7rem;color:#64748b;">${{pv.extra}}</div>` : ''}}
+                            </td>
+                            <td style="text-align:center;">${{pStatus}}</td>
+                            <td style="text-align:center;">
+                                <strong>${{pv.today.time_str}}</strong>
+                                <div style="font-size:0.72rem;color:#16a34a;">${{pv.today.solved}} AC (${{pv.today.subs}} محاولة)</div>
+                            </td>
+                            <td style="text-align:center;">
+                                <strong>${{pv.week.time_str}}</strong>
+                                <div style="font-size:0.72rem;color:#2563eb;">${{pv.week.solved}} AC (${{pv.week.subs}} محاولة)</div>
+                            </td>
+                            <td style="text-align:center;">
+                                <strong>${{pv.month.time_str}}</strong>
+                                <div style="font-size:0.72rem;color:#7c3aed;">${{pv.month.solved}} AC (${{pv.month.subs}} محاولة)</div>
+                            </td>
+                            <td style="text-align:center;font-weight:800;color:#0f172a;">${{pv.acAll}} AC</td>
+                        </tr>
+                    `;
+                }}).join('');
+
+                return `
+                <div class="user-card" id="card-${{u.id}}">
+                    <div class="user-header">
+                        <img src="${{avatarSrc}}" alt="${{u.name}}" class="avatar" onerror="this.src='https://cdn.vjudge.net.cn/user/avatar/default.png'">
+                        <div style="flex:1;">
+                            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+                                <h3 class="user-title">${{u.name}}</h3>
+                                <div style="display:flex; align-items:center; gap:8px;">
+                                    <span class="badge ${{badgeClass}}">${{badgeText}}</span>
+                                    <button class="btn btn-outline" onclick="openProfileModal('${{u.id}}')">🔗 ربط / تعديل المنصات</button>
+                                </div>
+                            </div>
+                            <div style="font-size:0.8rem; color:#475569; margin-top:6px;">
+                                آخر تواجد أو نشاط عام: <strong>${{u.last_seen_str}}</strong> | آخر حدث: <em>${{u.last_problem_str}}</em>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Combined Summary Matrix -->
+                    <div class="period-matrix">
+                        <div class="matrix-cell">
+                            <span class="matrix-title">📅 إجمالي اليوم (كل المنصات)</span>
+                            <div class="matrix-val text-success">${{u.today.time_str}}</div>
+                            <div class="matrix-sub">حل ${{u.today.solved}} مسائل AC (${{u.today.subs}} محاولة)</div>
+                        </div>
+                        <div class="matrix-cell">
+                            <span class="matrix-title">🗓️ آخر 7 أيام (كل المنصات)</span>
+                            <div class="matrix-val text-primary">${{u.week.time_str}}</div>
+                            <div class="matrix-sub">حل ${{u.week.solved}} مسائل AC (${{u.week.sessions}} جلسات)</div>
+                        </div>
+                        <div class="matrix-cell">
+                            <span class="matrix-title">📊 آخر 30 يوماً (كل المنصات)</span>
+                            <div class="matrix-val text-purple">${{u.month.time_str}}</div>
+                            <div class="matrix-sub">حل ${{u.month.solved}} مسائل AC (${{u.month.sessions}} جلسة)</div>
+                        </div>
+                    </div>
+
+                    <!-- Per-Platform Breakdown Table -->
+                    <div style="margin-bottom:8px; font-size:0.8rem; font-weight:700; color:#334155;">📌 تفصيل نشاط وحلول كل منصة على حدة:</div>
+                    <table class="plat-breakdown-table">
+                        <thead>
+                            <tr>
+                                <th>المنصة والهاندل</th>
+                                <th style="text-align:center;">الحالة</th>
+                                <th style="text-align:center;">نشاط اليوم</th>
+                                <th style="text-align:center;">نشاط 7 أيام</th>
+                                <th style="text-align:center;">نشاط 30 يوماً</th>
+                                <th style="text-align:center;">إجمالي الحل</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${{platRows || '<tr><td colspan="6" style="text-align:center;color:#94a3b8;">لم يتم ربط منصات بعد</td></tr>'}}
+                        </tbody>
+                    </table>
+
+                    <div class="peak-box">
+                        <span>⏰ <strong>أوقات النشاط المعتادة:</strong> ${{u.peak_hours_str}}</span>
+                        <span style="color:#b45309;font-weight:700;">🏆 الإجمالي الموحد: ${{u.all_time_ac}} مسألة AC</span>
+                    </div>
+                </div>
+                `;
+            }}).join('');
+
+            // Render Filter Buttons
+            const filterContainer = document.getElementById('userFilterButtons');
+            let filterHtml = `<button class="filter-btn ${{currentFilterUser === 'all' ? 'active' : ''}}" onclick="setFilterUser('all')">عرض الكل (${{users.length}})</button>`;
+            users.forEach(u => {{
+                filterHtml += `<button class="filter-btn ${{currentFilterUser === u.id ? 'active' : ''}}" onclick="setFilterUser('${{u.id}}')">${{u.name}}</button>`;
+            }});
+            filterContainer.innerHTML = filterHtml;
+
+            // Render Sessions Table
+            const tbody = document.getElementById('sessionsTableBody');
+            let allRows = [];
+            users.forEach(u => {{
+                if (currentFilterUser !== 'all' && currentFilterUser !== u.id) return;
+                (u.sessions || []).forEach(s => {{
+                    allRows.push({{ user: u, session: s }});
+                }});
+            }});
+            allRows.sort((a, b) => (b.session.end_ms || 0) - (a.session.end_ms || 0));
+
+            tbody.innerHTML = allRows.slice(0, 120).map(item => {{
+                const u = item.user;
+                const s = item.session;
+                const pb = s.platform_breakdown || {{}};
+                const pbHtml = Object.keys(pb).map(pk => {{
+                    const pv = pb[pk];
+                    const extraPing = (pv.subs_count === 0 && pv.pings_count > 0) ? ' (تصفح أونلاين)' : ` (حل ${{pv.ac_count}} AC من ${{pv.subs_count}} محاولة)`;
+                    return `
+                        <div class="plat-mini-item">
+                            <span class="plat-tag plat-${{pk}}">${{pk}}</span>
+                            <span>نشط <strong>${{pv.duration_str}}</strong>${{extraPing}}</span>
+                        </div>
+                    `;
+                }}).join('');
+
+                const tlHtml = (s.timeline || []).map(t => {{
+                    let statusBadge = '';
+                    if (t.type === 'online_ping') {{
+                        statusBadge = `<span class="badge badge-ping">👁️ متصل أونلاين</span>`;
+                    }} else if (t.is_ac) {{
+                        statusBadge = `<span class="badge badge-ac">✅ ${{t.status}}</span>`;
+                    }} else {{
+                        statusBadge = `<span class="badge badge-wa">❌ ${{t.status}}</span>`;
+                    }}
+                    return `
+                        <div class="timeline-item">
+                            <span class="timeline-time">${{t.time_str}}</span>
+                            <span class="plat-tag plat-${{t.platform}}">${{t.platform}}</span>
+                            <a href="${{t.problemUrl}}" target="_blank" style="color:#0f172a;font-weight:600;text-decoration:none;flex:1;">${{t.problemName}}</a>
+                            ${{statusBadge}}
+                        </div>
+                    `;
+                }}).join('');
+
+                return `
+                    <tr>
+                        <td><strong>${{u.name}}</strong></td>
+                        <td style="white-space:nowrap;">${{s.date_str}}</td>
+                        <td style="white-space:nowrap;">
+                            <span class="time-badge start-time">من ${{s.start_str}}</span>
+                            <span style="margin:0 4px;color:#94a3b8;">⬅️</span>
+                            <span class="time-badge end-time">إلى ${{s.end_str}}</span>
+                        </td>
+                        <td><span class="dur-badge">${{s.duration_str}}</span></td>
+                        <td><div class="plat-mini-list">${{pbHtml}}</div></td>
+                        <td><div class="timeline-list">${{tlHtml}}</div></td>
+                    </tr>
+                `;
+            }}).join('');
+        }}
+
+        function setFilterUser(uid) {{
+            currentFilterUser = uid;
+            renderDashboard();
+        }}
+
+        // Modal Logic
+        function openProfileModal(profileId) {{
+            const modal = document.getElementById('profileModal');
+            const title = document.getElementById('modalTitle');
+            const btnDel = document.getElementById('btnDeleteProfile');
+            const trainees = appState.config.trainees || [];
+
+            if (profileId) {{
+                const prof = trainees.find(t => t.id === profileId);
+                if (!prof) return;
+                title.innerText = `🔗 تعديل وربط منصات المتدرب: ${{prof.name}}`;
+                document.getElementById('profId').value = prof.id;
+                document.getElementById('profName').value = prof.name || '';
+                document.getElementById('profVjudge').value = (prof.handles && prof.handles.vjudge) || '';
+                document.getElementById('profCodeforces').value = (prof.handles && prof.handles.codeforces) || '';
+                document.getElementById('profAtcoder').value = (prof.handles && prof.handles.atcoder) || '';
+                document.getElementById('profCses').value = (prof.handles && prof.handles.cses) || '';
+                btnDel.style.display = 'inline-flex';
+            }} else {{
+                title.innerText = '➕ إنشاء بروفايل متدرب جديد';
+                document.getElementById('profId').value = '';
+                document.getElementById('profName').value = '';
+                document.getElementById('profVjudge').value = '';
+                document.getElementById('profCodeforces').value = '';
+                document.getElementById('profAtcoder').value = '';
+                document.getElementById('profCses').value = '';
+                btnDel.style.display = 'none';
+            }}
+            modal.classList.add('open');
+        }}
+
+        function closeProfileModal() {{
+            document.getElementById('profileModal').classList.remove('open');
+        }}
+
+        // Browser-side Live Fetcher for Codeforces & AtCoder (for instant 1-second updates in browser)
+        async function fetchBrowserLiveStatsForProfile(prof) {{
+            const nowMs = Date.now();
+            const todayStart = new Date();
+            todayStart.setHours(0, 0, 0, 0);
+            const todayStartMs = todayStart.getTime();
+            const weekStartMs = nowMs - 7 * 86400 * 1000;
+            const monthStartMs = nowMs - 30 * 86400 * 1000;
+
+            let existingUser = (appState.users || []).find(u => u.id === prof.id);
+            let userObj = existingUser ? JSON.parse(JSON.stringify(existingUser)) : {{
+                id: prof.id,
+                name: prof.name,
+                handles: prof.handles,
+                avatar: '',
+                is_active_now: false,
+                active_platforms_now: [],
+                last_seen_str: 'جاري الفحص...',
+                last_seen_ms: 0,
+                last_problem_str: '—',
+                all_time_ac: 0,
+                today: {{ solved: 0, subs: 0, time_str: '0 دقيقة', time_minutes: 0, sessions: 0 }},
+                week: {{ solved: 0, subs: 0, time_str: '0 دقيقة', time_minutes: 0, sessions: 0 }},
+                month: {{ solved: 0, subs: 0, time_str: '0 دقيقة', time_minutes: 0, sessions: 0 }},
+                peak_hours_str: 'غير محدد',
+                platforms: {{}},
+                sessions: []
+            }};
+            userObj.name = prof.name;
+            userObj.handles = prof.handles;
+
+            let allEvents = [];
+            // Preserve existing VJudge events if handle unchanged
+            if (prof.handles.vjudge && existingUser && existingUser.handles && existingUser.handles.vjudge === prof.handles.vjudge) {{
+                (existingUser.sessions || []).forEach(s => {{
+                    (s.timeline || []).forEach(t => {{
+                        if (t.platform === 'VJudge') {{
+                            // keep VJudge data
+                        }}
+                    }});
+                }});
+            }} else if (!prof.handles.vjudge) {{
+                delete userObj.platforms['VJudge'];
+            }}
+
+            // Live fetch Codeforces directly from browser
+            const cfHandle = (prof.handles.codeforces || '').trim();
+            if (cfHandle) {{
+                try {{
+                    const infoResp = await fetch(`https://codeforces.com/api/user.info?handles=${{encodeURIComponent(cfHandle)}}`);
+                    const infoJson = await infoResp.json();
+                    if (infoJson.status === 'OK' && infoJson.result && infoJson.result.length) {{
+                        const uInfo = infoJson.result[0];
+                        const resolvedHandle = uInfo.handle || cfHandle;
+                        const lastOnlineMs = (uInfo.lastOnlineTimeSeconds || 0) * 1000;
+                        if (!userObj.avatar && uInfo.titlePhoto) userObj.avatar = uInfo.titlePhoto;
+
+                        const statResp = await fetch(`https://codeforces.com/api/user.status?handle=${{encodeURIComponent(resolvedHandle)}}&from=1&count=200`);
+                        const statJson = await statResp.json();
+                        const cfSubs = (statJson.status === 'OK' ? statJson.result : []) || [];
+
+                        let cfEvents = cfSubs.map(s => {{
+                            const p = s.problem || {{}};
+                            const code = `${{p.contestId || ''}}${{p.index || ''}}`;
+                            const isAc = s.verdict === 'OK';
+                            return {{
+                                time: (s.creationTimeSeconds || 0) * 1000,
+                                type: 'submission',
+                                platform: 'Codeforces',
+                                probNum: code,
+                                problemName: `${{code}} - ${{p.name || ''}}`,
+                                problemUrl: `https://codeforces.com/contest/${{p.contestId}}/problem/${{p.index}}`,
+                                status: isAc ? 'Accepted' : (s.verdict || '').replace(/_/g, ' '),
+                                is_ac: isAc
+                            }};
+                        }});
+
+                        if (lastOnlineMs > 0 && !cfEvents.some(e => Math.abs(e.time - lastOnlineMs) <= 120000)) {{
+                            cfEvents.push({{
+                                time: lastOnlineMs,
+                                type: 'online_ping',
+                                platform: 'Codeforces',
+                                probNum: 'تصفح المنصة',
+                                problemName: '👁️ فاتح كود فورسز (متصل أونلاين)',
+                                problemUrl: `https://codeforces.com/profile/${{resolvedHandle}}`,
+                                status: 'Online',
+                                is_ac: false
+                            }});
+                        }}
+
+                        allEvents.push(...cfEvents);
+                        const cfSessions = clusterEventsJS(cfEvents, 30, 15);
+                        const calcP = (thresh) => {{
+                            const sIn = cfSessions.filter(s => s.end_ms >= thresh);
+                            const eIn = cfEvents.filter(e => e.time >= thresh && e.type === 'submission');
+                            const acSet = new Set(eIn.filter(e => e.is_ac).map(e => e.probNum));
+                            const mins = sIn.reduce((acc, x) => acc + x.duration_minutes, 0);
+                            return {{ solved: acSet.size, subs: eIn.length, time_minutes: mins, time_str: formatDurationJS(mins), sessions: sIn.length }};
+                        }};
+                        const allAcSet = new Set(cfEvents.filter(e => e.is_ac).map(e => e.probNum));
+                        const maxCfMs = Math.max(lastOnlineMs, ...cfEvents.map(e => e.time), 0);
+                        const isCfOnline = maxCfMs > 0 && (nowMs - maxCfMs) <= 30 * 60 * 1000;
+                        const diffSec = Math.max(0, Math.floor((nowMs - maxCfMs) / 1000));
+                        const lastStr = maxCfMs === 0 ? 'لا يوجد' : (diffSec < 60 ? 'متصل الآن' : (diffSec < 3600 ? `منذ ${{Math.floor(diffSec/60)}} د` : (diffSec < 86400 ? `منذ ${{Math.floor(diffSec/3600)}} س` : `منذ ${{Math.floor(diffSec/86400)}} يوم`)));
+
+                        userObj.platforms['Codeforces'] = {{
+                            platform: 'Codeforces',
+                            handle: resolvedHandle,
+                            url: `https://codeforces.com/profile/${{resolvedHandle}}`,
+                            extra: uInfo.rating ? `Rating: ${{uInfo.rating}} (${{uInfo.rank}})` : 'Unrated',
+                            is_online: isCfOnline,
+                            last_seen_str: lastStr,
+                            last_seen_ms: maxCfMs,
+                            acAll: allAcSet.size,
+                            attAll: cfSubs.length,
+                            today: calcP(todayStartMs),
+                            week: calcP(weekStartMs),
+                            month: calcP(monthStartMs)
+                        }};
+                    }}
+                }} catch (err) {{
+                    console.warn('CF browser fetch error:', err);
+                }}
+            }} else {{
+                delete userObj.platforms['Codeforces'];
+            }}
+
+            // Live fetch AtCoder directly from browser
+            const acHandle = (prof.handles.atcoder || '').trim();
+            if (acHandle) {{
+                try {{
+                    const acResp = await fetch(`https://kenkoooo.com/atcoder/atcoder-api/v3/user/submissions?user=${{encodeURIComponent(acHandle)}}&from_second=0`);
+                    const acRaw = await acResp.json();
+                    if (Array.isArray(acRaw)) {{
+                        acRaw.sort((a, b) => (b.epoch_second || 0) - (a.epoch_second || 0));
+                        const acEvents = acRaw.slice(0, 200).map(s => {{
+                            const isAc = s.result === 'AC';
+                            return {{
+                                time: (s.epoch_second || 0) * 1000,
+                                type: 'submission',
+                                platform: 'AtCoder',
+                                probNum: s.problem_id || '',
+                                problemName: `${{s.problem_id}} (${{s.contest_id}})`,
+                                problemUrl: `https://atcoder.jp/contests/${{s.contest_id}}/tasks/${{s.problem_id}}`,
+                                status: isAc ? 'Accepted' : s.result,
+                                is_ac: isAc
+                            }};
+                        }});
+                        allEvents.push(...acEvents);
+                        const acSessions = clusterEventsJS(acEvents, 30, 15);
+                        const calcP = (thresh) => {{
+                            const sIn = acSessions.filter(s => s.end_ms >= thresh);
+                            const eIn = acEvents.filter(e => e.time >= thresh && e.type === 'submission');
+                            const acSet = new Set(eIn.filter(e => e.is_ac).map(e => e.probNum));
+                            const mins = sIn.reduce((acc, x) => acc + x.duration_minutes, 0);
+                            return {{ solved: acSet.size, subs: eIn.length, time_minutes: mins, time_str: formatDurationJS(mins), sessions: sIn.length }};
+                        }};
+                        const allAcSet = new Set(acEvents.filter(e => e.is_ac).map(e => e.probNum));
+                        const maxAcMs = Math.max(...acEvents.map(e => e.time), 0);
+                        const isAcOnline = maxAcMs > 0 && (nowMs - maxAcMs) <= 30 * 60 * 1000;
+                        const diffSec = Math.max(0, Math.floor((nowMs - maxAcMs) / 1000));
+                        const lastStr = maxAcMs === 0 ? 'لا يوجد' : (diffSec < 60 ? 'متصل الآن' : (diffSec < 3600 ? `منذ ${{Math.floor(diffSec/60)}} د` : (diffSec < 86400 ? `منذ ${{Math.floor(diffSec/3600)}} س` : `منذ ${{Math.floor(diffSec/86400)}} يوم`)));
+
+                        userObj.platforms['AtCoder'] = {{
+                            platform: 'AtCoder',
+                            handle: acHandle,
+                            url: `https://atcoder.jp/users/${{acHandle}}`,
+                            extra: '',
+                            is_online: isAcOnline,
+                            last_seen_str: lastStr,
+                            last_seen_ms: maxAcMs,
+                            acAll: allAcSet.size,
+                            attAll: acEvents.length,
+                            today: calcP(todayStartMs),
+                            week: calcP(weekStartMs),
+                            month: calcP(monthStartMs)
+                        }};
+                    }}
+                }} catch (err) {{
+                    console.warn('AtCoder browser fetch error:', err);
+                }}
+            }} else {{
+                delete userObj.platforms['AtCoder'];
+            }}
+
+            if (allEvents.length > 0 && (!existingUser || !prof.handles.vjudge)) {{
+                userObj.sessions = clusterEventsJS(allEvents, 30, 15);
+                const sToday = userObj.sessions.filter(s => s.end_ms >= todayStartMs);
+                const sWeek = userObj.sessions.filter(s => s.end_ms >= weekStartMs);
+                const sMonth = userObj.sessions.filter(s => s.end_ms >= monthStartMs);
+                userObj.today = {{
+                    solved: Object.values(userObj.platforms).reduce((a, p) => a + (p.today ? p.today.solved : 0), 0),
+                    subs: allEvents.filter(e => e.time >= todayStartMs && e.type === 'submission').length,
+                    time_minutes: sToday.reduce((a, s) => a + s.duration_minutes, 0),
+                    time_str: formatDurationJS(sToday.reduce((a, s) => a + s.duration_minutes, 0)),
+                    sessions: sToday.length
+                }};
+                userObj.week = {{
+                    solved: Object.values(userObj.platforms).reduce((a, p) => a + (p.week ? p.week.solved : 0), 0),
+                    subs: allEvents.filter(e => e.time >= weekStartMs && e.type === 'submission').length,
+                    time_minutes: sWeek.reduce((a, s) => a + s.duration_minutes, 0),
+                    time_str: formatDurationJS(sWeek.reduce((a, s) => a + s.duration_minutes, 0)),
+                    sessions: sWeek.length
+                }};
+                userObj.month = {{
+                    solved: Object.values(userObj.platforms).reduce((a, p) => a + (p.month ? p.month.solved : 0), 0),
+                    subs: allEvents.filter(e => e.time >= monthStartMs && e.type === 'submission').length,
+                    time_minutes: sMonth.reduce((a, s) => a + s.duration_minutes, 0),
+                    time_str: formatDurationJS(sMonth.reduce((a, s) => a + s.duration_minutes, 0)),
+                    sessions: sMonth.length
+                }};
+            }}
+
+            userObj.active_platforms_now = Object.keys(userObj.platforms).filter(k => userObj.platforms[k].is_online);
+            userObj.is_active_now = userObj.active_platforms_now.length > 0;
+            userObj.all_time_ac = Object.values(userObj.platforms).reduce((a, p) => a + (p.acAll || 0), 0);
+            const latestMs = Math.max(...Object.values(userObj.platforms).map(p => p.last_seen_ms || 0), 0);
+            if (latestMs > 0) {{
+                const diffSec = Math.max(0, Math.floor((nowMs - latestMs) / 1000));
+                userObj.last_seen_str = diffSec < 60 ? 'متصل الآن' : (diffSec < 3600 ? `منذ ${{Math.floor(diffSec/60)}} دقيقة` : (diffSec < 86400 ? `منذ ${{Math.floor(diffSec/3600)}} ساعة` : `منذ ${{Math.floor(diffSec/86400)}} يوم`));
+            }}
+            return userObj;
+        }}
+
+        function clusterEventsJS(events, maxGapMins = 30, codingBuffer = 15) {{
+            if (!events || !events.length) return [];
+            const sorted = [...events].sort((a, b) => a.time - b.time);
+            const groups = [];
+            let cur = [sorted[0]];
+            for (let i = 1; i < sorted.length; i++) {{
+                const gap = (sorted[i].time - cur[cur.length - 1].time) / 60000;
+                if (gap <= maxGapMins) cur.push(sorted[i]);
+                else {{ groups.push(cur); cur = [sorted[i]]; }}
+            }}
+            if (cur.length) groups.push(cur);
+
+            return groups.map(grp => {{
+                const first = grp[0];
+                const last = grp[grp.length - 1];
+                const buf = first.type === 'online_ping' ? 5 : codingBuffer;
+                const startMs = first.time - buf * 60000;
+                const endMs = last.time;
+                const durMins = Math.max(5, Math.round((endMs - startMs) / 60000));
+                const subs = grp.filter(e => e.type === 'submission');
+                const pings = grp.filter(e => e.type === 'online_ping');
+                const pb = {{}};
+                ['VJudge', 'Codeforces', 'AtCoder', 'CSES'].forEach(pk => {{
+                    const pe = grp.filter(e => e.platform === pk);
+                    if (pe.length) {{
+                        const pBuf = pe[0].type === 'online_ping' ? 5 : codingBuffer;
+                        const pDur = Math.min(durMins, Math.max(5, Math.round((pe[pe.length - 1].time - (pe[0].time - pBuf * 60000)) / 60000)));
+                        pb[pk] = {{
+                            duration_minutes: pDur,
+                            duration_str: formatDurationJS(pDur),
+                            subs_count: pe.filter(e => e.type === 'submission').length,
+                            ac_count: pe.filter(e => e.type === 'submission' && e.is_ac).length,
+                            pings_count: pe.filter(e => e.type === 'online_ping').length
+                        }};
+                    }}
+                }});
+                return {{
+                    date_str: formatArabicDateJS(startMs),
+                    start_str: formatArabicTimeJS(startMs),
+                    end_str: formatArabicTimeJS(endMs),
+                    start_ms: startMs,
+                    end_ms: endMs,
+                    duration_minutes: durMins,
+                    duration_str: subs.length === 0 ? `${{formatDurationJS(durMins)}} (فتح وتصفح المنصة)` : `${{formatDurationJS(durMins)}} (اتصال متواصل)`,
+                    submissions_count: subs.length,
+                    accepted_count: subs.filter(e => e.is_ac).length,
+                    platform_breakdown: pb,
+                    timeline: [...grp].sort((a, b) => b.time - a.time).map(e => ({{
+                        time_str: formatArabicTimeJS(e.time, true),
+                        platform: e.platform,
+                        type: e.type,
+                        probNum: e.probNum,
+                        problemName: e.problemName,
+                        problemUrl: e.problemUrl,
+                        status: e.status,
+                        is_ac: e.is_ac
+                    }}))
+                }};
+            }}).sort((a, b) => b.end_ms - a.end_ms);
+        }}
+
+        async function syncProfilesWithBackendAndCloud(traineesList) {{
+            // 1. Save in browser localStorage
+            localStorage.setItem('vj_tracker_profiles_v2', JSON.stringify(traineesList));
+
+            // 2. Try local background bridge server (127.0.0.1:8765) for instant VJudge + CF + AtCoder + CSES Python fetch & GitHub push
+            try {{
+                const resp = await fetch('http://127.0.0.1:8765/api/profiles', {{
+                    method: 'POST',
+                    headers: {{ 'Content-Type': 'application/json' }},
+                    body: JSON.stringify({{ trainees: traineesList }})
+                }});
+                if (resp.ok) {{
+                    const freshData = await resp.json();
+                    if (freshData && freshData.users) {{
+                        appState = freshData;
+                        renderDashboard();
+                        showToast('✅ تم تحديث كل المنصات (VJudge + Codeforces + AtCoder + CSES) وحفظها سحابياً!');
+                        return true;
+                    }}
+                }}
+            }} catch (e) {{
+                // Local server not reachable (e.g. opened from mobile phone)
+            }}
+
+            // 3. Publish to Cloud Sync Channel (ntfy.sh) so 24/7 GitHub Actions & background daemon sync it
+            const topic = (appState.config && appState.config.cloud_sync_topic) || 'vj_tracker_bodesaber_sync_v2';
+            try {{
+                await fetch(`https://ntfy.sh/${{topic}}`, {{
+                    method: 'POST',
+                    body: JSON.stringify({{
+                        action: 'update_profiles',
+                        timestamp: Date.now(),
+                        trainees: traineesList
+                    }})
+                }});
+            }} catch (e) {{
+                console.warn('Cloud sync post warning:', e);
+            }}
+            return false;
+        }}
+
+        async function saveProfileFromModal(e) {{
+            e.preventDefault();
+            const btn = document.getElementById('btnSaveProfile');
+            btn.disabled = true;
+            btn.innerText = '⏳ جاري الجلب والربط...';
+
+            const idInput = document.getElementById('profId').value.trim();
+            const nameInput = document.getElementById('profName').value.trim();
+            const vjInput = document.getElementById('profVjudge').value.trim();
+            const cfInput = document.getElementById('profCodeforces').value.trim();
+            const acInput = document.getElementById('profAtcoder').value.trim();
+            const csesInput = document.getElementById('profCses').value.trim();
+
+            if (!vjInput && !cfInput && !acInput && !csesInput) {{
+                alert('يرجى إدخال هاندل واحد على الأقل في أي منصة (VJudge أو Codeforces أو AtCoder أو CSES).');
+                btn.disabled = false;
+                btn.innerText = '💾 حفظ وبدء التتبع فوراً';
+                return;
+            }}
+
+            let trainees = appState.config.trainees || [];
+            const pid = idInput || ('user_' + Date.now());
+            const newProf = {{
+                id: pid,
+                name: nameInput,
+                handles: {{
+                    vjudge: vjInput,
+                    codeforces: cfInput,
+                    atcoder: acInput,
+                    cses: csesInput
+                }}
+            }};
+
+            const existingIdx = trainees.findIndex(t => t.id === pid);
+            if (existingIdx >= 0) {{
+                trainees[existingIdx] = newProf;
+            }} else {{
+                trainees.push(newProf);
+            }}
+            appState.config.trainees = trainees;
+
+            // Instant browser live fetch first
+            const updatedUserObj = await fetchBrowserLiveStatsForProfile(newProf);
+            const uIdx = (appState.users || []).findIndex(u => u.id === pid);
+            if (uIdx >= 0) appState.users[uIdx] = updatedUserObj;
+            else appState.users.push(updatedUserObj);
+
+            renderDashboard();
+            closeProfileModal();
+            showToast('⏳ جاري مزامنة كل المنصات وحفظ البروفايل...');
+
+            await syncProfilesWithBackendAndCloud(trainees);
+
+            btn.disabled = false;
+            btn.innerText = '💾 حفظ وبدء التتبع فوراً';
+        }}
+
+        async function deleteCurrentProfile() {{
+            const pid = document.getElementById('profId').value.trim();
+            if (!pid) return;
+            if (!confirm('هل أنت متأكد من حذف هذا البروفايل من المتابعة؟')) return;
+
+            appState.config.trainees = (appState.config.trainees || []).filter(t => t.id !== pid);
+            appState.users = (appState.users || []).filter(u => u.id !== pid);
+            renderDashboard();
+            closeProfileModal();
+            showToast('🗑️ تم حذف البروفايل وجاري تحديث السحابة...');
+            await syncProfilesWithBackendAndCloud(appState.config.trainees);
+        }}
+
+        async function triggerLiveRefresh() {{
+            const btn = document.getElementById('btnLiveRefresh');
+            btn.disabled = true;
+            btn.innerText = '⏳ جاري التحديث الحي...';
+            showToast('🔄 جاري فحص حالة الاتصال والحلول الآن...');
+
+            try {{
+                // 1. Try local server refresh if available
+                const r = await fetch('http://127.0.0.1:8765/api/refresh', {{ method: 'POST' }});
+                if (r.ok) {{
+                    const d = await r.json();
+                    if (d && d.users) {{
+                        appState = d;
+                        renderDashboard();
+                        showToast('✅ تم التحديث الفوري بنجاح!');
+                        btn.disabled = false;
+                        btn.innerText = '🔄 تحديث البيانات الآن';
+                        return;
+                    }}
+                }}
+            }} catch (e) {{}}
+
+            // 2. Try fetching latest data.json from server/GitHub Pages + live browser CF/AtCoder check
+            try {{
+                const r = await fetch('data.json?t=' + Date.now(), {{ cache: 'no-store' }});
+                if (r.ok) {{
+                    const d = await r.json();
+                    if (d && d.users) appState = d;
+                }}
+            }} catch (e) {{}}
+
+            // Also run live browser check for CF & AtCoder handles
+            const trainees = appState.config.trainees || [];
+            for (let i = 0; i < trainees.length; i++) {{
+                const updatedU = await fetchBrowserLiveStatsForProfile(trainees[i]);
+                const idx = appState.users.findIndex(u => u.id === trainees[i].id);
+                if (idx >= 0) appState.users[idx] = updatedU;
+                else appState.users.push(updatedU);
+            }}
+            appState.updated_at = formatArabicDateJS(Date.now()) + ' - ' + formatArabicTimeJS(Date.now()) + ' (توقيت مصر)';
+            renderDashboard();
+            showToast('✅ تم تحديث بيانات المنصات وحالة الاتصال!');
+            btn.disabled = false;
+            btn.innerText = '🔄 تحديث البيانات الآن';
+        }}
+
+        // Initialize on page load
+        window.addEventListener('DOMContentLoaded', async () => {{
+            renderDashboard();
+            // Check if local server has fresher data
+            try {{
+                const r = await fetch('http://127.0.0.1:8765/api/data', {{ cache: 'no-store' }});
+                if (r.ok) {{
+                    const d = await r.json();
+                    if (d && d.updated_ms >= (appState.updated_ms || 0)) {{
+                        appState = d;
+                        renderDashboard();
+                    }}
+                }}
+            }} catch (e) {{}}
+        }});
 
         // 5-minute Countdown Timer
         let secondsLeft = 300;
@@ -842,11 +1451,12 @@ def generate_html_dashboard(users_data):
         setInterval(() => {{
             secondsLeft--;
             if (secondsLeft <= 0) {{
-                location.reload();
+                secondsLeft = 300;
+                triggerLiveRefresh();
             }} else {{
                 const m = Math.floor(secondsLeft / 60);
                 const s = secondsLeft % 60;
-                countdownEl.innerText = `التحديث القادم خلال: ${{m.toString().padStart(2, '0')}}:${{s.toString().padStart(2, '0')}}`;
+                countdownEl.innerText = `التحديث القادم خلال: ${{String(m).padStart(2, '0')}}:${{String(s).padStart(2, '0')}}`;
             }}
         }}, 1000);
     </script>
@@ -858,122 +1468,41 @@ def generate_html_dashboard(users_data):
     with open(INDEX_FILE, "w", encoding="utf-8") as f:
         f.write(html_content)
 
-def generate_csv_report(users_data):
-    rows = []
-    for u in users_data:
-        for s in u["sessions"]:
-            rows.append({
-                "المتدرب": u["username"],
-                "إجمالي المسائل الكلي": u["all_time_ac"],
-                "اليوم": format_arabic_datetime(s["start_dt"]),
-                "بداية الجلسة": format_arabic_time(s["start_dt"]),
-                "نهاية الجلسة": format_arabic_time(s["end_dt"]),
-                "مدة النشاط المتصل": s["duration_str"],
-                "عدد التقديمات": s["submissions_count"],
-                "المقبول": s["accepted_count"],
-                "المسائل": ", ".join(s["problems"][:8])
-            })
-    fieldnames = ["المتدرب", "إجمالي المسائل الكلي", "اليوم", "بداية الجلسة", "نهاية الجلسة", "مدة النشاط المتصل", "عدد التقديمات", "المقبول", "المسائل"]
-    with open(CSV_FILE, "w", encoding="utf-8-sig", newline="") as f:
-        writer = csv.DictWriter(f, fieldnames=fieldnames)
-        writer.writeheader()
-        writer.writerows(rows)
-
-def generate_markdown_report(users_data):
-    now_dt = get_cairo_now()
-    now_str = format_arabic_datetime(now_dt) + " - " + format_arabic_time(now_dt)
-    lines = [
-        f"# تقرير فترات نشاط المتدربين (قاعدة الـ 30 دقيقة)",
-        f"**تاريخ التحديث:** {now_str} (بتوقيت مصر)",
-        "",
-        "## نظرة عامة على المتدربين",
-        "| المتدرب | الحالة | الإجمالي الكلي (AC) | اليوم (AC) | آخر 7 أيام (AC) | آخر 30 يوماً (AC) | وقت الذروة |",
-        "| :--- | :---: | :---: | :---: | :---: | :---: | :--- |"
-    ]
-    for u in users_data:
-        status_icon = "🟢 متصل الآن" if u["is_active_now"] else "⚪ غير متصل"
-        lines.append(
-            f"| **[{u['username']}](https://vjudge.net/user/{u['username']})** | {status_icon} | **{u['all_time_ac']} مسألة** | **{u['today']['solved']} مسألة** ({u['today']['time_str']}) | **{u['week']['solved']} مسألة** ({u['week']['time_str']}) | **{u['month']['solved']} مسألة** ({u['month']['time_str']}) | {u['peak_hours_str']} |"
-        )
-
-    lines.append("\n## تفاصيل جلسات النشاط الأخيرة (من - إلى)")
-    for u in users_data:
-        lines.append(f"\n### المتدرب: {u['username']} (إجمالي الحل الكلي: {u['all_time_ac']} مسألة)")
-        if not u["sessions"]:
-            lines.append("_لا توجد جلسات في الفترة المحددة_")
-            continue
-        lines.append("| اليوم والتاريخ | من (البداية) | إلى (النهاية) | مدة النشاط | التقديمات | المقبول | المسائل |")
-        lines.append("| :--- | :---: | :---: | :---: | :---: | :---: | :--- |")
-        for s in u["sessions"][:15]:
-            day_str = format_arabic_datetime(s["start_dt"])
-            start_str = format_arabic_time(s["start_dt"])
-            end_str = format_arabic_time(s["end_dt"])
-            probs_str = ", ".join(s["problems"][:5])
-            lines.append(f"| {day_str} | {start_str} | {end_str} | {s['duration_str']} | {s['submissions_count']} | {s['accepted_count']} AC | {probs_str} |")
-
-    with open(MD_FILE, "w", encoding="utf-8") as f:
-        f.write("\n".join(lines))
-
 def run_once():
-    config = load_config()
+    config = tc.load_config()
+    config = tc.sync_profiles_from_cloud(config)
     trainees = config.get("trainees", [])
     gap_min = config.get("session_gap_minutes", 30)
     buffer_min = config.get("coding_buffer_minutes", 15)
-    limit = config.get("fetch_limit", 100)
+    limit = config.get("fetch_limit", 200)
 
-    print(f"[*] Starting activity analysis for {len(trainees)} trainees (30-min session rule)...")
+    pings_history = tc.load_pings_history()
+    print(f"[*] Starting multi-platform analysis for {len(trainees)} trainee profiles...")
     users_data = []
 
-    for t in trainees:
-        t_name = t if isinstance(t, str) else t.get("name", "Unknown")
-        print(f"  -> Processing {t_name}...")
-        stats = analyze_trainee(t, session_gap_min=gap_min, coding_buffer=buffer_min, fetch_limit=limit)
-        if stats:
-            users_data.append(stats)
-        time.sleep(0.4)
+    for prof in trainees:
+        print(f"  -> Analyzing profile: {prof['name']} ({prof['handles']})...")
+        stats = tc.analyze_trainee_profile(
+            prof,
+            pings_history,
+            session_gap_min=gap_min,
+            coding_buffer=buffer_min,
+            fetch_limit=limit
+        )
+        users_data.append(stats)
+        time.sleep(0.3)
 
-    print("[*] Generating reports...")
-    generate_html_dashboard(users_data)
+    # Save updated config (in case CF handles were auto-discovered) and pings history
+    with open(CONFIG_FILE, "w", encoding="utf-8") as f:
+        json.dump(config, f, indent=2, ensure_ascii=False)
+    tc.save_pings_history(pings_history)
+
+    print("[*] Generating HTML dashboard, data.json, CSV, and Markdown reports...")
+    generate_html_dashboard(users_data, config)
     generate_csv_report(users_data)
     generate_markdown_report(users_data)
-
-    print("\n" + "="*65)
-    print("        ملخص نشاط المتدربين (قاعدة الـ 30 دقيقة)")
-    print("="*65)
-    for u in users_data:
-        status_txt = "🟢 متصل الآن" if u["is_active_now"] else "⚪ غير متصل"
-        print(f"\n[{u['username']}] {status_txt}")
-        print(f"  - الإجمالي الكلي: {u['all_time_ac']} مسألة AC (من {u['all_time_att']} محاولة)")
-        print(f"  - اليوم:          {u['today']['solved']} مسألة AC | نشاط: {u['today']['time_str']}")
-        print(f"  - آخر 7 أيام:      {u['week']['solved']} مسألة AC | نشاط: {u['week']['time_str']}")
-        print(f"  - آخر 30 يوماً:    {u['month']['solved']} مسألة AC | نشاط: {u['month']['time_str']}")
-        print(f"  - أوقات الذروة:    {u['peak_hours_str']}")
-
-    print("\n" + "="*65)
-    print(f"[✓] Dashboard HTML: {HTML_FILE}")
-    print(f"[✓] GitHub Pages:   {INDEX_FILE}")
-    print(f"[✓] Excel / CSV:    {CSV_FILE}")
-    print("="*65)
-
-def run_watch():
-    config = load_config()
-    interval = config.get("check_interval_minutes", 5)
-    print(f"[*] Starting Watch Mode (refreshing every {interval} minutes). Press Ctrl+C to stop.")
-    while True:
-        try:
-            print(f"\n[{get_cairo_now().strftime('%Y-%m-%d %I:%M:%S %p')}] Refreshing data...")
-            run_once()
-            print(f"[*] Sleeping for {interval} minutes...")
-            time.sleep(interval * 60)
-        except KeyboardInterrupt:
-            print("\n[!] Watcher stopped by user.")
-            break
-        except Exception as e:
-            print(f"[!] Error during loop: {e}")
-            time.sleep(60)
+    print("[✓] All reports generated successfully!")
+    return users_data, config
 
 if __name__ == "__main__":
-    if len(sys.argv) > 1 and sys.argv[1] == "--watch":
-        run_watch()
-    else:
-        run_once()
+    run_once()

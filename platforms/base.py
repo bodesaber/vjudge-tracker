@@ -36,3 +36,4 @@ class BaseJudgeAdapter:
         ]
         """
         raise NotImplementedError
+

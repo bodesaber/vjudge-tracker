@@ -9,3 +9,4 @@ echo.
 python manage_users.py add
 echo.
 pause
+

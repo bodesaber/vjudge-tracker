@@ -1,9 +1,13 @@
 from .vjudge import VJudgeAdapter
 from .codeforces import CodeforcesAdapter
+from .atcoder import AtCoderAdapter
+from .cses import CSESAdapter
 
 adapters = {
     "vjudge": VJudgeAdapter(),
-    "codeforces": CodeforcesAdapter()
+    "codeforces": CodeforcesAdapter(),
+    "atcoder": AtCoderAdapter(),
+    "cses": CSESAdapter()
 }
 
 def get_adapter(name):

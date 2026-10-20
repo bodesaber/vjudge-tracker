@@ -164,3 +164,4 @@ if __name__ == "__main__":
             remove_trainee(h)
         elif choice == "3":
             list_trainees()
+
