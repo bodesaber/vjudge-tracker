@@ -144,3 +144,4 @@ if __name__ == "__main__":
     print(f"[✓] Background Tracker Server listening on http://127.0.0.1:{PORT}")
     server = HTTPServer(("127.0.0.1", PORT), TrackerRequestHandler)
     server.serve_forever()
+

@@ -667,3 +667,4 @@ def analyze_trainee_profile(profile, pings_history, session_gap_min=30, coding_b
         "platforms": per_platform_summary,
         "sessions": unified_sessions
     }
+

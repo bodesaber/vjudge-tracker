@@ -64,3 +64,4 @@ class CSESAdapter(BaseJudgeAdapter):
                 "avatarUrl": ""
             }]
         return []
+

@@ -51,3 +51,4 @@ class AtCoderAdapter(BaseJudgeAdapter):
         except Exception as e:
             print(f"[-] AtCoder submissions error for {handle}: {e}")
         return []
+
