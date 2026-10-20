@@ -47,7 +47,7 @@
         "vjudge": "Youssef_Saleh",
         "codeforces": "nerdev",
         "atcoder": "Nerdev",
-        "cses": ""
+        "cses": "390594"
       }
     },
     {
@@ -107,5 +107,5 @@
   "fetch_limit": 200,
   "timezone_offset_hours": 3,
   "cloud_sync_topic": "vj_tracker_bodesaber_sync_v2",
-  "last_cloud_sync_ts": 1792505108
+  "last_cloud_sync_ts": 1792522989
 }
