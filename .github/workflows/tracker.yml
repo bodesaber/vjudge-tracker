@@ -1,0 +1,35 @@
+name: VJudge 24-7 Activity Tracker
+
+on:
+  schedule:
+    # Runs every 15 minutes 24/7 in the cloud
+    - cron: '*/15 * * * *'
+  workflow_dispatch: # Allows manual trigger from GitHub UI
+  push:
+    branches: [ main ]
+
+jobs:
+  track:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # Needed to commit and push updated reports
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Run Activity Tracker
+        run: |
+          python tracker.py
+
+      - name: Commit and Push Updates
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action Tracker"
+          git add index.html activity_dashboard.html sessions_report.csv summary_report.md
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Auto-update VJudge trainee stats [skip ci]" && git push)

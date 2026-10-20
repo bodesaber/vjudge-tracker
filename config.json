@@ -1,0 +1,13 @@
+{
+  "trainees": [
+    "Israa_abdelhaq",
+    "Omar_Awad_Saber",
+    "Fatemaelfiky1",
+    "Amr2Khaled"
+  ],
+  "session_gap_minutes": 60,
+  "check_interval_minutes": 15,
+  "fetch_limit": 100,
+  "days_back": 30
+}
+
