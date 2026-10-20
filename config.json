@@ -99,6 +99,26 @@
         "atcoder": "",
         "cses": ""
       }
+    },
+    {
+      "id": "user_1792531306498",
+      "name": "seif lashin",
+      "handles": {
+        "vjudge": "seiflashin",
+        "codeforces": "seiflashin",
+        "atcoder": "seiflashin",
+        "cses": ""
+      }
+    },
+    {
+      "id": "user_1792531846816",
+      "name": "youssef",
+      "handles": {
+        "vjudge": "youssef_97",
+        "codeforces": "youssef97_",
+        "atcoder": "",
+        "cses": ""
+      }
     }
   ],
   "session_gap_minutes": 30,
@@ -107,5 +127,5 @@
   "fetch_limit": 200,
   "timezone_offset_hours": 3,
   "cloud_sync_topic": "vj_tracker_bodesaber_sync_v2",
-  "last_cloud_sync_ts": 1792522989
+  "last_cloud_sync_ts": 1792531846
 }
