@@ -193,6 +193,17 @@
       "is_ac": false
     },
     {
+      "id": "ping_cf_1792463832000",
+      "type": "online_ping",
+      "platform": "Codeforces",
+      "time": 1792463832000,
+      "probNum": "تصفح المنصة",
+      "problemName": "👁️ فاتح كود فورسز (متصل أونلاين)",
+      "problemUrl": "https://codeforces.com/profile/esoo",
+      "status": "Online",
+      "is_ac": false
+    },
+    {
       "id": "ping_cf_1792464434000",
       "type": "online_ping",
       "platform": "Codeforces",
