@@ -1,6 +1,6 @@
 {
-  "updated_at": "الجمعة 23 أكتوبر 2026 - 01:26 م (توقيت مصر)",
-  "updated_ms": 1792751206920,
+  "updated_at": "الجمعة 23 أكتوبر 2026 - 06:20 م (توقيت مصر)",
+  "updated_ms": 1792768848875,
   "config": {
     "trainees": [
       {
@@ -142,7 +142,7 @@
       "avatar": "https://cdn.vjudge.net.cn/user/avatar/844797?v=1713901887",
       "is_active_now": false,
       "active_platforms_now": [],
-      "last_seen_str": "منذ 2 يوم (20-10-2026 02:46 PM)",
+      "last_seen_str": "منذ 3 يوم (20-10-2026 02:46 PM)",
       "last_seen_ms": 1792496790000,
       "last_problem_str": "[VJudge] CodeForces 2139C (Accepted)",
       "all_time_ac": 300,
@@ -193,7 +193,7 @@
           "url": "https://vjudge.net/user/Israa_abdelhaq",
           "extra": "",
           "is_online": false,
-          "last_seen_str": "منذ 2 يوم",
+          "last_seen_str": "منذ 3 يوم",
           "last_seen_ms": 1792496788000,
           "acAll": 220,
           "attAll": 233,
@@ -222,7 +222,7 @@
           "url": "https://codeforces.com/profile/Isabella_",
           "extra": "Rating: 1204 (pupil)",
           "is_online": false,
-          "last_seen_str": "منذ 2 يوم",
+          "last_seen_str": "منذ 3 يوم",
           "last_seen_ms": 1792496790000,
           "acAll": 98,
           "attAll": 200,
@@ -3231,7 +3231,7 @@
       "avatar": "https://cdn.vjudge.net.cn/user/avatar/832169?v=1719630988",
       "is_active_now": false,
       "active_platforms_now": [],
-      "last_seen_str": "منذ 12 ساعة (01:17 ص)",
+      "last_seen_str": "منذ 17 ساعة (01:17 ص)",
       "last_seen_ms": 1792707468000,
       "last_problem_str": "[Codeforces] 👁️ فاتح كود فورسز (متصل أونلاين) (Online)",
       "all_time_ac": 586,
@@ -3311,7 +3311,7 @@
           "url": "https://codeforces.com/profile/Lumino",
           "extra": "Rating: 1215 (pupil)",
           "is_online": false,
-          "last_seen_str": "منذ 12 س",
+          "last_seen_str": "منذ 17 س",
           "last_seen_ms": 1792707468000,
           "acAll": 100,
           "attAll": 200,
@@ -6167,50 +6167,52 @@
         "cses": ""
       },
       "avatar": "https://cdn.vjudge.net.cn/user/avatar/834517?v=1707590835",
-      "is_active_now": false,
-      "active_platforms_now": [],
-      "last_seen_str": "منذ 4 يوم (18-10-2026 06:16 PM)",
-      "last_seen_ms": 1792336585000,
-      "last_problem_str": "[Codeforces] 1977B - Binary Colouring (Wrong Answer)",
+      "is_active_now": true,
+      "active_platforms_now": [
+        "Codeforces"
+      ],
+      "last_seen_str": "منذ 24 دقيقة (05:56 م)",
+      "last_seen_ms": 1792767386000,
+      "last_problem_str": "[Codeforces] 313B - Ilya and Queries (Accepted)",
       "all_time_ac": 495,
-      "all_time_score": 121684,
-      "avg_difficulty": 1211,
+      "all_time_score": 121960,
+      "avg_difficulty": 1214,
       "max_difficulty": 2300,
       "today": {
-        "solved": 0,
-        "subs": 0,
-        "time_minutes": 0,
-        "time_str": "0 دقيقة",
-        "sessions": 0,
-        "problem_points": 0,
-        "avg_difficulty": 0,
-        "max_difficulty": 0,
-        "hardest_problem": "—",
-        "score": 0
+        "solved": 1,
+        "subs": 1,
+        "time_minutes": 15,
+        "time_str": "15 دقيقة",
+        "sessions": 1,
+        "problem_points": 160,
+        "avg_difficulty": 1100,
+        "max_difficulty": 1100,
+        "hardest_problem": "313B - Ilya and Queries (1100)",
+        "score": 195
       },
       "week": {
-        "solved": 10,
-        "subs": 13,
-        "time_minutes": 127,
-        "time_str": "2 س و 7 د",
-        "sessions": 5,
-        "problem_points": 1910,
-        "avg_difficulty": 1120,
+        "solved": 11,
+        "subs": 14,
+        "time_minutes": 142,
+        "time_str": "2 س و 22 د",
+        "sessions": 6,
+        "problem_points": 2070,
+        "avg_difficulty": 1118,
         "max_difficulty": 1800,
         "hardest_problem": "1118F1 - Tree Cutting (Easy Version) (1800)",
-        "score": 2177
+        "score": 2372
       },
       "month": {
-        "solved": 65,
-        "subs": 102,
-        "time_minutes": 1115,
-        "time_str": "18 س و 35 د",
-        "sessions": 33,
-        "problem_points": 15160,
-        "avg_difficulty": 1237,
+        "solved": 66,
+        "subs": 103,
+        "time_minutes": 1130,
+        "time_str": "18 س و 50 د",
+        "sessions": 34,
+        "problem_points": 15320,
+        "avg_difficulty": 1235,
         "max_difficulty": 1800,
         "hardest_problem": "1118F1 - Tree Cutting (Easy Version) (1800)",
-        "score": 17280
+        "score": 17475
       },
       "peak_hours_str": "الذروة حوالي 01:00 م (ظهراً وعصراً (12ظ-6م))",
       "platforms": {
@@ -6248,32 +6250,76 @@
           "handle": "Zhraa_",
           "url": "https://codeforces.com/profile/Zhraa_",
           "extra": "Rating: 1054 (newbie)",
-          "is_online": false,
-          "last_seen_str": "منذ 4 يوم",
-          "last_seen_ms": 1792336585000,
+          "is_online": true,
+          "last_seen_str": "منذ 24 د",
+          "last_seen_ms": 1792767386000,
           "acAll": 107,
           "attAll": 200,
           "today": {
-            "solved": 0,
-            "subs": 0,
-            "time_str": "0 دقيقة",
-            "time_minutes": 0
+            "solved": 1,
+            "subs": 1,
+            "time_str": "15 دقيقة",
+            "time_minutes": 15
           },
           "week": {
-            "solved": 9,
-            "subs": 12,
-            "time_str": "2 س و 7 د",
-            "time_minutes": 127
+            "solved": 10,
+            "subs": 13,
+            "time_str": "2 س و 22 د",
+            "time_minutes": 142
           },
           "month": {
-            "solved": 55,
-            "subs": 88,
-            "time_str": "15 س و 35 د",
-            "time_minutes": 935
+            "solved": 56,
+            "subs": 89,
+            "time_str": "15 س و 50 د",
+            "time_minutes": 950
           }
         }
       },
       "sessions": [
+        {
+          "date_iso": "2026-10-23",
+          "month_iso": "2026-10",
+          "date_str": "الجمعة 23 أكتوبر 2026",
+          "start_str": "05:41 م",
+          "end_str": "05:56 م",
+          "start_ms": 1792766486000,
+          "end_ms": 1792767386000,
+          "duration_minutes": 15,
+          "duration_str": "15 دقيقة (اتصال متواصل)",
+          "submissions_count": 1,
+          "accepted_count": 1,
+          "pings_count": 0,
+          "problem_points": 160,
+          "score": 195,
+          "problems": [
+            "313B"
+          ],
+          "platform_breakdown": {
+            "Codeforces": {
+              "duration_minutes": 15,
+              "duration_str": "15 دقيقة",
+              "subs_count": 1,
+              "ac_count": 1,
+              "pings_count": 0
+            }
+          },
+          "timeline": [
+            {
+              "time": 1792767386000,
+              "time_str": "05:56:26 م",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "313B",
+              "problemName": "313B - Ilya and Queries",
+              "problemUrl": "https://codeforces.com/contest/313/problem/B",
+              "status": "Accepted",
+              "is_ac": true,
+              "difficulty": 1100,
+              "diff_tier": "🔵 فوق المبتدئ",
+              "prob_points": 160
+            }
+          ]
+        },
         {
           "date_iso": "2026-10-18",
           "month_iso": "2026-10",
@@ -9489,120 +9535,6 @@
               "prob_points": 195
             }
           ]
-        },
-        {
-          "date_iso": "2026-09-13",
-          "month_iso": "2026-09",
-          "date_str": "الأحد 13 سبتمبر 2026",
-          "start_str": "12:49 م",
-          "end_str": "01:52 م",
-          "start_ms": 1789292999000,
-          "end_ms": 1789296725000,
-          "duration_minutes": 62,
-          "duration_str": "1 س و 2 د (اتصال متواصل)",
-          "submissions_count": 6,
-          "accepted_count": 0,
-          "pings_count": 0,
-          "problem_points": 0,
-          "score": 107,
-          "problems": [
-            "1594C"
-          ],
-          "platform_breakdown": {
-            "Codeforces": {
-              "duration_minutes": 62,
-              "duration_str": "1 س و 2 د",
-              "subs_count": 6,
-              "ac_count": 0,
-              "pings_count": 0
-            }
-          },
-          "timeline": [
-            {
-              "time": 1789296725000,
-              "time_str": "01:52:05 م",
-              "platform": "Codeforces",
-              "type": "submission",
-              "probNum": "1594C",
-              "problemName": "1594C - Make Them Equal",
-              "problemUrl": "https://codeforces.com/contest/1594/problem/C",
-              "status": "Wrong Answer",
-              "is_ac": false,
-              "difficulty": 1200,
-              "diff_tier": "🟣 متوسط",
-              "prob_points": 195
-            },
-            {
-              "time": 1789296028000,
-              "time_str": "01:40:28 م",
-              "platform": "Codeforces",
-              "type": "submission",
-              "probNum": "1594C",
-              "problemName": "1594C - Make Them Equal",
-              "problemUrl": "https://codeforces.com/contest/1594/problem/C",
-              "status": "Wrong Answer",
-              "is_ac": false,
-              "difficulty": 1200,
-              "diff_tier": "🟣 متوسط",
-              "prob_points": 195
-            },
-            {
-              "time": 1789295457000,
-              "time_str": "01:30:57 م",
-              "platform": "Codeforces",
-              "type": "submission",
-              "probNum": "1594C",
-              "problemName": "1594C - Make Them Equal",
-              "problemUrl": "https://codeforces.com/contest/1594/problem/C",
-              "status": "Wrong Answer",
-              "is_ac": false,
-              "difficulty": 1200,
-              "diff_tier": "🟣 متوسط",
-              "prob_points": 195
-            },
-            {
-              "time": 1789295114000,
-              "time_str": "01:25:14 م",
-              "platform": "Codeforces",
-              "type": "submission",
-              "probNum": "1594C",
-              "problemName": "1594C - Make Them Equal",
-              "problemUrl": "https://codeforces.com/contest/1594/problem/C",
-              "status": "Wrong Answer",
-              "is_ac": false,
-              "difficulty": 1200,
-              "diff_tier": "🟣 متوسط",
-              "prob_points": 195
-            },
-            {
-              "time": 1789294972000,
-              "time_str": "01:22:52 م",
-              "platform": "Codeforces",
-              "type": "submission",
-              "probNum": "1594C",
-              "problemName": "1594C - Make Them Equal",
-              "problemUrl": "https://codeforces.com/contest/1594/problem/C",
-              "status": "Wrong Answer",
-              "is_ac": false,
-              "difficulty": 1200,
-              "diff_tier": "🟣 متوسط",
-              "prob_points": 195
-            },
-            {
-              "time": 1789293899000,
-              "time_str": "01:04:59 م",
-              "platform": "Codeforces",
-              "type": "submission",
-              "probNum": "1594C",
-              "problemName": "1594C - Make Them Equal",
-              "problemUrl": "https://codeforces.com/contest/1594/problem/C",
-              "status": "Wrong Answer",
-              "is_ac": false,
-              "difficulty": 1200,
-              "diff_tier": "🟣 متوسط",
-              "prob_points": 195
-            }
-          ]
         }
       ]
     },
@@ -9618,7 +9550,7 @@
       "avatar": "https://cdn.vjudge.net.cn/user/avatar/859468?v=1718830383",
       "is_active_now": false,
       "active_platforms_now": [],
-      "last_seen_str": "منذ 17 يوم (05-10-2026 06:13 PM)",
+      "last_seen_str": "منذ 18 يوم (05-10-2026 06:13 PM)",
       "last_seen_ms": 1791213210000,
       "last_problem_str": "[VJudge] AtCoder abc336_e (Accepted)",
       "all_time_ac": 381,
@@ -9669,7 +9601,7 @@
           "url": "https://vjudge.net/user/Amr2Khaled",
           "extra": "",
           "is_online": false,
-          "last_seen_str": "منذ 17 يوم",
+          "last_seen_str": "منذ 18 يوم",
           "last_seen_ms": 1791213210000,
           "acAll": 294,
           "attAll": 313,
@@ -9698,7 +9630,7 @@
           "url": "https://codeforces.com/profile/SHANKS-A",
           "extra": "Rating: 1248 (pupil)",
           "is_online": false,
-          "last_seen_str": "منذ 17 يوم",
+          "last_seen_str": "منذ 18 يوم",
           "last_seen_ms": 1791210523000,
           "acAll": 98,
           "attAll": 200,
@@ -13169,48 +13101,48 @@
       "avatar": "https://cn.cravatar.com/avatar/4a47b3b2c8db6ecbdbef91d74c317beb?d=retro",
       "is_active_now": false,
       "active_platforms_now": [],
-      "last_seen_str": "منذ 2 ساعة (11:18 ص)",
-      "last_seen_ms": 1792743514000,
-      "last_problem_str": "[Codeforces] 1385D - a-Good String (Accepted)",
+      "last_seen_str": "منذ 3 ساعة (03:03 م)",
+      "last_seen_ms": 1792757037000,
+      "last_problem_str": "[Codeforces] 👁️ فاتح كود فورسز (متصل أونلاين) (Online)",
       "all_time_ac": 813,
-      "all_time_score": 360756,
+      "all_time_score": 360776,
       "avg_difficulty": 1513,
       "max_difficulty": 2700,
       "today": {
         "solved": 9,
         "subs": 10,
-        "time_minutes": 129,
-        "time_str": "2 س و 9 د",
-        "sessions": 2,
+        "time_minutes": 134,
+        "time_str": "2 س و 14 د",
+        "sessions": 3,
         "problem_points": 2065,
         "avg_difficulty": 1256,
         "max_difficulty": 1500,
         "hardest_problem": "1385D - a-Good String (1500)",
-        "score": 2274
+        "score": 2294
       },
       "week": {
-        "solved": 29,
-        "subs": 39,
-        "time_minutes": 520,
-        "time_str": "8 س و 40 د",
+        "solved": 28,
+        "subs": 38,
+        "time_minutes": 510,
+        "time_str": "8 س و 30 د",
         "sessions": 26,
-        "problem_points": 12335,
-        "avg_difficulty": 1500,
+        "problem_points": 11865,
+        "avg_difficulty": 1493,
         "max_difficulty": 2300,
         "hardest_problem": "891C - Envy (2300)",
-        "score": 13440
+        "score": 12955
       },
       "month": {
-        "solved": 97,
-        "subs": 162,
-        "time_minutes": 2040,
-        "time_str": "34 ساعة",
+        "solved": 96,
+        "subs": 156,
+        "time_minutes": 1952,
+        "time_str": "32 س و 32 د",
         "sessions": 91,
-        "problem_points": 47300,
+        "problem_points": 46830,
         "avg_difficulty": 1615,
         "max_difficulty": 2500,
         "hardest_problem": "CodeForces 911G (2500)",
-        "score": 51515
+        "score": 50927
       },
       "peak_hours_str": "الذروة حوالي 01:00 م (ظهراً وعصراً (12ظ-6م))",
       "platforms": {
@@ -13237,10 +13169,10 @@
             "time_minutes": 0
           },
           "month": {
-            "solved": 13,
-            "subs": 26,
-            "time_str": "5 س و 14 د",
-            "time_minutes": 314
+            "solved": 12,
+            "subs": 22,
+            "time_str": "4 س و 4 د",
+            "time_minutes": 244
           }
         },
         "Codeforces": {
@@ -13249,27 +13181,27 @@
           "url": "https://codeforces.com/profile/nerdev",
           "extra": "Rating: 1311 (pupil)",
           "is_online": false,
-          "last_seen_str": "منذ 2 س",
-          "last_seen_ms": 1792743514000,
+          "last_seen_str": "منذ 3 س",
+          "last_seen_ms": 1792757037000,
           "acAll": 93,
           "attAll": 200,
           "today": {
             "solved": 9,
             "subs": 11,
-            "time_str": "2 س و 9 د",
-            "time_minutes": 129
+            "time_str": "2 س و 14 د",
+            "time_minutes": 134
           },
           "week": {
-            "solved": 25,
-            "subs": 36,
-            "time_str": "7 س و 36 د",
-            "time_minutes": 456
+            "solved": 24,
+            "subs": 35,
+            "time_str": "7 س و 26 د",
+            "time_minutes": 446
           },
           "month": {
-            "solved": 89,
-            "subs": 166,
-            "time_str": "31 س و 59 د",
-            "time_minutes": 1919
+            "solved": 88,
+            "subs": 158,
+            "time_str": "30 س و 31 د",
+            "time_minutes": 1831
           }
         },
         "AtCoder": {
@@ -13278,7 +13210,7 @@
           "url": "https://atcoder.jp/users/Nerdev",
           "extra": "",
           "is_online": false,
-          "last_seen_str": "منذ 5 يوم",
+          "last_seen_str": "منذ 6 يوم",
           "last_seen_ms": 1792244091000,
           "acAll": 61,
           "attAll": 123,
@@ -13332,6 +13264,48 @@
         }
       },
       "sessions": [
+        {
+          "date_iso": "2026-10-23",
+          "month_iso": "2026-10",
+          "date_str": "الجمعة 23 أكتوبر 2026",
+          "start_str": "02:58 م",
+          "end_str": "03:03 م",
+          "start_ms": 1792756737000,
+          "end_ms": 1792757037000,
+          "duration_minutes": 5,
+          "duration_str": "5 دقيقة (فتح وتصفح المنصة)",
+          "submissions_count": 0,
+          "accepted_count": 0,
+          "pings_count": 1,
+          "problem_points": 0,
+          "score": 20,
+          "problems": [],
+          "platform_breakdown": {
+            "Codeforces": {
+              "duration_minutes": 5,
+              "duration_str": "5 دقيقة",
+              "subs_count": 0,
+              "ac_count": 0,
+              "pings_count": 1
+            }
+          },
+          "timeline": [
+            {
+              "time": 1792757037000,
+              "time_str": "03:03:57 م",
+              "platform": "Codeforces",
+              "type": "online_ping",
+              "probNum": "تصفح المنصة",
+              "problemName": "👁️ فاتح كود فورسز (متصل أونلاين)",
+              "problemUrl": "https://codeforces.com/profile/nerdev",
+              "status": "Online",
+              "is_ac": false,
+              "difficulty": 0,
+              "diff_tier": "",
+              "prob_points": 0
+            }
+          ]
+        },
         {
           "date_iso": "2026-10-23",
           "month_iso": "2026-10",
@@ -15707,64 +15681,6 @@
               "prob_points": 550
             }
           ]
-        },
-        {
-          "date_iso": "2026-10-10",
-          "month_iso": "2026-10",
-          "date_str": "السبت 10 أكتوبر 2026",
-          "start_str": "10:41 م",
-          "end_str": "11:00 م",
-          "start_ms": 1791661286000,
-          "end_ms": 1791662440000,
-          "duration_minutes": 19,
-          "duration_str": "19 دقيقة (اتصال متواصل)",
-          "submissions_count": 2,
-          "accepted_count": 1,
-          "pings_count": 0,
-          "problem_points": 960,
-          "score": 1004,
-          "problems": [
-            "1986G1"
-          ],
-          "platform_breakdown": {
-            "Codeforces": {
-              "duration_minutes": 19,
-              "duration_str": "19 دقيقة",
-              "subs_count": 2,
-              "ac_count": 1,
-              "pings_count": 0
-            }
-          },
-          "timeline": [
-            {
-              "time": 1791662440000,
-              "time_str": "11:00:40 م",
-              "platform": "Codeforces",
-              "type": "submission",
-              "probNum": "1986G1",
-              "problemName": "1986G1 - Permutation Problem (Simple Version)",
-              "problemUrl": "https://codeforces.com/contest/1986/problem/G1",
-              "status": "Accepted",
-              "is_ac": true,
-              "difficulty": 2200,
-              "diff_tier": "👑 ماستر",
-              "prob_points": 960
-            },
-            {
-              "time": 1791662186000,
-              "time_str": "10:56:26 م",
-              "platform": "Codeforces",
-              "type": "submission",
-              "probNum": "1986G1",
-              "problemName": "1986G1 - Permutation Problem (Simple Version)",
-              "problemUrl": "https://codeforces.com/contest/1986/problem/G1",
-              "status": "Memory Limit Exceeded",
-              "is_ac": false,
-              "difficulty": 2200,
-              "diff_tier": "👑 ماستر",
-              "prob_points": 960
-            }
-          ]
         }
       ]
     },
@@ -15780,7 +15696,7 @@
       "avatar": "https://cn.cravatar.com/avatar/f74ac3acc34741bea2b45068c8c9eebf?d=identicon",
       "is_active_now": false,
       "active_platforms_now": [],
-      "last_seen_str": "منذ 10 ساعة (03:08 ص)",
+      "last_seen_str": "منذ 15 ساعة (03:08 ص)",
       "last_seen_ms": 1792714126000,
       "last_problem_str": "[Codeforces] 👁️ فاتح كود فورسز (متصل أونلاين) (Online)",
       "all_time_ac": 455,
@@ -15812,16 +15728,16 @@
         "score": 8584
       },
       "month": {
-        "solved": 47,
-        "subs": 86,
-        "time_minutes": 860,
-        "time_str": "14 س و 20 د",
-        "sessions": 32,
-        "problem_points": 20135,
-        "avg_difficulty": 1506,
+        "solved": 46,
+        "subs": 85,
+        "time_minutes": 845,
+        "time_str": "14 س و 5 د",
+        "sessions": 31,
+        "problem_points": 19055,
+        "avg_difficulty": 1487,
         "max_difficulty": 2700,
         "hardest_problem": "CodeForces 13E (2700)",
-        "score": 21905
+        "score": 20790
       },
       "peak_hours_str": "الذروة حوالي 06:00 م (مساءً (6م-12ص))",
       "platforms": {
@@ -15848,10 +15764,10 @@
             "time_minutes": 0
           },
           "month": {
-            "solved": 7,
-            "subs": 24,
-            "time_str": "2 س و 37 د",
-            "time_minutes": 157
+            "solved": 6,
+            "subs": 23,
+            "time_str": "2 س و 22 د",
+            "time_minutes": 142
           }
         },
         "Codeforces": {
@@ -15860,7 +15776,7 @@
           "url": "https://codeforces.com/profile/Abdelhamid_",
           "extra": "Rating: 1449 (specialist)",
           "is_online": false,
-          "last_seen_str": "منذ 10 س",
+          "last_seen_str": "منذ 15 س",
           "last_seen_ms": 1792714126000,
           "acAll": 90,
           "attAll": 200,
@@ -15877,10 +15793,10 @@
             "time_minutes": 166
           },
           "month": {
-            "solved": 43,
-            "subs": 86,
-            "time_str": "13 س و 2 د",
-            "time_minutes": 782
+            "solved": 42,
+            "subs": 85,
+            "time_str": "12 س و 47 د",
+            "time_minutes": 767
           }
         },
         "AtCoder": {
@@ -15889,7 +15805,7 @@
           "url": "https://atcoder.jp/users/Abdelhamid",
           "extra": "",
           "is_online": false,
-          "last_seen_str": "منذ 5 يوم",
+          "last_seen_str": "منذ 6 يوم",
           "last_seen_ms": 1792244281000,
           "acAll": 54,
           "attAll": 89,
@@ -18975,11 +18891,11 @@
       "avatar": "https://cdn.vjudge.net.cn/user/avatar/831813?v=1727281407",
       "is_active_now": false,
       "active_platforms_now": [],
-      "last_seen_str": "منذ 4 ساعة (09:12 ص)",
+      "last_seen_str": "منذ 9 ساعة (09:12 ص)",
       "last_seen_ms": 1792735977000,
       "last_problem_str": "[Codeforces] 👁️ فاتح كود فورسز (متصل أونلاين) (Online)",
       "all_time_ac": 340,
-      "all_time_score": 87305,
+      "all_time_score": 87325,
       "avg_difficulty": 1249,
       "max_difficulty": 2300,
       "today": {
@@ -18995,28 +18911,28 @@
         "score": 20
       },
       "week": {
-        "solved": 13,
-        "subs": 22,
-        "time_minutes": 387,
-        "time_str": "6 س و 27 د",
-        "sessions": 18,
-        "problem_points": 2290,
-        "avg_difficulty": 1108,
+        "solved": 7,
+        "subs": 16,
+        "time_minutes": 302,
+        "time_str": "5 س و 2 د",
+        "sessions": 16,
+        "problem_points": 1405,
+        "avg_difficulty": 1171,
         "max_difficulty": 1500,
         "hardest_problem": "CodeForces 204B (1500)",
-        "score": 3057
+        "score": 2027
       },
       "month": {
         "solved": 44,
-        "subs": 118,
-        "time_minutes": 1332,
-        "time_str": "22 س و 12 د",
+        "subs": 111,
+        "time_minutes": 1269,
+        "time_str": "21 س و 9 د",
         "sessions": 51,
         "problem_points": 10905,
         "avg_difficulty": 1248,
         "max_difficulty": 2300,
         "hardest_problem": "102961X - Sum of Three Values (2300)",
-        "score": 13592
+        "score": 13494
       },
       "peak_hours_str": "الذروة حوالي 04:00 م (ظهراً وعصراً (12ظ-6م))",
       "platforms": {
@@ -19026,7 +18942,7 @@
           "url": "https://vjudge.net/user/esraa_emary",
           "extra": "",
           "is_online": false,
-          "last_seen_str": "منذ 4 يوم",
+          "last_seen_str": "منذ 5 يوم",
           "last_seen_ms": 1792331914000,
           "acAll": 301,
           "attAll": 313,
@@ -19037,10 +18953,10 @@
             "time_minutes": 0
           },
           "week": {
-            "solved": 13,
-            "subs": 20,
-            "time_str": "4 س و 40 د",
-            "time_minutes": 280
+            "solved": 7,
+            "subs": 14,
+            "time_str": "3 س و 10 د",
+            "time_minutes": 190
           },
           "month": {
             "solved": 33,
@@ -19055,7 +18971,7 @@
           "url": "https://codeforces.com/profile/esoo",
           "extra": "Rating: 903 (newbie)",
           "is_online": false,
-          "last_seen_str": "منذ 4 س",
+          "last_seen_str": "منذ 9 س",
           "last_seen_ms": 1792735977000,
           "acAll": 67,
           "attAll": 200,
@@ -19066,16 +18982,16 @@
             "time_minutes": 5
           },
           "week": {
-            "solved": 12,
-            "subs": 21,
-            "time_str": "6 س و 27 د",
-            "time_minutes": 387
+            "solved": 7,
+            "subs": 16,
+            "time_str": "5 س و 2 د",
+            "time_minutes": 302
           },
           "month": {
             "solved": 35,
-            "subs": 103,
-            "time_str": "19 س و 34 د",
-            "time_minutes": 1174
+            "subs": 95,
+            "time_str": "18 س و 29 د",
+            "time_minutes": 1109
           }
         }
       },
@@ -19109,6 +19025,48 @@
             {
               "time": 1792735977000,
               "time_str": "09:12:57 ص",
+              "platform": "Codeforces",
+              "type": "online_ping",
+              "probNum": "تصفح المنصة",
+              "problemName": "👁️ فاتح كود فورسز (متصل أونلاين)",
+              "problemUrl": "https://codeforces.com/profile/esoo",
+              "status": "Online",
+              "is_ac": false,
+              "difficulty": 0,
+              "diff_tier": "",
+              "prob_points": 0
+            }
+          ]
+        },
+        {
+          "date_iso": "2026-10-22",
+          "month_iso": "2026-10",
+          "date_str": "الخميس 22 أكتوبر 2026",
+          "start_str": "08:58 م",
+          "end_str": "09:03 م",
+          "start_ms": 1792691934000,
+          "end_ms": 1792692234000,
+          "duration_minutes": 5,
+          "duration_str": "5 دقيقة (فتح وتصفح المنصة)",
+          "submissions_count": 0,
+          "accepted_count": 0,
+          "pings_count": 1,
+          "problem_points": 0,
+          "score": 20,
+          "problems": [],
+          "platform_breakdown": {
+            "Codeforces": {
+              "duration_minutes": 5,
+              "duration_str": "5 دقيقة",
+              "subs_count": 0,
+              "ac_count": 0,
+              "pings_count": 1
+            }
+          },
+          "timeline": [
+            {
+              "time": 1792692234000,
+              "time_str": "09:03:54 م",
               "platform": "Codeforces",
               "type": "online_ping",
               "probNum": "تصفح المنصة",
@@ -21972,106 +21930,6 @@
               "prob_points": 235
             }
           ]
-        },
-        {
-          "date_iso": "2026-09-27",
-          "month_iso": "2026-09",
-          "date_str": "الأحد 27 سبتمبر 2026",
-          "start_str": "11:52 ص",
-          "end_str": "12:28 م",
-          "start_ms": 1790499177000,
-          "end_ms": 1790501301000,
-          "duration_minutes": 35,
-          "duration_str": "35 دقيقة (اتصال متواصل)",
-          "submissions_count": 5,
-          "accepted_count": 1,
-          "pings_count": 0,
-          "problem_points": 235,
-          "score": 310,
-          "problems": [
-            "2254D"
-          ],
-          "platform_breakdown": {
-            "Codeforces": {
-              "duration_minutes": 35,
-              "duration_str": "35 دقيقة",
-              "subs_count": 5,
-              "ac_count": 1,
-              "pings_count": 0
-            }
-          },
-          "timeline": [
-            {
-              "time": 1790501301000,
-              "time_str": "12:28:21 م",
-              "platform": "Codeforces",
-              "type": "submission",
-              "probNum": "2254D",
-              "problemName": "2254D - Silhouette",
-              "problemUrl": "https://codeforces.com/contest/2254/problem/D",
-              "status": "Accepted",
-              "is_ac": true,
-              "difficulty": 1300,
-              "diff_tier": "🟣 متوسط",
-              "prob_points": 235
-            },
-            {
-              "time": 1790500984000,
-              "time_str": "12:23:04 م",
-              "platform": "Codeforces",
-              "type": "submission",
-              "probNum": "2254D",
-              "problemName": "2254D - Silhouette",
-              "problemUrl": "https://codeforces.com/contest/2254/problem/D",
-              "status": "Wrong Answer",
-              "is_ac": false,
-              "difficulty": 1300,
-              "diff_tier": "🟣 متوسط",
-              "prob_points": 235
-            },
-            {
-              "time": 1790500422000,
-              "time_str": "12:13:42 م",
-              "platform": "Codeforces",
-              "type": "submission",
-              "probNum": "2254D",
-              "problemName": "2254D - Silhouette",
-              "problemUrl": "https://codeforces.com/contest/2254/problem/D",
-              "status": "Wrong Answer",
-              "is_ac": false,
-              "difficulty": 1300,
-              "diff_tier": "🟣 متوسط",
-              "prob_points": 235
-            },
-            {
-              "time": 1790500276000,
-              "time_str": "12:11:16 م",
-              "platform": "Codeforces",
-              "type": "submission",
-              "probNum": "2254D",
-              "problemName": "2254D - Silhouette",
-              "problemUrl": "https://codeforces.com/contest/2254/problem/D",
-              "status": "Wrong Answer",
-              "is_ac": false,
-              "difficulty": 1300,
-              "diff_tier": "🟣 متوسط",
-              "prob_points": 235
-            },
-            {
-              "time": 1790500077000,
-              "time_str": "12:07:57 م",
-              "platform": "Codeforces",
-              "type": "submission",
-              "probNum": "2254D",
-              "problemName": "2254D - Silhouette",
-              "problemUrl": "https://codeforces.com/contest/2254/problem/D",
-              "status": "Wrong Answer",
-              "is_ac": false,
-              "difficulty": 1300,
-              "diff_tier": "🟣 متوسط",
-              "prob_points": 235
-            }
-          ]
         }
       ]
     },
@@ -22087,48 +21945,48 @@
       "avatar": "https://cn.cravatar.com/avatar/d1e24aecb3ef856a48af9732d0c08966?d=identicon",
       "is_active_now": false,
       "active_platforms_now": [],
-      "last_seen_str": "منذ 3 ساعة (10:16 ص)",
-      "last_seen_ms": 1792739767000,
-      "last_problem_str": "[Codeforces] 1385D - a-Good String (Accepted)",
+      "last_seen_str": "منذ 59 دقيقة (05:20 م)",
+      "last_seen_ms": 1792765240000,
+      "last_problem_str": "[Codeforces] 👁️ فاتح كود فورسز (متصل أونلاين) (Online)",
       "all_time_ac": 530,
-      "all_time_score": 174448,
+      "all_time_score": 174468,
       "avg_difficulty": 1334,
       "max_difficulty": 2300,
       "today": {
         "solved": 9,
         "subs": 9,
-        "time_minutes": 92,
-        "time_str": "1 س و 32 د",
-        "sessions": 2,
+        "time_minutes": 97,
+        "time_str": "1 س و 37 د",
+        "sessions": 3,
         "problem_points": 2065,
         "avg_difficulty": 1256,
         "max_difficulty": 1500,
         "hardest_problem": "1385D - a-Good String (1500)",
-        "score": 2232
+        "score": 2252
       },
       "week": {
         "solved": 22,
         "subs": 22,
-        "time_minutes": 307,
-        "time_str": "5 س و 7 د",
-        "sessions": 16,
+        "time_minutes": 312,
+        "time_str": "5 س و 12 د",
+        "sessions": 17,
         "problem_points": 11360,
         "avg_difficulty": 1659,
         "max_difficulty": 2300,
         "hardest_problem": "101086I - Home Sweet Home (2300)",
-        "score": 12017
+        "score": 12037
       },
       "month": {
         "solved": 37,
         "subs": 41,
-        "time_minutes": 555,
-        "time_str": "9 س و 15 د",
-        "sessions": 26,
+        "time_minutes": 560,
+        "time_str": "9 س و 20 د",
+        "sessions": 27,
         "problem_points": 13680,
         "avg_difficulty": 1405,
         "max_difficulty": 2300,
         "hardest_problem": "101086I - Home Sweet Home (2300)",
-        "score": 14830
+        "score": 14850
       },
       "peak_hours_str": "الذروة حوالي 06:00 م (مساءً (6م-12ص))",
       "platforms": {
@@ -22167,27 +22025,27 @@
           "url": "https://codeforces.com/profile/Mo_hab",
           "extra": "Rating: 1439 (specialist)",
           "is_online": false,
-          "last_seen_str": "منذ 3 س",
-          "last_seen_ms": 1792739767000,
+          "last_seen_str": "منذ 59 د",
+          "last_seen_ms": 1792765240000,
           "acAll": 148,
           "attAll": 200,
           "today": {
             "solved": 9,
             "subs": 9,
-            "time_str": "1 س و 32 د",
-            "time_minutes": 92
+            "time_str": "1 س و 37 د",
+            "time_minutes": 97
           },
           "week": {
             "solved": 22,
             "subs": 22,
-            "time_str": "5 س و 7 د",
-            "time_minutes": 307
+            "time_str": "5 س و 12 د",
+            "time_minutes": 312
           },
           "month": {
             "solved": 37,
             "subs": 40,
-            "time_str": "9 س و 15 د",
-            "time_minutes": 555
+            "time_str": "9 س و 20 د",
+            "time_minutes": 560
           }
         },
         "AtCoder": {
@@ -22196,7 +22054,7 @@
           "url": "https://atcoder.jp/users/Mo_hab",
           "extra": "",
           "is_online": false,
-          "last_seen_str": "منذ 180 يوم",
+          "last_seen_str": "منذ 181 يوم",
           "last_seen_ms": 1777115345000,
           "acAll": 25,
           "attAll": 56,
@@ -22221,6 +22079,48 @@
         }
       },
       "sessions": [
+        {
+          "date_iso": "2026-10-23",
+          "month_iso": "2026-10",
+          "date_str": "الجمعة 23 أكتوبر 2026",
+          "start_str": "05:15 م",
+          "end_str": "05:20 م",
+          "start_ms": 1792764940000,
+          "end_ms": 1792765240000,
+          "duration_minutes": 5,
+          "duration_str": "5 دقيقة (فتح وتصفح المنصة)",
+          "submissions_count": 0,
+          "accepted_count": 0,
+          "pings_count": 1,
+          "problem_points": 0,
+          "score": 20,
+          "problems": [],
+          "platform_breakdown": {
+            "Codeforces": {
+              "duration_minutes": 5,
+              "duration_str": "5 دقيقة",
+              "subs_count": 0,
+              "ac_count": 0,
+              "pings_count": 1
+            }
+          },
+          "timeline": [
+            {
+              "time": 1792765240000,
+              "time_str": "05:20:40 م",
+              "platform": "Codeforces",
+              "type": "online_ping",
+              "probNum": "تصفح المنصة",
+              "problemName": "👁️ فاتح كود فورسز (متصل أونلاين)",
+              "problemUrl": "https://codeforces.com/profile/Mo_hab",
+              "status": "Online",
+              "is_ac": false,
+              "difficulty": 0,
+              "diff_tier": "",
+              "prob_points": 0
+            }
+          ]
+        },
         {
           "date_iso": "2026-10-23",
           "month_iso": "2026-10",
@@ -24804,50 +24704,6 @@
               "prob_points": 1020
             }
           ]
-        },
-        {
-          "date_iso": "2026-08-01",
-          "month_iso": "2026-08",
-          "date_str": "السبت 1 أغسطس 2026",
-          "start_str": "06:00 م",
-          "end_str": "06:15 م",
-          "start_ms": 1785596434000,
-          "end_ms": 1785597334000,
-          "duration_minutes": 15,
-          "duration_str": "15 دقيقة (اتصال متواصل)",
-          "submissions_count": 1,
-          "accepted_count": 1,
-          "pings_count": 0,
-          "problem_points": 1020,
-          "score": 1055,
-          "problems": [
-            "106632L"
-          ],
-          "platform_breakdown": {
-            "Codeforces": {
-              "duration_minutes": 15,
-              "duration_str": "15 دقيقة",
-              "subs_count": 1,
-              "ac_count": 1,
-              "pings_count": 0
-            }
-          },
-          "timeline": [
-            {
-              "time": 1785597334000,
-              "time_str": "06:15:34 م",
-              "platform": "Codeforces",
-              "type": "submission",
-              "probNum": "106632L",
-              "problemName": "106632L - The Camel Is Not Camelling",
-              "problemUrl": "https://codeforces.com/contest/106632/problem/L",
-              "status": "Accepted",
-              "is_ac": true,
-              "difficulty": 2300,
-              "diff_tier": "👑 ماستر",
-              "prob_points": 1020
-            }
-          ]
         }
       ]
     },
@@ -24863,48 +24719,48 @@
       "avatar": "https://cdn.vjudge.net.cn/user/avatar/866046?v=1760446814",
       "is_active_now": false,
       "active_platforms_now": [],
-      "last_seen_str": "منذ 12 ساعة (12:47 ص)",
-      "last_seen_ms": 1792705670000,
-      "last_problem_str": "[Codeforces] 👁️ فاتح كود فورسز (متصل أونلاين) (Online)",
-      "all_time_ac": 808,
-      "all_time_score": 349768,
-      "avg_difficulty": 1519,
+      "last_seen_str": "منذ 3 ساعة (02:50 م)",
+      "last_seen_ms": 1792756220000,
+      "last_problem_str": "[Codeforces] 1679C - Rooks Defenders (Accepted)",
+      "all_time_ac": 813,
+      "all_time_score": 345066,
+      "avg_difficulty": 1513,
       "max_difficulty": 2800,
       "today": {
-        "solved": 0,
-        "subs": 0,
-        "time_minutes": 5,
-        "time_str": "5 دقيقة",
-        "sessions": 1,
-        "problem_points": 0,
-        "avg_difficulty": 0,
-        "max_difficulty": 0,
-        "hardest_problem": "—",
-        "score": 20
+        "solved": 12,
+        "subs": 13,
+        "time_minutes": 85,
+        "time_str": "1 س و 25 د",
+        "sessions": 3,
+        "problem_points": 3575,
+        "avg_difficulty": 1400,
+        "max_difficulty": 1700,
+        "hardest_problem": "466C - Number of Ways (1700)",
+        "score": 3770
       },
       "week": {
-        "solved": 1,
-        "subs": 9,
-        "time_minutes": 117,
-        "time_str": "1 س و 57 د",
-        "sessions": 6,
-        "problem_points": 195,
-        "avg_difficulty": 1200,
-        "max_difficulty": 1200,
-        "hardest_problem": "2267C - GCD Treasury (1200)",
-        "score": 447
+        "solved": 13,
+        "subs": 22,
+        "time_minutes": 197,
+        "time_str": "3 س و 17 د",
+        "sessions": 8,
+        "problem_points": 3770,
+        "avg_difficulty": 1385,
+        "max_difficulty": 1700,
+        "hardest_problem": "466C - Number of Ways (1700)",
+        "score": 4197
       },
       "month": {
-        "solved": 38,
-        "subs": 58,
-        "time_minutes": 493,
-        "time_str": "8 س و 13 د",
-        "sessions": 18,
-        "problem_points": 8300,
-        "avg_difficulty": 1216,
-        "max_difficulty": 1600,
-        "hardest_problem": "CodeForces 681C (1600)",
-        "score": 9353
+        "solved": 50,
+        "subs": 71,
+        "time_minutes": 573,
+        "time_str": "9 س و 33 د",
+        "sessions": 20,
+        "problem_points": 11875,
+        "avg_difficulty": 1260,
+        "max_difficulty": 1700,
+        "hardest_problem": "466C - Number of Ways (1700)",
+        "score": 13103
       },
       "peak_hours_str": "الذروة حوالي 11:00 ص (ظهراً وعصراً (12ظ-6م))",
       "platforms": {
@@ -24943,31 +24799,283 @@
           "url": "https://codeforces.com/profile/PG_Gamal_Kobisy",
           "extra": "Rating: 1572 (specialist)",
           "is_online": false,
-          "last_seen_str": "منذ 12 س",
-          "last_seen_ms": 1792705670000,
-          "acAll": 90,
+          "last_seen_str": "منذ 3 س",
+          "last_seen_ms": 1792756220000,
+          "acAll": 95,
           "attAll": 200,
           "today": {
-            "solved": 0,
-            "subs": 0,
-            "time_str": "5 دقيقة",
-            "time_minutes": 5
+            "solved": 12,
+            "subs": 13,
+            "time_str": "1 س و 25 د",
+            "time_minutes": 85
           },
           "week": {
-            "solved": 1,
-            "subs": 10,
-            "time_str": "1 س و 57 د",
-            "time_minutes": 117
+            "solved": 13,
+            "subs": 23,
+            "time_str": "3 س و 17 د",
+            "time_minutes": 197
           },
           "month": {
-            "solved": 30,
-            "subs": 58,
-            "time_str": "8 س و 1 د",
-            "time_minutes": 481
+            "solved": 42,
+            "subs": 71,
+            "time_str": "9 س و 21 د",
+            "time_minutes": 561
           }
         }
       },
       "sessions": [
+        {
+          "date_iso": "2026-10-23",
+          "month_iso": "2026-10",
+          "date_str": "الجمعة 23 أكتوبر 2026",
+          "start_str": "02:16 م",
+          "end_str": "02:50 م",
+          "start_ms": 1792754180000,
+          "end_ms": 1792756220000,
+          "duration_minutes": 34,
+          "duration_str": "34 دقيقة (اتصال متواصل)",
+          "submissions_count": 3,
+          "accepted_count": 2,
+          "pings_count": 0,
+          "problem_points": 560,
+          "score": 624,
+          "problems": [
+            "105242B",
+            "1679C"
+          ],
+          "platform_breakdown": {
+            "Codeforces": {
+              "duration_minutes": 34,
+              "duration_str": "34 دقيقة",
+              "subs_count": 3,
+              "ac_count": 2,
+              "pings_count": 0
+            }
+          },
+          "timeline": [
+            {
+              "time": 1792756220000,
+              "time_str": "02:50:20 م",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "1679C",
+              "problemName": "1679C - Rooks Defenders",
+              "problemUrl": "https://codeforces.com/contest/1679/problem/C",
+              "status": "Accepted",
+              "is_ac": true,
+              "difficulty": 1400,
+              "diff_tier": "🟠 فوق المتوسط",
+              "prob_points": 280
+            },
+            {
+              "time": 1792756065000,
+              "time_str": "02:47:45 م",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "1679C",
+              "problemName": "1679C - Rooks Defenders",
+              "problemUrl": "https://codeforces.com/contest/1679/problem/C",
+              "status": "Wrong Answer",
+              "is_ac": false,
+              "difficulty": 1400,
+              "diff_tier": "🟠 فوق المتوسط",
+              "prob_points": 280
+            },
+            {
+              "time": 1792755080000,
+              "time_str": "02:31:20 م",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "105242B",
+              "problemName": "105242B - Tree Tour",
+              "problemUrl": "https://codeforces.com/contest/105242/problem/B",
+              "status": "Accepted",
+              "is_ac": true,
+              "difficulty": 1400,
+              "diff_tier": "🟠 فوق المتوسط",
+              "prob_points": 280
+            }
+          ]
+        },
+        {
+          "date_iso": "2026-10-23",
+          "month_iso": "2026-10",
+          "date_str": "الجمعة 23 أكتوبر 2026",
+          "start_str": "01:13 م",
+          "end_str": "01:59 م",
+          "start_ms": 1792750428000,
+          "end_ms": 1792753189000,
+          "duration_minutes": 46,
+          "duration_str": "46 دقيقة (اتصال متواصل)",
+          "submissions_count": 10,
+          "accepted_count": 10,
+          "pings_count": 0,
+          "problem_points": 3015,
+          "score": 3126,
+          "problems": [
+            "1872E",
+            "1955E",
+            "1473D",
+            "961B",
+            "296C",
+            "363B",
+            "816B",
+            "433B",
+            "313B",
+            "466C"
+          ],
+          "platform_breakdown": {
+            "Codeforces": {
+              "duration_minutes": 46,
+              "duration_str": "46 دقيقة",
+              "subs_count": 10,
+              "ac_count": 10,
+              "pings_count": 0
+            }
+          },
+          "timeline": [
+            {
+              "time": 1792753189000,
+              "time_str": "01:59:49 م",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "466C",
+              "problemName": "466C - Number of Ways",
+              "problemUrl": "https://codeforces.com/contest/466/problem/C",
+              "status": "Accepted",
+              "is_ac": true,
+              "difficulty": 1700,
+              "diff_tier": "🔴 صعب",
+              "prob_points": 470
+            },
+            {
+              "time": 1792751582000,
+              "time_str": "01:33:02 م",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "313B",
+              "problemName": "313B - Ilya and Queries",
+              "problemUrl": "https://codeforces.com/contest/313/problem/B",
+              "status": "Accepted",
+              "is_ac": true,
+              "difficulty": 1100,
+              "diff_tier": "🔵 فوق المبتدئ",
+              "prob_points": 160
+            },
+            {
+              "time": 1792751530000,
+              "time_str": "01:32:10 م",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "433B",
+              "problemName": "433B - Kuriyama Mirai's Stones",
+              "problemUrl": "https://codeforces.com/contest/433/problem/B",
+              "status": "Accepted",
+              "is_ac": true,
+              "difficulty": 1200,
+              "diff_tier": "🟣 متوسط",
+              "prob_points": 195
+            },
+            {
+              "time": 1792751515000,
+              "time_str": "01:31:55 م",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "816B",
+              "problemName": "816B - Karen and Coffee",
+              "problemUrl": "https://codeforces.com/contest/816/problem/B",
+              "status": "Accepted",
+              "is_ac": true,
+              "difficulty": 1400,
+              "diff_tier": "🟠 فوق المتوسط",
+              "prob_points": 280
+            },
+            {
+              "time": 1792751497000,
+              "time_str": "01:31:37 م",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "363B",
+              "problemName": "363B - Fence",
+              "problemUrl": "https://codeforces.com/contest/363/problem/B",
+              "status": "Accepted",
+              "is_ac": true,
+              "difficulty": 1100,
+              "diff_tier": "🔵 فوق المبتدئ",
+              "prob_points": 160
+            },
+            {
+              "time": 1792751477000,
+              "time_str": "01:31:17 م",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "296C",
+              "problemName": "296C - Greg and Array",
+              "problemUrl": "https://codeforces.com/contest/296/problem/C",
+              "status": "Accepted",
+              "is_ac": true,
+              "difficulty": 1400,
+              "diff_tier": "🟠 فوق المتوسط",
+              "prob_points": 280
+            },
+            {
+              "time": 1792751463000,
+              "time_str": "01:31:03 م",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "961B",
+              "problemName": "961B - Lecture Sleep",
+              "problemUrl": "https://codeforces.com/contest/961/problem/B",
+              "status": "Accepted",
+              "is_ac": true,
+              "difficulty": 1200,
+              "diff_tier": "🟣 متوسط",
+              "prob_points": 195
+            },
+            {
+              "time": 1792751442000,
+              "time_str": "01:30:42 م",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "1473D",
+              "problemName": "1473D - Program",
+              "problemUrl": "https://codeforces.com/contest/1473/problem/D",
+              "status": "Accepted",
+              "is_ac": true,
+              "difficulty": 1700,
+              "diff_tier": "🔴 صعب",
+              "prob_points": 470
+            },
+            {
+              "time": 1792751360000,
+              "time_str": "01:29:20 م",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "1955E",
+              "problemName": "1955E - Long Inversions",
+              "problemUrl": "https://codeforces.com/contest/1955/problem/E",
+              "status": "Accepted",
+              "is_ac": true,
+              "difficulty": 1700,
+              "diff_tier": "🔴 صعب",
+              "prob_points": 470
+            },
+            {
+              "time": 1792751328000,
+              "time_str": "01:28:48 م",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "1872E",
+              "problemName": "1872E - Data Structures Fan",
+              "problemUrl": "https://codeforces.com/contest/1872/problem/E",
+              "status": "Accepted",
+              "is_ac": true,
+              "difficulty": 1500,
+              "diff_tier": "🟠 فوق المتوسط",
+              "prob_points": 335
+            }
+          ]
+        },
         {
           "date_iso": "2026-10-23",
           "month_iso": "2026-10",
@@ -28003,109 +28111,6 @@
               "prob_points": 1020
             }
           ]
-        },
-        {
-          "date_iso": "2026-08-17",
-          "month_iso": "2026-08",
-          "date_str": "الإثنين 17 أغسطس 2026",
-          "start_str": "01:16 م",
-          "end_str": "01:44 م",
-          "start_ms": 1786961763000,
-          "end_ms": 1786963466000,
-          "duration_minutes": 28,
-          "duration_str": "28 دقيقة (اتصال متواصل)",
-          "submissions_count": 2,
-          "accepted_count": 2,
-          "pings_count": 0,
-          "problem_points": 2040,
-          "score": 2093,
-          "problems": [
-            "102644G",
-            "102644H"
-          ],
-          "platform_breakdown": {
-            "Codeforces": {
-              "duration_minutes": 28,
-              "duration_str": "28 دقيقة",
-              "subs_count": 2,
-              "ac_count": 2,
-              "pings_count": 0
-            }
-          },
-          "timeline": [
-            {
-              "time": 1786963466000,
-              "time_str": "01:44:26 م",
-              "platform": "Codeforces",
-              "type": "submission",
-              "probNum": "102644H",
-              "problemName": "102644H - String Mood Updates",
-              "problemUrl": "https://codeforces.com/contest/102644/problem/H",
-              "status": "Accepted",
-              "is_ac": true,
-              "difficulty": 2300,
-              "diff_tier": "👑 ماستر",
-              "prob_points": 1020
-            },
-            {
-              "time": 1786962663000,
-              "time_str": "01:31:03 م",
-              "platform": "Codeforces",
-              "type": "submission",
-              "probNum": "102644G",
-              "problemName": "102644G - Recurrence With Square",
-              "problemUrl": "https://codeforces.com/contest/102644/problem/G",
-              "status": "Accepted",
-              "is_ac": true,
-              "difficulty": 2300,
-              "diff_tier": "👑 ماستر",
-              "prob_points": 1020
-            }
-          ]
-        },
-        {
-          "date_iso": "2026-08-17",
-          "month_iso": "2026-08",
-          "date_str": "الإثنين 17 أغسطس 2026",
-          "start_str": "12:33 م",
-          "end_str": "12:48 م",
-          "start_ms": 1786959195000,
-          "end_ms": 1786960095000,
-          "duration_minutes": 15,
-          "duration_str": "15 دقيقة (اتصال متواصل)",
-          "submissions_count": 1,
-          "accepted_count": 1,
-          "pings_count": 0,
-          "problem_points": 960,
-          "score": 995,
-          "problems": [
-            "102644F"
-          ],
-          "platform_breakdown": {
-            "Codeforces": {
-              "duration_minutes": 15,
-              "duration_str": "15 دقيقة",
-              "subs_count": 1,
-              "ac_count": 1,
-              "pings_count": 0
-            }
-          },
-          "timeline": [
-            {
-              "time": 1786960095000,
-              "time_str": "12:48:15 م",
-              "platform": "Codeforces",
-              "type": "submission",
-              "probNum": "102644F",
-              "problemName": "102644F - Min Path",
-              "problemUrl": "https://codeforces.com/contest/102644/problem/F",
-              "status": "Accepted",
-              "is_ac": true,
-              "difficulty": 2200,
-              "diff_tier": "👑 ماستر",
-              "prob_points": 960
-            }
-          ]
         }
       ]
     },
@@ -28121,48 +28126,48 @@
       "avatar": "https://cn.cravatar.com/avatar/695422926fd522b3c73a6ac28362396c?d=monsterid",
       "is_active_now": false,
       "active_platforms_now": [],
-      "last_seen_str": "منذ 6 ساعة (07:06 ص)",
-      "last_seen_ms": 1792728401000,
+      "last_seen_str": "منذ 4 ساعة (01:46 م)",
+      "last_seen_ms": 1792752400000,
       "last_problem_str": "[Codeforces] 👁️ فاتح كود فورسز (متصل أونلاين) (Online)",
       "all_time_ac": 524,
-      "all_time_score": 362217,
+      "all_time_score": 362237,
       "avg_difficulty": 1897,
       "max_difficulty": 3500,
       "today": {
         "solved": 0,
         "subs": 0,
-        "time_minutes": 5,
-        "time_str": "5 دقيقة",
-        "sessions": 1,
+        "time_minutes": 10,
+        "time_str": "10 دقيقة",
+        "sessions": 2,
         "problem_points": 0,
         "avg_difficulty": 0,
         "max_difficulty": 0,
         "hardest_problem": "—",
-        "score": 20
+        "score": 40
       },
       "week": {
         "solved": 12,
         "subs": 12,
-        "time_minutes": 188,
-        "time_str": "3 س و 8 د",
-        "sessions": 15,
+        "time_minutes": 193,
+        "time_str": "3 س و 13 د",
+        "sessions": 16,
         "problem_points": 9765,
         "avg_difficulty": 2050,
         "max_difficulty": 2900,
         "hardest_problem": "932G - Palindrome Partition (2900)",
-        "score": 10238
+        "score": 10258
       },
       "month": {
         "solved": 33,
         "subs": 42,
-        "time_minutes": 468,
-        "time_str": "7 س و 48 د",
-        "sessions": 22,
+        "time_minutes": 473,
+        "time_str": "7 س و 53 د",
+        "sessions": 23,
         "problem_points": 21375,
         "avg_difficulty": 1830,
         "max_difficulty": 2900,
         "hardest_problem": "932G - Palindrome Partition (2900)",
-        "score": 22383
+        "score": 22403
       },
       "peak_hours_str": "الذروة حوالي 10:00 م (فجر / ليل متأخر (12ص-6ص))",
       "platforms": {
@@ -28201,31 +28206,73 @@
           "url": "https://codeforces.com/profile/4aii_Blabn",
           "extra": "Rating: 1908 (candidate master)",
           "is_online": false,
-          "last_seen_str": "منذ 6 س",
-          "last_seen_ms": 1792728401000,
+          "last_seen_str": "منذ 4 س",
+          "last_seen_ms": 1792752400000,
           "acAll": 120,
           "attAll": 200,
           "today": {
             "solved": 0,
             "subs": 0,
-            "time_str": "5 دقيقة",
-            "time_minutes": 5
+            "time_str": "10 دقيقة",
+            "time_minutes": 10
           },
           "week": {
             "solved": 12,
             "subs": 12,
-            "time_str": "3 س و 8 د",
-            "time_minutes": 188
+            "time_str": "3 س و 13 د",
+            "time_minutes": 193
           },
           "month": {
             "solved": 33,
             "subs": 43,
-            "time_str": "7 س و 48 د",
-            "time_minutes": 468
+            "time_str": "7 س و 53 د",
+            "time_minutes": 473
           }
         }
       },
       "sessions": [
+        {
+          "date_iso": "2026-10-23",
+          "month_iso": "2026-10",
+          "date_str": "الجمعة 23 أكتوبر 2026",
+          "start_str": "01:41 م",
+          "end_str": "01:46 م",
+          "start_ms": 1792752100000,
+          "end_ms": 1792752400000,
+          "duration_minutes": 5,
+          "duration_str": "5 دقيقة (فتح وتصفح المنصة)",
+          "submissions_count": 0,
+          "accepted_count": 0,
+          "pings_count": 1,
+          "problem_points": 0,
+          "score": 20,
+          "problems": [],
+          "platform_breakdown": {
+            "Codeforces": {
+              "duration_minutes": 5,
+              "duration_str": "5 دقيقة",
+              "subs_count": 0,
+              "ac_count": 0,
+              "pings_count": 1
+            }
+          },
+          "timeline": [
+            {
+              "time": 1792752400000,
+              "time_str": "01:46:40 م",
+              "platform": "Codeforces",
+              "type": "online_ping",
+              "probNum": "تصفح المنصة",
+              "problemName": "👁️ فاتح كود فورسز (متصل أونلاين)",
+              "problemUrl": "https://codeforces.com/profile/4aii_Blabn",
+              "status": "Online",
+              "is_ac": false,
+              "difficulty": 0,
+              "diff_tier": "",
+              "prob_points": 0
+            }
+          ]
+        },
         {
           "date_iso": "2026-10-23",
           "month_iso": "2026-10",
@@ -31014,65 +31061,6 @@
               "prob_points": 960
             }
           ]
-        },
-        {
-          "date_iso": "2026-08-05",
-          "month_iso": "2026-08",
-          "date_str": "الأربعاء 5 أغسطس 2026",
-          "start_str": "01:22 م",
-          "end_str": "01:44 م",
-          "start_ms": 1785925354000,
-          "end_ms": 1785926683000,
-          "duration_minutes": 22,
-          "duration_str": "22 دقيقة (اتصال متواصل)",
-          "submissions_count": 2,
-          "accepted_count": 2,
-          "pings_count": 0,
-          "problem_points": 2040,
-          "score": 2087,
-          "problems": [
-            "103388J",
-            "105925G"
-          ],
-          "platform_breakdown": {
-            "Codeforces": {
-              "duration_minutes": 22,
-              "duration_str": "22 دقيقة",
-              "subs_count": 2,
-              "ac_count": 2,
-              "pings_count": 0
-            }
-          },
-          "timeline": [
-            {
-              "time": 1785926683000,
-              "time_str": "01:44:43 م",
-              "platform": "Codeforces",
-              "type": "submission",
-              "probNum": "105925G",
-              "problemName": "105925G - Grover and His Special Paths",
-              "problemUrl": "https://codeforces.com/contest/105925/problem/G",
-              "status": "Accepted",
-              "is_ac": true,
-              "difficulty": 2300,
-              "diff_tier": "👑 ماستر",
-              "prob_points": 1020
-            },
-            {
-              "time": 1785926254000,
-              "time_str": "01:37:34 م",
-              "platform": "Codeforces",
-              "type": "submission",
-              "probNum": "103388J",
-              "problemName": "103388J - Just Bootfall",
-              "problemUrl": "https://codeforces.com/contest/103388/problem/J",
-              "status": "Accepted",
-              "is_ac": true,
-              "difficulty": 2300,
-              "diff_tier": "👑 ماستر",
-              "prob_points": 1020
-            }
-          ]
         }
       ]
     },
@@ -31197,7 +31185,7 @@
           "url": "https://atcoder.jp/users/seiflashin",
           "extra": "",
           "is_online": false,
-          "last_seen_str": "منذ 1 يوم",
+          "last_seen_str": "منذ 2 يوم",
           "last_seen_ms": 1792595845000,
           "acAll": 100,
           "attAll": 200,
@@ -33802,50 +33790,52 @@
         "cses": ""
       },
       "avatar": "https://cdn.vjudge.net.cn/user/avatar/806663?v=1773428288",
-      "is_active_now": false,
-      "active_platforms_now": [],
-      "last_seen_str": "منذ 1 ساعة (11:33 ص)",
-      "last_seen_ms": 1792744389000,
-      "last_problem_str": "[Codeforces] 433B - Kuriyama Mirai's Stones (Accepted)",
-      "all_time_ac": 619,
-      "all_time_score": 312004,
-      "avg_difficulty": 1624,
+      "is_active_now": true,
+      "active_platforms_now": [
+        "VJudge"
+      ],
+      "last_seen_str": "منذ 29 دقيقة (05:51 م)",
+      "last_seen_ms": 1792767102000,
+      "last_problem_str": "[VJudge] CSES 2165 (Wrong answer)",
+      "all_time_ac": 622,
+      "all_time_score": 301376,
+      "avg_difficulty": 1597,
       "max_difficulty": 2900,
       "today": {
-        "solved": 2,
-        "subs": 3,
-        "time_minutes": 29,
-        "time_str": "29 دقيقة",
-        "sessions": 1,
-        "problem_points": 355,
-        "avg_difficulty": 1150,
-        "max_difficulty": 1200,
-        "hardest_problem": "433B - Kuriyama Mirai's Stones (1200)",
-        "score": 414
+        "solved": 7,
+        "subs": 10,
+        "time_minutes": 120,
+        "time_str": "2 ساعة",
+        "sessions": 5,
+        "problem_points": 1495,
+        "avg_difficulty": 1214,
+        "max_difficulty": 1500,
+        "hardest_problem": "670D2 - Magic Powder - 2 (1500)",
+        "score": 1740
       },
       "week": {
-        "solved": 6,
-        "subs": 8,
-        "time_minutes": 101,
-        "time_str": "1 س و 41 د",
-        "sessions": 7,
-        "problem_points": 925,
-        "avg_difficulty": 1050,
-        "max_difficulty": 1400,
-        "hardest_problem": "1468C - Berpizza (1400)",
-        "score": 1171
+        "solved": 9,
+        "subs": 13,
+        "time_minutes": 162,
+        "time_str": "2 س و 42 د",
+        "sessions": 9,
+        "problem_points": 1905,
+        "avg_difficulty": 1211,
+        "max_difficulty": 1500,
+        "hardest_problem": "670D2 - Magic Powder - 2 (1500)",
+        "score": 2267
       },
       "month": {
-        "solved": 12,
-        "subs": 15,
-        "time_minutes": 200,
-        "time_str": "3 س و 20 د",
-        "sessions": 11,
-        "problem_points": 1730,
-        "avg_difficulty": 1025,
-        "max_difficulty": 1400,
-        "hardest_problem": "1468C - Berpizza (1400)",
-        "score": 2170
+        "solved": 17,
+        "subs": 22,
+        "time_minutes": 291,
+        "time_str": "4 س و 51 د",
+        "sessions": 15,
+        "problem_points": 2870,
+        "avg_difficulty": 1088,
+        "max_difficulty": 1500,
+        "hardest_problem": "670D2 - Magic Powder - 2 (1500)",
+        "score": 3496
       },
       "peak_hours_str": "الذروة حوالي 08:00 م (مساءً (6م-12ص))",
       "platforms": {
@@ -33854,28 +33844,28 @@
           "handle": "youssef_97",
           "url": "https://vjudge.net/user/youssef_97",
           "extra": "",
-          "is_online": false,
-          "last_seen_str": "منذ 11 يوم",
-          "last_seen_ms": 1791800339000,
+          "is_online": true,
+          "last_seen_str": "منذ 29 د",
+          "last_seen_ms": 1792767102000,
           "acAll": 563,
-          "attAll": 570,
+          "attAll": 571,
           "today": {
             "solved": 0,
-            "subs": 0,
-            "time_str": "0 دقيقة",
-            "time_minutes": 0
+            "subs": 1,
+            "time_str": "15 دقيقة",
+            "time_minutes": 15
           },
           "week": {
             "solved": 0,
-            "subs": 0,
-            "time_str": "0 دقيقة",
-            "time_minutes": 0
+            "subs": 1,
+            "time_str": "15 دقيقة",
+            "time_minutes": 15
           },
           "month": {
             "solved": 4,
-            "subs": 4,
-            "time_str": "1 س و 2 د",
-            "time_minutes": 62
+            "subs": 5,
+            "time_str": "1 س و 17 د",
+            "time_minutes": 77
           }
         },
         "Codeforces": {
@@ -33885,30 +33875,250 @@
           "extra": "Rating: 1476 (specialist)",
           "is_online": false,
           "last_seen_str": "منذ 1 س",
-          "last_seen_ms": 1792744389000,
-          "acAll": 82,
+          "last_seen_ms": 1792762241000,
+          "acAll": 85,
           "attAll": 200,
           "today": {
-            "solved": 2,
-            "subs": 4,
-            "time_str": "29 دقيقة",
-            "time_minutes": 29
+            "solved": 7,
+            "subs": 11,
+            "time_str": "1 س و 45 د",
+            "time_minutes": 105
           },
           "week": {
-            "solved": 6,
-            "subs": 10,
-            "time_str": "1 س و 42 د",
-            "time_minutes": 102
+            "solved": 9,
+            "subs": 15,
+            "time_str": "2 س و 28 د",
+            "time_minutes": 148
           },
           "month": {
-            "solved": 10,
-            "subs": 15,
-            "time_str": "2 س و 51 د",
-            "time_minutes": 171
+            "solved": 15,
+            "subs": 22,
+            "time_str": "4 س و 7 د",
+            "time_minutes": 247
           }
         }
       },
       "sessions": [
+        {
+          "date_iso": "2026-10-23",
+          "month_iso": "2026-10",
+          "date_str": "الجمعة 23 أكتوبر 2026",
+          "start_str": "05:36 م",
+          "end_str": "05:51 م",
+          "start_ms": 1792766202000,
+          "end_ms": 1792767102000,
+          "duration_minutes": 15,
+          "duration_str": "15 دقيقة (اتصال متواصل)",
+          "submissions_count": 1,
+          "accepted_count": 0,
+          "pings_count": 0,
+          "problem_points": 0,
+          "score": 35,
+          "problems": [
+            "2165"
+          ],
+          "platform_breakdown": {
+            "VJudge": {
+              "duration_minutes": 15,
+              "duration_str": "15 دقيقة",
+              "subs_count": 1,
+              "ac_count": 0,
+              "pings_count": 0
+            }
+          },
+          "timeline": [
+            {
+              "time": 1792767102000,
+              "time_str": "05:51:42 م",
+              "platform": "VJudge",
+              "type": "submission",
+              "probNum": "2165",
+              "problemName": "CSES 2165",
+              "problemUrl": "https://vjudge.net/problem/CSES-2165",
+              "status": "Wrong answer",
+              "is_ac": false,
+              "difficulty": 1400,
+              "diff_tier": "🟠 فوق المتوسط",
+              "prob_points": 280
+            }
+          ]
+        },
+        {
+          "date_iso": "2026-10-23",
+          "month_iso": "2026-10",
+          "date_str": "الجمعة 23 أكتوبر 2026",
+          "start_str": "04:06 م",
+          "end_str": "04:30 م",
+          "start_ms": 1792760778000,
+          "end_ms": 1792762241000,
+          "duration_minutes": 24,
+          "duration_str": "24 دقيقة (اتصال متواصل)",
+          "submissions_count": 2,
+          "accepted_count": 2,
+          "pings_count": 0,
+          "problem_points": 530,
+          "score": 579,
+          "problems": [
+            "670D2",
+            "1097B"
+          ],
+          "platform_breakdown": {
+            "Codeforces": {
+              "duration_minutes": 24,
+              "duration_str": "24 دقيقة",
+              "subs_count": 2,
+              "ac_count": 2,
+              "pings_count": 0
+            }
+          },
+          "timeline": [
+            {
+              "time": 1792762241000,
+              "time_str": "04:30:41 م",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "1097B",
+              "problemName": "1097B - Petr and a Combination Lock",
+              "problemUrl": "https://codeforces.com/contest/1097/problem/B",
+              "status": "Accepted",
+              "is_ac": true,
+              "difficulty": 1200,
+              "diff_tier": "🟣 متوسط",
+              "prob_points": 195
+            },
+            {
+              "time": 1792761678000,
+              "time_str": "04:21:18 م",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "670D2",
+              "problemName": "670D2 - Magic Powder - 2",
+              "problemUrl": "https://codeforces.com/contest/670/problem/D2",
+              "status": "Accepted",
+              "is_ac": true,
+              "difficulty": 1500,
+              "diff_tier": "🟠 فوق المتوسط",
+              "prob_points": 335
+            }
+          ]
+        },
+        {
+          "date_iso": "2026-10-23",
+          "month_iso": "2026-10",
+          "date_str": "الجمعة 23 أكتوبر 2026",
+          "start_str": "03:11 م",
+          "end_str": "03:48 م",
+          "start_ms": 1792757483000,
+          "end_ms": 1792759724000,
+          "duration_minutes": 37,
+          "duration_str": "37 دقيقة (اتصال متواصل)",
+          "submissions_count": 3,
+          "accepted_count": 2,
+          "pings_count": 0,
+          "problem_points": 530,
+          "score": 597,
+          "problems": [
+            "474B",
+            "165B"
+          ],
+          "platform_breakdown": {
+            "Codeforces": {
+              "duration_minutes": 37,
+              "duration_str": "37 دقيقة",
+              "subs_count": 3,
+              "ac_count": 2,
+              "pings_count": 0
+            }
+          },
+          "timeline": [
+            {
+              "time": 1792759724000,
+              "time_str": "03:48:44 م",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "165B",
+              "problemName": "165B - Burning Midnight Oil",
+              "problemUrl": "https://codeforces.com/contest/165/problem/B",
+              "status": "Accepted",
+              "is_ac": true,
+              "difficulty": 1500,
+              "diff_tier": "🟠 فوق المتوسط",
+              "prob_points": 335
+            },
+            {
+              "time": 1792758979000,
+              "time_str": "03:36:19 م",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "474B",
+              "problemName": "474B - Worms",
+              "problemUrl": "https://codeforces.com/contest/474/problem/B",
+              "status": "Accepted",
+              "is_ac": true,
+              "difficulty": 1200,
+              "diff_tier": "🟣 متوسط",
+              "prob_points": 195
+            },
+            {
+              "time": 1792758383000,
+              "time_str": "03:26:23 م",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "474B",
+              "problemName": "474B - Worms",
+              "problemUrl": "https://codeforces.com/contest/474/problem/B",
+              "status": "Wrong Answer",
+              "is_ac": false,
+              "difficulty": 1200,
+              "diff_tier": "🟣 متوسط",
+              "prob_points": 195
+            }
+          ]
+        },
+        {
+          "date_iso": "2026-10-23",
+          "month_iso": "2026-10",
+          "date_str": "الجمعة 23 أكتوبر 2026",
+          "start_str": "02:36 م",
+          "end_str": "02:51 م",
+          "start_ms": 1792755392000,
+          "end_ms": 1792756292000,
+          "duration_minutes": 15,
+          "duration_str": "15 دقيقة (اتصال متواصل)",
+          "submissions_count": 1,
+          "accepted_count": 1,
+          "pings_count": 0,
+          "problem_points": 80,
+          "score": 115,
+          "problems": [
+            "1805A"
+          ],
+          "platform_breakdown": {
+            "Codeforces": {
+              "duration_minutes": 15,
+              "duration_str": "15 دقيقة",
+              "subs_count": 1,
+              "ac_count": 1,
+              "pings_count": 0
+            }
+          },
+          "timeline": [
+            {
+              "time": 1792756292000,
+              "time_str": "02:51:32 م",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "1805A",
+              "problemName": "1805A - We Need the Zero",
+              "problemUrl": "https://codeforces.com/contest/1805/problem/A",
+              "status": "Accepted",
+              "is_ac": true,
+              "difficulty": 800,
+              "diff_tier": "🟢 سهل",
+              "prob_points": 80
+            }
+          ]
+        },
         {
           "date_iso": "2026-10-23",
           "month_iso": "2026-10",
@@ -36505,268 +36715,6 @@
               "difficulty": 2400,
               "diff_tier": "👑 ماستر",
               "prob_points": 1080
-            }
-          ]
-        },
-        {
-          "date_iso": "2026-08-07",
-          "month_iso": "2026-08",
-          "date_str": "الجمعة 7 أغسطس 2026",
-          "start_str": "04:31 م",
-          "end_str": "04:46 م",
-          "start_ms": 1786109468000,
-          "end_ms": 1786110368000,
-          "duration_minutes": 15,
-          "duration_str": "15 دقيقة (اتصال متواصل)",
-          "submissions_count": 1,
-          "accepted_count": 1,
-          "pings_count": 0,
-          "problem_points": 470,
-          "score": 505,
-          "problems": [
-            "295B"
-          ],
-          "platform_breakdown": {
-            "Codeforces": {
-              "duration_minutes": 15,
-              "duration_str": "15 دقيقة",
-              "subs_count": 1,
-              "ac_count": 1,
-              "pings_count": 0
-            }
-          },
-          "timeline": [
-            {
-              "time": 1786110368000,
-              "time_str": "04:46:08 م",
-              "platform": "Codeforces",
-              "type": "submission",
-              "probNum": "295B",
-              "problemName": "295B - Greg and Graph",
-              "problemUrl": "https://codeforces.com/contest/295/problem/B",
-              "status": "Accepted",
-              "is_ac": true,
-              "difficulty": 1700,
-              "diff_tier": "🔴 صعب",
-              "prob_points": 470
-            }
-          ]
-        },
-        {
-          "date_iso": "2026-08-06",
-          "month_iso": "2026-08",
-          "date_str": "الخميس 6 أغسطس 2026",
-          "start_str": "08:28 م",
-          "end_str": "08:43 م",
-          "start_ms": 1786037315000,
-          "end_ms": 1786038215000,
-          "duration_minutes": 15,
-          "duration_str": "15 دقيقة (اتصال متواصل)",
-          "submissions_count": 1,
-          "accepted_count": 1,
-          "pings_count": 0,
-          "problem_points": 235,
-          "score": 270,
-          "problems": [
-            "12176"
-          ],
-          "platform_breakdown": {
-            "VJudge": {
-              "duration_minutes": 15,
-              "duration_str": "15 دقيقة",
-              "subs_count": 1,
-              "ac_count": 1,
-              "pings_count": 0
-            }
-          },
-          "timeline": [
-            {
-              "time": 1786038215000,
-              "time_str": "08:43:35 م",
-              "platform": "VJudge",
-              "type": "submission",
-              "probNum": "12176",
-              "problemName": "UVA 12176",
-              "problemUrl": "https://vjudge.net/problem/UVA-12176",
-              "status": "Accepted",
-              "is_ac": true,
-              "difficulty": 1350,
-              "diff_tier": "🟣 متوسط",
-              "prob_points": 235
-            }
-          ]
-        },
-        {
-          "date_iso": "2026-08-06",
-          "month_iso": "2026-08",
-          "date_str": "الخميس 6 أغسطس 2026",
-          "start_str": "07:58 م",
-          "end_str": "08:13 م",
-          "start_ms": 1786035503000,
-          "end_ms": 1786036403000,
-          "duration_minutes": 15,
-          "duration_str": "15 دقيقة (اتصال متواصل)",
-          "submissions_count": 1,
-          "accepted_count": 1,
-          "pings_count": 0,
-          "problem_points": 195,
-          "score": 230,
-          "problems": [
-            "ICL16A"
-          ],
-          "platform_breakdown": {
-            "VJudge": {
-              "duration_minutes": 15,
-              "duration_str": "15 دقيقة",
-              "subs_count": 1,
-              "ac_count": 1,
-              "pings_count": 0
-            }
-          },
-          "timeline": [
-            {
-              "time": 1786036403000,
-              "time_str": "08:13:23 م",
-              "platform": "VJudge",
-              "type": "submission",
-              "probNum": "ICL16A",
-              "problemName": "CodeChef ICL16A",
-              "problemUrl": "https://vjudge.net/problem/CodeChef-ICL16A",
-              "status": "Accepted",
-              "is_ac": true,
-              "difficulty": 1200,
-              "diff_tier": "🟣 متوسط",
-              "prob_points": 195
-            }
-          ]
-        },
-        {
-          "date_iso": "2026-08-06",
-          "month_iso": "2026-08",
-          "date_str": "الخميس 6 أغسطس 2026",
-          "start_str": "05:56 م",
-          "end_str": "07:33 م",
-          "start_ms": 1786028163000,
-          "end_ms": 1786033997000,
-          "duration_minutes": 97,
-          "duration_str": "1 س و 37 د (اتصال متواصل)",
-          "submissions_count": 7,
-          "accepted_count": 4,
-          "pings_count": 0,
-          "problem_points": 755,
-          "score": 902,
-          "problems": [
-            "1675",
-            "3407",
-            "ICL16A"
-          ],
-          "platform_breakdown": {
-            "VJudge": {
-              "duration_minutes": 97,
-              "duration_str": "1 س و 37 د",
-              "subs_count": 7,
-              "ac_count": 4,
-              "pings_count": 0
-            }
-          },
-          "timeline": [
-            {
-              "time": 1786033997000,
-              "time_str": "07:33:17 م",
-              "platform": "VJudge",
-              "type": "submission",
-              "probNum": "ICL16A",
-              "problemName": "CodeChef ICL16A",
-              "problemUrl": "https://vjudge.net/problem/CodeChef-ICL16A",
-              "status": "Accepted",
-              "is_ac": true,
-              "difficulty": 1200,
-              "diff_tier": "🟣 متوسط",
-              "prob_points": 195
-            },
-            {
-              "time": 1786033060000,
-              "time_str": "07:17:40 م",
-              "platform": "VJudge",
-              "type": "submission",
-              "probNum": "ICL16A",
-              "problemName": "CodeChef ICL16A",
-              "problemUrl": "https://vjudge.net/problem/CodeChef-ICL16A",
-              "status": "Wrong Answer",
-              "is_ac": false,
-              "difficulty": 1200,
-              "diff_tier": "🟣 متوسط",
-              "prob_points": 195
-            },
-            {
-              "time": 1786032733000,
-              "time_str": "07:12:13 م",
-              "platform": "VJudge",
-              "type": "submission",
-              "probNum": "ICL16A",
-              "problemName": "CodeChef ICL16A",
-              "problemUrl": "https://vjudge.net/problem/CodeChef-ICL16A",
-              "status": "Wrong Answer",
-              "is_ac": false,
-              "difficulty": 1200,
-              "diff_tier": "🟣 متوسط",
-              "prob_points": 195
-            },
-            {
-              "time": 1786031843000,
-              "time_str": "06:57:23 م",
-              "platform": "VJudge",
-              "type": "submission",
-              "probNum": "3407",
-              "problemName": "CSES 3407",
-              "problemUrl": "https://vjudge.net/problem/CSES-3407",
-              "status": "Accepted",
-              "is_ac": true,
-              "difficulty": 1400,
-              "diff_tier": "🟠 فوق المتوسط",
-              "prob_points": 280
-            },
-            {
-              "time": 1786030249000,
-              "time_str": "06:30:49 م",
-              "platform": "VJudge",
-              "type": "submission",
-              "probNum": "1675",
-              "problemName": "CSES 1675",
-              "problemUrl": "https://vjudge.net/problem/CSES-1675",
-              "status": "Accepted",
-              "is_ac": true,
-              "difficulty": 1400,
-              "diff_tier": "🟠 فوق المتوسط",
-              "prob_points": 280
-            },
-            {
-              "time": 1786029143000,
-              "time_str": "06:12:23 م",
-              "platform": "VJudge",
-              "type": "submission",
-              "probNum": "1675",
-              "problemName": "CSES 1675",
-              "problemUrl": "https://vjudge.net/problem/CSES-1675",
-              "status": "Accepted",
-              "is_ac": true,
-              "difficulty": 1400,
-              "diff_tier": "🟠 فوق المتوسط",
-              "prob_points": 280
-            },
-            {
-              "time": 1786029063000,
-              "time_str": "06:11:03 م",
-              "platform": "VJudge",
-              "type": "submission",
-              "probNum": "1675",
-              "problemName": "CSES 1675",
-              "problemUrl": "https://vjudge.net/problem/CSES-1675",
-              "status": "Wrong answer",
-              "is_ac": false,
-              "difficulty": 1400,
-              "diff_tier": "🟠 فوق المتوسط",
-              "prob_points": 280
             }
           ]
         }
