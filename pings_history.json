@@ -352,6 +352,17 @@
       "problemUrl": "https://codeforces.com/profile/nerdev",
       "status": "Online",
       "is_ac": false
+    },
+    {
+      "id": "ping_cf_1792852441000",
+      "type": "online_ping",
+      "platform": "Codeforces",
+      "time": 1792852441000,
+      "probNum": "تصفح المنصة",
+      "problemName": "👁️ فاتح كود فورسز (متصل أونلاين)",
+      "problemUrl": "https://codeforces.com/profile/nerdev",
+      "status": "Online",
+      "is_ac": false
     }
   ],
   "user_1792498729550": [
@@ -437,6 +448,17 @@
       "type": "online_ping",
       "platform": "Codeforces",
       "time": 1792795822000,
+      "probNum": "تصفح المنصة",
+      "problemName": "👁️ فاتح كود فورسز (متصل أونلاين)",
+      "problemUrl": "https://codeforces.com/profile/Abdelhamid_",
+      "status": "Online",
+      "is_ac": false
+    },
+    {
+      "id": "ping_cf_1792851413000",
+      "type": "online_ping",
+      "platform": "Codeforces",
+      "time": 1792851413000,
       "probNum": "تصفح المنصة",
       "problemName": "👁️ فاتح كود فورسز (متصل أونلاين)",
       "problemUrl": "https://codeforces.com/profile/Abdelhamid_",
@@ -1072,6 +1094,17 @@
       "type": "online_ping",
       "platform": "Codeforces",
       "time": 1792765124000,
+      "probNum": "تصفح المنصة",
+      "problemName": "👁️ فاتح كود فورسز (متصل أونلاين)",
+      "problemUrl": "https://codeforces.com/profile/4aii_Blabn",
+      "status": "Online",
+      "is_ac": false
+    },
+    {
+      "id": "ping_cf_1792860121000",
+      "type": "online_ping",
+      "platform": "Codeforces",
+      "time": 1792860121000,
       "probNum": "تصفح المنصة",
       "problemName": "👁️ فاتح كود فورسز (متصل أونلاين)",
       "problemUrl": "https://codeforces.com/profile/4aii_Blabn",
