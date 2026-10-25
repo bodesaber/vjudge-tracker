@@ -1,22 +1,22 @@
 # 📊 تقرير متابعة نشاط المتدربين الشامل 24/7 (VJudge + Codeforces + AtCoder + CSES)
-**تاريخ التحديث:** الأحد 25 أكتوبر 2026 - 09:57 م (بتوقيت مصر - قاعدة الـ 30 دقيقة للاتصال المتواصل)
+**تاريخ التحديث:** الإثنين 26 أكتوبر 2026 - 12:24 ص (بتوقيت مصر - قاعدة الـ 30 دقيقة للاتصال المتواصل)
 
 ## 🏆 أبطال التدريب (الأعلى نقاطاً):
-- **🥇 بطل اليوم:** **Gamal Megahed** (2085 نقطة — 3 AC، نشط 55 دقيقة)
-- **🔥 بطل الأسبوع (آخر 7 أيام):** **Youssef Saleh** (14970 نقطة — 29 AC، نشط 8 س و 40 د)
-- **👑 بطل الشهر (آخر 30 يوماً):** **Youssef Saleh** (49574 نقطة — 99 AC، نشط 33 س و 29 د)
+- **🥇 بطل اليوم:** **فاطمة الفقي (Fatema)** (480 نقطة — 4 AC، نشط 0 دقيقة)
+- **🔥 بطل الأسبوع (آخر 7 أيام):** **Youssef Saleh** (15667 نقطة — 30 AC، نشط 9 س و 17 د)
+- **👑 بطل الشهر (آخر 30 يوماً):** **Youssef Saleh** (50271 نقطة — 100 AC، نشط 34 س و 6 د)
 
 ## 1. جدول الترتيب والملخص العام (مرتب حسب سكور الأسبوع)
 | الترتيب | المتدرب | الحالة | سكور اليوم | سكور 7 أيام | سكور 30 يوماً | المنصات المربوطة |
 | :---: | :--- | :---: | :---: | :---: | :---: | :--- |
-| **🥇 #1** | **Youssef Saleh** | 🟢 متصل (Codeforces) | **1608 نقطة** (3 AC / 1 س و 33 د) | **14970 نقطة** (29 AC / 8 س و 40 د) | **49574 نقطة** (99 AC / 33 س و 29 د) | VJudge: `Youssef_Saleh` (471 AC), Codeforces: `nerdev` (94 AC), AtCoder: `Nerdev` (61 AC), CSES: `390594` (213 AC) |
-| **🥈 #2** | **Mohab** | 🟢 متصل (Codeforces) | **1273 نقطة** (4 AC / 1 س و 33 د) | **14631 نقطة** (30 AC / 7 س و 36 د) | **16678 نقطة** (41 AC / 10 س و 38 د) | VJudge: `Mo_hab` (381 AC), Codeforces: `Mo_hab` (147 AC), AtCoder: `Mo_hab` (25 AC) |
-| **🥉 #3** | **Abdelhamid** | ⚪ غير متصل | **0 نقطة** (0 AC / 0 دقيقة) | **11572 نقطة** (26 AC / 5 س و 2 د) | **22302 نقطة** (58 AC / 15 س و 22 د) | VJudge: `abdelhamid1` (349 AC), Codeforces: `Abdelhamid_` (95 AC), AtCoder: `Abdelhamid` (54 AC) |
-| **#4** | **Abdelrahman Saber** | ⚪ غير متصل | **20 نقطة** (0 AC / 5 دقيقة) | **10358 نقطة** (12 AC / 3 س و 38 د) | **22503 نقطة** (33 AC / 8 س و 18 د) | VJudge: `4aii_Blabn` (421 AC), Codeforces: `4aii_Blabn` (120 AC) |
-| **#5** | **عمر عوض صابر (Omar)** | ⚪ غير متصل | **60 نقطة** (0 AC / 15 دقيقة) | **7806 نقطة** (9 AC / 3 س و 16 د) | **14937 نقطة** (26 AC / 10 س و 47 د) | VJudge: `Omar_Awad_Saber` (492 AC), Codeforces: `Lumino` (100 AC), AtCoder: `Lumino` (24 AC) |
-| **#6** | **Gamal Megahed** | ⚪ غير متصل | **2085 نقطة** (3 AC / 55 دقيقة) | **6322 نقطة** (16 AC / 4 س و 22 د) | **15228 نقطة** (53 AC / 10 س و 38 د) | VJudge: `gamalmegahed` (757 AC), Codeforces: `PG_Gamal_Kobisy` (97 AC) |
+| **🥇 #1** | **Youssef Saleh** | ⚪ غير متصل | **0 نقطة** (0 AC / 0 دقيقة) | **15667 نقطة** (30 AC / 9 س و 17 د) | **50271 نقطة** (100 AC / 34 س و 6 د) | VJudge: `Youssef_Saleh` (471 AC), Codeforces: `nerdev` (95 AC), AtCoder: `Nerdev` (61 AC), CSES: `390594` (213 AC) |
+| **🥈 #2** | **Mohab** | ⚪ غير متصل | **0 نقطة** (0 AC / 0 دقيقة) | **14631 نقطة** (30 AC / 7 س و 36 د) | **16678 نقطة** (41 AC / 10 س و 38 د) | VJudge: `Mo_hab` (381 AC), Codeforces: `Mo_hab` (147 AC), AtCoder: `Mo_hab` (25 AC) |
+| **🥉 #3** | **Abdelhamid** | ⚪ غير متصل | **0 نقطة** (0 AC / 0 دقيقة) | **11592 نقطة** (26 AC / 5 س و 7 د) | **22322 نقطة** (58 AC / 15 س و 27 د) | VJudge: `abdelhamid1` (349 AC), Codeforces: `Abdelhamid_` (95 AC), AtCoder: `Abdelhamid` (54 AC) |
+| **#4** | **Abdelrahman Saber** | ⚪ غير متصل | **0 نقطة** (0 AC / 0 دقيقة) | **10358 نقطة** (12 AC / 3 س و 38 د) | **22503 نقطة** (33 AC / 8 س و 18 د) | VJudge: `4aii_Blabn` (421 AC), Codeforces: `4aii_Blabn` (120 AC) |
+| **#5** | **عمر عوض صابر (Omar)** | ⚪ غير متصل | **0 نقطة** (0 AC / 0 دقيقة) | **7131 نقطة** (8 AC / 3 س و 1 د) | **14937 نقطة** (26 AC / 10 س و 47 د) | VJudge: `Omar_Awad_Saber` (492 AC), Codeforces: `Lumino` (100 AC), AtCoder: `Lumino` (24 AC) |
+| **#6** | **Gamal Megahed** | ⚪ غير متصل | **0 نقطة** (0 AC / 0 دقيقة) | **6907 نقطة** (17 AC / 4 س و 37 د) | **15813 نقطة** (54 AC / 10 س و 53 د) | VJudge: `gamalmegahed` (757 AC), Codeforces: `PG_Gamal_Kobisy` (97 AC) |
 | **#7** | **youssef** | ⚪ غير متصل | **0 نقطة** (0 AC / 0 دقيقة) | **3845 نقطة** (14 AC / 3 س و 55 د) | **5074 نقطة** (22 AC / 6 س و 4 د) | VJudge: `youssef_97` (569 AC), Codeforces: `youssef97_` (85 AC) |
-| **#8** | **فاطمة الفقي (Fatema)** | ⚪ غير متصل | **1396 نقطة** (5 AC / 1 س و 21 د) | **3312 نقطة** (14 AC / 3 س و 47 د) | **20592 نقطة** (79 AC / 22 س و 22 د) | VJudge: `Fatemaelfiky1` (428 AC), Codeforces: `Zhraa_` (108 AC) |
+| **#8** | **فاطمة الفقي (Fatema)** | ⚪ غير متصل | **480 نقطة** (4 AC / 0 دقيقة) | **3312 نقطة** (14 AC / 3 س و 47 د) | **20592 نقطة** (79 AC / 22 س و 22 د) | VJudge: `Fatemaelfiky1` (428 AC), Codeforces: `Zhraa_` (108 AC) |
 | **#9** | **seif lashin** | ⚪ غير متصل | **0 نقطة** (0 AC / 0 دقيقة) | **1267 نقطة** (2 AC / 1 س و 2 د) | **5221 نقطة** (20 AC / 7 س و 26 د) | VJudge: `seiflashin` (518 AC), Codeforces: `seiflashin` (87 AC), AtCoder: `seiflashin` (100 AC) |
 | **#10** | **esraa** | ⚪ غير متصل | **0 نقطة** (0 AC / 0 دقيقة) | **647 نقطة** (2 AC / 2 س و 12 د) | **13005 نقطة** (43 AC / 20 س و 15 د) | VJudge: `esraa_emary` (301 AC), Codeforces: `esoo` (67 AC) |
 | **#11** | **إسراء عبد الحق (Israa)** | ⚪ غير متصل | **0 نقطة** (0 AC / 0 دقيقة) | **334 نقطة** (1 AC / 29 دقيقة) | **1112 نقطة** (5 AC / 2 س و 57 د) | VJudge: `Israa_abdelhaq` (220 AC), Codeforces: `Isabella_` (98 AC), AtCoder: `Isabella_` (1 AC) |
@@ -103,9 +103,10 @@
 ### 👤 Youssef Saleh
 | التاريخ | من | إلى | مدة النشاط | تفصيل المنصات | المسائل بالتوقيت |
 | :--- | :---: | :---: | :---: | :--- | :--- |
+| الأحد 25 أكتوبر 2026 | 10:55 م | 11:10 م | 15 دقيقة (اتصال متواصل) | **Codeforces**: 15 دقيقة (1 AC) | `11:10:01 م` [Codeforces] 557C - Arthur and Table (**Accepted**) |
 | الأحد 25 أكتوبر 2026 | 09:20 م | 09:51 م | 30 دقيقة (اتصال متواصل) | **Codeforces**: 30 دقيقة (1 AC) | `09:51:09 م` [Codeforces] 439C - Devu and Partitioning of the Array (**Accepted**)<br>`09:38:24 م` [Codeforces] 439C - Devu and Partitioning of the Array (**Wrong Answer**)<br>`09:35:49 م` [Codeforces] 439C - Devu and Partitioning of the Array (**Wrong Answer**) |
 | الأحد 25 أكتوبر 2026 | 08:24 م | 08:39 م | 15 دقيقة (اتصال متواصل) | **Codeforces**: 15 دقيقة (1 AC) | `08:39:22 م` [Codeforces] 376C - Divisible by Seven (**Accepted**) |
-| الأحد 25 أكتوبر 2026 | 05:38 ص | 05:59 ص | 21 دقيقة (اتصال متواصل) | **Codeforces**: 21 دقيقة (1 AC) | `05:59:32 ص` [Codeforces] 448D - Multiplication Table (**Accepted**)<br>`05:57:31 ص` [Codeforces] 448D - Multiplication Table (**Wrong Answer**)<br>`05:53:51 ص` [Codeforces] 448D - Multiplication Table (**Wrong Answer**) |
+| الأحد 25 أكتوبر 2026 | 05:38 ص | 06:21 ص | 43 دقيقة (اتصال متواصل) | **Codeforces**: 43 دقيقة (1 AC) | `06:21:51 ص` [Codeforces] 👁️ فاتح كود فورسز (متصل أونلاين) (**Online**)<br>`05:59:32 ص` [Codeforces] 448D - Multiplication Table (**Accepted**)<br>`05:57:31 ص` [Codeforces] 448D - Multiplication Table (**Wrong Answer**)<br>`05:53:51 ص` [Codeforces] 448D - Multiplication Table (**Wrong Answer**) |
 | الأحد 25 أكتوبر 2026 | 04:48 ص | 05:15 ص | 27 دقيقة (فتح وتصفح المنصة) | **Codeforces**: 27 دقيقة (0 AC) | `05:15:36 ص` [Codeforces] 👁️ فاتح كود فورسز (متصل أونلاين) (**Online**)<br>`04:53:53 ص` [Codeforces] 👁️ فاتح كود فورسز (متصل أونلاين) (**Online**) |
 | السبت 24 أكتوبر 2026 | 09:27 م | 09:46 م | 20 دقيقة (اتصال متواصل) | **Codeforces**: 20 دقيقة (1 AC) | `09:46:40 م` [Codeforces] 606D - Lazy Student (**Accepted**)<br>`09:42:08 م` [Codeforces] 606D - Lazy Student (**Wrong Answer**) |
 | السبت 24 أكتوبر 2026 | 05:29 م | 05:34 م | 5 دقيقة (فتح وتصفح المنصة) | **Codeforces**: 5 دقيقة (0 AC) | `05:34:01 م` [Codeforces] 👁️ فاتح كود فورسز (متصل أونلاين) (**Online**) |
@@ -117,11 +118,11 @@
 | الجمعة 23 أكتوبر 2026 | 08:51 ص | 11:18 ص | 2 س و 27 د (اتصال متواصل) | **VJudge**: 2 س و 27 د (12 AC)<br>**Codeforces**: 2 س و 27 د (9 AC) | `11:18:32 ص` [VJudge] CodeForces 1385D (**Accepted**)<br>`11:15:35 ص` [VJudge] SPOJ ABACABA (**Accepted**)<br>`11:08:22 ص` [VJudge] SPOJ ABACABA (**Wrong answer**)<br>`10:44:54 ص` [VJudge] CodeForces 1805A (**Accepted**)<br>`10:37:24 ص` [VJudge] CodeForces 1612C (**Accepted**)<br>`10:08:56 ص` [VJudge] CodeForces 1097B (**Accepted**) |
 | الخميس 22 أكتوبر 2026 | 08:55 م | 09:00 م | 5 دقيقة (فتح وتصفح المنصة) | **Codeforces**: 5 دقيقة (0 AC) | `09:00:55 م` [Codeforces] 👁️ فاتح كود فورسز (متصل أونلاين) (**Online**) |
 | الخميس 22 أكتوبر 2026 | 08:25 م | 08:30 م | 5 دقيقة (فتح وتصفح المنصة) | **Codeforces**: 5 دقيقة (0 AC) | `08:30:33 م` [Codeforces] 👁️ فاتح كود فورسز (متصل أونلاين) (**Online**) |
-| الخميس 22 أكتوبر 2026 | 08:05 ص | 08:10 ص | 5 دقيقة (فتح وتصفح المنصة) | **Codeforces**: 5 دقيقة (0 AC) | `08:10:29 ص` [Codeforces] 👁️ فاتح كود فورسز (متصل أونلاين) (**Online**) |
 
 ### 👤 Abdelhamid
 | التاريخ | من | إلى | مدة النشاط | تفصيل المنصات | المسائل بالتوقيت |
 | :--- | :---: | :---: | :---: | :--- | :--- |
+| الأحد 25 أكتوبر 2026 | 11:30 م | 11:35 م | 5 دقيقة (فتح وتصفح المنصة) | **Codeforces**: 5 دقيقة (0 AC) | `11:35:43 م` [Codeforces] 👁️ فاتح كود فورسز (متصل أونلاين) (**Online**) |
 | السبت 24 أكتوبر 2026 | 09:06 م | 09:11 م | 5 دقيقة (فتح وتصفح المنصة) | **Codeforces**: 5 دقيقة (0 AC) | `09:11:36 م` [Codeforces] 👁️ فاتح كود فورسز (متصل أونلاين) (**Online**) |
 | السبت 24 أكتوبر 2026 | 05:11 م | 05:16 م | 5 دقيقة (فتح وتصفح المنصة) | **Codeforces**: 5 دقيقة (0 AC) | `05:16:53 م` [Codeforces] 👁️ فاتح كود فورسز (متصل أونلاين) (**Online**) |
 | الجمعة 23 أكتوبر 2026 | 11:49 م | 01:49 ص | 2 س و 1 د (اتصال متواصل) | **VJudge**: 2 س و 1 د (13 AC)<br>**Codeforces**: 1 س و 57 د (10 AC) | `01:49:54 ص` [VJudge] CodeForces 1385D (**Accepted**)<br>`01:42:05 ص` [VJudge] CodeForces 1612C (**Accepted**)<br>`01:31:52 ص` [VJudge] CSES 2165 (**Accepted**)<br>`01:30:18 ص` [VJudge] CSES 2165 (**Runtime error**)<br>`01:10:04 ص` [VJudge] CodeForces 670D2 (**Accepted**)<br>`01:01:57 ص` [VJudge] CodeForces 670D2 (**Wrong answer on test 1**) |
@@ -136,7 +137,6 @@
 | الأربعاء 21 أكتوبر 2026 | 12:42 ص | 01:37 ص | 55 دقيقة (اتصال متواصل) | **Codeforces**: 55 دقيقة (6 AC) | `01:37:11 ص` [Codeforces] 101086F - Hey JUDgE (**Wrong Answer**)<br>`01:32:45 ص` [Codeforces] 101086J - Smooth Developer (**Accepted**)<br>`01:18:24 ص` [Codeforces] 101086L - Chance (**Accepted**)<br>`01:17:03 ص` [Codeforces] 101086G - Paradise City (**Accepted**)<br>`01:10:20 ص` [Codeforces] 101086M - ACPC Headquarters : AASTMT (Stairway to Heaven) (**Accepted**)<br>`01:08:01 ص` [Codeforces] 101086H - Another Square in the Floor (**Accepted**) |
 | الثلاثاء 20 أكتوبر 2026 | 09:45 م | 10:01 م | 16 دقيقة (اتصال متواصل) | **Codeforces**: 16 دقيقة (3 AC) | `10:01:39 م` [Codeforces] 2261C - I Know About a Million Things (**Accepted**)<br>`10:01:21 م` [Codeforces] 2261B - What's the Capital of France? (**Accepted**)<br>`10:00:53 م` [Codeforces] 2261A - Hey, It's Me, Souvlakity (**Accepted**) |
 | الثلاثاء 20 أكتوبر 2026 | 04:23 ص | 04:28 ص | 5 دقيقة (فتح وتصفح المنصة) | **Codeforces**: 5 دقيقة (0 AC) | `04:28:53 ص` [Codeforces] 👁️ فاتح كود فورسز (متصل أونلاين) (**Online**) |
-| السبت 17 أكتوبر 2026 | 04:23 م | 04:38 م | 15 دقيقة (اتصال متواصل) | **AtCoder**: 15 دقيقة (1 AC) | `04:38:01 م` [AtCoder] abc480_d (abc480) (**Accepted**) |
 
 ### 👤 esraa
 | التاريخ | من | إلى | مدة النشاط | تفصيل المنصات | المسائل بالتوقيت |
@@ -179,6 +179,7 @@
 ### 👤 Gamal Megahed
 | التاريخ | من | إلى | مدة النشاط | تفصيل المنصات | المسائل بالتوقيت |
 | :--- | :---: | :---: | :---: | :--- | :--- |
+| الأحد 25 أكتوبر 2026 | 10:56 م | 11:11 م | 15 دقيقة (اتصال متواصل) | **Codeforces**: 15 دقيقة (1 AC) | `11:11:49 م` [Codeforces] 2276E - Good Substrings (**Accepted**) |
 | الأحد 25 أكتوبر 2026 | 07:29 م | 07:45 م | 16 دقيقة (اتصال متواصل) | **VJudge**: 16 دقيقة (1 AC) | `07:45:22 م` [VJudge] CSES 1690 (**Accepted**)<br>`07:44:30 م` [VJudge] CSES 1690 (**Wrong answer**) |
 | الأحد 25 أكتوبر 2026 | 05:59 م | 06:18 م | 19 دقيقة (اتصال متواصل) | **Codeforces**: 19 دقيقة (1 AC) | `06:18:08 م` [Codeforces] 1316E - Team Building (**Accepted**)<br>`06:16:21 م` [Codeforces] 1316E - Team Building (**Wrong Answer**)<br>`06:14:02 م` [Codeforces] 1316E - Team Building (**Wrong Answer**) |
 | الأحد 25 أكتوبر 2026 | 05:23 م | 05:28 م | 5 دقيقة (فتح وتصفح المنصة) | **Codeforces**: 5 دقيقة (0 AC) | `05:28:57 م` [Codeforces] 👁️ فاتح كود فورسز (متصل أونلاين) (**Online**) |
@@ -193,7 +194,6 @@
 | الأربعاء 21 أكتوبر 2026 | 02:23 م | 03:04 م | 41 دقيقة (اتصال متواصل) | **Codeforces**: 41 دقيقة (0 AC) | `03:04:22 م` [Codeforces] 104603J - Jester in danger (**Wrong Answer**)<br>`03:00:13 م` [Codeforces] 104603J - Jester in danger (**Wrong Answer**)<br>`02:42:17 م` [Codeforces] 104603J - Jester in danger (**Wrong Answer**)<br>`02:38:02 م` [Codeforces] 104603J - Jester in danger (**Wrong Answer**) |
 | الأربعاء 21 أكتوبر 2026 | 01:19 م | 01:24 م | 5 دقيقة (فتح وتصفح المنصة) | **Codeforces**: 5 دقيقة (0 AC) | `01:24:17 م` [Codeforces] 👁️ فاتح كود فورسز (متصل أونلاين) (**Online**) |
 | الإثنين 19 أكتوبر 2026 | 08:40 ص | 09:16 ص | 36 دقيقة (اتصال متواصل) | **Codeforces**: 36 دقيقة (1 AC) | `09:16:14 ص` [Codeforces] 👁️ فاتح كود فورسز (متصل أونلاين) (**Online**)<br>`09:07:47 ص` [Codeforces] 2267C - GCD Treasury (**Accepted**)<br>`09:04:36 ص` [Codeforces] 2267C - GCD Treasury (**Time Limit Exceeded**)<br>`09:01:52 ص` [Codeforces] 2267C - GCD Treasury (**Time Limit Exceeded**)<br>`08:57:13 ص` [Codeforces] 2267C - GCD Treasury (**Wrong Answer**)<br>`08:55:36 ص` [Codeforces] 2267C - GCD Treasury (**Time Limit Exceeded**) |
-| الجمعة 16 أكتوبر 2026 | 10:42 ص | 11:36 ص | 53 دقيقة (اتصال متواصل) | **VJudge**: 53 دقيقة (11 AC)<br>**Codeforces**: 53 دقيقة (10 AC) | `11:36:04 ص` [VJudge] CodeForces 443A (**Accepted**)<br>`11:35:27 ص` [VJudge] CodeForces 572B (**Accepted**)<br>`11:34:57 ص` [VJudge] CodeForces 1468C (**Accepted**)<br>`11:32:13 ص` [VJudge] CodeForces 1238B (**Accepted**)<br>`11:31:59 ص` [VJudge] CodeForces 1238B (**Wrong answer on test 2**)<br>`11:30:08 ص` [Codeforces] 1238B - Kill `Em All (**Wrong Answer**) |
 
 ### 👤 Abdelrahman Saber
 | التاريخ | من | إلى | مدة النشاط | تفصيل المنصات | المسائل بالتوقيت |
