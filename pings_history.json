@@ -588,6 +588,17 @@
       "problemUrl": "https://codeforces.com/profile/SHANKS-A",
       "status": "Online",
       "is_ac": false
+    },
+    {
+      "id": "ping_cf_1793481882000",
+      "type": "online_ping",
+      "platform": "Codeforces",
+      "time": 1793481882000,
+      "probNum": "تصفح المنصة",
+      "problemName": "👁️ فاتح كود فورسز (متصل أونلاين)",
+      "problemUrl": "https://codeforces.com/profile/SHANKS-A",
+      "status": "Online",
+      "is_ac": false
     }
   ],
   "test_tourist": [
@@ -1306,6 +1317,17 @@
       "type": "online_ping",
       "platform": "Codeforces",
       "time": 1793444581000,
+      "probNum": "تصفح المنصة",
+      "problemName": "👁️ فاتح كود فورسز (متصل أونلاين)",
+      "problemUrl": "https://codeforces.com/profile/Abdelhamid_",
+      "status": "Online",
+      "is_ac": false
+    },
+    {
+      "id": "ping_cf_1793486118000",
+      "type": "online_ping",
+      "platform": "Codeforces",
+      "time": 1793486118000,
       "probNum": "تصفح المنصة",
       "problemName": "👁️ فاتح كود فورسز (متصل أونلاين)",
       "problemUrl": "https://codeforces.com/profile/Abdelhamid_",
