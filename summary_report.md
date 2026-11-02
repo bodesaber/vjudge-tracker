@@ -1,26 +1,26 @@
 # 📊 تقرير متابعة نشاط المتدربين الشامل 24/7 (VJudge + Codeforces + AtCoder + CSES)
-**تاريخ التحديث:** الإثنين 2 نوفمبر 2026 - 08:22 م (بتوقيت مصر - قاعدة الـ 30 دقيقة للاتصال المتواصل)
+**تاريخ التحديث:** الثلاثاء 3 نوفمبر 2026 - 02:56 ص (بتوقيت مصر - قاعدة الـ 30 دقيقة للاتصال المتواصل)
 
 ## 🏆 أبطال التدريب (الأعلى نقاطاً):
-- **🥇 بطل اليوم:** **Youssef Saleh** (2573 نقطة — 6 AC، نشط 2 س و 43 د)
-- **🔥 بطل الأسبوع (آخر 7 أيام):** **Youssef Saleh** (7475 نقطة — 19 AC، نشط 8 س و 20 د)
-- **👑 بطل الشهر (آخر 30 يوماً):** **Youssef Saleh** (47728 نقطة — 104 AC، نشط 36 س و 38 د)
+- **🥇 بطل اليوم:** **Youssef Saleh** (592 نقطة — 3 AC، نشط 42 دقيقة)
+- **🔥 بطل الأسبوع (آخر 7 أيام):** **Youssef Saleh** (8027 نقطة — 22 AC، نشط 8 س و 52 د)
+- **👑 بطل الشهر (آخر 30 يوماً):** **Youssef Saleh** (46874 نقطة — 104 AC، نشط 36 س و 14 د)
 
 ## 1. جدول الترتيب والملخص العام (مرتب حسب سكور الأسبوع)
 | الترتيب | المتدرب | الحالة | سكور اليوم | سكور 7 أيام | سكور 30 يوماً | المنصات المربوطة |
 | :---: | :--- | :---: | :---: | :---: | :---: | :--- |
-| **🥇 #1** | **Youssef Saleh** | ⚪ غير متصل | **2573 نقطة** (6 AC / 2 س و 43 د) | **7475 نقطة** (19 AC / 8 س و 20 د) | **47728 نقطة** (104 AC / 36 س و 38 د) | VJudge: `Youssef_Saleh` (471 AC), Codeforces: `nerdev` (115 AC), AtCoder: `Nerdev` (62 AC), CSES: `390594` (220 AC) |
+| **🥇 #1** | **Youssef Saleh** | ⚪ غير متصل | **592 نقطة** (3 AC / 42 دقيقة) | **8027 نقطة** (22 AC / 8 س و 52 د) | **46874 نقطة** (104 AC / 36 س و 14 د) | VJudge: `Youssef_Saleh` (471 AC), Codeforces: `nerdev` (116 AC), AtCoder: `Nerdev` (62 AC), CSES: `390594` (220 AC) |
 | **🥈 #2** | **فاطمة الفقي (Fatema)** | ⚪ غير متصل | **0 نقطة** (0 AC / 0 دقيقة) | **6962 نقطة** (16 AC / 5 س و 57 د) | **25402 نقطة** (89 AC / 26 س و 12 د) | VJudge: `Fatemaelfiky1` (440 AC), Codeforces: `Zhraa_` (108 AC) |
-| **🥉 #3** | **esraa** | 🟢 متصل (Codeforces) | **270 نقطة** (1 AC / 15 دقيقة) | **5609 نقطة** (16 AC / 7 س و 19 د) | **19761 نقطة** (64 AC / 28 س و 21 د) | VJudge: `esraa_emary` (315 AC), Codeforces: `esoo` (75 AC) |
-| **#4** | **عمر عوض صابر (Omar)** | ⚪ غير متصل | **520 نقطة** (1 AC / 1 س و 5 د) | **3824 نقطة** (7 AC / 4 س و 39 د) | **15380 نقطة** (23 AC / 11 س و 5 د) | VJudge: `Omar_Awad_Saber` (496 AC), Codeforces: `Lumino` (98 AC), AtCoder: `Lumino` (24 AC) |
-| **#5** | **Mohab** | ⚪ غير متصل | **20 نقطة** (0 AC / 5 دقيقة) | **1323 نقطة** (4 AC / 2 س و 48 د) | **17511 نقطة** (42 AC / 13 س و 6 د) | VJudge: `Mo_hab` (381 AC), Codeforces: `Mo_hab` (145 AC), AtCoder: `Mo_hab` (25 AC) |
-| **#6** | **Abdelhamid** | ⚪ غير متصل | **1060 نقطة** (1 AC / 25 دقيقة) | **1300 نقطة** (1 AC / 1 س و 25 د) | **19747 نقطة** (52 AC / 14 س و 32 د) | VJudge: `abdelhamid1` (349 AC), Codeforces: `Abdelhamid_` (94 AC), AtCoder: `Abdelhamid` (54 AC) |
-| **#7** | **Gamal Megahed** | ⚪ غير متصل | **0 نقطة** (0 AC / 0 دقيقة) | **1085 نقطة** (2 AC / 1 ساعة) | **15637 نقطة** (53 AC / 9 س و 47 د) | VJudge: `gamalmegahed` (768 AC), Codeforces: `PG_Gamal_Kobisy` (96 AC) |
-| **#8** | **إسراء عبد الحق (Israa)** | ⚪ غير متصل | **0 نقطة** (0 AC / 0 دقيقة) | **993 نقطة** (4 AC / 1 س و 43 د) | **1527 نقطة** (6 AC / 2 س و 42 د) | VJudge: `Israa_abdelhaq` (224 AC), Codeforces: `Isabella_` (100 AC), AtCoder: `Isabella_` (1 AC) |
-| **#9** | **youssef** | ⚪ غير متصل | **175 نقطة** (1 AC / 20 دقيقة) | **605 نقطة** (2 AC / 50 دقيقة) | **6148 نقطة** (26 AC / 7 س و 43 د) | VJudge: `youssef_97` (569 AC), Codeforces: `youssef97_` (89 AC) |
+| **🥉 #3** | **esraa** | ⚪ غير متصل | **0 نقطة** (0 AC / 0 دقيقة) | **5609 نقطة** (16 AC / 7 س و 19 د) | **19761 نقطة** (64 AC / 28 س و 21 د) | VJudge: `esraa_emary` (315 AC), Codeforces: `esoo` (75 AC) |
+| **#4** | **عمر عوض صابر (Omar)** | ⚪ غير متصل | **0 نقطة** (0 AC / 0 دقيقة) | **3804 نقطة** (7 AC / 4 س و 34 د) | **15380 نقطة** (23 AC / 11 س و 5 د) | VJudge: `Omar_Awad_Saber` (496 AC), Codeforces: `Lumino` (98 AC), AtCoder: `Lumino` (24 AC) |
+| **#5** | **Abdelhamid** | ⚪ غير متصل | **0 نقطة** (0 AC / 0 دقيقة) | **1300 نقطة** (1 AC / 1 س و 25 د) | **19747 نقطة** (52 AC / 14 س و 32 د) | VJudge: `abdelhamid1` (349 AC), Codeforces: `Abdelhamid_` (94 AC), AtCoder: `Abdelhamid` (54 AC) |
+| **#6** | **Gamal Megahed** | ⚪ غير متصل | **0 نقطة** (0 AC / 0 دقيقة) | **1085 نقطة** (2 AC / 1 ساعة) | **15637 نقطة** (53 AC / 9 س و 47 د) | VJudge: `gamalmegahed` (768 AC), Codeforces: `PG_Gamal_Kobisy` (96 AC) |
+| **#7** | **إسراء عبد الحق (Israa)** | ⚪ غير متصل | **0 نقطة** (0 AC / 0 دقيقة) | **993 نقطة** (4 AC / 1 س و 43 د) | **1527 نقطة** (6 AC / 2 س و 42 د) | VJudge: `Israa_abdelhaq` (224 AC), Codeforces: `Isabella_` (100 AC), AtCoder: `Isabella_` (1 AC) |
+| **#8** | **Mohab** | ⚪ غير متصل | **0 نقطة** (0 AC / 0 دقيقة) | **964 نقطة** (3 AC / 2 س و 19 د) | **17511 نقطة** (42 AC / 13 س و 6 د) | VJudge: `Mo_hab` (381 AC), Codeforces: `Mo_hab` (145 AC), AtCoder: `Mo_hab` (25 AC) |
+| **#9** | **youssef** | ⚪ غير متصل | **0 نقطة** (0 AC / 0 دقيقة) | **605 نقطة** (2 AC / 50 دقيقة) | **6148 نقطة** (26 AC / 7 س و 43 د) | VJudge: `youssef_97` (569 AC), Codeforces: `youssef97_` (89 AC) |
 | **#10** | **عمرو خالد (Amr)** | ⚪ غير متصل | **0 نقطة** (0 AC / 0 دقيقة) | **542 نقطة** (1 AC / 57 دقيقة) | **3189 نقطة** (4 AC / 2 س و 39 د) | VJudge: `Amr2Khaled` (294 AC), Codeforces: `SHANKS-A` (97 AC), AtCoder: `SHANKS_A` (1 AC) |
-| **#11** | **Abdelrahman Saber** | ⚪ غير متصل | **60 نقطة** (0 AC / 15 دقيقة) | **320 نقطة** (0 AC / 1 س و 20 د) | **14328 نقطة** (19 AC / 6 س و 58 د) | VJudge: `4aii_Blabn` (421 AC), Codeforces: `4aii_Blabn` (120 AC) |
-| **#12** | **seif lashin** | ⚪ غير متصل | **0 نقطة** (0 AC / 0 دقيقة) | **0 نقطة** (0 AC / 0 دقيقة) | **2712 نقطة** (9 AC / 5 س و 12 د) | VJudge: `seiflashin` (519 AC), Codeforces: `seiflashin` (88 AC), AtCoder: `seiflashin` (100 AC) |
+| **#11** | **Abdelrahman Saber** | ⚪ غير متصل | **0 نقطة** (0 AC / 0 دقيقة) | **320 نقطة** (0 AC / 1 س و 20 د) | **14328 نقطة** (19 AC / 6 س و 58 د) | VJudge: `4aii_Blabn` (421 AC), Codeforces: `4aii_Blabn` (120 AC) |
+| **#12** | **seif lashin** | ⚪ غير متصل | **0 نقطة** (0 AC / 0 دقيقة) | **0 نقطة** (0 AC / 0 دقيقة) | **2597 نقطة** (8 AC / 4 س و 57 د) | VJudge: `seiflashin` (519 AC), Codeforces: `seiflashin` (88 AC), AtCoder: `seiflashin` (100 AC) |
 
 ## 2. سجل الجلسات التفصيلي والمسائل بالوقت
 
@@ -103,6 +103,7 @@
 ### 👤 Youssef Saleh
 | التاريخ | من | إلى | مدة النشاط | تفصيل المنصات | المسائل بالتوقيت |
 | :--- | :---: | :---: | :---: | :--- | :--- |
+| الثلاثاء 3 نوفمبر 2026 | 12:22 ص | 01:04 ص | 42 دقيقة (اتصال متواصل) | **Codeforces**: 42 دقيقة (3 AC) | `01:04:12 ص` [Codeforces] 2278C - Math and Physics (**Accepted**)<br>`12:45:25 ص` [Codeforces] 2278B - Stakes and Shapes (**Accepted**)<br>`12:37:21 ص` [Codeforces] 2278A - Fraction and Six (**Accepted**) |
 | الإثنين 2 نوفمبر 2026 | 04:33 م | 04:38 م | 5 دقيقة (فتح وتصفح المنصة) | **Codeforces**: 5 دقيقة (0 AC) | `04:38:13 م` [Codeforces] 👁️ فاتح كود فورسز (متصل أونلاين) (**Online**) |
 | الإثنين 2 نوفمبر 2026 | 01:59 م | 02:30 م | 30 دقيقة (اتصال متواصل) | **Codeforces**: 30 دقيقة (1 AC) | `02:30:02 م` [Codeforces] 2018A - Cards Partition (**Accepted**)<br>`02:14:48 م` [Codeforces] 2018A - Cards Partition (**Wrong Answer**) |
 | الإثنين 2 نوفمبر 2026 | 11:43 ص | 01:11 م | 1 س و 28 د (اتصال متواصل) | **Codeforces**: 1 س و 28 د (3 AC) | `01:11:25 م` [Codeforces] 1837D - Bracket Coloring (**Accepted**)<br>`12:48:40 م` [Codeforces] 1837D - Bracket Coloring (**Wrong Answer**)<br>`12:21:58 م` [Codeforces] 1982B - Collatz Conjecture (**Accepted**)<br>`11:58:51 ص` [Codeforces] 1941B - Rudolf and 121 (**Accepted**) |
@@ -117,7 +118,6 @@
 | الأحد 1 نوفمبر 2026 | 10:49 ص | 10:54 ص | 5 دقيقة (فتح وتصفح المنصة) | **Codeforces**: 5 دقيقة (0 AC) | `10:54:55 ص` [Codeforces] 👁️ فاتح كود فورسز (متصل أونلاين) (**Online**) |
 | الأحد 1 نوفمبر 2026 | 03:01 ص | 03:06 ص | 5 دقيقة (فتح وتصفح المنصة) | **Codeforces**: 5 دقيقة (0 AC) | `03:06:56 ص` [Codeforces] 👁️ فاتح كود فورسز (متصل أونلاين) (**Online**) |
 | السبت 31 أكتوبر 2026 | 06:22 م | 06:27 م | 5 دقيقة (فتح وتصفح المنصة) | **Codeforces**: 5 دقيقة (0 AC) | `06:27:12 م` [Codeforces] 👁️ فاتح كود فورسز (متصل أونلاين) (**Online**) |
-| السبت 31 أكتوبر 2026 | 04:50 م | 05:05 م | 15 دقيقة (اتصال متواصل) | **Codeforces**: 15 دقيقة (1 AC) | `05:05:59 م` [Codeforces] 2167C - Isamatdin and His Magic Wand! (**Accepted**) |
 
 ### 👤 Abdelhamid
 | التاريخ | من | إلى | مدة النشاط | تفصيل المنصات | المسائل بالتوقيت |
