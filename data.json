@@ -1,6 +1,6 @@
 {
-  "updated_at": "الجمعة 6 نوفمبر 2026 - 12:58 ص (توقيت مصر)",
-  "updated_ms": 1793915926536,
+  "updated_at": "الجمعة 6 نوفمبر 2026 - 05:02 ص (توقيت مصر)",
+  "updated_ms": 1793930521135,
   "config": {
     "trainees": [
       {
@@ -3183,7 +3183,7 @@
       "avatar": "https://cdn.vjudge.net.cn/user/avatar/832169?v=1719630988",
       "is_active_now": false,
       "active_platforms_now": [],
-      "last_seen_str": "منذ 1 يوم (04-11-2026 01:08 AM)",
+      "last_seen_str": "منذ 2 يوم (04-11-2026 01:08 AM)",
       "last_seen_ms": 1793743732000,
       "last_problem_str": "[Codeforces] 👁️ فاتح كود فورسز (متصل أونلاين) (Online)",
       "all_time_ac": 590,
@@ -3205,14 +3205,14 @@
       "week": {
         "solved": 8,
         "subs": 18,
-        "time_minutes": 269,
-        "time_str": "4 س و 29 د",
-        "sessions": 15,
+        "time_minutes": 264,
+        "time_str": "4 س و 24 د",
+        "sessions": 14,
         "problem_points": 3645,
         "avg_difficulty": 1650,
         "max_difficulty": 2000,
         "hardest_problem": "Gym 100947E (2000)",
-        "score": 4229
+        "score": 4209
       },
       "month": {
         "solved": 20,
@@ -3263,7 +3263,7 @@
           "url": "https://codeforces.com/profile/Lumino",
           "extra": "Rating: 1215 (pupil)",
           "is_online": false,
-          "last_seen_str": "منذ 1 يوم",
+          "last_seen_str": "منذ 2 يوم",
           "last_seen_ms": 1793743732000,
           "acAll": 99,
           "attAll": 200,
@@ -3276,8 +3276,8 @@
           "week": {
             "solved": 4,
             "subs": 14,
-            "time_str": "3 س و 31 د",
-            "time_minutes": 211
+            "time_str": "3 س و 26 د",
+            "time_minutes": 206
           },
           "month": {
             "solved": 14,
@@ -3292,7 +3292,7 @@
           "url": "https://atcoder.jp/users/Lumino",
           "extra": "",
           "is_online": false,
-          "last_seen_str": "منذ 292 يوم",
+          "last_seen_str": "منذ 293 يوم",
           "last_seen_ms": 1768603069000,
           "acAll": 24,
           "attAll": 63,
@@ -5696,52 +5696,50 @@
         "cses": ""
       },
       "avatar": "https://cdn.vjudge.net.cn/user/avatar/834517?v=1707590835",
-      "is_active_now": true,
-      "active_platforms_now": [
-        "Codeforces"
-      ],
-      "last_seen_str": "منذ 23 دقيقة (12:35 ص)",
-      "last_seen_ms": 1793914511000,
-      "last_problem_str": "[Codeforces] 535B - Tavas and SaDDas (Accepted)",
-      "all_time_ac": 503,
-      "all_time_score": 121396,
-      "avg_difficulty": 1229,
+      "is_active_now": false,
+      "active_platforms_now": [],
+      "last_seen_str": "منذ 3 ساعة (01:06 ص)",
+      "last_seen_ms": 1793916415000,
+      "last_problem_str": "[Codeforces] 121A - Lucky Sum (Accepted)",
+      "all_time_ac": 504,
+      "all_time_score": 121384,
+      "avg_difficulty": 1228,
       "max_difficulty": 1900,
       "today": {
-        "solved": 3,
-        "subs": 3,
-        "time_minutes": 19,
-        "time_str": "19 دقيقة",
-        "sessions": 1,
-        "problem_points": 525,
-        "avg_difficulty": 1133,
+        "solved": 4,
+        "subs": 4,
+        "time_minutes": 34,
+        "time_str": "34 دقيقة",
+        "sessions": 2,
+        "problem_points": 685,
+        "avg_difficulty": 1125,
         "max_difficulty": 1300,
         "hardest_problem": "932B - Recursive Queries (1300)",
-        "score": 574
+        "score": 769
       },
       "week": {
-        "solved": 11,
-        "subs": 17,
-        "time_minutes": 189,
-        "time_str": "3 س و 9 د",
-        "sessions": 6,
-        "problem_points": 3750,
-        "avg_difficulty": 1464,
+        "solved": 12,
+        "subs": 18,
+        "time_minutes": 204,
+        "time_str": "3 س و 24 د",
+        "sessions": 7,
+        "problem_points": 3910,
+        "avg_difficulty": 1433,
         "max_difficulty": 1900,
         "hardest_problem": "CodeForces 1902D (1900)",
-        "score": 4114
+        "score": 4309
       },
       "month": {
-        "solved": 88,
-        "subs": 126,
-        "time_minutes": 1442,
-        "time_str": "24 س و 2 د",
-        "sessions": 49,
-        "problem_points": 22130,
-        "avg_difficulty": 1280,
+        "solved": 89,
+        "subs": 127,
+        "time_minutes": 1457,
+        "time_str": "24 س و 17 د",
+        "sessions": 50,
+        "problem_points": 22290,
+        "avg_difficulty": 1278,
         "max_difficulty": 1900,
         "hardest_problem": "CodeForces 1902D (1900)",
-        "score": 24937
+        "score": 25132
       },
       "peak_hours_str": "الذروة حوالي 07:00 م (ظهراً وعصراً (12ظ-6م))",
       "platforms": {
@@ -5779,32 +5777,76 @@
           "handle": "Zhraa_",
           "url": "https://codeforces.com/profile/Zhraa_",
           "extra": "Rating: 1054 (newbie)",
-          "is_online": true,
-          "last_seen_str": "منذ 23 د",
-          "last_seen_ms": 1793914511000,
-          "acAll": 109,
+          "is_online": false,
+          "last_seen_str": "منذ 3 س",
+          "last_seen_ms": 1793916415000,
+          "acAll": 110,
           "attAll": 200,
           "today": {
-            "solved": 3,
-            "subs": 3,
-            "time_str": "19 دقيقة",
-            "time_minutes": 19
+            "solved": 4,
+            "subs": 4,
+            "time_str": "34 دقيقة",
+            "time_minutes": 34
           },
           "week": {
-            "solved": 10,
-            "subs": 16,
-            "time_str": "2 س و 56 د",
-            "time_minutes": 176
+            "solved": 11,
+            "subs": 17,
+            "time_str": "3 س و 11 د",
+            "time_minutes": 191
           },
           "month": {
-            "solved": 74,
-            "subs": 110,
-            "time_str": "20 س و 45 د",
-            "time_minutes": 1245
+            "solved": 75,
+            "subs": 111,
+            "time_str": "21 ساعة",
+            "time_minutes": 1260
           }
         }
       },
       "sessions": [
+        {
+          "date_iso": "2026-11-06",
+          "month_iso": "2026-11",
+          "date_str": "الجمعة 6 نوفمبر 2026",
+          "start_str": "12:51 ص",
+          "end_str": "01:06 ص",
+          "start_ms": 1793915515000,
+          "end_ms": 1793916415000,
+          "duration_minutes": 15,
+          "duration_str": "15 دقيقة (اتصال متواصل)",
+          "submissions_count": 1,
+          "accepted_count": 1,
+          "pings_count": 0,
+          "problem_points": 160,
+          "score": 195,
+          "problems": [
+            "121A"
+          ],
+          "platform_breakdown": {
+            "Codeforces": {
+              "duration_minutes": 15,
+              "duration_str": "15 دقيقة",
+              "subs_count": 1,
+              "ac_count": 1,
+              "pings_count": 0
+            }
+          },
+          "timeline": [
+            {
+              "time": 1793916415000,
+              "time_str": "01:06:55 ص",
+              "platform": "Codeforces",
+              "type": "submission",
+              "probNum": "121A",
+              "problemName": "121A - Lucky Sum",
+              "problemUrl": "https://codeforces.com/contest/121/problem/A",
+              "status": "Accepted",
+              "is_ac": true,
+              "difficulty": 1100,
+              "diff_tier": "🔵 فوق المبتدئ",
+              "prob_points": 160
+            }
+          ]
+        },
         {
           "date_iso": "2026-11-06",
           "month_iso": "2026-11",
@@ -9086,57 +9128,6 @@
               "difficulty": 1500,
               "diff_tier": "🟠 فوق المتوسط",
               "prob_points": 335
-            }
-          ]
-        },
-        {
-          "date_iso": "2026-10-08",
-          "month_iso": "2026-10",
-          "date_str": "الخميس 8 أكتوبر 2026",
-          "start_str": "02:53 م",
-          "end_str": "03:08 م",
-          "start_ms": 1791460391000,
-          "end_ms": 1791461291000,
-          "duration_minutes": 15,
-          "duration_str": "15 دقيقة (اتصال متواصل)",
-          "submissions_count": 1,
-          "accepted_count": 1,
-          "pings_count": 0,
-          "problem_points": 280,
-          "score": 315,
-          "problems": [
-            "520B"
-          ],
-          "platform_breakdown": {
-            "VJudge": {
-              "duration_minutes": 15,
-              "duration_str": "15 دقيقة",
-              "subs_count": 1,
-              "ac_count": 1,
-              "pings_count": 0
-            },
-            "Codeforces": {
-              "duration_minutes": 15,
-              "duration_str": "15 دقيقة",
-              "subs_count": 1,
-              "ac_count": 1,
-              "pings_count": 0
-            }
-          },
-          "timeline": [
-            {
-              "time": 1791461291000,
-              "time_str": "03:08:11 م",
-              "platform": "VJudge",
-              "type": "submission",
-              "probNum": "520B",
-              "problemName": "CodeForces 520B",
-              "problemUrl": "https://vjudge.net/problem/CodeForces-520B",
-              "status": "Accepted",
-              "is_ac": true,
-              "difficulty": 1400,
-              "diff_tier": "🟠 فوق المتوسط",
-              "prob_points": 280
             }
           ]
         }
@@ -12601,7 +12592,7 @@
       "avatar": "https://cn.cravatar.com/avatar/4a47b3b2c8db6ecbdbef91d74c317beb?d=retro",
       "is_active_now": false,
       "active_platforms_now": [],
-      "last_seen_str": "منذ 7 ساعة (05:41 م)",
+      "last_seen_str": "منذ 11 ساعة (05:41 م)",
       "last_seen_ms": 1793889716000,
       "last_problem_str": "[Codeforces] 106706L - Chasing Hamoosh (Accepted)",
       "all_time_ac": 857,
@@ -12621,16 +12612,16 @@
         "score": 0
       },
       "week": {
-        "solved": 33,
-        "subs": 59,
-        "time_minutes": 838,
-        "time_str": "13 س و 58 د",
-        "sessions": 44,
-        "problem_points": 12350,
-        "avg_difficulty": 1461,
+        "solved": 32,
+        "subs": 58,
+        "time_minutes": 818,
+        "time_str": "13 س و 38 د",
+        "sessions": 42,
+        "problem_points": 11880,
+        "avg_difficulty": 1454,
         "max_difficulty": 2300,
         "hardest_problem": "106706L - Chasing Hamoosh (2300)",
-        "score": 14143
+        "score": 13618
       },
       "month": {
         "solved": 110,
@@ -12681,7 +12672,7 @@
           "url": "https://codeforces.com/profile/nerdev",
           "extra": "Rating: 1344 (pupil)",
           "is_online": false,
-          "last_seen_str": "منذ 7 س",
+          "last_seen_str": "منذ 11 س",
           "last_seen_ms": 1793889716000,
           "acAll": 117,
           "attAll": 200,
@@ -12694,8 +12685,8 @@
           "week": {
             "solved": 28,
             "subs": 51,
-            "time_str": "12 س و 28 د",
-            "time_minutes": 748
+            "time_str": "12 س و 23 د",
+            "time_minutes": 743
           },
           "month": {
             "solved": 94,
@@ -12721,10 +12712,10 @@
             "time_minutes": 0
           },
           "week": {
-            "solved": 3,
-            "subs": 6,
-            "time_str": "1 س و 8 د",
-            "time_minutes": 68
+            "solved": 2,
+            "subs": 5,
+            "time_str": "53 دقيقة",
+            "time_minutes": 53
           },
           "month": {
             "solved": 10,
@@ -15190,7 +15181,7 @@
       "avatar": "https://cn.cravatar.com/avatar/f74ac3acc34741bea2b45068c8c9eebf?d=identicon",
       "is_active_now": false,
       "active_platforms_now": [],
-      "last_seen_str": "منذ 9 ساعة (03:46 م)",
+      "last_seen_str": "منذ 13 ساعة (03:46 م)",
       "last_seen_ms": 1793882778000,
       "last_problem_str": "[Codeforces] 106706D - Where were you 14 years ago? (Accepted)",
       "all_time_ac": 463,
@@ -15241,7 +15232,7 @@
           "url": "https://vjudge.net/user/abdelhamid1",
           "extra": "",
           "is_online": false,
-          "last_seen_str": "منذ 12 يوم",
+          "last_seen_str": "منذ 13 يوم",
           "last_seen_ms": 1792795794000,
           "acAll": 349,
           "attAll": 374,
@@ -15270,7 +15261,7 @@
           "url": "https://codeforces.com/profile/Abdelhamid_",
           "extra": "Rating: 1449 (specialist)",
           "is_online": false,
-          "last_seen_str": "منذ 9 س",
+          "last_seen_str": "منذ 13 س",
           "last_seen_ms": 1793882778000,
           "acAll": 96,
           "attAll": 200,
@@ -18156,7 +18147,7 @@
       "avatar": "https://cdn.vjudge.net.cn/user/avatar/831813?v=1727281407",
       "is_active_now": false,
       "active_platforms_now": [],
-      "last_seen_str": "منذ 6 ساعة (05:59 م)",
+      "last_seen_str": "منذ 11 ساعة (05:59 م)",
       "last_seen_ms": 1793890763000,
       "last_problem_str": "[Codeforces] 121A - Lucky Sum (Accepted)",
       "all_time_ac": 357,
@@ -18236,7 +18227,7 @@
           "url": "https://codeforces.com/profile/esoo",
           "extra": "Rating: 946 (newbie)",
           "is_online": false,
-          "last_seen_str": "منذ 6 س",
+          "last_seen_str": "منذ 11 س",
           "last_seen_ms": 1793890763000,
           "acAll": 77,
           "attAll": 200,
@@ -20845,7 +20836,7 @@
       "avatar": "https://cn.cravatar.com/avatar/d1e24aecb3ef856a48af9732d0c08966?d=identicon",
       "is_active_now": false,
       "active_platforms_now": [],
-      "last_seen_str": "منذ 1 ساعة (11:52 م)",
+      "last_seen_str": "منذ 5 ساعة (11:52 م)",
       "last_seen_ms": 1793911921000,
       "last_problem_str": "[Codeforces] 👁️ فاتح كود فورسز (متصل أونلاين) (Online)",
       "all_time_ac": 530,
@@ -20867,14 +20858,14 @@
       "week": {
         "solved": 7,
         "subs": 11,
-        "time_minutes": 234,
-        "time_str": "3 س و 54 د",
-        "sessions": 21,
+        "time_minutes": 223,
+        "time_str": "3 س و 43 د",
+        "sessions": 20,
         "problem_points": 1230,
         "avg_difficulty": 1124,
         "max_difficulty": 1410,
         "hardest_problem": "2278C - Math and Physics (1410)",
-        "score": 1834
+        "score": 1808
       },
       "month": {
         "solved": 45,
@@ -20925,7 +20916,7 @@
           "url": "https://codeforces.com/profile/Mo_hab",
           "extra": "Rating: 1439 (specialist)",
           "is_online": false,
-          "last_seen_str": "منذ 1 س",
+          "last_seen_str": "منذ 5 س",
           "last_seen_ms": 1793911921000,
           "acAll": 145,
           "attAll": 200,
@@ -20938,8 +20929,8 @@
           "week": {
             "solved": 5,
             "subs": 6,
-            "time_str": "2 س و 34 د",
-            "time_minutes": 154
+            "time_str": "2 س و 23 د",
+            "time_minutes": 143
           },
           "month": {
             "solved": 39,
@@ -20954,7 +20945,7 @@
           "url": "https://atcoder.jp/users/Mo_hab",
           "extra": "",
           "is_online": false,
-          "last_seen_str": "منذ 1 س",
+          "last_seen_str": "منذ 5 س",
           "last_seen_ms": 1793911385000,
           "acAll": 25,
           "attAll": 61,
@@ -23313,7 +23304,7 @@
       "avatar": "https://cdn.vjudge.net.cn/user/avatar/866046?v=1760446814",
       "is_active_now": false,
       "active_platforms_now": [],
-      "last_seen_str": "منذ 7 ساعة (04:58 م)",
+      "last_seen_str": "منذ 12 ساعة (04:58 م)",
       "last_seen_ms": 1793887136000,
       "last_problem_str": "[Codeforces] 121A - Lucky Sum (Accepted)",
       "all_time_ac": 822,
@@ -23393,7 +23384,7 @@
           "url": "https://codeforces.com/profile/PG_Gamal_Kobisy",
           "extra": "Rating: 1572 (specialist)",
           "is_online": false,
-          "last_seen_str": "منذ 7 س",
+          "last_seen_str": "منذ 12 س",
           "last_seen_ms": 1793887136000,
           "acAll": 97,
           "attAll": 200,
@@ -26634,14 +26625,14 @@
       "week": {
         "solved": 0,
         "subs": 0,
-        "time_minutes": 92,
-        "time_str": "1 س و 32 د",
-        "sessions": 13,
+        "time_minutes": 87,
+        "time_str": "1 س و 27 د",
+        "sessions": 12,
         "problem_points": 0,
         "avg_difficulty": 0,
         "max_difficulty": 0,
         "hardest_problem": "—",
-        "score": 287
+        "score": 267
       },
       "month": {
         "solved": 16,
@@ -26705,8 +26696,8 @@
           "week": {
             "solved": 0,
             "subs": 0,
-            "time_str": "1 س و 32 د",
-            "time_minutes": 92
+            "time_str": "1 س و 27 د",
+            "time_minutes": 87
           },
           "month": {
             "solved": 16,
@@ -31489,11 +31480,9 @@
         "cses": ""
       },
       "avatar": "https://cdn.vjudge.net.cn/user/avatar/806663?v=1773428288",
-      "is_active_now": true,
-      "active_platforms_now": [
-        "Codeforces"
-      ],
-      "last_seen_str": "منذ 6 دقيقة (12:52 ص)",
+      "is_active_now": false,
+      "active_platforms_now": [],
+      "last_seen_str": "منذ 4 ساعة (12:52 ص)",
       "last_seen_ms": 1793915520000,
       "last_problem_str": "[Codeforces] 910A - The Way to Home (Accepted)",
       "all_time_ac": 627,
@@ -31572,8 +31561,8 @@
           "handle": "youssef97_",
           "url": "https://codeforces.com/profile/youssef97_",
           "extra": "Rating: 1476 (specialist)",
-          "is_online": true,
-          "last_seen_str": "منذ 6 د",
+          "is_online": false,
+          "last_seen_str": "منذ 4 س",
           "last_seen_ms": 1793915520000,
           "acAll": 90,
           "attAll": 200,
