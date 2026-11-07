@@ -1,22 +1,22 @@
 # 📊 تقرير متابعة نشاط المتدربين الشامل 24/7 (VJudge + Codeforces + AtCoder + CSES)
-**تاريخ التحديث:** السبت 7 نوفمبر 2026 - 04:18 ص (بتوقيت مصر - قاعدة الـ 30 دقيقة للاتصال المتواصل)
+**تاريخ التحديث:** السبت 7 نوفمبر 2026 - 10:17 ص (بتوقيت مصر - قاعدة الـ 30 دقيقة للاتصال المتواصل)
 
 ## 🏆 أبطال التدريب (الأعلى نقاطاً):
-- **🥇 بطل اليوم:** **Youssef Saleh** (20 نقطة — 0 AC، نشط 5 دقيقة)
-- **🔥 بطل الأسبوع (آخر 7 أيام):** **Youssef Saleh** (14511 نقطة — 34 AC، نشط 14 س و 6 د)
-- **👑 بطل الشهر (آخر 30 يوماً):** **Youssef Saleh** (52430 نقطة — 111 AC، نشط 40 س و 15 د)
+- **🥇 بطل اليوم:** **Abdelhamid** (1504 نقطة — 6 AC، نشط 1 س و 24 د)
+- **🔥 بطل الأسبوع (آخر 7 أيام):** **Youssef Saleh** (15042 نقطة — 35 AC، نشط 14 س و 37 د)
+- **👑 بطل الشهر (آخر 30 يوماً):** **Youssef Saleh** (52961 نقطة — 112 AC، نشط 40 س و 46 د)
 
 ## 1. جدول الترتيب والملخص العام (مرتب حسب سكور الأسبوع)
 | الترتيب | المتدرب | الحالة | سكور اليوم | سكور 7 أيام | سكور 30 يوماً | المنصات المربوطة |
 | :---: | :--- | :---: | :---: | :---: | :---: | :--- |
-| **🥇 #1** | **Youssef Saleh** | ⚪ غير متصل | **20 نقطة** (0 AC / 5 دقيقة) | **14511 نقطة** (34 AC / 14 س و 6 د) | **52430 نقطة** (111 AC / 40 س و 15 د) | VJudge: `Youssef_Saleh` (472 AC), Codeforces: `nerdev` (118 AC), AtCoder: `Nerdev` (62 AC), CSES: `390594` (231 AC) |
-| **🥈 #2** | **Gamal Megahed** | ⚪ غير متصل | **0 نقطة** (0 AC / 0 دقيقة) | **7199 نقطة** (29 AC / 3 س و 54 د) | **19603 نقطة** (69 AC / 12 س و 28 د) | VJudge: `gamalmegahed` (782 AC), Codeforces: `PG_Gamal_Kobisy` (100 AC) |
-| **🥉 #3** | **Abdelhamid** | ⚪ غير متصل | **0 نقطة** (0 AC / 0 دقيقة) | **7162 نقطة** (10 AC / 5 س و 42 د) | **23662 نقطة** (53 AC / 17 س و 2 د) | VJudge: `abdelhamid1` (349 AC), Codeforces: `Abdelhamid_` (96 AC), AtCoder: `Abdelhamid` (54 AC) |
-| **#4** | **esraa** | ⚪ غير متصل | **0 نقطة** (0 AC / 0 دقيقة) | **5818 نقطة** (26 AC / 8 س و 8 د) | **20556 نقطة** (71 AC / 28 س و 41 د) | VJudge: `esraa_emary` (338 AC), Codeforces: `esoo` (77 AC) |
+| **🥇 #1** | **Youssef Saleh** | ⚪ غير متصل | **551 نقطة** (1 AC / 36 دقيقة) | **15042 نقطة** (35 AC / 14 س و 37 د) | **52961 نقطة** (112 AC / 40 س و 46 د) | VJudge: `Youssef_Saleh` (472 AC), Codeforces: `nerdev` (118 AC), AtCoder: `Nerdev` (62 AC), CSES: `390594` (231 AC) |
+| **🥈 #2** | **Abdelhamid** | ⚪ غير متصل | **1504 نقطة** (6 AC / 1 س و 24 د) | **8666 نقطة** (16 AC / 7 س و 6 د) | **25166 نقطة** (59 AC / 18 س و 26 د) | VJudge: `abdelhamid1` (349 AC), Codeforces: `Abdelhamid_` (97 AC), AtCoder: `Abdelhamid` (58 AC) |
+| **🥉 #3** | **Gamal Megahed** | ⚪ غير متصل | **0 نقطة** (0 AC / 0 دقيقة) | **7199 نقطة** (29 AC / 3 س و 54 د) | **19603 نقطة** (69 AC / 12 س و 28 د) | VJudge: `gamalmegahed` (782 AC), Codeforces: `PG_Gamal_Kobisy` (100 AC) |
+| **#4** | **esraa** | ⚪ غير متصل | **0 نقطة** (0 AC / 0 دقيقة) | **5838 نقطة** (26 AC / 8 س و 13 د) | **20576 نقطة** (71 AC / 28 س و 46 د) | VJudge: `esraa_emary` (338 AC), Codeforces: `esoo` (77 AC) |
 | **#5** | **فاطمة الفقي (Fatema)** | ⚪ غير متصل | **0 نقطة** (0 AC / 0 دقيقة) | **4386 نقطة** (23 AC / 1 س و 26 د) | **28129 نقطة** (106 AC / 24 س و 34 د) | VJudge: `Fatemaelfiky1` (446 AC), Codeforces: `Zhraa_` (110 AC) |
-| **#6** | **عمر عوض صابر (Omar)** | ⚪ غير متصل | **0 نقطة** (0 AC / 0 دقيقة) | **3156 نقطة** (5 AC / 3 س و 6 د) | **13484 نقطة** (20 AC / 10 س و 4 د) | VJudge: `Omar_Awad_Saber` (496 AC), Codeforces: `Lumino` (99 AC), AtCoder: `Lumino` (24 AC) |
-| **#7** | **Mohab** | 🟢 متصل (Codeforces) | **20 نقطة** (0 AC / 5 دقيقة) | **2234 نقطة** (8 AC / 4 س و 44 د) | **18224 نقطة** (43 AC / 15 س و 39 د) | VJudge: `Mo_hab` (381 AC), Codeforces: `Mo_hab` (145 AC), AtCoder: `Mo_hab` (25 AC) |
-| **#8** | **youssef** | ⚪ غير متصل | **0 نقطة** (0 AC / 0 دقيقة) | **1077 نقطة** (4 AC / 1 س و 27 د) | **6830 نقطة** (27 AC / 8 س و 15 د) | VJudge: `youssef_97` (569 AC), Codeforces: `youssef97_` (90 AC) |
+| **#6** | **عمر عوض صابر (Omar)** | ⚪ غير متصل | **0 نقطة** (0 AC / 0 دقيقة) | **3109 نقطة** (5 AC / 2 س و 49 د) | **13484 نقطة** (20 AC / 10 س و 4 د) | VJudge: `Omar_Awad_Saber` (496 AC), Codeforces: `Lumino` (99 AC), AtCoder: `Lumino` (24 AC) |
+| **#7** | **Mohab** | ⚪ غير متصل | **20 نقطة** (0 AC / 5 دقيقة) | **2194 نقطة** (8 AC / 4 س و 34 د) | **18224 نقطة** (43 AC / 15 س و 39 د) | VJudge: `Mo_hab` (381 AC), Codeforces: `Mo_hab` (145 AC), AtCoder: `Mo_hab` (25 AC) |
+| **#8** | **youssef** | ⚪ غير متصل | **0 نقطة** (0 AC / 0 دقيقة) | **1097 نقطة** (4 AC / 1 س و 32 د) | **6850 نقطة** (27 AC / 8 س و 20 د) | VJudge: `youssef_97` (569 AC), Codeforces: `youssef97_` (90 AC) |
 | **#9** | **عمرو خالد (Amr)** | ⚪ غير متصل | **0 نقطة** (0 AC / 0 دقيقة) | **542 نقطة** (1 AC / 57 دقيقة) | **542 نقطة** (1 AC / 57 دقيقة) | VJudge: `Amr2Khaled` (294 AC), Codeforces: `SHANKS-A` (97 AC), AtCoder: `SHANKS_A` (1 AC) |
 | **#10** | **seif lashin** | ⚪ غير متصل | **0 نقطة** (0 AC / 0 دقيقة) | **255 نقطة** (1 AC / 30 دقيقة) | **2747 نقطة** (9 AC / 4 س و 42 د) | VJudge: `seiflashin` (519 AC), Codeforces: `seiflashin` (89 AC), AtCoder: `seiflashin` (100 AC) |
 | **#11** | **Abdelrahman Saber** | ⚪ غير متصل | **0 نقطة** (0 AC / 0 دقيقة) | **187 نقطة** (0 AC / 1 س و 7 د) | **13370 نقطة** (16 AC / 6 س و 55 د) | VJudge: `4aii_Blabn` (421 AC), Codeforces: `4aii_Blabn` (120 AC) |
@@ -103,7 +103,8 @@
 ### 👤 Youssef Saleh
 | التاريخ | من | إلى | مدة النشاط | تفصيل المنصات | المسائل بالتوقيت |
 | :--- | :---: | :---: | :---: | :--- | :--- |
-| السبت 7 نوفمبر 2026 | 02:48 ص | 02:53 ص | 5 دقيقة (فتح وتصفح المنصة) | **Codeforces**: 5 دقيقة (0 AC) | `02:53:51 ص` [Codeforces] 👁️ فاتح كود فورسز (متصل أونلاين) (**Online**) |
+| السبت 7 نوفمبر 2026 | 09:10 ص | 09:35 ص | 25 دقيقة (اتصال متواصل) | **Codeforces**: 25 دقيقة (1 AC) | `09:35:20 ص` [Codeforces] 126B - Password (**Accepted**)<br>`09:33:21 ص` [Codeforces] 126B - Password (**Wrong Answer**)<br>`09:25:43 ص` [Codeforces] 126B - Password (**Wrong Answer**) |
+| السبت 7 نوفمبر 2026 | 02:48 ص | 03:00 ص | 11 دقيقة (فتح وتصفح المنصة) | **Codeforces**: 11 دقيقة (0 AC) | `03:00:04 ص` [Codeforces] 👁️ فاتح كود فورسز (متصل أونلاين) (**Online**)<br>`02:53:51 ص` [Codeforces] 👁️ فاتح كود فورسز (متصل أونلاين) (**Online**) |
 | الجمعة 6 نوفمبر 2026 | 08:03 م | 08:18 م | 15 دقيقة (اتصال متواصل) | **Codeforces**: 15 دقيقة (1 AC) | `08:18:23 م` [Codeforces] 2284C1 - Disgusting + GCD (Constructive Version) (**Accepted**) |
 | الجمعة 6 نوفمبر 2026 | 06:06 م | 06:36 م | 30 دقيقة (اتصال متواصل) | **Codeforces**: 30 دقيقة (2 AC) | `06:36:30 م` [Codeforces] 2284A2 - 15K4JR3B (Hard Version) (**Accepted**)<br>`06:21:54 م` [Codeforces] 2284B - Introduction to the Niche Internet (**Accepted**) |
 | الجمعة 6 نوفمبر 2026 | 05:24 م | 05:39 م | 15 دقيقة (اتصال متواصل) | **Codeforces**: 15 دقيقة (1 AC) | `05:39:31 م` [Codeforces] 2284A1 - 15K4JR3B (Easy Version) (**Accepted**) |
@@ -117,11 +118,12 @@
 | الخميس 5 نوفمبر 2026 | 01:23 م | 01:56 م | 33 دقيقة (اتصال متواصل) | **Codeforces**: 33 دقيقة (0 AC) | `01:56:55 م` [Codeforces] 106706D - Where were you 14 years ago? (**Wrong Answer**)<br>`01:38:55 م` [Codeforces] 106706D - Where were you 14 years ago? (**Wrong Answer**) |
 | الخميس 5 نوفمبر 2026 | 10:26 ص | 12:16 م | 1 س و 51 د (اتصال متواصل) | **Codeforces**: 1 س و 51 د (6 AC) | `12:16:56 م` [Codeforces] 106706B - Nostalgia (**Accepted**)<br>`11:47:30 ص` [Codeforces] 106706M - Power of 3afweya (**Accepted**)<br>`11:29:41 ص` [Codeforces] 106706M - Power of 3afweya (**Wrong Answer**)<br>`11:16:45 ص` [Codeforces] 106706M - Power of 3afweya (**Wrong Answer**)<br>`11:13:07 ص` [Codeforces] 106706M - Power of 3afweya (**Wrong Answer**)<br>`11:11:20 ص` [Codeforces] 106706A - Standard Othman (**Accepted**) |
 | الخميس 5 نوفمبر 2026 | 07:42 ص | 07:57 ص | 15 دقيقة (اتصال متواصل) | **Codeforces**: 15 دقيقة (1 AC) | `07:57:14 ص` [Codeforces] 910A - The Way to Home (**Accepted**) |
-| الخميس 5 نوفمبر 2026 | 06:58 ص | 07:13 ص | 15 دقيقة (اتصال متواصل) | **Codeforces**: 15 دقيقة (1 AC) | `07:13:09 ص` [Codeforces] 189A - Cut Ribbon (**Accepted**) |
 
 ### 👤 Abdelhamid
 | التاريخ | من | إلى | مدة النشاط | تفصيل المنصات | المسائل بالتوقيت |
 | :--- | :---: | :---: | :---: | :--- | :--- |
+| السبت 7 نوفمبر 2026 | 08:00 ص | 09:09 ص | 1 س و 9 د (اتصال متواصل) | **Codeforces**: 47 دقيقة (2 AC)<br>**AtCoder**: 59 دقيقة (3 AC) | `09:09:37 ص` [Codeforces] 189A - Cut Ribbon (**Accepted**)<br>`08:58:56 ص` [AtCoder] dp_f (dp) (**Accepted**)<br>`08:37:32 ص` [Codeforces] 910A - The Way to Home (**Accepted**)<br>`08:28:51 ص` [AtCoder] dp_d (math-and-algorithm) (**Accepted**)<br>`08:15:22 ص` [AtCoder] dp_h (dp) (**Accepted**) |
+| السبت 7 نوفمبر 2026 | 07:08 ص | 07:23 ص | 15 دقيقة (اتصال متواصل) | **AtCoder**: 15 دقيقة (1 AC) | `07:23:25 ص` [AtCoder] dp_b (dp) (**Accepted**) |
 | الجمعة 6 نوفمبر 2026 | 03:43 ص | 03:48 ص | 5 دقيقة (فتح وتصفح المنصة) | **Codeforces**: 5 دقيقة (0 AC) | `03:48:43 ص` [Codeforces] 👁️ فاتح كود فورسز (متصل أونلاين) (**Online**) |
 | الخميس 5 نوفمبر 2026 | 03:03 م | 03:46 م | 43 دقيقة (اتصال متواصل) | **Codeforces**: 43 دقيقة (1 AC) | `03:46:18 م` [Codeforces] 106706D - Where were you 14 years ago? (**Accepted**)<br>`03:27:26 م` [Codeforces] 106706D - Where were you 14 years ago? (**Wrong Answer**)<br>`03:18:23 م` [Codeforces] 106706L - Chasing Hamoosh (**Memory Limit Exceeded**) |
 | الخميس 5 نوفمبر 2026 | 02:18 م | 02:45 م | 27 دقيقة (اتصال متواصل) | **Codeforces**: 27 دقيقة (0 AC) | `02:45:41 م` [Codeforces] 106706D - Where were you 14 years ago? (**Wrong Answer**)<br>`02:33:54 م` [Codeforces] 106706D - Where were you 14 years ago? (**Runtime Error**) |
@@ -135,12 +137,11 @@
 | الأحد 1 نوفمبر 2026 | 10:31 م | 10:36 م | 5 دقيقة (فتح وتصفح المنصة) | **Codeforces**: 5 دقيقة (0 AC) | `10:36:42 م` [Codeforces] 👁️ فاتح كود فورسز (متصل أونلاين) (**Online**) |
 | الأحد 1 نوفمبر 2026 | 02:19 ص | 02:24 ص | 5 دقيقة (فتح وتصفح المنصة) | **Codeforces**: 5 دقيقة (0 AC) | `02:24:56 ص` [Codeforces] 👁️ فاتح كود فورسز (متصل أونلاين) (**Online**) |
 | الأحد 1 نوفمبر 2026 | 01:30 ص | 01:35 ص | 5 دقيقة (فتح وتصفح المنصة) | **Codeforces**: 5 دقيقة (0 AC) | `01:35:18 ص` [Codeforces] 👁️ فاتح كود فورسز (متصل أونلاين) (**Online**) |
-| السبت 31 أكتوبر 2026 | 01:58 م | 02:03 م | 5 دقيقة (فتح وتصفح المنصة) | **Codeforces**: 5 دقيقة (0 AC) | `02:03:01 م` [Codeforces] 👁️ فاتح كود فورسز (متصل أونلاين) (**Online**) |
-| الجمعة 30 أكتوبر 2026 | 10:16 م | 10:21 م | 5 دقيقة (فتح وتصفح المنصة) | **Codeforces**: 5 دقيقة (0 AC) | `10:21:53 م` [Codeforces] 👁️ فاتح كود فورسز (متصل أونلاين) (**Online**) |
 
 ### 👤 esraa
 | التاريخ | من | إلى | مدة النشاط | تفصيل المنصات | المسائل بالتوقيت |
 | :--- | :---: | :---: | :---: | :--- | :--- |
+| الجمعة 6 نوفمبر 2026 | 06:50 م | 06:55 م | 5 دقيقة (فتح وتصفح المنصة) | **Codeforces**: 5 دقيقة (0 AC) | `06:55:05 م` [Codeforces] 👁️ فاتح كود فورسز (متصل أونلاين) (**Online**) |
 | الجمعة 6 نوفمبر 2026 | 09:37 ص | 09:52 ص | 15 دقيقة (اتصال متواصل) | **Codeforces**: 15 دقيقة (1 AC) | `09:52:29 ص` [Codeforces] 1979B - XOR Sequences (**Accepted**) |
 | الخميس 5 نوفمبر 2026 | 10:16 م | 11:11 م | 56 دقيقة (اتصال متواصل) | **VJudge**: 26 دقيقة (2 AC)<br>**Codeforces**: 5 دقيقة (0 AC) | `11:11:47 م` [Codeforces] 👁️ فاتح كود فورسز (متصل أونلاين) (**Online**)<br>`10:42:30 م` [VJudge] UVA 167 (**Accepted**)<br>`10:39:50 م` [VJudge] UVA 167 (**Presentation Error**)<br>`10:33:03 م` [VJudge] UVA 11085 (**Accepted**)<br>`10:31:01 م` [VJudge] UVA 11085 (**Wrong answer**) |
 | الخميس 5 نوفمبر 2026 | 08:41 م | 09:23 م | 42 دقيقة (اتصال متواصل) | **VJudge**: 42 دقيقة (2 AC) | `09:23:54 م` [VJudge] UVA 624 (**Accepted**)<br>`08:56:45 م` [VJudge] UVA 628 (**Accepted**) |
@@ -155,7 +156,6 @@
 | الإثنين 2 نوفمبر 2026 | 06:44 م | 06:59 م | 15 دقيقة (اتصال متواصل) | **VJudge**: 15 دقيقة (1 AC) | `06:59:31 م` [VJudge] CSES 1622 (**Accepted**) |
 | الأحد 1 نوفمبر 2026 | 10:28 م | 10:33 م | 5 دقيقة (فتح وتصفح المنصة) | **Codeforces**: 5 دقيقة (0 AC) | `10:33:30 م` [Codeforces] 👁️ فاتح كود فورسز (متصل أونلاين) (**Online**) |
 | الأحد 1 نوفمبر 2026 | 12:10 م | 01:02 م | 52 دقيقة (اتصال متواصل) | **VJudge**: 52 دقيقة (6 AC)<br>**Codeforces**: 7 دقيقة (1 AC) | `01:02:47 م` [VJudge] AtCoder abc206_b (**Accepted**)<br>`01:01:08 م` [VJudge] AtCoder abc206_b (**Wrong Answer**)<br>`12:55:42 م` [VJudge] CodeForces 1141A (**Accepted**)<br>`12:53:29 م` [Codeforces] 👁️ فاتح كود فورسز (متصل أونلاين) (**Online**)<br>`12:47:20 م` [VJudge] AtCoder abc193_b (**Accepted**)<br>`12:38:44 م` [VJudge] AtCoder abc190_b (**Accepted**) |
-| السبت 31 أكتوبر 2026 | 09:16 م | 09:31 م | 15 دقيقة (اتصال متواصل) | **VJudge**: 15 دقيقة (1 AC) | `09:31:13 م` [VJudge] SPOJ TRUCKL (**Accepted**) |
 
 ### 👤 Mohab
 | التاريخ | من | إلى | مدة النشاط | تفصيل المنصات | المسائل بالتوقيت |
@@ -236,6 +236,7 @@
 ### 👤 youssef
 | التاريخ | من | إلى | مدة النشاط | تفصيل المنصات | المسائل بالتوقيت |
 | :--- | :---: | :---: | :---: | :--- | :--- |
+| الجمعة 6 نوفمبر 2026 | 05:42 م | 05:47 م | 5 دقيقة (فتح وتصفح المنصة) | **Codeforces**: 5 دقيقة (0 AC) | `05:47:00 م` [Codeforces] 👁️ فاتح كود فورسز (متصل أونلاين) (**Online**) |
 | الجمعة 6 نوفمبر 2026 | 05:11 م | 05:16 م | 5 دقيقة (فتح وتصفح المنصة) | **Codeforces**: 5 دقيقة (0 AC) | `05:16:37 م` [Codeforces] 👁️ فاتح كود فورسز (متصل أونلاين) (**Online**) |
 | الجمعة 6 نوفمبر 2026 | 12:37 ص | 12:52 ص | 15 دقيقة (اتصال متواصل) | **Codeforces**: 15 دقيقة (1 AC) | `12:52:00 ص` [Codeforces] 910A - The Way to Home (**Accepted**) |
 | الثلاثاء 3 نوفمبر 2026 | 11:33 م | 11:55 م | 21 دقيقة (اتصال متواصل) | **Codeforces**: 21 دقيقة (1 AC) | `11:55:01 م` [Codeforces] 👁️ فاتح كود فورسز (متصل أونلاين) (**Online**)<br>`11:48:53 م` [Codeforces] 372A - Counting Kangaroos is Fun (**Accepted**) |
@@ -250,4 +251,3 @@
 | السبت 24 أكتوبر 2026 | 05:15 م | 05:20 م | 5 دقيقة (فتح وتصفح المنصة) | **Codeforces**: 5 دقيقة (0 AC) | `05:20:53 م` [Codeforces] 👁️ فاتح كود فورسز (متصل أونلاين) (**Online**) |
 | السبت 24 أكتوبر 2026 | 03:30 م | 03:45 م | 15 دقيقة (اتصال متواصل) | **VJudge**: 15 دقيقة (1 AC)<br>**Codeforces**: 15 دقيقة (1 AC) | `03:45:53 م` [VJudge] CodeForces 1612C (**Accepted**) |
 | الجمعة 23 أكتوبر 2026 | 05:28 م | 05:53 م | 25 دقيقة (اتصال متواصل) | **VJudge**: 25 دقيقة (1 AC) | `05:53:42 م` [VJudge] CSES 2165 (**Accepted**)<br>`05:52:40 م` [VJudge] CSES 2165 (**Wrong answer**)<br>`05:51:42 م` [VJudge] CSES 2165 (**Wrong answer**)<br>`05:46:57 م` [VJudge] CSES 2165 (**Wrong answer**)<br>`05:45:29 م` [VJudge] CSES 2165 (**Wrong answer**)<br>`05:43:46 م` [VJudge] CSES 2165 (**Wrong answer**) |
-| الجمعة 23 أكتوبر 2026 | 03:11 م | 04:30 م | 1 س و 19 د (اتصال متواصل) | **VJudge**: 1 س و 19 د (5 AC)<br>**Codeforces**: 1 س و 19 د (4 AC) | `04:30:32 م` [VJudge] CodeForces 1097B (**Accepted**)<br>`04:21:13 م` [VJudge] CodeForces 670D2 (**Accepted**)<br>`03:57:54 م` [VJudge] CSES 1623 (**Accepted**)<br>`03:48:42 م` [VJudge] CodeForces 165B (**Accepted**)<br>`03:48:05 م` [VJudge] CodeForces 165B (**Wrong answer on test 5**)<br>`03:36:13 م` [VJudge] CodeForces 474B (**Accepted**) |
