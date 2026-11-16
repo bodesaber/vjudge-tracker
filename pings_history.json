@@ -696,6 +696,17 @@
       "problemUrl": "https://codeforces.com/profile/Zhraa_",
       "status": "Online",
       "is_ac": false
+    },
+    {
+      "id": "ping_cf_1794741625000",
+      "type": "online_ping",
+      "platform": "Codeforces",
+      "time": 1794741625000,
+      "probNum": "تصفح المنصة",
+      "problemName": "👁️ فاتح كود فورسز (متصل أونلاين)",
+      "problemUrl": "https://codeforces.com/profile/Zhraa_",
+      "status": "Online",
+      "is_ac": false
     }
   ],
   "amr": [
@@ -1568,6 +1579,17 @@
       "type": "online_ping",
       "platform": "Codeforces",
       "time": 1794754060000,
+      "probNum": "تصفح المنصة",
+      "problemName": "👁️ فاتح كود فورسز (متصل أونلاين)",
+      "problemUrl": "https://codeforces.com/profile/nerdev",
+      "status": "Online",
+      "is_ac": false
+    },
+    {
+      "id": "ping_cf_1794771440000",
+      "type": "online_ping",
+      "platform": "Codeforces",
+      "time": 1794771440000,
       "probNum": "تصفح المنصة",
       "problemName": "👁️ فاتح كود فورسز (متصل أونلاين)",
       "problemUrl": "https://codeforces.com/profile/nerdev",
@@ -3633,6 +3655,17 @@
       "type": "online_ping",
       "platform": "Codeforces",
       "time": 1794726623000,
+      "probNum": "تصفح المنصة",
+      "problemName": "👁️ فاتح كود فورسز (متصل أونلاين)",
+      "problemUrl": "https://codeforces.com/profile/PG_Gamal_Kobisy",
+      "status": "Online",
+      "is_ac": false
+    },
+    {
+      "id": "ping_cf_1794728376000",
+      "type": "online_ping",
+      "platform": "Codeforces",
+      "time": 1794728376000,
       "probNum": "تصفح المنصة",
       "problemName": "👁️ فاتح كود فورسز (متصل أونلاين)",
       "problemUrl": "https://codeforces.com/profile/PG_Gamal_Kobisy",
