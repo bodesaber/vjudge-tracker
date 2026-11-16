@@ -1,17 +1,17 @@
 # 📊 تقرير متابعة نشاط المتدربين الشامل 24/7 (VJudge + Codeforces + AtCoder + CSES)
-**تاريخ التحديث:** الإثنين 16 نوفمبر 2026 - 12:58 ص (بتوقيت مصر - قاعدة الـ 30 دقيقة للاتصال المتواصل)
+**تاريخ التحديث:** الإثنين 16 نوفمبر 2026 - 04:35 ص (بتوقيت مصر - قاعدة الـ 30 دقيقة للاتصال المتواصل)
 
 ## 🏆 أبطال التدريب (الأعلى نقاطاً):
 - **🥇 بطل اليوم:** **فاطمة الفقي (Fatema)** (240 نقطة — 2 AC، نشط 0 دقيقة)
-- **🔥 بطل الأسبوع (آخر 7 أيام):** **Youssef Saleh** (8804 نقطة — 14 AC، نشط 6 س و 14 د)
+- **🔥 بطل الأسبوع (آخر 7 أيام):** **Youssef Saleh** (8784 نقطة — 14 AC، نشط 6 س و 9 د)
 - **👑 بطل الشهر (آخر 30 يوماً):** **Youssef Saleh** (58413 نقطة — 122 AC، نشط 44 س و 28 د)
 
 ## 1. جدول الترتيب والملخص العام (مرتب حسب سكور الأسبوع)
 | الترتيب | المتدرب | الحالة | سكور اليوم | سكور 7 أيام | سكور 30 يوماً | المنصات المربوطة |
 | :---: | :--- | :---: | :---: | :---: | :---: | :--- |
-| **🥇 #1** | **Youssef Saleh** | ⚪ غير متصل | **0 نقطة** (0 AC / 0 دقيقة) | **8804 نقطة** (14 AC / 6 س و 14 د) | **58413 نقطة** (122 AC / 44 س و 28 د) | VJudge: `Youssef_Saleh` (477 AC), Codeforces: `nerdev` (111 AC), AtCoder: `Nerdev` (62 AC), CSES: `390594` (239 AC) |
-| **🥈 #2** | **esraa** | ⚪ غير متصل | **0 نقطة** (0 AC / 0 دقيقة) | **7430 نقطة** (19 AC / 5 س و 10 د) | **22687 نقطة** (75 AC / 27 س و 57 د) | VJudge: `esraa_emary` (354 AC), Codeforces: `esoo` (84 AC) |
-| **🥉 #3** | **Mohab** | ⚪ غير متصل | **0 نقطة** (0 AC / 0 دقيقة) | **4533 نقطة** (7 AC / 1 س و 58 د) | **25011 نقطة** (56 AC / 17 س و 46 د) | VJudge: `Mo_hab` (386 AC), Codeforces: `Mo_hab` (147 AC), AtCoder: `Mo_hab` (25 AC) |
+| **🥇 #1** | **Youssef Saleh** | ⚪ غير متصل | **0 نقطة** (0 AC / 0 دقيقة) | **8784 نقطة** (14 AC / 6 س و 9 د) | **58413 نقطة** (122 AC / 44 س و 28 د) | VJudge: `Youssef_Saleh` (477 AC), Codeforces: `nerdev` (111 AC), AtCoder: `Nerdev` (62 AC), CSES: `390594` (239 AC) |
+| **🥈 #2** | **esraa** | ⚪ غير متصل | **0 نقطة** (0 AC / 0 دقيقة) | **7430 نقطة** (19 AC / 5 س و 10 د) | **22112 نقطة** (72 AC / 27 س و 57 د) | VJudge: `esraa_emary` (354 AC), Codeforces: `esoo` (84 AC) |
+| **🥉 #3** | **Mohab** | ⚪ غير متصل | **0 نقطة** (0 AC / 0 دقيقة) | **4513 نقطة** (7 AC / 1 س و 53 د) | **25011 نقطة** (56 AC / 17 س و 46 د) | VJudge: `Mo_hab` (386 AC), Codeforces: `Mo_hab` (147 AC), AtCoder: `Mo_hab` (25 AC) |
 | **#4** | **Gamal Megahed** | ⚪ غير متصل | **0 نقطة** (0 AC / 0 دقيقة) | **4277 نقطة** (11 AC / 2 س و 7 د) | **22494 نقطة** (71 AC / 14 س و 49 د) | VJudge: `gamalmegahed` (792 AC), Codeforces: `PG_Gamal_Kobisy` (108 AC) |
 | **#5** | **فاطمة الفقي (Fatema)** | ⚪ غير متصل | **240 نقطة** (2 AC / 0 دقيقة) | **1193 نقطة** (4 AC / 1 س و 28 د) | **17799 نقطة** (66 AC / 15 س و 4 د) | VJudge: `Fatemaelfiky1` (448 AC), Codeforces: `Zhraa_` (112 AC) |
 | **#6** | **Abdelrahman Saber** | ⚪ غير متصل | **0 نقطة** (0 AC / 0 دقيقة) | **152 نقطة** (0 AC / 47 دقيقة) | **10997 نقطة** (12 AC / 6 س و 47 د) | VJudge: `4aii_Blabn` (421 AC), Codeforces: `4aii_Blabn` (120 AC) |
@@ -65,7 +65,7 @@
 ### 👤 فاطمة الفقي (Fatema)
 | التاريخ | من | إلى | مدة النشاط | تفصيل المنصات | المسائل بالتوقيت |
 | :--- | :---: | :---: | :---: | :--- | :--- |
-| الأحد 15 نوفمبر 2026 | 08:58 ص | 10:22 ص | 1 س و 23 د (اتصال متواصل) | **VJudge**: 1 س و 23 د (4 AC)<br>**Codeforces**: 1 س و 23 د (4 AC) | `10:22:02 ص` [VJudge] CodeForces 1476B (**Accepted**)<br>`10:21:17 ص` [VJudge] CodeForces 1476B (**Wrong answer on test 1**)<br>`09:52:57 ص` [VJudge] CodeForces 1201C (**Accepted**)<br>`09:39:31 ص` [VJudge] CodeForces 670D2 (**Accepted**)<br>`09:38:42 ص` [VJudge] CodeForces 670D2 (**Wrong answer on test 5**)<br>`09:13:56 ص` [VJudge] CodeForces 474B (**Accepted**) |
+| الأحد 15 نوفمبر 2026 | 08:58 ص | 10:22 ص | 1 س و 23 د (اتصال متواصل) | **VJudge**: 1 س و 23 د (4 AC)<br>**Codeforces**: 1 س و 23 د (4 AC) | `10:22:02 ص` [VJudge] CodeForces 1476B (**Accepted**)<br>`10:21:17 ص` [VJudge] CodeForces 1476B (**Wrong answer on test 1**)<br>`10:16:24 ص` [Codeforces] 👁️ فاتح كود فورسز (متصل أونلاين) (**Online**)<br>`09:52:57 ص` [VJudge] CodeForces 1201C (**Accepted**)<br>`09:39:31 ص` [VJudge] CodeForces 670D2 (**Accepted**)<br>`09:38:42 ص` [VJudge] CodeForces 670D2 (**Wrong answer on test 5**) |
 | الأحد 15 نوفمبر 2026 | 07:43 ص | 07:48 ص | 5 دقيقة (فتح وتصفح المنصة) | **Codeforces**: 5 دقيقة (0 AC) | `07:48:26 ص` [Codeforces] 👁️ فاتح كود فورسز (متصل أونلاين) (**Online**) |
 | الخميس 5 نوفمبر 2026 | 11:58 م | 01:19 ص | 1 س و 21 د (اتصال متواصل) | **VJudge**: 1 س و 21 د (23 AC)<br>**Codeforces**: 1 س و 1 د (4 AC) | `01:19:13 ص` [VJudge] UVA 524 (**Accepted**)<br>`01:17:07 ص` [VJudge] AtCoder abc206_b (**Accepted**)<br>`01:16:54 ص` [Codeforces] 👁️ فاتح كود فورسز (متصل أونلاين) (**Online**)<br>`01:16:01 ص` [VJudge] AtCoder abc196_b (**Accepted**)<br>`01:15:18 ص` [VJudge] AtCoder abc191_b (**Accepted**)<br>`01:12:11 ص` [VJudge] AtCoder abc193_b (**Accepted**) |
 | السبت 31 أكتوبر 2026 | 07:14 م | 07:19 م | 5 دقيقة (فتح وتصفح المنصة) | **Codeforces**: 5 دقيقة (0 AC) | `07:19:15 م` [Codeforces] 👁️ فاتح كود فورسز (متصل أونلاين) (**Online**) |
