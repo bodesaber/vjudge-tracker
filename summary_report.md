@@ -1,19 +1,19 @@
 # 📊 تقرير متابعة نشاط المتدربين الشامل 24/7 (VJudge + Codeforces + AtCoder + CSES)
-**تاريخ التحديث:** الأربعاء 18 نوفمبر 2026 - 04:43 ص (بتوقيت مصر - قاعدة الـ 30 دقيقة للاتصال المتواصل)
+**تاريخ التحديث:** الأربعاء 18 نوفمبر 2026 - 12:11 م (بتوقيت مصر - قاعدة الـ 30 دقيقة للاتصال المتواصل)
 
 ## 🏆 أبطال التدريب (الأعلى نقاطاً):
-- **🥇 بطل اليوم:** **Mohab** (20 نقطة — 0 AC، نشط 5 دقيقة)
-- **🔥 بطل الأسبوع (آخر 7 أيام):** **Youssef Saleh** (6703 نقطة — 11 AC، نشط 4 س و 58 د)
-- **👑 بطل الشهر (آخر 30 يوماً):** **Youssef Saleh** (57042 نقطة — 115 AC، نشط 42 س و 7 د)
+- **🥇 بطل اليوم:** **Youssef Saleh** (20 نقطة — 0 AC، نشط 5 دقيقة)
+- **🔥 بطل الأسبوع (آخر 7 أيام):** **Youssef Saleh** (5051 نقطة — 8 AC، نشط 3 س و 31 د)
+- **👑 بطل الشهر (آخر 30 يوماً):** **Youssef Saleh** (57062 نقطة — 115 AC، نشط 42 س و 12 د)
 
 ## 1. جدول الترتيب والملخص العام (مرتب حسب سكور الأسبوع)
 | الترتيب | المتدرب | الحالة | سكور اليوم | سكور 7 أيام | سكور 30 يوماً | المنصات المربوطة |
 | :---: | :--- | :---: | :---: | :---: | :---: | :--- |
-| **🥇 #1** | **Youssef Saleh** | ⚪ غير متصل | **0 نقطة** (0 AC / 0 دقيقة) | **6703 نقطة** (11 AC / 4 س و 58 د) | **57042 نقطة** (115 AC / 42 س و 7 د) | VJudge: `Youssef_Saleh` (477 AC), Codeforces: `nerdev` (111 AC), AtCoder: `Nerdev` (62 AC), CSES: `390594` (239 AC) |
-| **🥈 #2** | **esraa** | ⚪ غير متصل | **0 نقطة** (0 AC / 0 دقيقة) | **4967 نقطة** (14 AC / 2 س و 57 د) | **20870 نقطة** (68 AC / 24 س و 10 د) | VJudge: `esraa_emary` (354 AC), Codeforces: `esoo` (84 AC) |
-| **🥉 #3** | **Mohab** | 🟢 متصل (Codeforces) | **20 نقطة** (0 AC / 5 دقيقة) | **4533 نقطة** (7 AC / 1 س و 58 د) | **25031 نقطة** (56 AC / 17 س و 51 د) | VJudge: `Mo_hab` (386 AC), Codeforces: `Mo_hab` (147 AC), AtCoder: `Mo_hab` (25 AC) |
-| **#4** | **Gamal Megahed** | ⚪ غير متصل | **0 نقطة** (0 AC / 0 دقيقة) | **4306 نقطة** (11 AC / 2 س و 36 د) | **22523 نقطة** (71 AC / 15 س و 18 د) | VJudge: `gamalmegahed` (792 AC), Codeforces: `PG_Gamal_Kobisy` (108 AC) |
-| **#5** | **فاطمة الفقي (Fatema)** | ⚪ غير متصل | **0 نقطة** (0 AC / 0 دقيقة) | **1213 نقطة** (4 AC / 1 س و 33 د) | **17091 نقطة** (62 AC / 14 س و 11 د) | VJudge: `Fatemaelfiky1` (448 AC), Codeforces: `Zhraa_` (112 AC) |
+| **🥇 #1** | **Youssef Saleh** | ⚪ غير متصل | **20 نقطة** (0 AC / 5 دقيقة) | **5051 نقطة** (8 AC / 3 س و 31 د) | **57062 نقطة** (115 AC / 42 س و 12 د) | VJudge: `Youssef_Saleh` (477 AC), Codeforces: `nerdev` (111 AC), AtCoder: `Nerdev` (62 AC), CSES: `390594` (239 AC) |
+| **🥈 #2** | **esraa** | ⚪ غير متصل | **0 نقطة** (0 AC / 0 دقيقة) | **4519 نقطة** (13 AC / 2 س و 39 د) | **20870 نقطة** (68 AC / 24 س و 10 د) | VJudge: `esraa_emary` (354 AC), Codeforces: `esoo` (84 AC) |
+| **🥉 #3** | **Mohab** | ⚪ غير متصل | **20 نقطة** (0 AC / 5 دقيقة) | **4493 نقطة** (7 AC / 1 س و 48 د) | **25031 نقطة** (56 AC / 17 س و 51 د) | VJudge: `Mo_hab` (386 AC), Codeforces: `Mo_hab` (147 AC), AtCoder: `Mo_hab` (25 AC) |
+| **#4** | **Gamal Megahed** | ⚪ غير متصل | **0 نقطة** (0 AC / 0 دقيقة) | **4306 نقطة** (11 AC / 2 س و 36 د) | **22252 نقطة** (70 AC / 14 س و 42 د) | VJudge: `gamalmegahed` (792 AC), Codeforces: `PG_Gamal_Kobisy` (108 AC) |
+| **#5** | **فاطمة الفقي (Fatema)** | ⚪ غير متصل | **0 نقطة** (0 AC / 0 دقيقة) | **1213 نقطة** (4 AC / 1 س و 33 د) | **17091 نقطة** (62 AC / 14 س و 11 د) | VJudge: `Fatemaelfiky1` (461 AC), Codeforces: `Zhraa_` (112 AC) |
 | **#6** | **Abdelrahman Saber** | ⚪ غير متصل | **0 نقطة** (0 AC / 0 دقيقة) | **184 نقطة** (0 AC / 1 س و 4 د) | **11049 نقطة** (12 AC / 7 س و 9 د) | VJudge: `4aii_Blabn` (421 AC), Codeforces: `4aii_Blabn` (120 AC) |
 | **#7** | **Abdelhamid** | ⚪ غير متصل | **0 نقطة** (0 AC / 0 دقيقة) | **161 نقطة** (0 AC / 56 دقيقة) | **23244 نقطة** (51 AC / 15 س و 29 د) | VJudge: `abdelhamid1` (360 AC), Codeforces: `Abdelhamid_` (97 AC), AtCoder: `Abdelhamid` (59 AC) |
 | **#8** | **youssef** | ⚪ غير متصل | **0 نقطة** (0 AC / 0 دقيقة) | **20 نقطة** (0 AC / 5 دقيقة) | **9997 نقطة** (35 AC / 10 س و 42 د) | VJudge: `youssef_97` (573 AC), Codeforces: `youssef97_` (90 AC) |
@@ -103,6 +103,7 @@
 ### 👤 Youssef Saleh
 | التاريخ | من | إلى | مدة النشاط | تفصيل المنصات | المسائل بالتوقيت |
 | :--- | :---: | :---: | :---: | :--- | :--- |
+| الأربعاء 18 نوفمبر 2026 | 04:59 ص | 05:04 ص | 5 دقيقة (فتح وتصفح المنصة) | **Codeforces**: 5 دقيقة (0 AC) | `05:04:38 ص` [Codeforces] 👁️ فاتح كود فورسز (متصل أونلاين) (**Online**) |
 | الثلاثاء 17 نوفمبر 2026 | 02:03 ص | 02:08 ص | 5 دقيقة (فتح وتصفح المنصة) | **Codeforces**: 5 دقيقة (0 AC) | `02:08:48 ص` [Codeforces] 👁️ فاتح كود فورسز (متصل أونلاين) (**Online**) |
 | الإثنين 16 نوفمبر 2026 | 07:04 م | 07:09 م | 5 دقيقة (فتح وتصفح المنصة) | **Codeforces**: 5 دقيقة (0 AC) | `07:09:55 م` [Codeforces] 👁️ فاتح كود فورسز (متصل أونلاين) (**Online**) |
 | الأحد 15 نوفمبر 2026 | 10:32 م | 10:37 م | 5 دقيقة (فتح وتصفح المنصة) | **Codeforces**: 5 دقيقة (0 AC) | `10:37:20 م` [Codeforces] 👁️ فاتح كود فورسز (متصل أونلاين) (**Online**) |
@@ -117,7 +118,6 @@
 | الخميس 12 نوفمبر 2026 | 05:22 م | 06:11 م | 49 دقيقة (اتصال متواصل) | **Codeforces**: 49 دقيقة (4 AC) | `06:11:48 م` [Codeforces] 2290D - Letters Down (**Accepted**)<br>`05:50:18 م` [Codeforces] 2290C - Books on a Shelf (**Accepted**)<br>`05:41:19 م` [Codeforces] 2290B - Stubborn Pen (**Accepted**)<br>`05:37:32 م` [Codeforces] 2290A - Three Piles (**Accepted**) |
 | الخميس 12 نوفمبر 2026 | 12:02 م | 12:07 م | 5 دقيقة (فتح وتصفح المنصة) | **Codeforces**: 5 دقيقة (0 AC) | `12:07:18 م` [Codeforces] 👁️ فاتح كود فورسز (متصل أونلاين) (**Online**) |
 | الخميس 12 نوفمبر 2026 | 09:12 ص | 09:56 ص | 44 دقيقة (اتصال متواصل) | **Codeforces**: 44 دقيقة (2 AC) | `09:56:31 ص` [Codeforces] 920F - SUM and REPLACE (**Accepted**)<br>`09:52:13 ص` [Codeforces] 920F - SUM and REPLACE (**Accepted**)<br>`09:46:23 ص` [Codeforces] 920F - SUM and REPLACE (**Time Limit Exceeded**)<br>`09:34:55 ص` [Codeforces] 920F - SUM and REPLACE (**Time Limit Exceeded**)<br>`09:31:23 ص` [Codeforces] 920F - SUM and REPLACE (**Time Limit Exceeded**)<br>`09:27:55 ص` [Codeforces] 920F - SUM and REPLACE (**Time Limit Exceeded**) |
-| الأربعاء 11 نوفمبر 2026 | 10:23 ص | 11:12 ص | 50 دقيقة (اتصال متواصل) | **Codeforces**: 50 دقيقة (1 AC) | `11:12:59 ص` [Codeforces] 104375D - Dynamic Collection (**Accepted**)<br>`10:52:20 ص` [Codeforces] 104375D - Dynamic Collection (**Time Limit Exceeded**)<br>`10:45:14 ص` [Codeforces] 104375D - Dynamic Collection (**Time Limit Exceeded**)<br>`10:38:13 ص` [Codeforces] 104375D - Dynamic Collection (**Time Limit Exceeded**) |
 
 ### 👤 Abdelhamid
 | التاريخ | من | إلى | مدة النشاط | تفصيل المنصات | المسائل بالتوقيت |
