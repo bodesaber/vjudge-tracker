@@ -1,5 +1,5 @@
 # 📊 تقرير متابعة نشاط المتدربين الشامل 24/7 (VJudge + Codeforces + AtCoder + CSES)
-**تاريخ التحديث:** الأحد 22 نوفمبر 2026 - 12:46 ص (بتوقيت مصر - قاعدة الـ 30 دقيقة للاتصال المتواصل)
+**تاريخ التحديث:** الأحد 22 نوفمبر 2026 - 04:39 ص (بتوقيت مصر - قاعدة الـ 30 دقيقة للاتصال المتواصل)
 
 ## 🏆 أبطال التدريب (الأعلى نقاطاً):
 - **🥇 بطل اليوم:** **إسراء عبد الحق (Israa)** (0 نقطة — 0 AC، نشط 0 دقيقة)
@@ -9,15 +9,15 @@
 ## 1. جدول الترتيب والملخص العام (مرتب حسب سكور الأسبوع)
 | الترتيب | المتدرب | الحالة | سكور اليوم | سكور 7 أيام | سكور 30 يوماً | المنصات المربوطة |
 | :---: | :--- | :---: | :---: | :---: | :---: | :--- |
-| **🥇 #1** | **فاطمة الفقي (Fatema)** | ⚪ غير متصل | **0 نقطة** (0 AC / 0 دقيقة) | **1253 نقطة** (4 AC / 1 س و 43 د) | **17388 نقطة** (63 AC / 14 س و 48 د) | VJudge: `Fatemaelfiky1` (461 AC), Codeforces: `Zhraa_` (112 AC) |
-| **🥈 #2** | **esraa** | ⚪ غير متصل | **0 نقطة** (0 AC / 0 دقيقة) | **1130 نقطة** (2 AC / 1 ساعة) | **21770 نقطة** (70 AC / 23 س و 50 د) | VJudge: `esraa_emary` (354 AC), Codeforces: `esoo` (85 AC) |
-| **🥉 #3** | **Abdelhamid** | ⚪ غير متصل | **0 نقطة** (0 AC / 0 دقيقة) | **775 نقطة** (3 AC / 1 س و 40 د) | **16212 نقطة** (42 AC / 13 س و 57 د) | VJudge: `abdelhamid1` (360 AC), Codeforces: `Abdelhamid_` (100 AC), AtCoder: `Abdelhamid` (59 AC) |
+| **🥇 #1** | **فاطمة الفقي (Fatema)** | ⚪ غير متصل | **0 نقطة** (0 AC / 0 دقيقة) | **1253 نقطة** (4 AC / 1 س و 43 د) | **17388 نقطة** (63 AC / 14 س و 48 د) | VJudge: `Fatemaelfiky1` (469 AC), Codeforces: `Zhraa_` (112 AC) |
+| **🥈 #2** | **esraa** | ⚪ غير متصل | **0 نقطة** (0 AC / 0 دقيقة) | **1110 نقطة** (2 AC / 55 دقيقة) | **21770 نقطة** (70 AC / 23 س و 50 د) | VJudge: `esraa_emary` (354 AC), Codeforces: `esoo` (85 AC) |
+| **🥉 #3** | **Abdelhamid** | ⚪ غير متصل | **0 نقطة** (0 AC / 0 دقيقة) | **775 نقطة** (3 AC / 1 س و 40 د) | **16192 نقطة** (42 AC / 13 س و 52 د) | VJudge: `abdelhamid1` (360 AC), Codeforces: `Abdelhamid_` (100 AC), AtCoder: `Abdelhamid` (59 AC) |
 | **#4** | **Mohab** | ⚪ غير متصل | **0 نقطة** (0 AC / 0 دقيقة) | **459 نقطة** (2 AC / 1 س و 39 د) | **15665 نقطة** (45 AC / 15 س و 45 د) | VJudge: `Mo_hab` (386 AC), Codeforces: `Mo_hab` (146 AC), AtCoder: `Mo_hab` (25 AC) |
 | **#5** | **Youssef Saleh** | ⚪ غير متصل | **0 نقطة** (0 AC / 0 دقيقة) | **260 نقطة** (0 AC / 1 س و 5 د) | **47972 نقطة** (103 AC / 39 س و 7 د) | VJudge: `Youssef_Saleh` (477 AC), Codeforces: `nerdev` (111 AC), AtCoder: `Nerdev` (62 AC), CSES: `390594` (239 AC) |
 | **#6** | **Abdelrahman Saber** | ⚪ غير متصل | **0 نقطة** (0 AC / 0 دقيقة) | **112 نقطة** (0 AC / 37 دقيقة) | **891 نقطة** (0 AC / 4 س و 21 د) | VJudge: `4aii_Blabn` (421 AC), Codeforces: `4aii_Blabn` (120 AC) |
-| **#7** | **Gamal Megahed** | ⚪ غير متصل | **0 نقطة** (0 AC / 0 دقيقة) | **69 نقطة** (0 AC / 39 دقيقة) | **22116 نقطة** (70 AC / 13 س و 31 د) | VJudge: `gamalmegahed` (792 AC), Codeforces: `PG_Gamal_Kobisy` (108 AC) |
+| **#7** | **Gamal Megahed** | ⚪ غير متصل | **0 نقطة** (0 AC / 0 دقيقة) | **69 نقطة** (0 AC / 39 دقيقة) | **22096 نقطة** (70 AC / 13 س و 26 د) | VJudge: `gamalmegahed` (792 AC), Codeforces: `PG_Gamal_Kobisy` (108 AC) |
 | **#8** | **إسراء عبد الحق (Israa)** | ⚪ غير متصل | **0 نقطة** (0 AC / 0 دقيقة) | **0 نقطة** (0 AC / 0 دقيقة) | **993 نقطة** (4 AC / 1 س و 43 د) | VJudge: `Israa_abdelhaq` (224 AC), Codeforces: `Isabella_` (100 AC), AtCoder: `Isabella_` (1 AC) |
-| **#9** | **عمر عوض صابر (Omar)** | ⚪ غير متصل | **0 نقطة** (0 AC / 0 دقيقة) | **0 نقطة** (0 AC / 0 دقيقة) | **6958 نقطة** (15 AC / 9 س و 3 د) | VJudge: `Omar_Awad_Saber` (506 AC), Codeforces: `Lumino` (99 AC), AtCoder: `Lumino` (24 AC) |
+| **#9** | **عمر عوض صابر (Omar)** | ⚪ غير متصل | **0 نقطة** (0 AC / 0 دقيقة) | **0 نقطة** (0 AC / 0 دقيقة) | **6938 نقطة** (15 AC / 8 س و 58 د) | VJudge: `Omar_Awad_Saber` (506 AC), Codeforces: `Lumino` (99 AC), AtCoder: `Lumino` (24 AC) |
 | **#10** | **عمرو خالد (Amr)** | ⚪ غير متصل | **0 نقطة** (0 AC / 0 دقيقة) | **0 نقطة** (0 AC / 0 دقيقة) | **2769 نقطة** (8 AC / 3 س و 4 د) | VJudge: `Amr2Khaled` (302 AC), Codeforces: `SHANKS-A` (97 AC), AtCoder: `SHANKS_A` (1 AC) |
 | **#11** | **seif lashin** | ⚪ غير متصل | **0 نقطة** (0 AC / 0 دقيقة) | **0 نقطة** (0 AC / 0 دقيقة) | **437 نقطة** (2 AC / 1 س و 17 د) | VJudge: `seiflashin` (519 AC), Codeforces: `seiflashin` (89 AC), AtCoder: `seiflashin` (100 AC) |
 | **#12** | **youssef** | ⚪ غير متصل | **0 نقطة** (0 AC / 0 دقيقة) | **0 نقطة** (0 AC / 0 دقيقة) | **9470 نقطة** (33 AC / 10 ساعة) | VJudge: `youssef_97` (573 AC), Codeforces: `youssef97_` (90 AC) |
