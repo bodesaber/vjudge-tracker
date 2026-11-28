@@ -518,6 +518,17 @@
       "problemUrl": "https://codeforces.com/profile/Lumino",
       "status": "Online",
       "is_ac": false
+    },
+    {
+      "id": "ping_cf_1795820793000",
+      "type": "online_ping",
+      "platform": "Codeforces",
+      "time": 1795820793000,
+      "probNum": "تصفح المنصة",
+      "problemName": "👁️ فاتح كود فورسز (متصل أونلاين)",
+      "problemUrl": "https://codeforces.com/profile/Lumino",
+      "status": "Online",
+      "is_ac": false
     }
   ],
   "fatema": [
@@ -4225,6 +4236,17 @@
       "type": "online_ping",
       "platform": "Codeforces",
       "time": 1795805330000,
+      "probNum": "تصفح المنصة",
+      "problemName": "👁️ فاتح كود فورسز (متصل أونلاين)",
+      "problemUrl": "https://codeforces.com/profile/Mo_hab",
+      "status": "Online",
+      "is_ac": false
+    },
+    {
+      "id": "ping_cf_1795813750000",
+      "type": "online_ping",
+      "platform": "Codeforces",
+      "time": 1795813750000,
       "probNum": "تصفح المنصة",
       "problemName": "👁️ فاتح كود فورسز (متصل أونلاين)",
       "problemUrl": "https://codeforces.com/profile/Mo_hab",
